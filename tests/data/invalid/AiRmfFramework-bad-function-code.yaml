@@ -1,0 +1,11 @@
+id: https://w3id.org/lmodel/nist-ai-rmf/instance/invalid-function
+name: Invalid function code
+description: |-
+  Should fail validation: BADCODE is not a permitted FunctionCode value.
+
+functions:
+  - id: nist_ai_rmf:BADCODE
+    function_code: BADCODE
+    title: Bad Function
+    name: Bad Function
+    description: This should not validate.

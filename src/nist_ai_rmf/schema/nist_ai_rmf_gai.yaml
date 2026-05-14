@@ -1,0 +1,629 @@
+---
+id: https://w3id.org/lmodel/nist-ai-rmf-gai
+name: nist-ai-rmf-gai
+title: NIST AI RMF Generative AI Profile (NIST AI 600-1)
+description: |-
+  LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence
+  Profile of the AI Risk Management Framework (July 2024).
+
+  This is a **cross-sectoral profile** and a *companion resource* to
+  NIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or
+  exacerbated by the use of Generative AI (GAI) and provides a set of
+  suggested actions, organised by AI RMF subcategory, that
+  organisations can take to govern, map, measure, and manage those
+  risks.
+
+  The schema imports the base `nist_ai_rmf` schema and enriches it with:
+    * 12 GAI risk categories (Section 2)
+    * Risk dimensions (lifecycle stage, scope, source, time scale)
+    * `SuggestedAction` entries (Section 3 tables) linked to AI RMF
+      subcategories
+    * Primary GAI Considerations (Appendix A): Governance,
+      Pre-Deployment Testing, Content Provenance, Incident Disclosure
+    * Structured Public Feedback methods and AI Red-teaming types
+license: Apache-2.0
+source: https://doi.org/10.6028/NIST.AI.600-1
+version: 1.0.0
+see_also:
+  - https://w3id.org/lmodel/nist-ai-rmf
+  - https://doi.org/10.6028/NIST.AI.600-1
+  - https://airc.nist.gov/Home
+
+prefixes:
+  nist_ai_rmf_gai: https://w3id.org/lmodel/nist-ai-rmf-gai/
+  nist_ai_rmf: https://w3id.org/lmodel/nist-ai-rmf/
+  linkml: https://w3id.org/linkml/
+  rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
+  rdfs: http://www.w3.org/2000/01/rdf-schema#
+  skos: http://www.w3.org/2004/02/skos/core#
+  schema: http://schema.org/
+  dcterms: http://purl.org/dc/terms/
+  xsd: http://www.w3.org/2001/XMLSchema#
+  nist_csf: https://w3id.org/lmodel/nist-csf-v2/
+  oscal_catalog: https://w3id.org/lmodel/oscal_catalog/
+  oscal_profile: https://w3id.org/lmodel/oscal_profile/
+  iso27001: https://w3id.org/lmodel/iso27001/
+  iso29100: https://w3id.org/lmodel/iso29100/
+  gist: https://w3id.org/lmodel/gist/
+  stix: https://w3id.org/lmodel/stix/
+  doi: https://doi.org/
+
+default_prefix: nist_ai_rmf_gai
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_rmf
+
+# ============================================================================
+# Subsets
+# ============================================================================
+subsets:
+
+  gai_core:
+    description: |-
+      Foundational GAI Profile concepts - the 12 risks and their
+      dimensions (Section 2).
+
+  gai_actions:
+    description: |-
+      Suggested Actions organised by AI RMF subcategory (Section 3).
+
+  gai_considerations:
+    description: |-
+      Primary GAI Considerations (Appendix A): Governance,
+      Pre-Deployment Testing, Content Provenance, Incident Disclosure.
+
+  gai_feedback:
+    description: |-
+      Structured Public Feedback methods and AI Red-teaming
+      (Appendix A.1.5).
+
+# ============================================================================
+# Types
+# ============================================================================
+types:
+
+  GaiActionId:
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: "^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$"
+    description: |-
+      Action identifier used in NIST AI 600-1 Section 3, of the form
+      "<prefix>-<category>.<subcategory>-<seq>" - e.g., "GV-1.1-001".
+      Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage).
+
+# ============================================================================
+# Enums
+# ============================================================================
+enums:
+
+  GaiRiskCategoryEnum:
+    description: |-
+      The 12 risks unique to or exacerbated by Generative AI as
+      enumerated in NIST AI 600-1 Section 2.
+    in_subset: [gai_core]
+    permissible_values:
+      CBRN_INFORMATION_OR_CAPABILITIES:
+        description: |-
+          Eased access to or synthesis of materially nefarious
+          information or design capabilities related to chemical,
+          biological, radiological, or nuclear (CBRN) weapons or
+          other dangerous materials or agents.
+      CONFABULATION:
+        description: |-
+          The production of confidently stated but erroneous or
+          false content (colloquially "hallucinations" or
+          "fabrications") by which users may be misled or deceived.
+      DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT:
+        description: |-
+          Eased production of and access to violent, inciting,
+          radicalizing, or threatening content as well as
+          recommendations to carry out self-harm or conduct illegal
+          activities. Includes difficulty controlling public
+          exposure to hateful and disparaging or stereotyping
+          content.
+      DATA_PRIVACY:
+        description: |-
+          Impacts due to leakage and unauthorized use, disclosure, or
+          de-anonymization of biometric, health, location, or other
+          personally identifiable information or sensitive data.
+      ENVIRONMENTAL_IMPACTS:
+        description: |-
+          Impacts due to high compute resource utilization in
+          training or operating GAI models, and related outcomes that
+          may adversely impact ecosystems.
+      HARMFUL_BIAS_OR_HOMOGENIZATION:
+        description: |-
+          Amplification and exacerbation of historical, societal,
+          and systemic biases; performance disparities between
+          sub-groups or languages, possibly due to non-representative
+          training data, resulting in discrimination, amplification
+          of biases, or incorrect presumptions about performance;
+          undesired homogeneity that skews system or model outputs.
+      HUMAN_AI_CONFIGURATION:
+        description: |-
+          Arrangements of or interactions between a human and an AI
+          system which can result in the human inappropriately
+          anthropomorphising GAI systems or experiencing algorithmic
+          aversion, automation bias, over-reliance, or emotional
+          entanglement with GAI systems.
+      INFORMATION_INTEGRITY:
+        description: |-
+          Lowered barrier to entry to generate and support the
+          exchange and consumption of content which may not
+          distinguish fact from opinion or fiction or acknowledge
+          uncertainties, or could be leveraged for large-scale
+          dis- and mis-information campaigns.
+      INFORMATION_SECURITY:
+        description: |-
+          Lowered barriers for offensive cyber capabilities,
+          including via automated discovery and exploitation of
+          vulnerabilities; increased attack surface for targeted
+          cyberattacks, which may compromise a system's availability
+          or the confidentiality or integrity of training data,
+          code, or model weights.
+      INTELLECTUAL_PROPERTY:
+        description: |-
+          Eased production or replication of alleged copyrighted,
+          trademarked, or licensed content without authorization
+          (possibly outside fair use); eased exposure of trade
+          secrets; or plagiarism or illegal replication.
+      OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT:
+        description: |-
+          Eased production of and access to obscene, degrading,
+          and/or abusive imagery which can cause harm, including
+          synthetic child sexual abuse material (CSAM) and
+          nonconsensual intimate images (NCII) of adults.
+      VALUE_CHAIN_AND_COMPONENT_INTEGRATION:
+        description: |-
+          Non-transparent or untraceable integration of upstream
+          third-party components, including data that has been
+          improperly obtained or not processed and cleaned due to
+          increased automation from GAI; improper supplier vetting
+          across the AI lifecycle; or other issues that diminish
+          transparency or accountability for downstream users.
+
+  GaiRiskCategorizationEnum:
+    description: |-
+      Higher-level grouping of GAI risks, derived from the UK's
+      International Scientific Report on the Safety of Advanced AI
+      (NIST AI 600-1 Section 2, footnote 5).
+    in_subset: [gai_core]
+    permissible_values:
+      TECHNICAL_OR_MODEL_RISKS:
+        description: |-
+          Risks from malfunction. Examples include confabulation;
+          dangerous or violent recommendations; data privacy; value
+          chain and component integration; harmful bias and
+          homogenization.
+      MISUSE_BY_HUMANS:
+        description: |-
+          Risks from malicious use. Examples include CBRN information
+          or capabilities; data privacy; human-AI configuration;
+          obscene, degrading, and/or abusive content; information
+          integrity; information security.
+      ECOSYSTEM_OR_SOCIETAL_RISKS:
+        description: |-
+          Systemic risks. Examples include data privacy;
+          environmental impacts; intellectual property.
+
+  GaiRiskScopeEnum:
+    description: |-
+      The scope at which a GAI risk may manifest (Section 2).
+    in_subset: [gai_core]
+    permissible_values:
+      MODEL_OR_SYSTEM:
+        description: Individual GAI model or system level.
+      APPLICATION_OR_IMPLEMENTATION:
+        description: |-
+          Specific application or implementation - i.e., a particular
+          use case.
+      ECOSYSTEM:
+        description: |-
+          Beyond a single system or organizational context - e.g.,
+          algorithmic monocultures, labor-market impacts, creative
+          economies.
+
+  GaiRiskSourceEnum:
+    description: |-
+      The source(s) from which a GAI risk may emerge (Section 2).
+    in_subset: [gai_core]
+    permissible_values:
+      DESIGN:
+        description: From decisions made during model or system design.
+      TRAINING:
+        description: From the training data or training process.
+      OPERATION:
+        description: From operating the GAI model or system.
+      MODEL_INPUTS:
+        description: From inputs supplied to the model at inference time.
+      MODEL_OUTPUTS:
+        description: From the GAI system's generated outputs.
+      HUMAN_BEHAVIOR:
+        description: |-
+          From human behaviour - abuse, misuse, or unsafe repurposing
+          by humans (adversarial or not).
+      HUMAN_AI_INTERACTION:
+        description: From interactions between a human and the AI system.
+
+  GaiRiskTimeScaleEnum:
+    description: |-
+      The time scale over which a GAI risk may materialise
+      (Section 2).
+    in_subset: [gai_core]
+    permissible_values:
+      IMMEDIATE:
+        description: Materialises abruptly (e.g., distribution of deepfakes).
+      PROLONGED:
+        description: |-
+          Materialises across extended periods (e.g., long-term
+          effect of disinformation on societal trust).
+
+  GaiActionFunctionPrefixEnum:
+    description: |-
+      Two-letter function prefix used in GAI Action IDs.
+    in_subset: [gai_actions]
+    permissible_values:
+      GV:
+        description: Govern function.
+      MP:
+        description: Map function.
+      MS:
+        description: Measure function.
+      MG:
+        description: Manage function.
+
+  PrimaryConsiderationEnum:
+    description: |-
+      The four overarching themes derived from the GAI PWG
+      consultation process (Appendix A).
+    in_subset: [gai_considerations]
+    permissible_values:
+      GOVERNANCE:
+        description: |-
+          How organizational governance regimes may be re-evaluated
+          and adjusted for GAI contexts (A.1).
+      PRE_DEPLOYMENT_TESTING:
+        description: |-
+          Test, evaluation, validation, and verification practices
+          appropriate for GAI prior to deployment (A.1.4).
+      CONTENT_PROVENANCE:
+        description: |-
+          Digital transparency mechanisms (provenance data tracking,
+          watermarking, synthetic content detection) for tracing
+          origin and history of content (A.1.6 - A.1.7).
+      INCIDENT_DISCLOSURE:
+        description: |-
+          Documenting, reporting, and sharing information about AI
+          incidents to mitigate harm and improve risk management
+          (A.1.8).
+
+  StructuredFeedbackMethodEnum:
+    description: |-
+      Categories of structured public feedback for GAI risk
+      management (Appendix A.1.5).
+    in_subset: [gai_feedback]
+    permissible_values:
+      PARTICIPATORY_ENGAGEMENT_METHODS:
+        description: |-
+          Methods used to solicit feedback from civil society groups,
+          affected communities, and users (focus groups, small user
+          studies, surveys).
+      FIELD_TESTING:
+        description: |-
+          Methods used to determine how people interact with,
+          consume, use, and make sense of AI-generated information
+          (UX, usability, randomised experiments).
+      AI_RED_TEAMING:
+        description: |-
+          A structured testing exercise used to probe an AI system
+          to find flaws and vulnerabilities such as inaccurate,
+          harmful, or discriminatory outputs.
+
+  RedTeamingTypeEnum:
+    description: |-
+      Types of AI red-teaming exercises (Appendix A.1.5).
+    in_subset: [gai_feedback]
+    permissible_values:
+      GENERAL_PUBLIC:
+        description: |-
+          Performed by general users not necessarily having AI or
+          technical expertise.
+      EXPERT:
+        description: |-
+          Performed by specialists with expertise in the domain or
+          specific red-teaming context (medicine, biotech,
+          cybersecurity).
+      COMBINATION:
+        description: |-
+          Hybrid exercises using both expert and general-public
+          participants.
+      HUMAN_AND_AI:
+        description: |-
+          Performed by GAI in combination with specialist or
+          non-specialist human teams.
+
+# ============================================================================
+# Slots
+# ============================================================================
+slots:
+
+  gai_risk_kind:
+    range: GaiRiskCategoryEnum
+    description: The GAI risk category this element represents.
+    in_subset: [gai_core]
+
+  gai_risks:
+    range: GaiRiskCategoryEnum
+    multivalued: true
+    description: |-
+      GAI risk categories addressed by a suggested action or
+      considered by a primary consideration.
+    in_subset: [gai_core]
+
+  risk_categorization:
+    range: GaiRiskCategorizationEnum
+    description: |-
+      Higher-level categorisation - technical/model, misuse, or
+      ecosystem/societal.
+    in_subset: [gai_core]
+
+  risk_scope:
+    range: GaiRiskScopeEnum
+    multivalued: true
+    description: Scope levels at which the risk may manifest.
+    in_subset: [gai_core]
+
+  risk_sources:
+    range: GaiRiskSourceEnum
+    multivalued: true
+    description: Sources from which the risk may emerge.
+    in_subset: [gai_core]
+
+  time_scale:
+    range: GaiRiskTimeScaleEnum
+    multivalued: true
+    description: Time scales over which the risk may materialise.
+    in_subset: [gai_core]
+
+  action_id:
+    range: GaiActionId
+    required: true
+    description: Identifier of a Suggested Action.
+    in_subset: [gai_actions]
+
+  function_prefix:
+    range: GaiActionFunctionPrefixEnum
+    description: Two-letter function prefix of the action's subcategory.
+    in_subset: [gai_actions]
+
+  applies_to_subcategory:
+    range: SubcategoryCode
+    description: |-
+      Identifier of the AI RMF subcategory the action applies to.
+    in_subset: [gai_actions]
+    close_mappings:
+      - oscal_profile:Profile
+
+  consideration_kind:
+    range: PrimaryConsiderationEnum
+    required: true
+    description: |-
+      Which primary consideration this element represents.
+    in_subset: [gai_considerations]
+
+  feedback_method_kind:
+    range: StructuredFeedbackMethodEnum
+    required: true
+    description: Which structured feedback method this element represents.
+    in_subset: [gai_feedback]
+
+  red_team_type:
+    range: RedTeamingTypeEnum
+    description: The type of AI red-teaming exercise.
+    in_subset: [gai_feedback]
+
+# ============================================================================
+# Classes
+# ============================================================================
+classes:
+
+  # --------------------------------------------------------------------------
+  # GAI Risks (Section 2)
+  # --------------------------------------------------------------------------
+  GaiRisk:
+    is_a: AiSpecificRisk
+    description: |-
+      A risk that is novel to or exacerbated by Generative AI.
+      Each instance corresponds to one of the 12 risk categories
+      enumerated in NIST AI 600-1 Section 2.
+    slots:
+      - gai_risk_kind
+      - risk_categorization
+      - risk_scope
+      - risk_sources
+      - time_scale
+      - lifecycle_stage
+      - trustworthiness_characteristic
+    attributes:
+      addressed_by_actions:
+        range: SuggestedAction
+        multivalued: true
+        description: |-
+          Suggested actions that address this risk (back-reference).
+    in_subset: [gai_core]
+    close_mappings:
+      - nist_ai_rmf:AiSpecificRisk
+    broad_mappings:
+      - iso27001:Risk
+    related_mappings:
+      - iso29100:PrivacyRisk
+
+  # --------------------------------------------------------------------------
+  # Suggested Actions (Section 3)
+  # --------------------------------------------------------------------------
+  SuggestedAction:
+    is_a: NamedThing
+    description: |-
+      A suggested action an organisation can take to manage GAI
+      risks. Each action is identified by an Action ID, linked to an
+      AI RMF subcategory, and may be relevant to one or more GAI
+      risks and AI actor tasks (NIST AI 600-1 Section 3).
+    slots:
+      - action_id
+      - function_prefix
+      - applies_to_subcategory
+      - gai_risks
+      - actor_task
+    slot_usage:
+      id:
+        description: |-
+          Identifier for the action - typically the same as the
+          `action_id` (e.g., "GV-1.1-001").
+      description:
+        description: The suggested-action text itself.
+    in_subset: [gai_actions]
+    close_mappings:
+      - stix:CourseOfAction
+    related_mappings:
+      - oscal_catalog:Control
+      - gist:Task
+
+  # --------------------------------------------------------------------------
+  # Primary GAI Considerations (Appendix A)
+  # --------------------------------------------------------------------------
+  PrimaryGaiConsideration:
+    is_a: NamedThing
+    description: |-
+      An overarching consideration derived from the NIST GAI PWG
+      consultation process (Appendix A). The `consideration_kind`
+      attribute discriminates between the four primary
+      considerations: Governance, Pre-Deployment Testing, Content
+      Provenance, and Incident Disclosure.
+
+      All consideration-specific attributes are optional and apply
+      to the appropriate `consideration_kind`:
+        * GOVERNANCE: governance_practices, third_party_considerations
+        * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
+        * CONTENT_PROVENANCE: provenance_techniques
+        * INCIDENT_DISCLOSURE: ai_incident_definition
+    slots:
+      - consideration_kind
+    attributes:
+      governance_practices:
+        range: string
+        multivalued: true
+        description: |-
+          Governance plans and actions (A.1.2) - e.g., "Auditing and
+          assessment", "Data provenance", "Incident response",
+          "Impact assessments", "Stakeholder engagement", "Synthetic
+          content detection", "Whistleblower protections".
+      third_party_considerations:
+        range: string
+        description: |-
+          Considerations for third-party GAI integrations,
+          procurement, SBOMs, SLAs, and SSAE reports (A.1.3).
+      limitations_of_current_approaches:
+        range: string
+        description: |-
+          For Pre-Deployment Testing: free-text discussion of why
+          current TEVV approaches may be inadequate (A.1.4).
+      provenance_techniques:
+        range: string
+        multivalued: true
+        description: |-
+          For Content Provenance: provenance data tracking
+          techniques such as digital watermarking, metadata
+          recording, digital fingerprinting, human authentication
+          (A.1.6).
+      ai_incident_definition:
+        range: string
+        description: |-
+          For Incident Disclosure: the definition of AI incident
+          used by the organisation (A.1.8).
+    in_subset: [gai_considerations]
+    related_mappings:
+      - nist_csf:CSFProperty
+
+  # --------------------------------------------------------------------------
+  # Structured Public Feedback (A.1.5)
+  # --------------------------------------------------------------------------
+  StructuredPublicFeedback:
+    is_a: NamedThing
+    description: |-
+      Methods used to evaluate whether GAI systems are performing as
+      intended and to calibrate and verify traditional measurement
+      methods (A.1.5).
+    slots:
+      - feedback_method_kind
+    in_subset: [gai_feedback]
+    related_mappings:
+      - iso27001:InterestedParty
+
+  AiRedTeaming:
+    is_a: StructuredPublicFeedback
+    description: |-
+      A structured testing exercise used to probe an AI system to
+      find flaws and vulnerabilities such as inaccurate, harmful, or
+      discriminatory outputs, often in a controlled environment and
+      in collaboration with system developers (A.1.5).
+    slots:
+      - red_team_type
+    slot_usage:
+      feedback_method_kind:
+        ifabsent: StructuredFeedbackMethodEnum(AI_RED_TEAMING)
+    in_subset: [gai_feedback]
+    related_mappings:
+      - stix:AttackPattern
+
+  # --------------------------------------------------------------------------
+  # GAI Profile (tree root)
+  # --------------------------------------------------------------------------
+  GaiProfile:
+    is_a: AiRmfProfile
+    tree_root: true
+    description: |-
+      Root container that bundles the NIST AI 600-1 Generative AI
+      Profile: GAI risks (Section 2), suggested actions (Section 3),
+      and primary considerations (Appendix A).
+    slot_usage:
+      profile_type:
+        ifabsent: ProfileTypeEnum(CROSS_SECTORAL)
+    attributes:
+      gai_risk_catalog:
+        range: GaiRisk
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        description: The catalog of GAI risks (Section 2).
+      suggested_actions:
+        range: SuggestedAction
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        description: Suggested actions to manage GAI risks (Section 3).
+      primary_considerations:
+        range: PrimaryGaiConsideration
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        description: |-
+          The primary GAI considerations from Appendix A
+          (Governance, Pre-Deployment Testing, Content Provenance,
+          Incident Disclosure). Discriminated by
+          `consideration_kind`.
+      structured_feedback_methods:
+        range: StructuredPublicFeedback
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        description: |-
+          Structured public feedback methods relevant to the profile
+          (A.1.5).
+    in_subset: [gai_core]
+    exact_mappings:
+      - oscal_profile:Profile
+    close_mappings:
+      - nist_csf:CSFDocument

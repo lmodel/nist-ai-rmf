@@ -1,0 +1,8 @@
+id: nist_ai_rmf:risk/invalid-likelihood
+name: Bad likelihood
+description: |-
+  Should fail validation: likelihood is out of range (must be
+  between 0.0 and 1.0).
+likelihood: 1.7
+magnitude: HIGH
+impact_sign: NEGATIVE

@@ -1,0 +1,63 @@
+id: https://w3id.org/lmodel/nist-ai-rmf/instance/minimal
+name: AI RMF 1.0 - minimal instance
+description: |-
+  A minimal AiRmfFramework instance covering one Function (GOVERN) with
+  one Category (GOVERN 1) and one Subcategory (GOVERN 1.1), plus a
+  trustworthiness characteristic and a lifecycle stage.
+
+document:
+  id: doi:10.6028/NIST.AI.100-1
+  title: Artificial Intelligence Risk Management Framework (AI RMF 1.0)
+  publisher: National Institute of Standards and Technology
+  doi: doi:10.6028/NIST.AI.100-1
+  published_date: "2023-01-26"
+  version: "1.0"
+  source: doi:10.6028/NIST.AI.100-1
+
+functions:
+  - id: nist_ai_rmf:GOVERN
+    function_code: GOVERN
+    title: GOVERN
+    name: GOVERN
+    description: |-
+      A culture of risk management is cultivated and present.
+      GOVERN is a cross-cutting function infused throughout AI risk
+      management and enables the other functions.
+    categories:
+      - id: "nist_ai_rmf:GOVERN_1"
+        category_id: GOVERN 1
+        title: GOVERN 1
+        outcome: |-
+          Policies, processes, procedures, and practices across the
+          organization related to the mapping, measuring, and managing
+          of AI risks are in place, transparent, and implemented
+          effectively.
+        subcategories:
+          - id: "nist_ai_rmf:GOVERN_1.1"
+            subcategory_id: GOVERN 1.1
+            title: GOVERN 1.1
+            outcome: |-
+              Legal and regulatory requirements involving AI are
+              understood, managed, and documented.
+
+trustworthiness_characteristics:
+  - id: nist_ai_rmf:char/valid_and_reliable
+    name: Valid and Reliable
+    title: Valid and Reliable
+    characteristic_kind: VALID_AND_RELIABLE
+    is_base_condition: true
+    description: |-
+      Confirmation, through the provision of objective evidence, that
+      the requirements for a specific intended use or application have
+      been fulfilled, and that the system performs as required without
+      failure for a given time interval and under given conditions.
+
+lifecycle_stages:
+  - id: nist_ai_rmf:stage/plan_and_design
+    name: Plan and Design
+    title: Plan and Design
+    stage_kind: PLAN_AND_DESIGN
+    includes_tevv: true
+    description: |-
+      Articulate and document the system's concept and objectives,
+      underlying assumptions, context, and requirements.

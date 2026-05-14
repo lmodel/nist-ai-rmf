@@ -1,0 +1,6 @@
+id: nist_ai_rmf:char/bad
+name: Bad characteristic
+description: |-
+  Should fail validation: NOT_A_REAL_CHARACTERISTIC is not in the
+  TrustworthinessCharacteristicEnum.
+characteristic_kind: NOT_A_REAL_CHARACTERISTIC

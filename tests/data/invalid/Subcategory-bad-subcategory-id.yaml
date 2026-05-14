@@ -1,0 +1,7 @@
+id: nist_ai_rmf:Subcategory/bad
+subcategory_id: govern1.1
+title: Bad subcategory
+description: |-
+  Should fail validation: subcategory_id does not match the
+  "FUNCTION N.M" pattern (missing uppercase, missing space).
+outcome: This subcategory id is invalid.

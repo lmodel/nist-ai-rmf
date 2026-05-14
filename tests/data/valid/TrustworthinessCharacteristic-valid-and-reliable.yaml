@@ -1,0 +1,9 @@
+id: nist_ai_rmf:char/valid_and_reliable
+name: Valid and Reliable
+title: Valid and Reliable
+description: |-
+  A necessary condition of trustworthiness, shown as the base for
+  other trustworthiness characteristics in Figure 4.
+characteristic_kind: VALID_AND_RELIABLE
+is_base_condition: true
+is_cross_cutting: false
