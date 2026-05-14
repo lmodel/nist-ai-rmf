@@ -1,0 +1,485 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.11.0
+// version: 1.0.0
+// An organization or individual that plays an active role in the AI
+// system lifecycle. AI actors include those who deploy or operate
+// AI as well as those who inform via formal or quasi-formal norms
+// and guidance (OECD 2019).
+message AiActor
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ repeated  aiActorTaskEnum actorTask = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+  boolean isTevv = 0
+  audienceEnum audience = 0
+ }
+// A category of task performed by AI actors (Appendix A). Each
+// task is associated with one or more lifecycle stages and a
+// typical set of actor roles.
+message AiActorTask
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  aiSystemDimensionEnum aiDimension = 0
+  aiActorTaskEnum taskKind = 0
+ repeated  string typicalActors = 0
+ }
+// A stage of the AI lifecycle (Figure 2): Plan and Design,
+// Collect and Process Data, Build and Use Model, Verify and
+// Validate, Deploy and Use, or Operate and Monitor.
+message AiLifecycleStage
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  aiLifecycleStageEnum stageKind = 0
+  boolean includesTevv = 0
+ }
+// A structured testing exercise used to probe an AI system to
+// find flaws and vulnerabilities such as inaccurate, harmful, or
+// discriminatory outputs, often in a controlled environment and
+// in collaboration with system developers (A.1.5).
+message AiRedTeaming
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  redTeamingTypeEnum redTeamType = 0
+  structuredFeedbackMethodEnum feedbackMethodKind = 0
+ }
+// Publication metadata for an instance of the AI RMF (e.g., NIST
+// AI 100-1, January 2023). The Framework is intended to be a
+// living document, employing a two-number versioning system (major.minor).
+message AiRmfDocument
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  string version = 0
+  string publisher = 0
+  uriorcurie doi = 0
+  date publishedDate = 0
+  uriorcurie source = 0
+ }
+// Root container that bundles the AI RMF Core (Functions) with
+// foundational concepts (trustworthiness characteristics,
+// lifecycle, actors, risks, harms), profiles, and Framework
+// attributes. Designed for serialising the Framework or a tailored
+// instance of it as a single JSON / YAML document.
+message AiRmfFramework
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  aiRmfDocument document = 0
+ repeated  function functions = 0
+ repeated  trustworthinessCharacteristic trustworthinessCharacteristics = 0
+ repeated  aiLifecycleStage lifecycleStages = 0
+ repeated  aiSystemDimension dimensions = 0
+ repeated  aiActorTask actorTasks = 0
+ repeated  aiRmfProfile profiles = 0
+ repeated  rmfAttribute attributes = 0
+ repeated  riskMeasurementChallenge riskMeasurementChallenges = 0
+ repeated  aiSpecificRisk aiSpecificRisks = 0
+ repeated  humanAiInteractionIssue humanAiInteractionIssues = 0
+ }
+// An implementation of the AI RMF Functions, Categories, and
+// Subcategories for a specific setting or application based on the
+// requirements, risk tolerance, and resources of the user (§6).
+// Profiles may be use-case-specific, temporal (current or target),
+// or cross-sectoral.
+message AiRmfProfile
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  profileTypeEnum profileType = 0
+  string currentState = 0
+  string targetState = 0
+  string sector = 0
+ repeated  subcategory addresses = 0
+ }
+// A risk that is new or increased for AI-based technology compared
+// to traditional software (Appendix B) - e.g., data quality, model
+// drift, opacity, scale and complexity, pre-trained model
+// uncertainty, emergent properties, privacy aggregation, or
+// environmental cost.
+message AiSpecificRisk
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ }
+// An engineered or machine-based system that can, for a given set
+// of objectives, generate outputs such as predictions,
+// recommendations, or decisions influencing real or virtual
+// environments. AI systems are designed to operate with varying
+// levels of autonomy (Adapted from OECD Recommendation on AI:2019;
+// ISO/IEC 22989:2022).
+message AiSystem
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  aiSystemDimensionEnum aiDimension = 0
+ }
+// A socio-technical dimension of an AI system (Figure 2):
+// Application Context, Data and Input, AI Model, Task and Output,
+// or People and Planet.
+message AiSystemDimension
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  aiSystemDimensionEnum dimensionKind = 0
+ }
+// A form of AI bias - a deviation that may be perpetuated or
+// amplified by AI systems. NIST identifies three major categories:
+// systemic, computational/statistical, and human-cognitive
+// (Part 1 §3.7; NIST SP 1270).
+message Bias
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ repeated  biasCategoryEnum biasCategory = 0
+ }
+// A category within an AI RMF Core function (e.g., "GOVERN 1:
+// Policies, processes, procedures, and practices ... are in place,
+// transparent, and implemented effectively"). Categories group
+// related subcategories.
+message Category
+ {
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  categoryCode categoryId = 0
+  string outcome = 0
+ repeated  subcategory subcategories = 0
+  uriorcurie id = 0
+ }
+// A top-level AI RMF Core function. Each function organizes AI risk
+// management activities at the highest level. GOVERN applies across
+// all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
+// contexts and lifecycle stages.
+message Function
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  functionCode functionCode = 0
+ repeated  category categories = 0
+ }
+// Root container that bundles the NIST AI 600-1 Generative AI
+// Profile: GAI risks (Section 2), suggested actions (Section 3),
+// and primary considerations (Appendix A).
+message GaiProfile
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  string currentState = 0
+  string targetState = 0
+  string sector = 0
+ repeated  subcategory addresses = 0
+ repeated  gaiRisk gaiRiskCatalog = 0
+ repeated  suggestedAction suggestedActions = 0
+ repeated  primaryGaiConsideration primaryConsiderations = 0
+ repeated  structuredPublicFeedback structuredFeedbackMethods = 0
+  profileTypeEnum profileType = 0
+ }
+// A risk that is novel to or exacerbated by Generative AI.
+// Each instance corresponds to one of the 12 risk categories
+// enumerated in NIST AI 600-1 Section 2.
+message GaiRisk
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  gaiRiskCategoryEnum gaiRiskKind = 0
+  gaiRiskCategorizationEnum riskCategorization = 0
+ repeated  gaiRiskScopeEnum riskScope = 0
+ repeated  gaiRiskSourceEnum riskSources = 0
+ repeated  gaiRiskTimeScaleEnum timeScale = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
+ repeated  suggestedAction addressedByActions = 0
+ }
+// A negative impact that may be experienced by individuals,
+// groups, communities, organizations, society, the environment, or
+// the planet (Figure 1).
+message Harm
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  harmCategoryEnum harmCategory = 0
+  harmToPeopleSubcategoryEnum harmToPeopleSubcategory = 0
+  string magnitude = 0
+ repeated  namedThing affects = 0
+ }
+// An issue that merits further consideration in human-AI
+// interaction (Appendix C) - e.g., clear human roles and
+// responsibilities, systemic and human-cognitive biases in design,
+// variability of human-AI interaction outcomes, complexity of
+// presenting AI system information to humans.
+message HumanAiInteractionIssue
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ }
+// A positive, negative, or both consequence of an AI system. Impacts
+// can manifest as opportunities (positive) or threats (negative).
+message Impact
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  impactSignEnum impactSign = 0
+  string magnitude = 0
+  float likelihood = 0
+ repeated  namedThing affects = 0
+ }
+// A container for a set of PlaybookEntry instances - the
+// serialisation root for an AI RMF Playbook companion document.
+// Validate with ``linkml-validate --target-class PlaybookCollection``;
+// the canonical tree-root for the schema is ``AiRmfFramework``.
+message PlaybookCollection
+ {
+ repeated  playbookEntry entries = 0
+ }
+// A single AI RMF Playbook entry - an enrichment of a Core
+// subcategory with prose discussion, suggested actions,
+// documentation questions, references, and topic tags.
+// 
+// Attribute names use the same identifiers found in the published
+// NIST AI RMF Playbook JSON (e.g., `section_about`,
+// `section_actions`) so that the data can be loaded directly.
+message PlaybookEntry
+ {
+  string type = 0
+  string title = 0
+  string category = 0
+  string description = 0
+  string sectionAbout = 0
+  string sectionActions = 0
+  string sectionDoc = 0
+  string sectionRef = 0
+ repeated  string aiActors = 0
+ repeated  string topic = 0
+ }
+// An overarching consideration derived from the NIST GAI PWG
+// consultation process (Appendix A). The `consideration_kind`
+// attribute discriminates between the four primary
+// considerations: Governance, Pre-Deployment Testing, Content
+// Provenance, and Incident Disclosure.
+// 
+// All consideration-specific attributes are optional and apply
+// to the appropriate `consideration_kind`:
+//   * GOVERNANCE: governance_practices, third_party_considerations
+//   * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
+//   * CONTENT_PROVENANCE: provenance_techniques
+//   * INCIDENT_DISCLOSURE: ai_incident_definition
+message PrimaryGaiConsideration
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  primaryConsiderationEnum considerationKind = 0
+ repeated  string governancePractices = 0
+  string thirdPartyConsiderations = 0
+  string limitationsOfCurrentApproaches = 0
+ repeated  string provenanceTechniques = 0
+  string aiIncidentDefinition = 0
+ }
+// Risk remaining after risk treatment (ISO Guide 73). Documenting
+// residual risks helps system providers consider risks of deploying
+// the AI product and informs end users about potential negative
+// impacts.
+message ResidualRisk
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  float likelihood = 0
+  string magnitude = 0
+  impactSignEnum impactSign = 0
+  riskResponseEnum riskResponse = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
+ repeated  impact relatedImpacts = 0
+  aiSystem affectsSystem = 0
+  boolean isResidual = 0
+ }
+// The composite measure of an event's probability of occurring and
+// the magnitude or degree of the consequences of that event. When
+// considering negative impact, risk is a function of (1) the
+// negative impact or magnitude of harm and (2) the likelihood of
+// occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
+message Risk
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  float likelihood = 0
+  string magnitude = 0
+  impactSignEnum impactSign = 0
+  boolean isResidual = 0
+  riskResponseEnum riskResponse = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
+ repeated  impact relatedImpacts = 0
+  aiSystem affectsSystem = 0
+ }
+// A challenge that complicates measurement of AI risks
+// (Part 1 §1.2.1).
+message RiskMeasurementChallenge
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  riskMeasurementChallengeEnum challengeKind = 0
+ }
+// The organization's or AI actor's readiness to bear risk in order
+// to achieve its objectives (Adapted from ISO Guide 73). Risk
+// tolerance is highly contextual and application- and use-case
+// specific.
+message RiskTolerance
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  string toleranceStatement = 0
+  string legalBasis = 0
+ }
+// A design attribute of the AI RMF (Appendix D) - one of the
+// qualities the Framework strives to embody (e.g., risk-based,
+// consensus-driven, plain language, common language, easily usable,
+// universally applicable, outcome-focused, leveraging existing
+// standards, law- and regulation-agnostic, living document).
+message RmfAttribute
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+ }
+// Methods used to evaluate whether GAI systems are performing as
+// intended and to calibrate and verify traditional measurement
+// methods (A.1.5).
+message StructuredPublicFeedback
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  structuredFeedbackMethodEnum feedbackMethodKind = 0
+ }
+// A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
+// Legal and regulatory requirements involving AI are understood,
+// managed, and documented"). Subcategories express specific
+// outcomes.
+message Subcategory
+ {
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  subcategoryCode subcategoryId = 0
+  string outcome = 0
+ repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+  string aboutText = 0
+  string suggestedActionsText = 0
+  string documentationQuestions = 0
+  string referencesText = 0
+ repeated  string topics = 0
+ repeated  string aiActorCategories = 0
+  uriorcurie id = 0
+ }
+// A suggested action an organisation can take to manage GAI
+// risks. Each action is identified by an Action ID, linked to an
+// AI RMF subcategory, and may be relevant to one or more GAI
+// risks and AI actor tasks (NIST AI 600-1 Section 3).
+message SuggestedAction
+ {
+  string name = 0
+  string title = 0
+ repeated  uriorcurie seeAlso = 0
+  gaiActionId actionId = 0
+  gaiActionFunctionPrefixEnum functionPrefix = 0
+  subcategoryCode appliesToSubcategory = 0
+ repeated  gaiRiskCategoryEnum gaiRisks = 0
+ repeated  aiActorTaskEnum actorTask = 0
+  uriorcurie id = 0
+  string description = 0
+ }
+// A characteristic of a trustworthy AI system (Figure 4 / Part 1
+// §3). The seven characteristics are inter-related; addressing them
+// individually does not guarantee trustworthiness, and tradeoffs
+// are usually involved.
+message TrustworthinessCharacteristic
+ {
+  uriorcurie id = 0
+  string name = 0
+  string title = 0
+  string description = 0
+ repeated  uriorcurie seeAlso = 0
+  trustworthinessCharacteristicEnum characteristicKind = 0
+  boolean isBaseCondition = 0
+  boolean isCrossCutting = 0
+ }

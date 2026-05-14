@@ -2,9 +2,7 @@
 
 SSSOM TSV mapping sets for the `nist_ai_rmf` and `nist_ai_rmf_gai`
 schemas. The Simple Standard for Sharing Ontological Mappings
-([SSSOM](https://mapping-commons.github.io/sssom/)) is the canonical
-format; the `*_mappings:` fields inside the LinkML schemas are kept in
-sync from the SSSOM TSV via `scripts/apply_mappings.py`.
+([SSSOM](https://mapping-commons.github.io/sssom/)) is the canonical format; the `*_mappings:` fields inside the LinkML schemas are kept in sync from the SSSOM TSV via `scripts/apply_mappings.py`.
 
 ## Files
 
@@ -15,8 +13,7 @@ sync from the SSSOM TSV via `scripts/apply_mappings.py`.
 
 ## Predicates
 
-Each SSSOM row uses a SKOS predicate, which the apply script converts
-to a LinkML `*_mappings:` key on the corresponding element:
+Each SSSOM row uses a SKOS predicate, which the apply script converts to a LinkML `*_mappings:` key on the corresponding element:
 
 | `predicate_id` (SSSOM) | LinkML field |
 |---|---|
@@ -26,8 +23,7 @@ to a LinkML `*_mappings:` key on the corresponding element:
 | `skos:narrowMatch` | `narrow_mappings` |
 | `skos:relatedMatch` | `related_mappings` |
 
-`subject_id` is the schema element CURIE (`nist_ai_rmf:Risk`); `object_id`
-is the external term being mapped to.
+`subject_id` is the schema element CURIE (`nist_ai_rmf:Risk`); `object_id` is the external term being mapped to.
 
 ## Refreshing
 

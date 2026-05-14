@@ -59,3 +59,65 @@ verify-mappings:
 [group('model development')]
 verify-mappings-strict:
   uv run python scripts/apply_mappings.py --strict
+
+# ============================================================================
+# Extra schemas (GAI Profile)
+#
+# The root `gen-project` recipe targets the base schema via
+# `{{source_schema_path}}`. The GAI Profile is a sibling schema that
+# imports the base, so its artifacts need a dedicated generation step.
+# `gen-project` declares `gen-extra-schemas` as a post-dependency so
+# any `just setup` / `just gen-project` run produces *both* datamodels.
+# ============================================================================
+
+gai_schema_path := "src/nist_ai_rmf/schema/nist_ai_rmf_gai.yaml"
+gai_module_path := "src/nist_ai_rmf/datamodel/nist_ai_rmf_gai.py"
+core_schema_path := "src/nist_ai_rmf/schema/nist_ai_rmf_core.yaml"
+core_module_path := "src/nist_ai_rmf/datamodel/nist_ai_rmf_core.py"
+
+# Generate every additional schema's artifacts (GAI Profile)
+[group('model development')]
+gen-extra-schemas: gen-core-python gen-gai-python gen-gai-jsonschema gen-gai-owl
+
+# Regenerate the core schema Python dataclasses (required by nist_ai_rmf_gai.py)
+[group('model development')]
+gen-core-python:
+  @mkdir -p $(dirname {{core_module_path}})
+  uv run gen-python --no-mergeimports {{core_schema_path}} > {{core_module_path}}
+
+# Regenerate the GAI Profile Python dataclasses
+[group('model development')]
+gen-gai-python: gen-core-python
+  @mkdir -p $(dirname {{gai_module_path}})
+  uv run gen-python --no-mergeimports {{gai_schema_path}} > {{gai_module_path}}
+
+# Regenerate the GAI Profile JSON Schema
+[group('model development')]
+gen-gai-jsonschema:
+  @mkdir -p project/jsonschema
+  uv run gen-json-schema {{gai_schema_path}} > project/jsonschema/nist_ai_rmf_gai.schema.json
+
+# Regenerate the GAI Profile OWL turtle
+[group('model development')]
+gen-gai-owl:
+  @mkdir -p project/owl
+  uv run gen-owl {{gai_schema_path}} > project/owl/nist_ai_rmf_gai.owl.ttl
+
+# Regenerate Python dataclasses for both schemas (base + GAI)
+[group('model development')]
+gen-python-all: gen-python gen-core-python gen-gai-python
+
+# Run linkml-run-examples for GAI fixtures (live under tests/data/{valid,invalid}/gai)
+# Wired in as a post-dep of `_test-examples` so `just test` covers both schemas.
+# Also validates the third-party NIST Playbook JSON.
+_test-examples-extra: validate-playbook
+  @mkdir -p examples/output/gai
+  uv run linkml-run-examples \
+      --input-formats json \
+      --input-formats yaml \
+      --output-formats json \
+      --output-formats yaml \
+      --counter-example-input-directory tests/data/invalid/gai \
+      --input-directory tests/data/valid/gai \
+      --output-directory examples/output/gai \
+      --schema {{gai_schema_path}} > examples/output/gai/README.md

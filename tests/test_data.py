@@ -26,14 +26,19 @@ DATA_DIR_VALID = REPO_ROOT / "tests" / "data" / "valid"
 DATA_DIR_INVALID = REPO_ROOT / "tests" / "data" / "invalid"
 DATA_DIR_THIRD_PARTY = REPO_ROOT / "tests" / "data" / "third_party"
 
-SCHEMA_BASE = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
+SCHEMA_BASE = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_core.yaml"
 SCHEMA_GAI = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_gai.yaml"
+SCHEMA_UMBRELLA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
 
 VALID_EXAMPLE_FILES = sorted(
-    f for f in glob.glob(str(DATA_DIR_VALID / "*")) if f.endswith((".yaml", ".yml", ".json"))
+    f
+    for f in glob.glob(str(DATA_DIR_VALID / "**" / "*"), recursive=True)
+    if f.endswith((".yaml", ".yml", ".json"))
 )
 INVALID_EXAMPLE_FILES = sorted(
-    f for f in glob.glob(str(DATA_DIR_INVALID / "*")) if f.endswith((".yaml", ".yml", ".json"))
+    f
+    for f in glob.glob(str(DATA_DIR_INVALID / "**" / "*"), recursive=True)
+    if f.endswith((".yaml", ".yml", ".json"))
 )
 
 PLAYBOOK_JSON = DATA_DIR_THIRD_PARTY / "nist" / "nist_ai_rmf_playbook.json"
@@ -48,6 +53,14 @@ def _target_class_from_path(filepath: str) -> str:
     return Path(filepath).stem.split("-")[0]
 
 
+def _try_import(module_name: str):
+    """Return the module if importable, else ``None``."""
+    try:
+        return importlib.import_module(module_name)
+    except ModuleNotFoundError:
+        return None
+
+
 def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
     """Pick the schema + Python module for a fixture's target class.
 
@@ -55,18 +68,33 @@ def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
 
     GAI-Profile classes live in the ``nist_ai_rmf_gai`` module/schema;
     everything else lives in the base ``nist_ai_rmf`` schema. Reads the
-    generated dataclass module to make the decision so the test doesn't
-    drift if new classes are added.
+    generated dataclass module to decide so the test doesn't drift as
+    new classes are added. If the GAI module hasn't been generated
+    yet (``just gen-project`` only generates the base), this falls
+    back to the base schema.
     """
-    base_mod = importlib.import_module("nist_ai_rmf.datamodel.nist_ai_rmf")
-    gai_mod = importlib.import_module("nist_ai_rmf.datamodel.nist_ai_rmf_gai")
-    if hasattr(gai_mod, class_name) and not hasattr(base_mod, class_name):
+    base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
+    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai")
+    if gai_mod is not None and hasattr(gai_mod, class_name):
         return SCHEMA_GAI, "nist_ai_rmf.datamodel.nist_ai_rmf_gai"
-    if hasattr(gai_mod, class_name) and hasattr(base_mod, class_name):
-        # Class exists in both modules - prefer the GAI schema since it
-        # imports the base and is therefore a superset.
-        return SCHEMA_GAI, "nist_ai_rmf.datamodel.nist_ai_rmf_gai"
+    if base_mod is not None and hasattr(base_mod, class_name):
+        return SCHEMA_BASE, "nist_ai_rmf.datamodel.nist_ai_rmf"
+    # Neither module knows this class. Default to the base schema so
+    # the caller still gets a clear ImportError pointing at the gap.
     return SCHEMA_BASE, "nist_ai_rmf.datamodel.nist_ai_rmf"
+
+
+def _gai_module_available() -> bool:
+    return _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai") is not None
+
+
+def _is_gai_class(class_name: str) -> bool:
+    """True if the fixture's target lives only in the GAI schema."""
+    base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
+    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai")
+    base_has = base_mod is not None and hasattr(base_mod, class_name)
+    gai_has = gai_mod is not None and hasattr(gai_mod, class_name)
+    return gai_has and not base_has
 
 
 def _linkml_validate(schema: Path, target_class: str, data_file: Path) -> subprocess.CompletedProcess:
@@ -94,8 +122,16 @@ def test_valid_data_loads_via_python(filepath: str) -> None:
     from linkml_runtime.loaders import json_loader, yaml_loader
 
     class_name = _target_class_from_path(filepath)
+    if _is_gai_class(class_name) and not _gai_module_available():
+        pytest.skip(
+            f"{class_name!r} lives in nist_ai_rmf_gai - run "
+            "`gen-python --no-mergeimports src/nist_ai_rmf/schema/nist_ai_rmf_gai.yaml` "
+            "to generate the dataclasses."
+        )
     _, module_name = _resolve_schema_and_module(class_name)
     module = importlib.import_module(module_name)
+    if not hasattr(module, class_name):
+        pytest.skip(f"{class_name!r} not found in {module_name}")
     target_class = getattr(module, class_name)
 
     loader = json_loader if filepath.endswith(".json") else yaml_loader

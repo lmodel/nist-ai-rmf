@@ -53,7 +53,7 @@ default_range: string
 
 imports:
   - linkml:types
-  - ./nist_ai_rmf
+  - ./nist_ai_rmf_core
 
 # ============================================================================
 # Subsets

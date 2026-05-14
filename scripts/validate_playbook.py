@@ -31,14 +31,28 @@ from __future__ import annotations
 
 import argparse
 import json
+import os
 import shutil
 import subprocess
 import sys
 import tempfile
 from pathlib import Path
 
+_ANSI_GREEN = "\033[32m"
+_ANSI_RED = "\033[31m"
+_ANSI_RESET = "\033[0m"
+
+
+def _colour(text: str, code: str) -> str:
+    """Wrap *text* in an ANSI colour escape when stdout is a real terminal."""
+    if os.isatty(sys.stdout.fileno()):
+        return f"{code}{text}{_ANSI_RESET}"
+    return text
+
 REPO_ROOT = Path(__file__).resolve().parent.parent
-DEFAULT_SCHEMA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
+# PlaybookCollection lives in the core module; use the core schema
+# directly so we don't pull GAI imports we don't need.
+DEFAULT_SCHEMA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_core.yaml"
 DEFAULT_INPUT = (
     REPO_ROOT / "tests" / "data" / "third_party" / "nist" / "nist_ai_rmf_playbook.json"
 )
@@ -144,10 +158,16 @@ def main(argv: list[str] | None = None) -> int:
         tmp_path.unlink(missing_ok=True)
 
     if rc == 0:
-        print(
-            f"OK: {n_entries} Playbook entries validated against {TARGET_CLASS}",
-            file=sys.stderr,
-        )
+        print(_colour(
+            f"OK: {n_entries} Playbook entries validated against {TARGET_CLASS}"
+            f" \u2014 {n_entries} tests done.",
+            _ANSI_GREEN,
+        ))
+    else:
+        print(_colour(
+            f"FAILED: Playbook validation exited with code {rc}.",
+            _ANSI_RED,
+        ))
     return rc
 
 
