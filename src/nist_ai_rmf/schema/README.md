@@ -7,7 +7,7 @@ LinkML schemas for the NIST AI Risk Management Framework family.
 | File | Models | Source |
 |---|---|---|
 | [nist_ai_rmf.yaml](nist_ai_rmf.yaml) | AI RMF 1.0 - foundational concepts, Core Functions/Categories/Subcategories, Profiles, Playbook companion data | [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1) (January 2023) |
-| [nist_ai_rmf_gai.yaml](nist_ai_rmf_gai.yaml) | GAI Profile - 12 GAI risks, suggested actions, primary considerations | [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) (July 2024) |
+| [nist_ai_600_1.yaml](nist_ai_600_1.yaml) | GAI Profile - 12 GAI risks, suggested actions, primary considerations | [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) (July 2024) |
 | [NIST.AI.100-1.pdf](NIST.AI.100-1.pdf), [NIST.AI.600-1.pdf](NIST.AI.600-1.pdf) | Source documents | NIST |
 | [ecosystem/](ecosystem/) | Snapshot of related lmodel schemas (NIST CSF v2, OSCAL, ISO 27001/29100, STIX, GIST, ...) used for cross-vocabulary mappings | lmodel ecosystem |
 
@@ -33,7 +33,7 @@ LinkML schemas for the NIST AI Risk Management Framework family.
 - **8** subsets: `core`, `framework_core`, `trustworthiness`, `lifecycle`, `risk_and_harm`, `profiles`, `attributes`, `appendices`, `playbook`
 - Tree-root: `AiRmfFramework` (auxiliary: `PlaybookCollection`)
 
-### `nist_ai_rmf_gai` (GAI Profile, AI 600-1)
+### `nist_ai_600_1` (GAI Profile, AI 600-1)
 
 - **17** classes including `GaiProfile` (tree-root), `GaiRisk`, `SuggestedAction`, `PrimaryGaiConsideration`, `StructuredPublicFeedback`, `AiRedTeaming`
 - **9** enums including the 12-value `GaiRiskCategoryEnum`, `GaiRiskCategorizationEnum`, `GaiRiskScopeEnum`, `GaiRiskSourceEnum`, `GaiRiskTimeScaleEnum`, `PrimaryConsiderationEnum`, `RedTeamingTypeEnum`
@@ -74,4 +74,4 @@ just refresh-playbook     # re-fetch the playbook from NIST then validate
 |---|---|---|
 | `AiRmfFramework` | `nist_ai_rmf` | Default - bundles Functions, trustworthiness chars, lifecycle, profiles |
 | `PlaybookCollection` | `nist_ai_rmf` | Loads NIST AI RMF Playbook JSON (`--target-class PlaybookCollection`) |
-| `GaiProfile` | `nist_ai_rmf_gai` | NIST AI 600-1 GAI Profile (`--target-class GaiProfile`) |
+| `GaiProfile` | `nist_ai_600_1` | NIST AI 600-1 GAI Profile (`--target-class GaiProfile`) |

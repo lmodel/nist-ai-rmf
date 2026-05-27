@@ -1,6 +1,6 @@
 ---
-id: https://w3id.org/lmodel/nist-ai-rmf-gai
-name: nist-ai-rmf-gai
+id: https://w3id.org/lmodel/nist-ai-600-1
+name: nist-ai-600-1
 title: NIST AI RMF Generative AI Profile (NIST AI 600-1)
 description: |-
   LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence
@@ -30,7 +30,7 @@ see_also:
   - https://airc.nist.gov/Home
 
 prefixes:
-  nist_ai_rmf_gai: https://w3id.org/lmodel/nist-ai-rmf-gai/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
   nist_ai_rmf: https://w3id.org/lmodel/nist-ai-rmf/
   linkml: https://w3id.org/linkml/
   rdf: http://www.w3.org/1999/02/22-rdf-syntax-ns#
@@ -48,12 +48,12 @@ prefixes:
   stix: https://w3id.org/lmodel/stix/
   doi: https://doi.org/
 
-default_prefix: nist_ai_rmf_gai
+default_prefix: nist_ai_600_1
 default_range: string
 
 imports:
   - linkml:types
-  - ./nist_ai_rmf_core
+  - ./nist_ai_100_1
 
 # ============================================================================
 # Subsets

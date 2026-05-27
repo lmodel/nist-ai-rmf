@@ -73,12 +73,12 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_rmf',
                     'family.\n'
                     '\n'
                     'Imports:\n'
-                    '  * `nist_ai_rmf_core` - AI RMF 1.0 (NIST AI 100-1) '
+                    '  * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) '
                     'foundational\n'
                     '    concepts, Core Functions / Categories / Subcategories,\n'
                     '    Profiles, design attributes, and the AI RMF Playbook\n'
                     '    companion data shape.\n'
-                    '  * `nist_ai_rmf_gai` - GAI Profile (NIST AI 600-1): 12 GAI\n'
+                    '  * `nist_ai_600_1` - GAI Profile (NIST AI 600-1): 12 GAI\n'
                     '    risks, Suggested Actions, Primary GAI Considerations, '
                     'and\n'
                     '    Structured Public Feedback methods.\n'
@@ -92,19 +92,19 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_rmf',
                     'callers\n'
                     'must pass `--target-class` when validating.',
      'id': 'https://w3id.org/lmodel/nist-ai-rmf',
-     'imports': ['linkml:types', './nist_ai_rmf_core', './nist_ai_rmf_gai'],
+     'imports': ['linkml:types', './nist_ai_100_1', './nist_ai_600_1'],
      'license': 'Apache-2.0',
      'name': 'nist-ai-rmf',
      'prefixes': {'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
+                  'nist_ai_100_1': {'prefix_prefix': 'nist_ai_100_1',
+                                    'prefix_reference': 'https://w3id.org/lmodel/nist-ai-100-1/'},
+                  'nist_ai_600_1': {'prefix_prefix': 'nist_ai_600_1',
+                                    'prefix_reference': 'https://w3id.org/lmodel/nist-ai-600-1/'},
                   'nist_ai_rmf': {'prefix_prefix': 'nist_ai_rmf',
-                                  'prefix_reference': 'https://w3id.org/lmodel/nist-ai-rmf/'},
-                  'nist_ai_rmf_core': {'prefix_prefix': 'nist_ai_rmf_core',
-                                       'prefix_reference': 'https://w3id.org/lmodel/nist-ai-rmf-core/'},
-                  'nist_ai_rmf_gai': {'prefix_prefix': 'nist_ai_rmf_gai',
-                                      'prefix_reference': 'https://w3id.org/lmodel/nist-ai-rmf-gai/'}},
-     'see_also': ['https://w3id.org/lmodel/nist-ai-rmf-core',
-                  'https://w3id.org/lmodel/nist-ai-rmf-gai',
+                                  'prefix_reference': 'https://w3id.org/lmodel/nist-ai-rmf/'}},
+     'see_also': ['https://w3id.org/lmodel/nist-ai-100-1',
+                  'https://w3id.org/lmodel/nist-ai-600-1',
                   'https://doi.org/10.6028/NIST.AI.100-1',
                   'https://doi.org/10.6028/NIST.AI.600-1',
                   'https://www.nist.gov/itl/ai-risk-management-framework'],
@@ -877,7 +877,7 @@ class NamedThing(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
          'class_uri': 'schema:Thing',
          'close_mappings': ['schema:Thing'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['core']})
 
     id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
@@ -903,7 +903,7 @@ class AiSystem(NamedThing):
     ISO/IEC 22989:2022).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['schema:SoftwareApplication'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['lifecycle']})
 
     lifecycle_stage: Optional[list[AiLifecycleStageEnum]] = Field(default=None, description="""The AI lifecycle stage(s) the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem',
@@ -933,7 +933,7 @@ class AiSystemDimension(NamedThing):
     Application Context, Data and Input, AI Model, Task and Output,
     or People and Planet.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['lifecycle']})
 
     dimension_kind: AiSystemDimensionEnum = Field(default=..., description="""Which of the five dimensions this instance represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystemDimension']} })
@@ -956,7 +956,7 @@ class AiLifecycleStage(NamedThing):
     Collect and Process Data, Build and Use Model, Verify and
     Validate, Deploy and Use, or Operate and Monitor.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['lifecycle']})
 
     stage_kind: AiLifecycleStageEnum = Field(default=..., description="""Which of the six stages this instance represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiLifecycleStage']} })
@@ -982,7 +982,7 @@ class AiActor(NamedThing):
     and guidance (OECD 2019).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['prov:Agent', 'foaf:Agent'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['lifecycle'],
          'related_mappings': ['stix:Identity', 'iso27001:InterestedParty']})
 
@@ -1017,7 +1017,7 @@ class AiActorTask(NamedThing):
     task is associated with one or more lifecycle stages and a
     typical set of actor roles.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['lifecycle']})
 
     lifecycle_stage: Optional[list[AiLifecycleStageEnum]] = Field(default=None, description="""The AI lifecycle stage(s) the element applies to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiSystem',
@@ -1052,7 +1052,7 @@ class Risk(NamedThing):
     occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['iso27001:Risk'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm'],
          'related_mappings': ['iso29100:PrivacyRisk']})
 
@@ -1099,7 +1099,7 @@ class Impact(NamedThing):
     A positive, negative, or both consequence of an AI system. Impacts
     can manifest as opportunities (positive) or threats (negative).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm'],
          'narrow_mappings': ['iso27001:ImpactRating']})
 
@@ -1133,7 +1133,7 @@ class Harm(NamedThing):
     groups, communities, organizations, society, the environment, or
     the planet (Figure 1).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm']})
 
     harm_category: Optional[HarmCategoryEnum] = Field(default=None, description="""The high-level harm category (people / organization / ecosystem).""", json_schema_extra = { "linkml_meta": {'domain_of': ['Harm'], 'in_subset': ['risk_and_harm']} })
@@ -1164,7 +1164,7 @@ class ResidualRisk(Risk):
     the AI product and informs end users about potential negative
     impacts.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm'],
          'narrow_mappings': ['iso27001:Risk'],
          'slot_usage': {'is_residual': {'ifabsent': 'True', 'name': 'is_residual'}}})
@@ -1215,7 +1215,7 @@ class RiskTolerance(NamedThing):
     specific.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['iso27001:RiskLevel'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm']})
 
     tolerance_statement: Optional[str] = Field(default=None, description="""Free-text statement of the tolerance level or threshold.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskTolerance']} })
@@ -1238,7 +1238,7 @@ class RiskMeasurementChallenge(NamedThing):
     A challenge that complicates measurement of AI risks
     (Part 1 §1.2.1).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['risk_and_harm']})
 
     challenge_kind: RiskMeasurementChallengeEnum = Field(default=..., description="""Which measurement challenge this represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['RiskMeasurementChallenge']} })
@@ -1262,7 +1262,7 @@ class TrustworthinessCharacteristic(NamedThing):
     individually does not guarantee trustworthiness, and tradeoffs
     are usually involved.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['trustworthiness']})
 
     characteristic_kind: TrustworthinessCharacteristicEnum = Field(default=..., description="""Which trustworthiness characteristic this instance represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['TrustworthinessCharacteristic']} })
@@ -1291,7 +1291,7 @@ class Bias(NamedThing):
     systemic, computational/statistical, and human-cognitive
     (Part 1 §3.7; NIST SP 1270).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['trustworthiness'],
          'related_mappings': ['iso29100:PrivacyPrinciple']})
 
@@ -1317,7 +1317,7 @@ class Function(NamedThing):
     contexts and lifecycle stages.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['nist_csf:CSFFunction'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['framework_core'],
          'related_mappings': ['gist:Function'],
          'slot_usage': {'categories': {'inlined': True,
@@ -1349,7 +1349,7 @@ class Category(NamedThing):
     related subcategories.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'exact_mappings': ['nist_csf:CSFCategory'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['framework_core'],
          'slot_usage': {'id': {'description': 'Identifier for the category, typically '
                                               'using the\n'
@@ -1390,7 +1390,7 @@ class Subcategory(NamedThing):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['oscal_catalog:Control', 'nist_sp_800_53:Control'],
          'exact_mappings': ['nist_csf:CSFSubcategory'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['framework_core'],
          'slot_usage': {'id': {'description': 'Identifier for the subcategory in the '
                                               '"FUNCTION N.M" form\n'
@@ -1451,7 +1451,7 @@ class AiRmfProfile(NamedThing):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_sp_800_53:ProfileDocument'],
          'exact_mappings': ['oscal_profile:Profile'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['profiles']})
 
     profile_type: ProfileTypeEnum = Field(default=..., description="""The kind of AI RMF Profile.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
@@ -1483,7 +1483,7 @@ class RmfAttribute(NamedThing):
     universally applicable, outcome-focused, leveraging existing
     standards, law- and regulation-agnostic, living document).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['attributes'],
          'related_mappings': ['nist_csf:CSFProperty']})
 
@@ -1509,7 +1509,7 @@ class AiSpecificRisk(NamedThing):
     environmental cost.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['iso27001:Risk'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['appendices']})
 
     id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
@@ -1533,7 +1533,7 @@ class HumanAiInteractionIssue(NamedThing):
     variability of human-AI interaction outcomes, complexity of
     presenting AI system information to humans.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['appendices'],
          'related_mappings': ['iso27001:InterestedParty']})
 
@@ -1561,7 +1561,7 @@ class PlaybookEntry(ConfiguredBaseModel):
     `section_actions`) so that the data can be loaded directly.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_csf:CSFSubcategory'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['playbook']})
 
     type: Optional[str] = Field(default=None, description="""Function label as serialised in the published Playbook JSON
@@ -1591,7 +1591,7 @@ class PlaybookCollection(ConfiguredBaseModel):
     Validate with ``linkml-validate --target-class PlaybookCollection``;
     the canonical tree-root for the schema is ``AiRmfFramework``.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['playbook']})
 
     entries: Optional[list[PlaybookEntry]] = Field(default=None, description="""The Playbook entries in this collection.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PlaybookCollection']} })
@@ -1604,7 +1604,7 @@ class AiRmfDocument(NamedThing):
     living document, employing a two-number versioning system (major.minor).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_csf:CSFMetadata'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['core'],
          'related_mappings': ['schema:CreativeWork']})
 
@@ -1646,7 +1646,7 @@ class AiRmfFramework(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_csf:CSFDocument',
                             'oscal_catalog:Catalog',
                             'nist_sp_800_53:Catalog'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-core',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
          'in_subset': ['core'],
          'tree_root': True})
 
@@ -1684,7 +1684,7 @@ class GaiRisk(AiSpecificRisk):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['iso27001:Risk'],
          'close_mappings': ['nist_ai_rmf:AiSpecificRisk'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_core'],
          'related_mappings': ['iso29100:PrivacyRisk']})
 
@@ -1725,7 +1725,7 @@ class SuggestedAction(NamedThing):
     risks and AI actor tasks (NIST AI 600-1 Section 3).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['stix:CourseOfAction'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_actions'],
          'related_mappings': ['oscal_catalog:Control', 'gist:Task'],
          'slot_usage': {'description': {'description': 'The suggested-action text '
@@ -1773,7 +1773,7 @@ class PrimaryGaiConsideration(NamedThing):
       * CONTENT_PROVENANCE: provenance_techniques
       * INCIDENT_DISCLOSURE: ai_incident_definition
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_considerations'],
          'related_mappings': ['nist_csf:CSFProperty']})
 
@@ -1811,7 +1811,7 @@ class StructuredPublicFeedback(NamedThing):
     intended and to calibrate and verify traditional measurement
     methods (A.1.5).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_feedback'],
          'related_mappings': ['iso27001:InterestedParty']})
 
@@ -1836,7 +1836,7 @@ class AiRedTeaming(StructuredPublicFeedback):
     discriminatory outputs, often in a controlled environment and
     in collaboration with system developers (A.1.5).
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_feedback'],
          'related_mappings': ['stix:AttackPattern'],
          'slot_usage': {'feedback_method_kind': {'ifabsent': 'StructuredFeedbackMethodEnum(AI_RED_TEAMING)',
@@ -1867,7 +1867,7 @@ class GaiProfile(AiRmfProfile):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_csf:CSFDocument'],
          'exact_mappings': ['oscal_profile:Profile'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf-gai',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
          'in_subset': ['gai_core'],
          'slot_usage': {'profile_type': {'ifabsent': 'ProfileTypeEnum(CROSS_SECTORAL)',
                                          'name': 'profile_type'}},

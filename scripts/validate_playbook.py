@@ -52,7 +52,7 @@ def _colour(text: str, code: str) -> str:
 REPO_ROOT = Path(__file__).resolve().parent.parent
 # PlaybookCollection lives in the core module; use the core schema
 # directly so we don't pull GAI imports we don't need.
-DEFAULT_SCHEMA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_core.yaml"
+DEFAULT_SCHEMA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_100_1.yaml"
 DEFAULT_INPUT = (
     REPO_ROOT / "tests" / "data" / "third_party" / "nist" / "nist_ai_rmf_playbook.json"
 )

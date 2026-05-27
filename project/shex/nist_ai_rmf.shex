@@ -5,7 +5,7 @@ PREFIX dcterms: <http://purl.org/dc/terms/>
 PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>
 PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#>
 PREFIX xsd: <http://www.w3.org/2001/XMLSchema#>
-PREFIX nist_ai_rmf_gai: <https://w3id.org/lmodel/nist-ai-rmf-gai/>
+PREFIX nist_ai_600_1: <https://w3id.org/lmodel/nist-ai-600-1/>
 PREFIX linkml: <https://w3id.org/linkml/>
 PREFIX schema1: <http://schema.org/>
 
@@ -54,7 +54,7 @@ linkml:Sparqlpath xsd:string
 
 <SubcategoryCode> xsd:string
 
-nist_ai_rmf_gai:GaiActionId xsd:string
+nist_ai_600_1:GaiActionId xsd:string
 
 <AiActor> CLOSED {
     (  $<AiActor_tes> (  &<NamedThing_tes> ;
@@ -138,19 +138,19 @@ nist_ai_rmf_gai:GaiActionId xsd:string
     )
 }
 
-nist_ai_rmf_gai:AiRedTeaming CLOSED {
-    (  $nist_ai_rmf_gai:AiRedTeaming_tes (  &nist_ai_rmf_gai:StructuredPublicFeedback_tes ;
-          rdf:type [ nist_ai_rmf_gai:StructuredPublicFeedback ] ? ;
-          nist_ai_rmf_gai:red_team_type [ <https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum#GENERAL_PUBLIC>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum#EXPERT>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum#COMBINATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum#HUMAN_AND_AI> ] ? ;
-          nist_ai_rmf_gai:feedback_method_kind [
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#FIELD_TESTING>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#AI_RED_TEAMING> ]
+nist_ai_600_1:AiRedTeaming CLOSED {
+    (  $nist_ai_600_1:AiRedTeaming_tes (  &nist_ai_600_1:StructuredPublicFeedback_tes ;
+          rdf:type [ nist_ai_600_1:StructuredPublicFeedback ] ? ;
+          nist_ai_600_1:red_team_type [ <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#GENERAL_PUBLIC>
+             <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#EXPERT>
+             <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#COMBINATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#HUMAN_AND_AI> ] ? ;
+          nist_ai_600_1:feedback_method_kind [
+             <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS>
+             <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING>
+             <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#AI_RED_TEAMING> ]
        ) ;
-       rdf:type [ nist_ai_rmf_gai:AiRedTeaming ]
+       rdf:type [ nist_ai_600_1:AiRedTeaming ]
     )
 }
 
@@ -201,7 +201,7 @@ nist_ai_rmf_gai:AiRedTeaming CLOSED {
           ) ;
           rdf:type [ <AiRmfProfile> ]
        )
-    } OR @nist_ai_rmf_gai:GaiProfile
+    } OR @nist_ai_600_1:GaiProfile
 )
 
 <AiSpecificRisk>  (
@@ -211,7 +211,7 @@ nist_ai_rmf_gai:AiRedTeaming CLOSED {
           ) ;
           rdf:type [ <AiSpecificRisk> ]
        )
-    } OR @nist_ai_rmf_gai:GaiRisk
+    } OR @nist_ai_600_1:GaiRisk
 )
 
 <AiSystem> CLOSED {
@@ -278,54 +278,54 @@ nist_ai_rmf_gai:AiRedTeaming CLOSED {
     )
 }
 
-nist_ai_rmf_gai:GaiProfile CLOSED {
-    (  $nist_ai_rmf_gai:GaiProfile_tes (  &<AiRmfProfile_tes> ;
+nist_ai_600_1:GaiProfile CLOSED {
+    (  $nist_ai_600_1:GaiProfile_tes (  &<AiRmfProfile_tes> ;
           rdf:type [ <AiRmfProfile> ] ? ;
-          nist_ai_rmf_gai:gai_risk_catalog @nist_ai_rmf_gai:GaiRisk * ;
-          nist_ai_rmf_gai:suggested_actions @nist_ai_rmf_gai:SuggestedAction * ;
-          nist_ai_rmf_gai:primary_considerations @nist_ai_rmf_gai:PrimaryGaiConsideration * ;
-          nist_ai_rmf_gai:structured_feedback_methods @nist_ai_rmf_gai:StructuredPublicFeedback * ;
+          nist_ai_600_1:gai_risk_catalog @nist_ai_600_1:GaiRisk * ;
+          nist_ai_600_1:suggested_actions @nist_ai_600_1:SuggestedAction * ;
+          nist_ai_600_1:primary_considerations @nist_ai_600_1:PrimaryGaiConsideration * ;
+          nist_ai_600_1:structured_feedback_methods @nist_ai_600_1:StructuredPublicFeedback * ;
           <profile_type> [ <https://w3id.org/lmodel/nist-ai-rmf/ProfileTypeEnum#USE_CASE>
              <https://w3id.org/lmodel/nist-ai-rmf/ProfileTypeEnum#TEMPORAL_CURRENT>
              <https://w3id.org/lmodel/nist-ai-rmf/ProfileTypeEnum#TEMPORAL_TARGET>
              <https://w3id.org/lmodel/nist-ai-rmf/ProfileTypeEnum#CROSS_SECTORAL> ]
        ) ;
-       rdf:type [ nist_ai_rmf_gai:GaiProfile ]
+       rdf:type [ nist_ai_600_1:GaiProfile ]
     )
 }
 
-nist_ai_rmf_gai:GaiRisk CLOSED {
-    (  $nist_ai_rmf_gai:GaiRisk_tes (  &<AiSpecificRisk_tes> ;
+nist_ai_600_1:GaiRisk CLOSED {
+    (  $nist_ai_600_1:GaiRisk_tes (  &<AiSpecificRisk_tes> ;
           rdf:type [ <AiSpecificRisk> ] ? ;
-          nist_ai_rmf_gai:gai_risk_kind [
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#CONFABULATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#DATA_PRIVACY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INFORMATION_INTEGRITY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INFORMATION_SECURITY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> ] ? ;
-          nist_ai_rmf_gai:risk_categorization [
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategorizationEnum#TECHNICAL_OR_MODEL_RISKS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategorizationEnum#MISUSE_BY_HUMANS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategorizationEnum#ECOSYSTEM_OR_SOCIETAL_RISKS> ] ? ;
-          nist_ai_rmf_gai:risk_scope [ <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskScopeEnum#MODEL_OR_SYSTEM>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskScopeEnum#APPLICATION_OR_IMPLEMENTATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskScopeEnum#ECOSYSTEM> ] * ;
-          nist_ai_rmf_gai:risk_sources [ <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#DESIGN>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#TRAINING>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#OPERATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#MODEL_INPUTS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#MODEL_OUTPUTS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#HUMAN_BEHAVIOR>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum#HUMAN_AI_INTERACTION> ] * ;
-          nist_ai_rmf_gai:time_scale [ <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskTimeScaleEnum#IMMEDIATE>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskTimeScaleEnum#PROLONGED> ] * ;
+          nist_ai_600_1:gai_risk_kind [
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DATA_PRIVACY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> ] ? ;
+          nist_ai_600_1:risk_categorization [
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#TECHNICAL_OR_MODEL_RISKS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#MISUSE_BY_HUMANS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#ECOSYSTEM_OR_SOCIETAL_RISKS> ] ? ;
+          nist_ai_600_1:risk_scope [ <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#MODEL_OR_SYSTEM>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#APPLICATION_OR_IMPLEMENTATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#ECOSYSTEM> ] * ;
+          nist_ai_600_1:risk_sources [ <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#DESIGN>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#TRAINING>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#OPERATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_INPUTS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_OUTPUTS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_BEHAVIOR>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_AI_INTERACTION> ] * ;
+          nist_ai_600_1:time_scale [ <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#IMMEDIATE>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#PROLONGED> ] * ;
           <lifecycle_stage> [ <https://w3id.org/lmodel/nist-ai-rmf/AiLifecycleStageEnum#PLAN_AND_DESIGN>
              <https://w3id.org/lmodel/nist-ai-rmf/AiLifecycleStageEnum#COLLECT_AND_PROCESS_DATA>
              <https://w3id.org/lmodel/nist-ai-rmf/AiLifecycleStageEnum#BUILD_AND_USE_MODEL>
@@ -340,9 +340,9 @@ nist_ai_rmf_gai:GaiRisk CLOSED {
              <https://w3id.org/lmodel/nist-ai-rmf/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE>
              <https://w3id.org/lmodel/nist-ai-rmf/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED>
              <https://w3id.org/lmodel/nist-ai-rmf/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED> ] * ;
-          nist_ai_rmf_gai:addressed_by_actions @nist_ai_rmf_gai:SuggestedAction *
+          nist_ai_600_1:addressed_by_actions @nist_ai_600_1:SuggestedAction *
        ) ;
-       rdf:type [ nist_ai_rmf_gai:GaiRisk ]
+       rdf:type [ nist_ai_600_1:GaiRisk ]
     )
 }
 
@@ -387,9 +387,9 @@ nist_ai_rmf_gai:GaiRisk CLOSED {
 <NamedThing>  (
     @<AiActor> OR @<AiActorTask> OR @<AiLifecycleStage> OR @<AiRmfDocument> OR @<AiRmfFramework> OR @<AiRmfProfile> OR
     @<AiSpecificRisk> OR @<AiSystem> OR @<AiSystemDimension> OR @<Bias> OR @<Category> OR @<Function> OR @<Harm> OR
-    @<HumanAiInteractionIssue> OR @<Impact> OR @nist_ai_rmf_gai:PrimaryGaiConsideration OR @<Risk> OR @<RiskMeasurementChallenge>
-    OR @<RiskTolerance> OR @<RmfAttribute> OR @nist_ai_rmf_gai:StructuredPublicFeedback OR @<Subcategory> OR
-    @nist_ai_rmf_gai:SuggestedAction OR @<TrustworthinessCharacteristic>
+    @<HumanAiInteractionIssue> OR @<Impact> OR @nist_ai_600_1:PrimaryGaiConsideration OR @<Risk> OR @<RiskMeasurementChallenge> OR
+    @<RiskTolerance> OR @<RmfAttribute> OR @nist_ai_600_1:StructuredPublicFeedback OR @<Subcategory> OR
+    @nist_ai_600_1:SuggestedAction OR @<TrustworthinessCharacteristic>
 )
 
 <NamedThing_struct> {
@@ -424,20 +424,20 @@ nist_ai_rmf_gai:GaiRisk CLOSED {
     )
 }
 
-nist_ai_rmf_gai:PrimaryGaiConsideration CLOSED {
-    (  $nist_ai_rmf_gai:PrimaryGaiConsideration_tes (  &<NamedThing_tes> ;
+nist_ai_600_1:PrimaryGaiConsideration CLOSED {
+    (  $nist_ai_600_1:PrimaryGaiConsideration_tes (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
-          nist_ai_rmf_gai:consideration_kind [ <https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum#GOVERNANCE>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum#CONTENT_PROVENANCE>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum#INCIDENT_DISCLOSURE> ] ;
-          nist_ai_rmf_gai:governance_practices @linkml:String * ;
-          nist_ai_rmf_gai:third_party_considerations @linkml:String ? ;
-          nist_ai_rmf_gai:limitations_of_current_approaches @linkml:String ? ;
-          nist_ai_rmf_gai:provenance_techniques @linkml:String * ;
-          nist_ai_rmf_gai:ai_incident_definition @linkml:String ?
+          nist_ai_600_1:consideration_kind [ <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#GOVERNANCE>
+             <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING>
+             <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#CONTENT_PROVENANCE>
+             <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#INCIDENT_DISCLOSURE> ] ;
+          nist_ai_600_1:governance_practices @linkml:String * ;
+          nist_ai_600_1:third_party_considerations @linkml:String ? ;
+          nist_ai_600_1:limitations_of_current_approaches @linkml:String ? ;
+          nist_ai_600_1:provenance_techniques @linkml:String * ;
+          nist_ai_600_1:ai_incident_definition @linkml:String ?
        ) ;
-       rdf:type [ nist_ai_rmf_gai:PrimaryGaiConsideration ]
+       rdf:type [ nist_ai_600_1:PrimaryGaiConsideration ]
     )
 }
 
@@ -520,18 +520,18 @@ nist_ai_rmf_gai:PrimaryGaiConsideration CLOSED {
     )
 }
 
-nist_ai_rmf_gai:StructuredPublicFeedback  (
+nist_ai_600_1:StructuredPublicFeedback  (
     CLOSED {
-       (  $nist_ai_rmf_gai:StructuredPublicFeedback_tes (  &<NamedThing_tes> ;
+       (  $nist_ai_600_1:StructuredPublicFeedback_tes (  &<NamedThing_tes> ;
              rdf:type [ schema1:Thing ] ? ;
-             nist_ai_rmf_gai:feedback_method_kind [
-                <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS>
-                <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#FIELD_TESTING>
-                <https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum#AI_RED_TEAMING> ]
+             nist_ai_600_1:feedback_method_kind [
+                <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS>
+                <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING>
+                <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#AI_RED_TEAMING> ]
           ) ;
-          rdf:type [ nist_ai_rmf_gai:StructuredPublicFeedback ]
+          rdf:type [ nist_ai_600_1:StructuredPublicFeedback ]
        )
-    } OR @nist_ai_rmf_gai:AiRedTeaming
+    } OR @nist_ai_600_1:AiRedTeaming
 )
 
 <Subcategory> CLOSED {
@@ -564,28 +564,27 @@ nist_ai_rmf_gai:StructuredPublicFeedback  (
     )
 }
 
-nist_ai_rmf_gai:SuggestedAction CLOSED {
-    (  $nist_ai_rmf_gai:SuggestedAction_tes (  &<NamedThing_tes> ;
+nist_ai_600_1:SuggestedAction CLOSED {
+    (  $nist_ai_600_1:SuggestedAction_tes (  &<NamedThing_tes> ;
           rdf:type [ schema1:Thing ] ? ;
-          nist_ai_rmf_gai:action_id @nist_ai_rmf_gai:GaiActionId ;
-          nist_ai_rmf_gai:function_prefix [ <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum#GV>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum#MP>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum#MS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum#MG> ] ? ;
-          nist_ai_rmf_gai:applies_to_subcategory @<SubcategoryCode> ? ;
-          nist_ai_rmf_gai:gai_risks [
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#CONFABULATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#DATA_PRIVACY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INFORMATION_INTEGRITY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INFORMATION_SECURITY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT>
-             <https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> ] * ;
+          nist_ai_600_1:action_id @nist_ai_600_1:GaiActionId ;
+          nist_ai_600_1:function_prefix [ <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#GV>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MP>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MG> ] ? ;
+          nist_ai_600_1:applies_to_subcategory @<SubcategoryCode> ? ;
+          nist_ai_600_1:gai_risks [ <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DATA_PRIVACY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT>
+             <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> ] * ;
           <actor_task> [ <https://w3id.org/lmodel/nist-ai-rmf/AiActorTaskEnum#AI_DESIGN>
              <https://w3id.org/lmodel/nist-ai-rmf/AiActorTaskEnum#AI_DEVELOPMENT>
              <https://w3id.org/lmodel/nist-ai-rmf/AiActorTaskEnum#AI_DEPLOYMENT>
@@ -603,7 +602,7 @@ nist_ai_rmf_gai:SuggestedAction CLOSED {
              <https://w3id.org/lmodel/nist-ai-rmf/AiActorTaskEnum#GENERAL_PUBLIC> ] * ;
           dcterms:description @linkml:String ?
        ) ;
-       rdf:type [ nist_ai_rmf_gai:SuggestedAction ]
+       rdf:type [ nist_ai_600_1:SuggestedAction ]
     )
 }
 

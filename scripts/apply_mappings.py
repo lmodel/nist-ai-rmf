@@ -32,11 +32,11 @@ SCHEMA_DIR = REPO_ROOT / "src" / "nist_ai_rmf" / "schema"
 MAPPINGS_DIR = REPO_ROOT / "src" / "nist_ai_rmf" / "mappings"
 
 # SSSOM subject prefix -> the schema YAML that *defines* those subjects.
-# `nist_ai_rmf` CURIEs resolve to classes in the `nist_ai_rmf_core`
+# `nist_ai_rmf` CURIEs resolve to classes in the `nist_ai_100_1`
 # module (the umbrella `nist_ai_rmf.yaml` is a pure import wrapper).
 SUBJECT_TO_SCHEMA: dict[str, Path] = {
-    "nist_ai_rmf": SCHEMA_DIR / "nist_ai_rmf_core.yaml",
-    "nist_ai_rmf_gai": SCHEMA_DIR / "nist_ai_rmf_gai.yaml",
+    "nist_ai_rmf": SCHEMA_DIR / "nist_ai_100_1.yaml",
+    "nist_ai_600_1": SCHEMA_DIR / "nist_ai_600_1.yaml",
 }
 
 PREDICATE_TO_FIELD: dict[str, str] = {

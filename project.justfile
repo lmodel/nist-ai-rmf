@@ -70,16 +70,16 @@ verify-mappings-strict:
 # any `just setup` / `just gen-project` run produces *both* datamodels.
 # ============================================================================
 
-gai_schema_path := "src/nist_ai_rmf/schema/nist_ai_rmf_gai.yaml"
-gai_module_path := "src/nist_ai_rmf/datamodel/nist_ai_rmf_gai.py"
-core_schema_path := "src/nist_ai_rmf/schema/nist_ai_rmf_core.yaml"
-core_module_path := "src/nist_ai_rmf/datamodel/nist_ai_rmf_core.py"
+gai_schema_path := "src/nist_ai_rmf/schema/nist_ai_600_1.yaml"
+gai_module_path := "src/nist_ai_rmf/datamodel/nist_ai_600_1.py"
+core_schema_path := "src/nist_ai_rmf/schema/nist_ai_100_1.yaml"
+core_module_path := "src/nist_ai_rmf/datamodel/nist_ai_100_1.py"
 
 # Generate every additional schema's artifacts (GAI Profile)
 [group('model development')]
 gen-extra-schemas: gen-core-python gen-gai-python gen-gai-jsonschema gen-gai-owl
 
-# Regenerate the core schema Python dataclasses (required by nist_ai_rmf_gai.py)
+# Regenerate the core schema Python dataclasses (required by nist_ai_600_1.py)
 [group('model development')]
 gen-core-python:
   @mkdir -p $(dirname {{core_module_path}})
@@ -95,13 +95,13 @@ gen-gai-python: gen-core-python
 [group('model development')]
 gen-gai-jsonschema:
   @mkdir -p project/jsonschema
-  uv run gen-json-schema {{gai_schema_path}} > project/jsonschema/nist_ai_rmf_gai.schema.json
+  uv run gen-json-schema {{gai_schema_path}} > project/jsonschema/nist_ai_600_1.schema.json
 
 # Regenerate the GAI Profile OWL turtle
 [group('model development')]
 gen-gai-owl:
   @mkdir -p project/owl
-  uv run gen-owl {{gai_schema_path}} > project/owl/nist_ai_rmf_gai.owl.ttl
+  uv run gen-owl {{gai_schema_path}} > project/owl/nist_ai_600_1.owl.ttl
 
 # Regenerate Python dataclasses for both schemas (base + GAI)
 [group('model development')]

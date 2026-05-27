@@ -1,8 +1,8 @@
-# Auto generated from nist_ai_rmf_core.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-14T02:28:27
-# Schema: nist-ai-rmf-core
+# Auto generated from nist_ai_100_1.yaml by pythongen.py version: 0.0.1
+# Generation date: 2026-05-28T01:00:35
+# Schema: nist-ai-100-1
 #
-# id: https://w3id.org/lmodel/nist-ai-rmf-core
+# id: https://w3id.org/lmodel/nist-ai-100-1
 # description: Core LinkML module for the NIST AI Risk Management Framework
 #   (AI RMF 1.0), published as NIST AI 100-1 (January 2023).
 #
@@ -19,7 +19,7 @@
 #   via the `nist_ai_rmf` default prefix - the file rename to `_core`
 #   is purely a module-organisation concern. Most consumers should
 #   instead import the umbrella `nist_ai_rmf` schema, which bundles
-#   this module together with `nist_ai_rmf_gai`.
+#   this module together with `nist_ai_600_1`.
 # license: Apache-2.0
 
 import dataclasses

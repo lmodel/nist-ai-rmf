@@ -1,18 +1,18 @@
 name: nist-ai-rmf
 description: "Umbrella LinkML schema for the NIST AI Risk Management Framework\nfamily.\n\
-  \nImports:\n  * `nist_ai_rmf_core` - AI RMF 1.0 (NIST AI 100-1) foundational\n \
-  \   concepts, Core Functions / Categories / Subcategories,\n    Profiles, design\
-  \ attributes, and the AI RMF Playbook\n    companion data shape.\n  * `nist_ai_rmf_gai`\
-  \ - GAI Profile (NIST AI 600-1): 12 GAI\n    risks, Suggested Actions, Primary GAI\
-  \ Considerations, and\n    Structured Public Feedback methods.\n\nMost consumers\
-  \ should import this umbrella to get the entire\nframework via a single namespace\
-  \ (`nist_ai_rmf:`). Two tree-root\nclasses are exposed by the imports - `AiRmfFramework`\
-  \ from the\ncore module and `GaiProfile` from the GAI module - so callers\nmust\
-  \ pass `--target-class` when validating."
+  \nImports:\n  * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational\n    concepts,\
+  \ Core Functions / Categories / Subcategories,\n    Profiles, design attributes,\
+  \ and the AI RMF Playbook\n    companion data shape.\n  * `nist_ai_600_1` - GAI\
+  \ Profile (NIST AI 600-1): 12 GAI\n    risks, Suggested Actions, Primary GAI Considerations,\
+  \ and\n    Structured Public Feedback methods.\n\nMost consumers should import this\
+  \ umbrella to get the entire\nframework via a single namespace (`nist_ai_rmf:`).\
+  \ Two tree-root\nclasses are exposed by the imports - `AiRmfFramework` from the\n\
+  core module and `GaiProfile` from the GAI module - so callers\nmust pass `--target-class`\
+  \ when validating."
 title: NIST AI Risk Management Framework
 see_also:
-- https://w3id.org/lmodel/nist-ai-rmf-core
-- https://w3id.org/lmodel/nist-ai-rmf-gai
+- https://w3id.org/lmodel/nist-ai-100-1
+- https://w3id.org/lmodel/nist-ai-600-1
 - https://doi.org/10.6028/NIST.AI.100-1
 - https://doi.org/10.6028/NIST.AI.600-1
 - https://www.nist.gov/itl/ai-risk-management-framework
@@ -20,19 +20,19 @@ id: https://w3id.org/lmodel/nist-ai-rmf
 version: 1.0.0
 imports:
 - linkml:types
-- ./nist_ai_rmf_core
-- ./nist_ai_rmf_gai
+- ./nist_ai_100_1
+- ./nist_ai_600_1
 license: Apache-2.0
 prefixes:
   nist_ai_rmf:
     prefix_prefix: nist_ai_rmf
     prefix_reference: https://w3id.org/lmodel/nist-ai-rmf/
-  nist_ai_rmf_core:
-    prefix_prefix: nist_ai_rmf_core
-    prefix_reference: https://w3id.org/lmodel/nist-ai-rmf-core/
-  nist_ai_rmf_gai:
-    prefix_prefix: nist_ai_rmf_gai
-    prefix_reference: https://w3id.org/lmodel/nist-ai-rmf-gai/
+  nist_ai_100_1:
+    prefix_prefix: nist_ai_100_1
+    prefix_reference: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1:
+    prefix_prefix: nist_ai_600_1
+    prefix_reference: https://w3id.org/lmodel/nist-ai-600-1/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
@@ -45,53 +45,53 @@ subsets:
     description: 'Foundational concepts shared across the framework: identifier slots,
 
       the abstract NamedThing root, and the container.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   framework_core:
     name: framework_core
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/FrameworkCore
     description: "The AI RMF Core (Part 2, \xA75): the four high-level Functions\n\
       (GOVERN, MAP, MEASURE, MANAGE) and their Categories and\nSubcategories - the\
       \ catalog backbone of the Framework."
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   trustworthiness:
     name: trustworthiness
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Trustworthiness
     description: "Characteristics of trustworthy AI systems (Part 1, \xA73):\nValid\
       \ and Reliable, Safe, Secure and Resilient, Accountable and\nTransparent, Explainable\
       \ and Interpretable, Privacy-Enhanced, and\nFair with Harmful Bias Managed."
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   lifecycle:
     name: lifecycle
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Lifecycle
     description: "AI system lifecycle stages, key dimensions, AI actor categories,\n\
       and AI actor tasks (Part 1, \xA72; Figures 2 and 3; Appendix A)."
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   risk_and_harm:
     name: risk_and_harm
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/RiskAndHarm
     description: "Risk, impact, harm, residual risk, risk tolerance, risk\nmeasurement\
       \ challenges, and risk response options (Part 1, \xA71)."
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   profiles:
     name: profiles
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Profiles
     description: "AI RMF profile constructs (\xA76): use-case profiles, temporal\n\
       (current / target) profiles, and cross-sectoral profiles."
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   attributes:
     name: attributes
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Attributes
     description: 'Design attributes of the AI RMF (Appendix D) - the qualities
 
       the Framework strives to embody.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   appendices:
     name: appendices
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Appendices
     description: 'Supplementary material from Appendices B (differences from
 
       traditional software risks) and C (human-AI interaction).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   playbook:
     name: playbook
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/Playbook
@@ -102,33 +102,33 @@ subsets:
       questions, and references - modelled after the NIST AI RMF
 
       Playbook JSON shape.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
   gai_core:
     name: gai_core
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiCore
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiCore
     description: 'Foundational GAI Profile concepts - the 12 risks and their
 
       dimensions (Section 2).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
   gai_actions:
     name: gai_actions
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActions
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActions
     description: Suggested Actions organised by AI RMF subcategory (Section 3).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
   gai_considerations:
     name: gai_considerations
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiConsiderations
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiConsiderations
     description: 'Primary GAI Considerations (Appendix A): Governance,
 
       Pre-Deployment Testing, Content Provenance, Incident Disclosure.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
   gai_feedback:
     name: gai_feedback
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiFeedback
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiFeedback
     description: 'Structured Public Feedback methods and AI Red-teaming
 
       (Appendix A.1.5).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
 types:
   string:
     name: string
@@ -402,7 +402,7 @@ types:
     name: FunctionCode
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/FunctionCode
     description: Identifier of one of the four AI RMF Core functions.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     typeof: string
     base: str
     uri: xsd:string
@@ -411,7 +411,7 @@ types:
     name: CategoryCode
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/CategoryCode
     description: Identifier for a Core category (e.g., "GOVERN 1", "MAP 3").
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     typeof: string
     base: str
     uri: xsd:string
@@ -420,20 +420,20 @@ types:
     name: SubcategoryCode
     definition_uri: https://w3id.org/lmodel/nist-ai-rmf/SubcategoryCode
     description: Identifier for a Core subcategory (e.g., "GOVERN 1.1").
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     typeof: string
     base: str
     uri: xsd:string
     pattern: ^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\.[0-9]+$
   GaiActionId:
     name: GaiActionId
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionId
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActionId
     description: 'Action identifier used in NIST AI 600-1 Section 3, of the form
 
       "<prefix>-<category>.<subcategory>-<seq>" - e.g., "GV-1.1-001".
 
       Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     typeof: string
     base: str
     uri: xsd:string
@@ -449,7 +449,7 @@ enums:
       operate on specific AI systems and lifecycle stages.'
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       GOVERN:
         text: GOVERN
@@ -489,7 +489,7 @@ enums:
       dimensions (see AiSystemDimensionEnum).'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       PLAN_AND_DESIGN:
         text: PLAN_AND_DESIGN
@@ -537,7 +537,7 @@ enums:
       societal well-being.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       APPLICATION_CONTEXT:
         text: APPLICATION_CONTEXT
@@ -570,7 +570,7 @@ enums:
       illustrated in Figure 3.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       AI_DESIGN:
         text: AI_DESIGN
@@ -686,7 +686,7 @@ enums:
       Figure 4 and Part 1 \xA73."
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       VALID_AND_RELIABLE:
         text: VALID_AND_RELIABLE
@@ -749,7 +749,7 @@ enums:
     description: High-level categories of harm related to AI systems (Figure 1).
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       HARM_TO_PEOPLE:
         text: HARM_TO_PEOPLE
@@ -778,7 +778,7 @@ enums:
     description: Sub-categories of harm to people, per Figure 1.
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       INDIVIDUAL:
         text: INDIVIDUAL
@@ -800,7 +800,7 @@ enums:
       \ 1 \xA73.7; see NIST SP 1270)."
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       SYSTEMIC:
         text: SYSTEMIC
@@ -827,7 +827,7 @@ enums:
     description: "Challenges that complicate AI risk measurement (Part 1 \xA71.2.1)."
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA:
         text: THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA
@@ -882,7 +882,7 @@ enums:
     description: Treatment options for AI risks (MANAGE 1.3).
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       MITIGATING:
         text: MITIGATING
@@ -902,7 +902,7 @@ enums:
     description: "Types of AI RMF Profile (\xA76)."
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       USE_CASE:
         text: USE_CASE
@@ -934,7 +934,7 @@ enums:
     description: "Audience categorisation for the AI RMF (Part 1 \xA72)."
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       PRIMARY:
         text: PRIMARY
@@ -959,7 +959,7 @@ enums:
       (Part 1 \xA71.1)."
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     permissible_values:
       POSITIVE:
         text: POSITIVE
@@ -972,13 +972,13 @@ enums:
         description: An impact that is both positive and negative.
   GaiRiskCategoryEnum:
     name: GaiRiskCategoryEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum
     description: 'The 12 risks unique to or exacerbated by Generative AI as
 
       enumerated in NIST AI 600-1 Section 2.'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       CBRN_INFORMATION_OR_CAPABILITIES:
         text: CBRN_INFORMATION_OR_CAPABILITIES
@@ -1104,7 +1104,7 @@ enums:
           transparency or accountability for downstream users.'
   GaiRiskCategorizationEnum:
     name: GaiRiskCategorizationEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategorizationEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum
     description: 'Higher-level grouping of GAI risks, derived from the UK''s
 
       International Scientific Report on the Safety of Advanced AI
@@ -1112,7 +1112,7 @@ enums:
       (NIST AI 600-1 Section 2, footnote 5).'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       TECHNICAL_OR_MODEL_RISKS:
         text: TECHNICAL_OR_MODEL_RISKS
@@ -1139,11 +1139,11 @@ enums:
           environmental impacts; intellectual property.'
   GaiRiskScopeEnum:
     name: GaiRiskScopeEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskScopeEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum
     description: The scope at which a GAI risk may manifest (Section 2).
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       MODEL_OR_SYSTEM:
         text: MODEL_OR_SYSTEM
@@ -1162,11 +1162,11 @@ enums:
           economies.'
   GaiRiskSourceEnum:
     name: GaiRiskSourceEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum
     description: The source(s) from which a GAI risk may emerge (Section 2).
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       DESIGN:
         text: DESIGN
@@ -1193,13 +1193,13 @@ enums:
         description: From interactions between a human and the AI system.
   GaiRiskTimeScaleEnum:
     name: GaiRiskTimeScaleEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskTimeScaleEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum
     description: 'The time scale over which a GAI risk may materialise
 
       (Section 2).'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       IMMEDIATE:
         text: IMMEDIATE
@@ -1211,11 +1211,11 @@ enums:
           effect of disinformation on societal trust).'
   GaiActionFunctionPrefixEnum:
     name: GaiActionFunctionPrefixEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum
     description: Two-letter function prefix used in GAI Action IDs.
     in_subset:
     - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       GV:
         text: GV
@@ -1231,13 +1231,13 @@ enums:
         description: Manage function.
   PrimaryConsiderationEnum:
     name: PrimaryConsiderationEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum
     description: 'The four overarching themes derived from the GAI PWG
 
       consultation process (Appendix A).'
     in_subset:
     - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       GOVERNANCE:
         text: GOVERNANCE
@@ -1265,13 +1265,13 @@ enums:
           (A.1.8).'
   StructuredFeedbackMethodEnum:
     name: StructuredFeedbackMethodEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum
     description: 'Categories of structured public feedback for GAI risk
 
       management (Appendix A.1.5).'
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       PARTICIPATORY_ENGAGEMENT_METHODS:
         text: PARTICIPATORY_ENGAGEMENT_METHODS
@@ -1296,11 +1296,11 @@ enums:
           harmful, or discriminatory outputs.'
   RedTeamingTypeEnum:
     name: RedTeamingTypeEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum
     description: Types of AI red-teaming exercises (Appendix A.1.5).
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     permissible_values:
       GENERAL_PUBLIC:
         text: GENERAL_PUBLIC
@@ -1331,7 +1331,7 @@ slots:
     description: A unique identifier for an element.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - schema:identifier
     slot_uri: schema:identifier
@@ -1347,7 +1347,7 @@ slots:
     description: A short human-readable name.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - rdfs:label
     slot_uri: rdfs:label
@@ -1361,7 +1361,7 @@ slots:
     description: A human-readable title.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:title
     slot_uri: dcterms:title
@@ -1375,7 +1375,7 @@ slots:
     description: A human-readable description.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:description
     slot_uri: dcterms:description
@@ -1391,7 +1391,7 @@ slots:
       or section it originated from).'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:source
     slot_uri: dcterms:source
@@ -1405,7 +1405,7 @@ slots:
     description: Related references.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - rdfs:seeAlso
     slot_uri: rdfs:seeAlso
@@ -1420,7 +1420,7 @@ slots:
     description: The function code (GOVERN, MAP, MEASURE, or MANAGE).
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:function_code
     owner: Function
     domain_of:
@@ -1433,7 +1433,7 @@ slots:
     description: Categories that belong to a Function.
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:categories
     owner: Function
     domain_of:
@@ -1448,7 +1448,7 @@ slots:
     description: Subcategories that belong to a Category.
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:subcategories
     owner: Category
     domain_of:
@@ -1463,7 +1463,7 @@ slots:
     description: Identifier of a Category (e.g., "GOVERN 1").
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:category_id
     owner: Category
     domain_of:
@@ -1475,7 +1475,7 @@ slots:
     description: Identifier of a Subcategory (e.g., "GOVERN 1.1").
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:subcategory_id
     owner: Subcategory
     domain_of:
@@ -1489,7 +1489,7 @@ slots:
       result of carrying out its actions.'
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - nist_csf:prose
     slot_uri: nist_ai_rmf:outcome
@@ -1504,7 +1504,7 @@ slots:
     description: Whether the impact is positive, negative, or both.
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:impact_sign
     owner: Impact
     domain_of:
@@ -1519,7 +1519,7 @@ slots:
       AI RMF leaves quantification approaches to the implementer.'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - iso27001:LikelihoodRating
     slot_uri: nist_ai_rmf:likelihood
@@ -1538,7 +1538,7 @@ slots:
       text or qualitative scale).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     close_mappings:
     - iso27001:ImpactRating
     slot_uri: nist_ai_rmf:magnitude
@@ -1554,7 +1554,7 @@ slots:
     description: The high-level harm category (people / organization / ecosystem).
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:harm_category
     owner: Harm
     domain_of:
@@ -1566,7 +1566,7 @@ slots:
     description: The sub-category when harm is to people (individual / group / societal).
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:harm_to_people_subcategory
     owner: Harm
     domain_of:
@@ -1580,7 +1580,7 @@ slots:
       may affect.'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:affects
     owner: Harm
     domain_of:
@@ -1594,7 +1594,7 @@ slots:
     description: The chosen risk treatment option.
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - iso27001:RiskTreatmentOption
     slot_uri: nist_ai_rmf:risk_response
@@ -1610,7 +1610,7 @@ slots:
       (residual risk per ISO Guide 73).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:is_residual
     owner: Risk
     domain_of:
@@ -1622,7 +1622,7 @@ slots:
     description: The AI lifecycle stage(s) the element applies to.
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:lifecycle_stage
     owner: GaiRisk
     domain_of:
@@ -1640,7 +1640,7 @@ slots:
     description: The AI system dimension the element applies to.
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:ai_dimension
     owner: AiActorTask
     domain_of:
@@ -1654,7 +1654,7 @@ slots:
     description: AI actor task category.
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:actor_task
     owner: SuggestedAction
     domain_of:
@@ -1670,7 +1670,7 @@ slots:
       Validation (TEVV) actor / task.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:is_tevv
     owner: AiActor
     domain_of:
@@ -1684,7 +1684,7 @@ slots:
       *informing* People-and-Planet audience.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:audience
     owner: AiActor
     domain_of:
@@ -1696,7 +1696,7 @@ slots:
     description: Trustworthiness characteristic(s) the element pertains to.
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:trustworthiness_characteristic
     owner: GaiRisk
     domain_of:
@@ -1711,7 +1711,7 @@ slots:
     description: Category or categories of bias addressed.
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:bias_category
     owner: Bias
     domain_of:
@@ -1724,7 +1724,7 @@ slots:
     description: The kind of AI RMF Profile.
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:profile_type
     owner: AiRmfProfile
     domain_of:
@@ -1739,7 +1739,7 @@ slots:
       desired AI risk management goals.'
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:target_state
     owner: AiRmfProfile
     domain_of:
@@ -1753,7 +1753,7 @@ slots:
       and related risks in terms of current outcomes.'
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:current_state
     owner: AiRmfProfile
     domain_of:
@@ -1765,7 +1765,7 @@ slots:
     description: The publisher of the document (e.g., NIST).
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:publisher
     slot_uri: dcterms:publisher
@@ -1779,7 +1779,7 @@ slots:
     description: Digital Object Identifier for the document.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:doi
     owner: AiRmfDocument
     domain_of:
@@ -1791,7 +1791,7 @@ slots:
     description: Date the document was published.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:issued
     slot_uri: dcterms:issued
@@ -1805,7 +1805,7 @@ slots:
     description: Version identifier of the document.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - schema:version
     slot_uri: schema:version
@@ -1821,7 +1821,7 @@ slots:
       Corresponds to the AI RMF Playbook "About" section.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:about_text
     owner: Subcategory
     domain_of:
@@ -1835,7 +1835,7 @@ slots:
       take. Corresponds to the AI RMF Playbook "Actions" section.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:suggested_actions_text
     owner: Subcategory
     domain_of:
@@ -1849,7 +1849,7 @@ slots:
       Corresponds to the AI RMF Playbook "Documentation" section.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:documentation_questions
     owner: Subcategory
     domain_of:
@@ -1865,7 +1865,7 @@ slots:
       section.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:references_text
     owner: Subcategory
     domain_of:
@@ -1881,7 +1881,7 @@ slots:
       Reliability").'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:topics
     owner: Subcategory
     domain_of:
@@ -1900,7 +1900,7 @@ slots:
       enum values see `actor_task` (range AiActorTaskEnum).'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:ai_actor_categories
     owner: Subcategory
     domain_of:
@@ -1913,7 +1913,7 @@ slots:
     description: The AI RMF Core function this entry pertains to.
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:function_kind
     range: FunctionEnum
   category_code:
@@ -1924,31 +1924,31 @@ slots:
       "GOVERN-1") as used in the AI RMF Playbook.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:category_code
     range: string
   gai_risk_kind:
     name: gai_risk_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risk_kind
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_risk_kind
     description: The GAI risk category this element represents.
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:gai_risk_kind
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_risk_kind
     owner: GaiRisk
     domain_of:
     - GaiRisk
     range: GaiRiskCategoryEnum
   gai_risks:
     name: gai_risks
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risks
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_risks
     description: 'GAI risk categories addressed by a suggested action or
 
       considered by a primary consideration.'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:gai_risks
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_risks
     owner: SuggestedAction
     domain_of:
     - SuggestedAction
@@ -1956,26 +1956,26 @@ slots:
     multivalued: true
   risk_categorization:
     name: risk_categorization
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/risk_categorization
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_categorization
     description: 'Higher-level categorisation - technical/model, misuse, or
 
       ecosystem/societal.'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:risk_categorization
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:risk_categorization
     owner: GaiRisk
     domain_of:
     - GaiRisk
     range: GaiRiskCategorizationEnum
   risk_scope:
     name: risk_scope
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/risk_scope
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_scope
     description: Scope levels at which the risk may manifest.
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:risk_scope
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:risk_scope
     owner: GaiRisk
     domain_of:
     - GaiRisk
@@ -1983,12 +1983,12 @@ slots:
     multivalued: true
   risk_sources:
     name: risk_sources
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/risk_sources
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_sources
     description: Sources from which the risk may emerge.
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:risk_sources
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:risk_sources
     owner: GaiRisk
     domain_of:
     - GaiRisk
@@ -1996,12 +1996,12 @@ slots:
     multivalued: true
   time_scale:
     name: time_scale
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/time_scale
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/time_scale
     description: Time scales over which the risk may materialise.
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:time_scale
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:time_scale
     owner: GaiRisk
     domain_of:
     - GaiRisk
@@ -2009,12 +2009,12 @@ slots:
     multivalued: true
   action_id:
     name: action_id
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/action_id
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/action_id
     description: Identifier of a Suggested Action.
     in_subset:
     - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:action_id
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:action_id
     owner: SuggestedAction
     domain_of:
     - SuggestedAction
@@ -2022,38 +2022,38 @@ slots:
     required: true
   function_prefix:
     name: function_prefix
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/function_prefix
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/function_prefix
     description: Two-letter function prefix of the action's subcategory.
     in_subset:
     - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:function_prefix
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:function_prefix
     owner: SuggestedAction
     domain_of:
     - SuggestedAction
     range: GaiActionFunctionPrefixEnum
   applies_to_subcategory:
     name: applies_to_subcategory
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/applies_to_subcategory
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/applies_to_subcategory
     description: Identifier of the AI RMF subcategory the action applies to.
     in_subset:
     - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     close_mappings:
     - oscal_profile:Profile
-    slot_uri: nist_ai_rmf_gai:applies_to_subcategory
+    slot_uri: nist_ai_600_1:applies_to_subcategory
     owner: SuggestedAction
     domain_of:
     - SuggestedAction
     range: SubcategoryCode
   consideration_kind:
     name: consideration_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/consideration_kind
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/consideration_kind
     description: Which primary consideration this element represents.
     in_subset:
     - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:consideration_kind
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:consideration_kind
     owner: PrimaryGaiConsideration
     domain_of:
     - PrimaryGaiConsideration
@@ -2061,12 +2061,12 @@ slots:
     required: true
   feedback_method_kind:
     name: feedback_method_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind
     description: Which structured feedback method this element represents.
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:feedback_method_kind
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:feedback_method_kind
     owner: StructuredPublicFeedback
     domain_of:
     - StructuredPublicFeedback
@@ -2074,12 +2074,12 @@ slots:
     required: true
   red_team_type:
     name: red_team_type
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/red_team_type
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/red_team_type
     description: The type of AI red-teaming exercise.
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:red_team_type
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:red_team_type
     owner: AiRedTeaming
     domain_of:
     - AiRedTeaming
@@ -2087,7 +2087,7 @@ slots:
   aiSystemDimension__dimension_kind:
     name: aiSystemDimension__dimension_kind
     description: Which of the five dimensions this instance represents.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:dimension_kind
     alias: dimension_kind
     owner: AiSystemDimension
@@ -2098,7 +2098,7 @@ slots:
   aiLifecycleStage__stage_kind:
     name: aiLifecycleStage__stage_kind
     description: Which of the six stages this instance represents.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:stage_kind
     alias: stage_kind
     owner: AiLifecycleStage
@@ -2109,7 +2109,7 @@ slots:
   aiLifecycleStage__includes_tevv:
     name: aiLifecycleStage__includes_tevv
     description: Whether this stage incorporates TEVV activities.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:includes_tevv
     alias: includes_tevv
     owner: AiLifecycleStage
@@ -2119,7 +2119,7 @@ slots:
   aiActorTask__task_kind:
     name: aiActorTask__task_kind
     description: Which of the actor task categories this is.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:task_kind
     alias: task_kind
     owner: AiActorTask
@@ -2130,7 +2130,7 @@ slots:
   aiActorTask__typical_actors:
     name: aiActorTask__typical_actors
     description: Representative actor roles that perform this task.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:typical_actors
     alias: typical_actors
     owner: AiActorTask
@@ -2141,7 +2141,7 @@ slots:
   risk__related_impacts:
     name: risk__related_impacts
     description: The impacts that contribute to this risk.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:related_impacts
     alias: related_impacts
     owner: Risk
@@ -2154,7 +2154,7 @@ slots:
   risk__affects_system:
     name: risk__affects_system
     description: The AI system this risk pertains to.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:affects_system
     alias: affects_system
     owner: Risk
@@ -2164,7 +2164,7 @@ slots:
   riskTolerance__tolerance_statement:
     name: riskTolerance__tolerance_statement
     description: Free-text statement of the tolerance level or threshold.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:tolerance_statement
     alias: tolerance_statement
     owner: RiskTolerance
@@ -2174,7 +2174,7 @@ slots:
   riskTolerance__legal_basis:
     name: riskTolerance__legal_basis
     description: Legal or regulatory requirements influencing the tolerance.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:legal_basis
     alias: legal_basis
     owner: RiskTolerance
@@ -2184,7 +2184,7 @@ slots:
   riskMeasurementChallenge__challenge_kind:
     name: riskMeasurementChallenge__challenge_kind
     description: Which measurement challenge this represents.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:challenge_kind
     alias: challenge_kind
     owner: RiskMeasurementChallenge
@@ -2195,7 +2195,7 @@ slots:
   trustworthinessCharacteristic__characteristic_kind:
     name: trustworthinessCharacteristic__characteristic_kind
     description: Which trustworthiness characteristic this instance represents.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:characteristic_kind
     alias: characteristic_kind
     owner: TrustworthinessCharacteristic
@@ -2210,7 +2210,7 @@ slots:
       (Valid and Reliable; per Figure 4 it is the base of all other
 
       characteristics).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:is_base_condition
     alias: is_base_condition
     owner: TrustworthinessCharacteristic
@@ -2222,7 +2222,7 @@ slots:
     description: 'True when this characteristic relates to all others
 
       (Accountable and Transparent; shown vertically in Figure 4).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:is_cross_cutting
     alias: is_cross_cutting
     owner: TrustworthinessCharacteristic
@@ -2234,7 +2234,7 @@ slots:
     description: 'The sector, industry, technology, or end-use application the
 
       profile addresses (e.g., "hiring", "fair housing").'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:sector
     alias: sector
     owner: AiRmfProfile
@@ -2244,7 +2244,7 @@ slots:
   aiRmfProfile__addresses:
     name: aiRmfProfile__addresses
     description: Subcategories that the profile implements or addresses.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:addresses
     alias: addresses
     owner: AiRmfProfile
@@ -2259,7 +2259,7 @@ slots:
       (Title case - "Govern", "Map", "Measure", "Manage"). For
 
       the controlled enum see `function_kind`.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:type
     alias: type
     owner: PlaybookEntry
@@ -2271,7 +2271,7 @@ slots:
     description: 'Subcategory identifier (e.g., "GOVERN 1.1"). Mirrors the
 
       AI RMF Subcategory `subcategory_id`.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:title
     alias: title
     owner: PlaybookEntry
@@ -2283,7 +2283,7 @@ slots:
     description: 'Category code in the form "FUNCTION-N" (e.g., "GOVERN-1")
 
       as used in the Playbook.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:category
     alias: category
     owner: PlaybookEntry
@@ -2293,7 +2293,7 @@ slots:
   playbookEntry__description:
     name: playbookEntry__description
     description: Outcome statement of the subcategory.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:description
     alias: description
     owner: PlaybookEntry
@@ -2303,7 +2303,7 @@ slots:
   playbookEntry__section_about:
     name: playbookEntry__section_about
     description: Free-text discussion ("About" section).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:section_about
     alias: section_about
     owner: PlaybookEntry
@@ -2313,7 +2313,7 @@ slots:
   playbookEntry__section_actions:
     name: playbookEntry__section_actions
     description: Bulleted suggested actions ("Actions" section).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:section_actions
     alias: section_actions
     owner: PlaybookEntry
@@ -2325,7 +2325,7 @@ slots:
     description: 'Documentation questions and transparency resources
 
       ("Documentation" section).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:section_doc
     alias: section_doc
     owner: PlaybookEntry
@@ -2335,7 +2335,7 @@ slots:
   playbookEntry__section_ref:
     name: playbookEntry__section_ref
     description: References and citations ("References" section).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:section_ref
     alias: section_ref
     owner: PlaybookEntry
@@ -2349,7 +2349,7 @@ slots:
       preserve the casing of the source data (e.g., "Governance
 
       and Oversight").'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:ai_actors
     alias: ai_actors
     owner: PlaybookEntry
@@ -2362,7 +2362,7 @@ slots:
     description: 'Topic tags (e.g., "Legal and Regulatory", "Validity and
 
       Reliability").'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:topic
     alias: topic
     owner: PlaybookEntry
@@ -2373,7 +2373,7 @@ slots:
   playbookCollection__entries:
     name: playbookCollection__entries
     description: The Playbook entries in this collection.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:entries
     alias: entries
     owner: PlaybookCollection
@@ -2386,7 +2386,7 @@ slots:
   aiRmfFramework__document:
     name: aiRmfFramework__document
     description: Publication metadata.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:document
     alias: document
     owner: AiRmfFramework
@@ -2398,7 +2398,7 @@ slots:
   aiRmfFramework__functions:
     name: aiRmfFramework__functions
     description: The four AI RMF Core functions and their content.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:functions
     alias: functions
     owner: AiRmfFramework
@@ -2411,7 +2411,7 @@ slots:
   aiRmfFramework__trustworthiness_characteristics:
     name: aiRmfFramework__trustworthiness_characteristics
     description: The seven characteristics of trustworthy AI.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:trustworthiness_characteristics
     alias: trustworthiness_characteristics
     owner: AiRmfFramework
@@ -2424,7 +2424,7 @@ slots:
   aiRmfFramework__lifecycle_stages:
     name: aiRmfFramework__lifecycle_stages
     description: The AI lifecycle stages (Figure 2).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:lifecycle_stages
     alias: lifecycle_stages
     owner: AiRmfFramework
@@ -2437,7 +2437,7 @@ slots:
   aiRmfFramework__dimensions:
     name: aiRmfFramework__dimensions
     description: The AI system dimensions (Figure 2).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:dimensions
     alias: dimensions
     owner: AiRmfFramework
@@ -2450,7 +2450,7 @@ slots:
   aiRmfFramework__actor_tasks:
     name: aiRmfFramework__actor_tasks
     description: AI actor task categories (Appendix A).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:actor_tasks
     alias: actor_tasks
     owner: AiRmfFramework
@@ -2463,7 +2463,7 @@ slots:
   aiRmfFramework__profiles:
     name: aiRmfFramework__profiles
     description: AI RMF profiles defined alongside this Framework instance.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:profiles
     alias: profiles
     owner: AiRmfFramework
@@ -2476,7 +2476,7 @@ slots:
   aiRmfFramework__attributes_:
     name: aiRmfFramework__attributes_
     description: Design attributes of the AI RMF (Appendix D).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     aliases:
     - rmf_attributes
     mappings:
@@ -2493,7 +2493,7 @@ slots:
   aiRmfFramework__risk_measurement_challenges:
     name: aiRmfFramework__risk_measurement_challenges
     description: Identified challenges in measuring AI risk.
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:risk_measurement_challenges
     alias: risk_measurement_challenges
     owner: AiRmfFramework
@@ -2506,7 +2506,7 @@ slots:
   aiRmfFramework__ai_specific_risks:
     name: aiRmfFramework__ai_specific_risks
     description: AI-specific risks compared to traditional software (Appendix B).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:ai_specific_risks
     alias: ai_specific_risks
     owner: AiRmfFramework
@@ -2519,7 +2519,7 @@ slots:
   aiRmfFramework__human_ai_interaction_issues:
     name: aiRmfFramework__human_ai_interaction_issues
     description: Human-AI interaction considerations (Appendix C).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     slot_uri: nist_ai_rmf:human_ai_interaction_issues
     alias: human_ai_interaction_issues
     owner: AiRmfFramework
@@ -2532,8 +2532,8 @@ slots:
   gaiRisk__addressed_by_actions:
     name: gaiRisk__addressed_by_actions
     description: Suggested actions that address this risk (back-reference).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:addressed_by_actions
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:addressed_by_actions
     alias: addressed_by_actions
     owner: GaiRisk
     domain_of:
@@ -2549,8 +2549,8 @@ slots:
       "Impact assessments", "Stakeholder engagement", "Synthetic
 
       content detection", "Whistleblower protections".'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:governance_practices
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:governance_practices
     alias: governance_practices
     owner: PrimaryGaiConsideration
     domain_of:
@@ -2562,8 +2562,8 @@ slots:
     description: 'Considerations for third-party GAI integrations,
 
       procurement, SBOMs, SLAs, and SSAE reports (A.1.3).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:third_party_considerations
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:third_party_considerations
     alias: third_party_considerations
     owner: PrimaryGaiConsideration
     domain_of:
@@ -2574,8 +2574,8 @@ slots:
     description: 'For Pre-Deployment Testing: free-text discussion of why
 
       current TEVV approaches may be inadequate (A.1.4).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:limitations_of_current_approaches
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:limitations_of_current_approaches
     alias: limitations_of_current_approaches
     owner: PrimaryGaiConsideration
     domain_of:
@@ -2590,8 +2590,8 @@ slots:
       recording, digital fingerprinting, human authentication
 
       (A.1.6).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:provenance_techniques
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:provenance_techniques
     alias: provenance_techniques
     owner: PrimaryGaiConsideration
     domain_of:
@@ -2603,8 +2603,8 @@ slots:
     description: 'For Incident Disclosure: the definition of AI incident
 
       used by the organisation (A.1.8).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:ai_incident_definition
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:ai_incident_definition
     alias: ai_incident_definition
     owner: PrimaryGaiConsideration
     domain_of:
@@ -2613,8 +2613,8 @@ slots:
   gaiProfile__gai_risk_catalog:
     name: gaiProfile__gai_risk_catalog
     description: The catalog of GAI risks (Section 2).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:gai_risk_catalog
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_risk_catalog
     alias: gai_risk_catalog
     owner: GaiProfile
     domain_of:
@@ -2626,8 +2626,8 @@ slots:
   gaiProfile__suggested_actions:
     name: gaiProfile__suggested_actions
     description: Suggested actions to manage GAI risks (Section 3).
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:suggested_actions
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:suggested_actions
     alias: suggested_actions
     owner: GaiProfile
     domain_of:
@@ -2645,8 +2645,8 @@ slots:
       Incident Disclosure). Discriminated by
 
       `consideration_kind`.'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:primary_considerations
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:primary_considerations
     alias: primary_considerations
     owner: GaiProfile
     domain_of:
@@ -2660,8 +2660,8 @@ slots:
     description: 'Structured public feedback methods relevant to the profile
 
       (A.1.5).'
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
-    slot_uri: nist_ai_rmf_gai:structured_feedback_methods
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:structured_feedback_methods
     alias: structured_feedback_methods
     owner: GaiProfile
     domain_of:
@@ -2678,7 +2678,7 @@ slots:
       (residual risk per ISO Guide 73).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     is_a: is_residual
     domain: ResidualRisk
     slot_uri: nist_ai_rmf:is_residual
@@ -2696,7 +2696,7 @@ slots:
     description: Categories that belong to a Function.
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     is_a: categories
     domain: Function
     slot_uri: nist_ai_rmf:categories
@@ -2718,7 +2718,7 @@ slots:
       "FUNCTION N" form (e.g., "GOVERN 1").'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - schema:identifier
     is_a: id
@@ -2739,7 +2739,7 @@ slots:
     description: Subcategories that belong to a Category.
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     is_a: subcategories
     domain: Category
     slot_uri: nist_ai_rmf:subcategories
@@ -2761,7 +2761,7 @@ slots:
       (e.g., "GOVERN 1.1").'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - schema:identifier
     is_a: id
@@ -2784,7 +2784,7 @@ slots:
       `action_id` (e.g., "GV-1.1-001").'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - schema:identifier
     is_a: id
@@ -2805,7 +2805,7 @@ slots:
     description: The suggested-action text itself.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     mappings:
     - dcterms:description
     is_a: description
@@ -2820,14 +2820,14 @@ slots:
     range: string
   AiRedTeaming_feedback_method_kind:
     name: AiRedTeaming_feedback_method_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind
     description: Which structured feedback method this element represents.
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     is_a: feedback_method_kind
     domain: AiRedTeaming
-    slot_uri: nist_ai_rmf_gai:feedback_method_kind
+    slot_uri: nist_ai_600_1:feedback_method_kind
     ifabsent: StructuredFeedbackMethodEnum(AI_RED_TEAMING)
     alias: feedback_method_kind
     owner: AiRedTeaming
@@ -2843,7 +2843,7 @@ slots:
     description: The kind of AI RMF Profile.
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     is_a: profile_type
     domain: GaiProfile
     slot_uri: nist_ai_rmf:profile_type
@@ -2863,7 +2863,7 @@ classes:
     description: A generic grouping for any identifiable AI RMF element.
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - schema:Thing
     close_mappings:
@@ -2892,7 +2892,7 @@ classes:
       ISO/IEC 22989:2022).'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiSystem
     close_mappings:
@@ -2917,7 +2917,7 @@ classes:
       or People and Planet.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiSystemDimension
     is_a: NamedThing
@@ -2945,7 +2945,7 @@ classes:
       Validate, Deploy and Use, or Operate and Monitor.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiLifecycleStage
     is_a: NamedThing
@@ -2980,7 +2980,7 @@ classes:
       and guidance (OECD 2019).'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiActor
     close_mappings:
@@ -3011,7 +3011,7 @@ classes:
       typical set of actor roles.'
     in_subset:
     - lifecycle
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiActorTask
     is_a: NamedThing
@@ -3051,7 +3051,7 @@ classes:
       occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Risk
     - iso27001:Risk
@@ -3094,7 +3094,7 @@ classes:
       can manifest as opportunities (positive) or threats (negative).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Impact
     narrow_mappings:
@@ -3121,7 +3121,7 @@ classes:
       the planet (Figure 1).'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Harm
     is_a: NamedThing
@@ -3148,7 +3148,7 @@ classes:
       impacts.'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:ResidualRisk
     narrow_mappings:
@@ -3186,7 +3186,7 @@ classes:
       specific.'
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:RiskTolerance
     close_mappings:
@@ -3217,7 +3217,7 @@ classes:
       1.2.1)."
     in_subset:
     - risk_and_harm
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:RiskMeasurementChallenge
     is_a: NamedThing
@@ -3243,7 +3243,7 @@ classes:
       \ does not guarantee trustworthiness, and tradeoffs\nare usually involved."
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:TrustworthinessCharacteristic
     is_a: NamedThing
@@ -3285,7 +3285,7 @@ classes:
       \ and human-cognitive\n(Part 1 \xA73.7; NIST SP 1270)."
     in_subset:
     - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Bias
     related_mappings:
@@ -3311,7 +3311,7 @@ classes:
       contexts and lifecycle stages.'
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Function
     - nist_csf:CSFFunction
@@ -3346,7 +3346,7 @@ classes:
       related subcategories.'
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Category
     - nist_csf:CSFCategory
@@ -3385,7 +3385,7 @@ classes:
       outcomes.'
     in_subset:
     - framework_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:Subcategory
     - nist_csf:CSFSubcategory
@@ -3425,7 +3425,7 @@ classes:
       \ (current or target),\nor cross-sectoral."
     in_subset:
     - profiles
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiRmfProfile
     - oscal_profile:Profile
@@ -3470,7 +3470,7 @@ classes:
       standards, law- and regulation-agnostic, living document).'
     in_subset:
     - attributes
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:RmfAttribute
     related_mappings:
@@ -3497,7 +3497,7 @@ classes:
       environmental cost.'
     in_subset:
     - appendices
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiSpecificRisk
     broad_mappings:
@@ -3524,7 +3524,7 @@ classes:
       presenting AI system information to humans.'
     in_subset:
     - appendices
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:HumanAiInteractionIssue
     related_mappings:
@@ -3554,7 +3554,7 @@ classes:
       `section_actions`) so that the data can be loaded directly.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:PlaybookEntry
     close_mappings:
@@ -3642,7 +3642,7 @@ classes:
       the canonical tree-root for the schema is ``AiRmfFramework``.'
     in_subset:
     - playbook
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:PlaybookCollection
     slots:
@@ -3666,7 +3666,7 @@ classes:
       living document, employing a two-number versioning system (major.minor).'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiRmfDocument
     close_mappings:
@@ -3700,7 +3700,7 @@ classes:
       instance of it as a single JSON / YAML document.'
     in_subset:
     - core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-core
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1
     exact_mappings:
     - nist_ai_rmf:AiRmfFramework
     close_mappings:
@@ -3809,7 +3809,7 @@ classes:
     tree_root: true
   GaiRisk:
     name: GaiRisk
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRisk
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRisk
     description: 'A risk that is novel to or exacerbated by Generative AI.
 
       Each instance corresponds to one of the 12 risk categories
@@ -3817,9 +3817,9 @@ classes:
       enumerated in NIST AI 600-1 Section 2.'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:GaiRisk
+    - nist_ai_600_1:GaiRisk
     close_mappings:
     - nist_ai_rmf:AiSpecificRisk
     related_mappings:
@@ -3847,10 +3847,10 @@ classes:
         description: Suggested actions that address this risk (back-reference).
         range: SuggestedAction
         multivalued: true
-    class_uri: nist_ai_rmf_gai:GaiRisk
+    class_uri: nist_ai_600_1:GaiRisk
   SuggestedAction:
     name: SuggestedAction
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/SuggestedAction
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/SuggestedAction
     description: 'A suggested action an organisation can take to manage GAI
 
       risks. Each action is identified by an Action ID, linked to an
@@ -3860,9 +3860,9 @@ classes:
       risks and AI actor tasks (NIST AI 600-1 Section 3).'
     in_subset:
     - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:SuggestedAction
+    - nist_ai_600_1:SuggestedAction
     close_mappings:
     - stix:CourseOfAction
     related_mappings:
@@ -3889,10 +3889,10 @@ classes:
       description:
         name: description
         description: The suggested-action text itself.
-    class_uri: nist_ai_rmf_gai:SuggestedAction
+    class_uri: nist_ai_600_1:SuggestedAction
   PrimaryGaiConsideration:
     name: PrimaryGaiConsideration
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryGaiConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/PrimaryGaiConsideration
     description: "An overarching consideration derived from the NIST GAI PWG\nconsultation\
       \ process (Appendix A). The `consideration_kind`\nattribute discriminates between\
       \ the four primary\nconsiderations: Governance, Pre-Deployment Testing, Content\n\
@@ -3903,9 +3903,9 @@ classes:
       \  * INCIDENT_DISCLOSURE: ai_incident_definition"
     in_subset:
     - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:PrimaryGaiConsideration
+    - nist_ai_600_1:PrimaryGaiConsideration
     related_mappings:
     - nist_csf:CSFProperty
     is_a: NamedThing
@@ -3962,10 +3962,10 @@ classes:
 
           used by the organisation (A.1.8).'
         range: string
-    class_uri: nist_ai_rmf_gai:PrimaryGaiConsideration
+    class_uri: nist_ai_600_1:PrimaryGaiConsideration
   StructuredPublicFeedback:
     name: StructuredPublicFeedback
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredPublicFeedback
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/StructuredPublicFeedback
     description: 'Methods used to evaluate whether GAI systems are performing as
 
       intended and to calibrate and verify traditional measurement
@@ -3973,9 +3973,9 @@ classes:
       methods (A.1.5).'
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:StructuredPublicFeedback
+    - nist_ai_600_1:StructuredPublicFeedback
     related_mappings:
     - iso27001:InterestedParty
     is_a: NamedThing
@@ -3986,10 +3986,10 @@ classes:
     - description
     - see_also
     - feedback_method_kind
-    class_uri: nist_ai_rmf_gai:StructuredPublicFeedback
+    class_uri: nist_ai_600_1:StructuredPublicFeedback
   AiRedTeaming:
     name: AiRedTeaming
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/AiRedTeaming
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/AiRedTeaming
     description: 'A structured testing exercise used to probe an AI system to
 
       find flaws and vulnerabilities such as inaccurate, harmful, or
@@ -3999,9 +3999,9 @@ classes:
       in collaboration with system developers (A.1.5).'
     in_subset:
     - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:AiRedTeaming
+    - nist_ai_600_1:AiRedTeaming
     related_mappings:
     - stix:AttackPattern
     is_a: StructuredPublicFeedback
@@ -4017,10 +4017,10 @@ classes:
       feedback_method_kind:
         name: feedback_method_kind
         ifabsent: StructuredFeedbackMethodEnum(AI_RED_TEAMING)
-    class_uri: nist_ai_rmf_gai:AiRedTeaming
+    class_uri: nist_ai_600_1:AiRedTeaming
   GaiProfile:
     name: GaiProfile
-    definition_uri: https://w3id.org/lmodel/nist-ai-rmf-gai/GaiProfile
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiProfile
     description: 'Root container that bundles the NIST AI 600-1 Generative AI
 
       Profile: GAI risks (Section 2), suggested actions (Section 3),
@@ -4028,9 +4028,9 @@ classes:
       and primary considerations (Appendix A).'
     in_subset:
     - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-rmf-gai
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - nist_ai_rmf_gai:GaiProfile
+    - nist_ai_600_1:GaiProfile
     - oscal_profile:Profile
     close_mappings:
     - nist_csf:CSFDocument
@@ -4091,11 +4091,11 @@ classes:
         multivalued: true
         inlined: true
         inlined_as_list: true
-    class_uri: nist_ai_rmf_gai:GaiProfile
+    class_uri: nist_ai_600_1:GaiProfile
     tree_root: true
 metamodel_version: 1.11.0
 source_file: nist_ai_rmf.yaml
-source_file_date: '2026-05-14T02:15:57'
-source_file_size: 1516
-generation_date: '2026-05-14T02:31:31'
+source_file_date: '2026-05-28T00:52:46'
+source_file_size: 1491
+generation_date: '2026-05-28T01:00:41'
 

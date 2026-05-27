@@ -1,6 +1,6 @@
 # Mappings
 
-SSSOM TSV mapping sets for the `nist_ai_rmf` and `nist_ai_rmf_gai`
+SSSOM TSV mapping sets for the `nist_ai_rmf` and `nist_ai_600_1`
 schemas. The Simple Standard for Sharing Ontological Mappings
 ([SSSOM](https://mapping-commons.github.io/sssom/)) is the canonical format; the `*_mappings:` fields inside the LinkML schemas are kept in sync from the SSSOM TSV via `scripts/apply_mappings.py`.
 
@@ -9,7 +9,7 @@ schemas. The Simple Standard for Sharing Ontological Mappings
 | File | Subject schema | Mapping targets |
 |---|---|---|
 | `nist_ai_rmf.sssom.tsv` | `nist_ai_rmf` (AI RMF 1.0) | NIST CSF v2, NIST SP 800-53, OSCAL catalog/profile, ISO 27001/29100, GIST, schema.org, PROV, FOAF, DCTERMS |
-| `nist_ai_rmf_gai.sssom.tsv` | `nist_ai_rmf_gai` (GAI Profile) | OSCAL profile, NIST CSF v2, ISO 27001/29100, STIX, SLSA, SPDX, GIST |
+| `nist_ai_600_1.sssom.tsv` | `nist_ai_600_1` (GAI Profile) | OSCAL profile, NIST CSF v2, ISO 27001/29100, STIX, SLSA, SPDX, GIST |
 
 ## Predicates
 

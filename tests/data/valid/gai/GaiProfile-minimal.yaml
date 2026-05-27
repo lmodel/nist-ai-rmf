@@ -1,4 +1,4 @@
-id: https://w3id.org/lmodel/nist-ai-rmf-gai/instance/minimal
+id: https://w3id.org/lmodel/nist-ai-600-1/instance/minimal
 name: NIST AI 600-1 - minimal GAI Profile instance
 title: NIST AI RMF Generative AI Profile (minimal)
 description: |-
@@ -9,7 +9,7 @@ profile_type: CROSS_SECTORAL
 sector: Generative AI
 
 gai_risk_catalog:
-  - id: nist_ai_rmf_gai:risk/confabulation
+  - id: nist_ai_600_1:risk/confabulation
     name: Confabulation
     title: Confabulation
     gai_risk_kind: CONFABULATION
@@ -37,7 +37,7 @@ gai_risk_catalog:
       content (hallucinations / fabrications).
 
 suggested_actions:
-  - id: "nist_ai_rmf_gai:GV-1.1-001"
+  - id: "nist_ai_600_1:GV-1.1-001"
     action_id: GV-1.1-001
     function_prefix: GV
     applies_to_subcategory: GOVERN 1.1
@@ -55,7 +55,7 @@ suggested_actions:
       - GOVERNANCE_AND_OVERSIGHT
 
 primary_considerations:
-  - id: nist_ai_rmf_gai:consideration/governance
+  - id: nist_ai_600_1:consideration/governance
     name: Governance
     title: Governance
     consideration_kind: GOVERNANCE
@@ -72,7 +72,7 @@ primary_considerations:
       - Whistleblower protections
 
 structured_feedback_methods:
-  - id: nist_ai_rmf_gai:feedback/ai_red_teaming
+  - id: nist_ai_600_1:feedback/ai_red_teaming
     name: AI Red-teaming
     title: AI Red-teaming
     feedback_method_kind: AI_RED_TEAMING

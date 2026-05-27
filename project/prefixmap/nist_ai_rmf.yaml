@@ -5,9 +5,9 @@
    "iso27001": "https://w3id.org/lmodel/iso27001/",
    "iso29100": "https://w3id.org/lmodel/iso29100/",
    "linkml": "https://w3id.org/linkml/",
+   "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
+   "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
    "nist_ai_rmf": "https://w3id.org/lmodel/nist-ai-rmf/",
-   "nist_ai_rmf_core": "https://w3id.org/lmodel/nist-ai-rmf-core/",
-   "nist_ai_rmf_gai": "https://w3id.org/lmodel/nist-ai-rmf-gai/",
    "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
    "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
    "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
@@ -17,24 +17,24 @@
    "schema": "http://schema.org/",
    "stix": "https://w3id.org/lmodel/stix/",
    "AiRedTeaming": {
-      "@id": "nist_ai_rmf_gai:AiRedTeaming"
+      "@id": "nist_ai_600_1:AiRedTeaming"
    },
    "GaiProfile": {
-      "@id": "nist_ai_rmf_gai:GaiProfile"
+      "@id": "nist_ai_600_1:GaiProfile"
    },
    "GaiRisk": {
-      "@id": "nist_ai_rmf_gai:GaiRisk"
+      "@id": "nist_ai_600_1:GaiRisk"
    },
    "NamedThing": {
       "@id": "schema:Thing"
    },
    "PrimaryGaiConsideration": {
-      "@id": "nist_ai_rmf_gai:PrimaryGaiConsideration"
+      "@id": "nist_ai_600_1:PrimaryGaiConsideration"
    },
    "StructuredPublicFeedback": {
-      "@id": "nist_ai_rmf_gai:StructuredPublicFeedback"
+      "@id": "nist_ai_600_1:StructuredPublicFeedback"
    },
    "SuggestedAction": {
-      "@id": "nist_ai_rmf_gai:SuggestedAction"
+      "@id": "nist_ai_600_1:SuggestedAction"
    }
 }

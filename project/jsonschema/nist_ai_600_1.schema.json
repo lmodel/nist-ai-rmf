@@ -2590,7 +2590,7 @@
             "type": "string"
         }
     },
-    "$id": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+    "$id": "https://w3id.org/lmodel/nist-ai-600-1",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": true,
     "description": "Root container that bundles the AI RMF Core (Functions) with\nfoundational concepts (trustworthiness characteristics,\nlifecycle, actors, risks, harms), profiles, and Framework\nattributes. Designed for serialising the Framework or a tailored\ninstance of it as a single JSON / YAML document.",
@@ -2746,7 +2746,7 @@
     "required": [
         "id"
     ],
-    "title": "nist-ai-rmf-gai",
+    "title": "nist-ai-600-1",
     "type": "object",
     "version": "1.0.0"
 }

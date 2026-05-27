@@ -1,8 +1,8 @@
-# Auto generated from nist_ai_rmf_gai.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-14T02:28:28
-# Schema: nist-ai-rmf-gai
+# Auto generated from nist_ai_600_1.yaml by pythongen.py version: 0.0.1
+# Generation date: 2026-05-28T01:00:37
+# Schema: nist-ai-600-1
 #
-# id: https://w3id.org/lmodel/nist-ai-rmf-gai
+# id: https://w3id.org/lmodel/nist-ai-600-1
 # description: LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence
 #   Profile of the AI Risk Management Framework (July 2024).
 #
@@ -73,7 +73,7 @@ from rdflib import (
     URIRef
 )
 
-from .nist_ai_rmf_core import AiActorTaskEnum, AiLifecycleStageEnum, AiRmfProfile, AiRmfProfileId, AiSpecificRisk, AiSpecificRiskId, NamedThing, NamedThingId, ProfileTypeEnum, SubcategoryCode, SubcategoryId, TrustworthinessCharacteristicEnum
+from .nist_ai_100_1 import AiActorTaskEnum, AiLifecycleStageEnum, AiRmfProfile, AiRmfProfileId, AiSpecificRisk, AiSpecificRiskId, NamedThing, NamedThingId, ProfileTypeEnum, SubcategoryCode, SubcategoryId, TrustworthinessCharacteristicEnum
 from linkml_runtime.linkml_model.types import String, Uriorcurie
 from linkml_runtime.utils.metamodelcore import URIorCURIE
 
@@ -87,8 +87,8 @@ GIST = CurieNamespace('gist', 'https://w3id.org/lmodel/gist/')
 ISO27001 = CurieNamespace('iso27001', 'https://w3id.org/lmodel/iso27001/')
 ISO29100 = CurieNamespace('iso29100', 'https://w3id.org/lmodel/iso29100/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
+NIST_AI_600_1 = CurieNamespace('nist_ai_600_1', 'https://w3id.org/lmodel/nist-ai-600-1/')
 NIST_AI_RMF = CurieNamespace('nist_ai_rmf', 'https://w3id.org/lmodel/nist-ai-rmf/')
-NIST_AI_RMF_GAI = CurieNamespace('nist_ai_rmf_gai', 'https://w3id.org/lmodel/nist-ai-rmf-gai/')
 NIST_CSF = CurieNamespace('nist_csf', 'https://w3id.org/lmodel/nist-csf-v2/')
 OSCAL_CATALOG = CurieNamespace('oscal_catalog', 'https://w3id.org/lmodel/oscal_catalog/')
 OSCAL_PROFILE = CurieNamespace('oscal_profile', 'https://w3id.org/lmodel/oscal_profile/')
@@ -98,7 +98,7 @@ SCHEMA = CurieNamespace('schema', 'http://schema.org/')
 SKOS = CurieNamespace('skos', 'http://www.w3.org/2004/02/skos/core#')
 STIX = CurieNamespace('stix', 'https://w3id.org/lmodel/stix/')
 XSD = CurieNamespace('xsd', 'http://www.w3.org/2001/XMLSchema#')
-DEFAULT_ = NIST_AI_RMF_GAI
+DEFAULT_ = NIST_AI_600_1
 
 
 # Types
@@ -109,7 +109,7 @@ Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage). """
     type_class_uri = XSD["string"]
     type_class_curie = "xsd:string"
     type_name = "GaiActionId"
-    type_model_uri = NIST_AI_RMF_GAI.GaiActionId
+    type_model_uri = NIST_AI_600_1.GaiActionId
 
 
 # Class references
@@ -147,10 +147,10 @@ class SuggestedAction(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["SuggestedAction"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:SuggestedAction"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["SuggestedAction"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:SuggestedAction"
     class_name: ClassVar[str] = "SuggestedAction"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.SuggestedAction
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.SuggestedAction
 
     id: Union[str, SuggestedActionId] = None
     action_id: Union[str, GaiActionId] = None
@@ -209,10 +209,10 @@ class PrimaryGaiConsideration(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["PrimaryGaiConsideration"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:PrimaryGaiConsideration"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["PrimaryGaiConsideration"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:PrimaryGaiConsideration"
     class_name: ClassVar[str] = "PrimaryGaiConsideration"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.PrimaryGaiConsideration
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.PrimaryGaiConsideration
 
     id: Union[str, PrimaryGaiConsiderationId] = None
     consideration_kind: Union[str, "PrimaryConsiderationEnum"] = None
@@ -262,10 +262,10 @@ class StructuredPublicFeedback(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["StructuredPublicFeedback"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:StructuredPublicFeedback"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["StructuredPublicFeedback"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:StructuredPublicFeedback"
     class_name: ClassVar[str] = "StructuredPublicFeedback"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.StructuredPublicFeedback
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.StructuredPublicFeedback
 
     id: Union[str, StructuredPublicFeedbackId] = None
     feedback_method_kind: Union[str, "StructuredFeedbackMethodEnum"] = None
@@ -294,10 +294,10 @@ class AiRedTeaming(StructuredPublicFeedback):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["AiRedTeaming"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:AiRedTeaming"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["AiRedTeaming"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:AiRedTeaming"
     class_name: ClassVar[str] = "AiRedTeaming"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.AiRedTeaming
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.AiRedTeaming
 
     id: Union[str, AiRedTeamingId] = None
     feedback_method_kind: Union[str, "StructuredFeedbackMethodEnum"] = 'AI_RED_TEAMING'
@@ -329,10 +329,10 @@ class GaiProfile(AiRmfProfile):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["GaiProfile"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:GaiProfile"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["GaiProfile"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:GaiProfile"
     class_name: ClassVar[str] = "GaiProfile"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.GaiProfile
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.GaiProfile
 
     id: Union[str, GaiProfileId] = None
     profile_type: Union[str, "ProfileTypeEnum"] = 'CROSS_SECTORAL'
@@ -372,10 +372,10 @@ class GaiRisk(AiSpecificRisk):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI["GaiRisk"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf_gai:GaiRisk"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["GaiRisk"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:GaiRisk"
     class_name: ClassVar[str] = "GaiRisk"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF_GAI.GaiRisk
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.GaiRisk
 
     id: Union[str, GaiRiskId] = None
     gai_risk_kind: Optional[Union[str, "GaiRiskCategoryEnum"]] = None
@@ -731,72 +731,72 @@ non-specialist human teams.""")
 class slots:
     pass
 
-slots.gai_risk_kind = Slot(uri=NIST_AI_RMF_GAI.gai_risk_kind, name="gai_risk_kind", curie=NIST_AI_RMF_GAI.curie('gai_risk_kind'),
-                   model_uri=NIST_AI_RMF_GAI.gai_risk_kind, domain=None, range=Optional[Union[str, "GaiRiskCategoryEnum"]])
+slots.gai_risk_kind = Slot(uri=NIST_AI_600_1.gai_risk_kind, name="gai_risk_kind", curie=NIST_AI_600_1.curie('gai_risk_kind'),
+                   model_uri=NIST_AI_600_1.gai_risk_kind, domain=None, range=Optional[Union[str, "GaiRiskCategoryEnum"]])
 
-slots.gai_risks = Slot(uri=NIST_AI_RMF_GAI.gai_risks, name="gai_risks", curie=NIST_AI_RMF_GAI.curie('gai_risks'),
-                   model_uri=NIST_AI_RMF_GAI.gai_risks, domain=None, range=Optional[Union[Union[str, "GaiRiskCategoryEnum"], list[Union[str, "GaiRiskCategoryEnum"]]]])
+slots.gai_risks = Slot(uri=NIST_AI_600_1.gai_risks, name="gai_risks", curie=NIST_AI_600_1.curie('gai_risks'),
+                   model_uri=NIST_AI_600_1.gai_risks, domain=None, range=Optional[Union[Union[str, "GaiRiskCategoryEnum"], list[Union[str, "GaiRiskCategoryEnum"]]]])
 
-slots.risk_categorization = Slot(uri=NIST_AI_RMF_GAI.risk_categorization, name="risk_categorization", curie=NIST_AI_RMF_GAI.curie('risk_categorization'),
-                   model_uri=NIST_AI_RMF_GAI.risk_categorization, domain=None, range=Optional[Union[str, "GaiRiskCategorizationEnum"]])
+slots.risk_categorization = Slot(uri=NIST_AI_600_1.risk_categorization, name="risk_categorization", curie=NIST_AI_600_1.curie('risk_categorization'),
+                   model_uri=NIST_AI_600_1.risk_categorization, domain=None, range=Optional[Union[str, "GaiRiskCategorizationEnum"]])
 
-slots.risk_scope = Slot(uri=NIST_AI_RMF_GAI.risk_scope, name="risk_scope", curie=NIST_AI_RMF_GAI.curie('risk_scope'),
-                   model_uri=NIST_AI_RMF_GAI.risk_scope, domain=None, range=Optional[Union[Union[str, "GaiRiskScopeEnum"], list[Union[str, "GaiRiskScopeEnum"]]]])
+slots.risk_scope = Slot(uri=NIST_AI_600_1.risk_scope, name="risk_scope", curie=NIST_AI_600_1.curie('risk_scope'),
+                   model_uri=NIST_AI_600_1.risk_scope, domain=None, range=Optional[Union[Union[str, "GaiRiskScopeEnum"], list[Union[str, "GaiRiskScopeEnum"]]]])
 
-slots.risk_sources = Slot(uri=NIST_AI_RMF_GAI.risk_sources, name="risk_sources", curie=NIST_AI_RMF_GAI.curie('risk_sources'),
-                   model_uri=NIST_AI_RMF_GAI.risk_sources, domain=None, range=Optional[Union[Union[str, "GaiRiskSourceEnum"], list[Union[str, "GaiRiskSourceEnum"]]]])
+slots.risk_sources = Slot(uri=NIST_AI_600_1.risk_sources, name="risk_sources", curie=NIST_AI_600_1.curie('risk_sources'),
+                   model_uri=NIST_AI_600_1.risk_sources, domain=None, range=Optional[Union[Union[str, "GaiRiskSourceEnum"], list[Union[str, "GaiRiskSourceEnum"]]]])
 
-slots.time_scale = Slot(uri=NIST_AI_RMF_GAI.time_scale, name="time_scale", curie=NIST_AI_RMF_GAI.curie('time_scale'),
-                   model_uri=NIST_AI_RMF_GAI.time_scale, domain=None, range=Optional[Union[Union[str, "GaiRiskTimeScaleEnum"], list[Union[str, "GaiRiskTimeScaleEnum"]]]])
+slots.time_scale = Slot(uri=NIST_AI_600_1.time_scale, name="time_scale", curie=NIST_AI_600_1.curie('time_scale'),
+                   model_uri=NIST_AI_600_1.time_scale, domain=None, range=Optional[Union[Union[str, "GaiRiskTimeScaleEnum"], list[Union[str, "GaiRiskTimeScaleEnum"]]]])
 
-slots.action_id = Slot(uri=NIST_AI_RMF_GAI.action_id, name="action_id", curie=NIST_AI_RMF_GAI.curie('action_id'),
-                   model_uri=NIST_AI_RMF_GAI.action_id, domain=None, range=Union[str, GaiActionId])
+slots.action_id = Slot(uri=NIST_AI_600_1.action_id, name="action_id", curie=NIST_AI_600_1.curie('action_id'),
+                   model_uri=NIST_AI_600_1.action_id, domain=None, range=Union[str, GaiActionId])
 
-slots.function_prefix = Slot(uri=NIST_AI_RMF_GAI.function_prefix, name="function_prefix", curie=NIST_AI_RMF_GAI.curie('function_prefix'),
-                   model_uri=NIST_AI_RMF_GAI.function_prefix, domain=None, range=Optional[Union[str, "GaiActionFunctionPrefixEnum"]])
+slots.function_prefix = Slot(uri=NIST_AI_600_1.function_prefix, name="function_prefix", curie=NIST_AI_600_1.curie('function_prefix'),
+                   model_uri=NIST_AI_600_1.function_prefix, domain=None, range=Optional[Union[str, "GaiActionFunctionPrefixEnum"]])
 
-slots.applies_to_subcategory = Slot(uri=NIST_AI_RMF_GAI.applies_to_subcategory, name="applies_to_subcategory", curie=NIST_AI_RMF_GAI.curie('applies_to_subcategory'),
-                   model_uri=NIST_AI_RMF_GAI.applies_to_subcategory, domain=None, range=Optional[Union[str, SubcategoryCode]])
+slots.applies_to_subcategory = Slot(uri=NIST_AI_600_1.applies_to_subcategory, name="applies_to_subcategory", curie=NIST_AI_600_1.curie('applies_to_subcategory'),
+                   model_uri=NIST_AI_600_1.applies_to_subcategory, domain=None, range=Optional[Union[str, SubcategoryCode]])
 
-slots.consideration_kind = Slot(uri=NIST_AI_RMF_GAI.consideration_kind, name="consideration_kind", curie=NIST_AI_RMF_GAI.curie('consideration_kind'),
-                   model_uri=NIST_AI_RMF_GAI.consideration_kind, domain=None, range=Union[str, "PrimaryConsiderationEnum"])
+slots.consideration_kind = Slot(uri=NIST_AI_600_1.consideration_kind, name="consideration_kind", curie=NIST_AI_600_1.curie('consideration_kind'),
+                   model_uri=NIST_AI_600_1.consideration_kind, domain=None, range=Union[str, "PrimaryConsiderationEnum"])
 
-slots.feedback_method_kind = Slot(uri=NIST_AI_RMF_GAI.feedback_method_kind, name="feedback_method_kind", curie=NIST_AI_RMF_GAI.curie('feedback_method_kind'),
-                   model_uri=NIST_AI_RMF_GAI.feedback_method_kind, domain=None, range=Union[str, "StructuredFeedbackMethodEnum"])
+slots.feedback_method_kind = Slot(uri=NIST_AI_600_1.feedback_method_kind, name="feedback_method_kind", curie=NIST_AI_600_1.curie('feedback_method_kind'),
+                   model_uri=NIST_AI_600_1.feedback_method_kind, domain=None, range=Union[str, "StructuredFeedbackMethodEnum"])
 
-slots.red_team_type = Slot(uri=NIST_AI_RMF_GAI.red_team_type, name="red_team_type", curie=NIST_AI_RMF_GAI.curie('red_team_type'),
-                   model_uri=NIST_AI_RMF_GAI.red_team_type, domain=None, range=Optional[Union[str, "RedTeamingTypeEnum"]])
+slots.red_team_type = Slot(uri=NIST_AI_600_1.red_team_type, name="red_team_type", curie=NIST_AI_600_1.curie('red_team_type'),
+                   model_uri=NIST_AI_600_1.red_team_type, domain=None, range=Optional[Union[str, "RedTeamingTypeEnum"]])
 
-slots.gaiRisk__addressed_by_actions = Slot(uri=NIST_AI_RMF_GAI.addressed_by_actions, name="gaiRisk__addressed_by_actions", curie=NIST_AI_RMF_GAI.curie('addressed_by_actions'),
-                   model_uri=NIST_AI_RMF_GAI.gaiRisk__addressed_by_actions, domain=None, range=Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]])
+slots.gaiRisk__addressed_by_actions = Slot(uri=NIST_AI_600_1.addressed_by_actions, name="gaiRisk__addressed_by_actions", curie=NIST_AI_600_1.curie('addressed_by_actions'),
+                   model_uri=NIST_AI_600_1.gaiRisk__addressed_by_actions, domain=None, range=Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]])
 
-slots.primaryGaiConsideration__governance_practices = Slot(uri=NIST_AI_RMF_GAI.governance_practices, name="primaryGaiConsideration__governance_practices", curie=NIST_AI_RMF_GAI.curie('governance_practices'),
-                   model_uri=NIST_AI_RMF_GAI.primaryGaiConsideration__governance_practices, domain=None, range=Optional[Union[str, list[str]]])
+slots.primaryGaiConsideration__governance_practices = Slot(uri=NIST_AI_600_1.governance_practices, name="primaryGaiConsideration__governance_practices", curie=NIST_AI_600_1.curie('governance_practices'),
+                   model_uri=NIST_AI_600_1.primaryGaiConsideration__governance_practices, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.primaryGaiConsideration__third_party_considerations = Slot(uri=NIST_AI_RMF_GAI.third_party_considerations, name="primaryGaiConsideration__third_party_considerations", curie=NIST_AI_RMF_GAI.curie('third_party_considerations'),
-                   model_uri=NIST_AI_RMF_GAI.primaryGaiConsideration__third_party_considerations, domain=None, range=Optional[str])
+slots.primaryGaiConsideration__third_party_considerations = Slot(uri=NIST_AI_600_1.third_party_considerations, name="primaryGaiConsideration__third_party_considerations", curie=NIST_AI_600_1.curie('third_party_considerations'),
+                   model_uri=NIST_AI_600_1.primaryGaiConsideration__third_party_considerations, domain=None, range=Optional[str])
 
-slots.primaryGaiConsideration__limitations_of_current_approaches = Slot(uri=NIST_AI_RMF_GAI.limitations_of_current_approaches, name="primaryGaiConsideration__limitations_of_current_approaches", curie=NIST_AI_RMF_GAI.curie('limitations_of_current_approaches'),
-                   model_uri=NIST_AI_RMF_GAI.primaryGaiConsideration__limitations_of_current_approaches, domain=None, range=Optional[str])
+slots.primaryGaiConsideration__limitations_of_current_approaches = Slot(uri=NIST_AI_600_1.limitations_of_current_approaches, name="primaryGaiConsideration__limitations_of_current_approaches", curie=NIST_AI_600_1.curie('limitations_of_current_approaches'),
+                   model_uri=NIST_AI_600_1.primaryGaiConsideration__limitations_of_current_approaches, domain=None, range=Optional[str])
 
-slots.primaryGaiConsideration__provenance_techniques = Slot(uri=NIST_AI_RMF_GAI.provenance_techniques, name="primaryGaiConsideration__provenance_techniques", curie=NIST_AI_RMF_GAI.curie('provenance_techniques'),
-                   model_uri=NIST_AI_RMF_GAI.primaryGaiConsideration__provenance_techniques, domain=None, range=Optional[Union[str, list[str]]])
+slots.primaryGaiConsideration__provenance_techniques = Slot(uri=NIST_AI_600_1.provenance_techniques, name="primaryGaiConsideration__provenance_techniques", curie=NIST_AI_600_1.curie('provenance_techniques'),
+                   model_uri=NIST_AI_600_1.primaryGaiConsideration__provenance_techniques, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.primaryGaiConsideration__ai_incident_definition = Slot(uri=NIST_AI_RMF_GAI.ai_incident_definition, name="primaryGaiConsideration__ai_incident_definition", curie=NIST_AI_RMF_GAI.curie('ai_incident_definition'),
-                   model_uri=NIST_AI_RMF_GAI.primaryGaiConsideration__ai_incident_definition, domain=None, range=Optional[str])
+slots.primaryGaiConsideration__ai_incident_definition = Slot(uri=NIST_AI_600_1.ai_incident_definition, name="primaryGaiConsideration__ai_incident_definition", curie=NIST_AI_600_1.curie('ai_incident_definition'),
+                   model_uri=NIST_AI_600_1.primaryGaiConsideration__ai_incident_definition, domain=None, range=Optional[str])
 
-slots.gaiProfile__gai_risk_catalog = Slot(uri=NIST_AI_RMF_GAI.gai_risk_catalog, name="gaiProfile__gai_risk_catalog", curie=NIST_AI_RMF_GAI.curie('gai_risk_catalog'),
-                   model_uri=NIST_AI_RMF_GAI.gaiProfile__gai_risk_catalog, domain=None, range=Optional[Union[dict[Union[str, GaiRiskId], Union[dict, GaiRisk]], list[Union[dict, GaiRisk]]]])
+slots.gaiProfile__gai_risk_catalog = Slot(uri=NIST_AI_600_1.gai_risk_catalog, name="gaiProfile__gai_risk_catalog", curie=NIST_AI_600_1.curie('gai_risk_catalog'),
+                   model_uri=NIST_AI_600_1.gaiProfile__gai_risk_catalog, domain=None, range=Optional[Union[dict[Union[str, GaiRiskId], Union[dict, GaiRisk]], list[Union[dict, GaiRisk]]]])
 
-slots.gaiProfile__suggested_actions = Slot(uri=NIST_AI_RMF_GAI.suggested_actions, name="gaiProfile__suggested_actions", curie=NIST_AI_RMF_GAI.curie('suggested_actions'),
-                   model_uri=NIST_AI_RMF_GAI.gaiProfile__suggested_actions, domain=None, range=Optional[Union[dict[Union[str, SuggestedActionId], Union[dict, SuggestedAction]], list[Union[dict, SuggestedAction]]]])
+slots.gaiProfile__suggested_actions = Slot(uri=NIST_AI_600_1.suggested_actions, name="gaiProfile__suggested_actions", curie=NIST_AI_600_1.curie('suggested_actions'),
+                   model_uri=NIST_AI_600_1.gaiProfile__suggested_actions, domain=None, range=Optional[Union[dict[Union[str, SuggestedActionId], Union[dict, SuggestedAction]], list[Union[dict, SuggestedAction]]]])
 
-slots.gaiProfile__primary_considerations = Slot(uri=NIST_AI_RMF_GAI.primary_considerations, name="gaiProfile__primary_considerations", curie=NIST_AI_RMF_GAI.curie('primary_considerations'),
-                   model_uri=NIST_AI_RMF_GAI.gaiProfile__primary_considerations, domain=None, range=Optional[Union[dict[Union[str, PrimaryGaiConsiderationId], Union[dict, PrimaryGaiConsideration]], list[Union[dict, PrimaryGaiConsideration]]]])
+slots.gaiProfile__primary_considerations = Slot(uri=NIST_AI_600_1.primary_considerations, name="gaiProfile__primary_considerations", curie=NIST_AI_600_1.curie('primary_considerations'),
+                   model_uri=NIST_AI_600_1.gaiProfile__primary_considerations, domain=None, range=Optional[Union[dict[Union[str, PrimaryGaiConsiderationId], Union[dict, PrimaryGaiConsideration]], list[Union[dict, PrimaryGaiConsideration]]]])
 
-slots.gaiProfile__structured_feedback_methods = Slot(uri=NIST_AI_RMF_GAI.structured_feedback_methods, name="gaiProfile__structured_feedback_methods", curie=NIST_AI_RMF_GAI.curie('structured_feedback_methods'),
-                   model_uri=NIST_AI_RMF_GAI.gaiProfile__structured_feedback_methods, domain=None, range=Optional[Union[dict[Union[str, StructuredPublicFeedbackId], Union[dict, StructuredPublicFeedback]], list[Union[dict, StructuredPublicFeedback]]]])
+slots.gaiProfile__structured_feedback_methods = Slot(uri=NIST_AI_600_1.structured_feedback_methods, name="gaiProfile__structured_feedback_methods", curie=NIST_AI_600_1.curie('structured_feedback_methods'),
+                   model_uri=NIST_AI_600_1.gaiProfile__structured_feedback_methods, domain=None, range=Optional[Union[dict[Union[str, StructuredPublicFeedbackId], Union[dict, StructuredPublicFeedback]], list[Union[dict, StructuredPublicFeedback]]]])
 
-slots.AiRedTeaming_feedback_method_kind = Slot(uri=NIST_AI_RMF_GAI.feedback_method_kind, name="AiRedTeaming_feedback_method_kind", curie=NIST_AI_RMF_GAI.curie('feedback_method_kind'),
-                   model_uri=NIST_AI_RMF_GAI.AiRedTeaming_feedback_method_kind, domain=AiRedTeaming, range=Union[str, "StructuredFeedbackMethodEnum"])
+slots.AiRedTeaming_feedback_method_kind = Slot(uri=NIST_AI_600_1.feedback_method_kind, name="AiRedTeaming_feedback_method_kind", curie=NIST_AI_600_1.curie('feedback_method_kind'),
+                   model_uri=NIST_AI_600_1.AiRedTeaming_feedback_method_kind, domain=AiRedTeaming, range=Union[str, "StructuredFeedbackMethodEnum"])
 

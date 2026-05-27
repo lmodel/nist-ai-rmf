@@ -3,7 +3,7 @@
 The fixtures follow the lmodel convention `tests/data/<valid|invalid>/<ClassName>-<desc>.yaml`.
 The class-name prefix is used both to look up the Python dataclass for
 in-process loading *and* to choose which schema (`nist_ai_rmf` or
-`nist_ai_rmf_gai`) to use as the `--target-class` for `linkml-validate`.
+`nist_ai_600_1`) to use as the `--target-class` for `linkml-validate`.
 
 Additionally, the NIST AI RMF Playbook JSON (third-party data) is
 exercised end-to-end via ``scripts/validate_playbook.py``.
@@ -26,8 +26,8 @@ DATA_DIR_VALID = REPO_ROOT / "tests" / "data" / "valid"
 DATA_DIR_INVALID = REPO_ROOT / "tests" / "data" / "invalid"
 DATA_DIR_THIRD_PARTY = REPO_ROOT / "tests" / "data" / "third_party"
 
-SCHEMA_BASE = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_core.yaml"
-SCHEMA_GAI = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf_gai.yaml"
+SCHEMA_BASE = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_100_1.yaml"
+SCHEMA_GAI = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_600_1.yaml"
 SCHEMA_UMBRELLA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
 
 VALID_EXAMPLE_FILES = sorted(
@@ -66,7 +66,7 @@ def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
 
     Returns ``(schema_yaml_path, python_module_name)``.
 
-    GAI-Profile classes live in the ``nist_ai_rmf_gai`` module/schema;
+    GAI-Profile classes live in the ``nist_ai_600_1`` module/schema;
     everything else lives in the base ``nist_ai_rmf`` schema. Reads the
     generated dataclass module to decide so the test doesn't drift as
     new classes are added. If the GAI module hasn't been generated
@@ -74,9 +74,9 @@ def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
     back to the base schema.
     """
     base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
-    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai")
+    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_600_1")
     if gai_mod is not None and hasattr(gai_mod, class_name):
-        return SCHEMA_GAI, "nist_ai_rmf.datamodel.nist_ai_rmf_gai"
+        return SCHEMA_GAI, "nist_ai_rmf.datamodel.nist_ai_600_1"
     if base_mod is not None and hasattr(base_mod, class_name):
         return SCHEMA_BASE, "nist_ai_rmf.datamodel.nist_ai_rmf"
     # Neither module knows this class. Default to the base schema so
@@ -85,13 +85,13 @@ def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
 
 
 def _gai_module_available() -> bool:
-    return _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai") is not None
+    return _try_import("nist_ai_rmf.datamodel.nist_ai_600_1") is not None
 
 
 def _is_gai_class(class_name: str) -> bool:
     """True if the fixture's target lives only in the GAI schema."""
     base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
-    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf_gai")
+    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_600_1")
     base_has = base_mod is not None and hasattr(base_mod, class_name)
     gai_has = gai_mod is not None and hasattr(gai_mod, class_name)
     return gai_has and not base_has
@@ -124,8 +124,8 @@ def test_valid_data_loads_via_python(filepath: str) -> None:
     class_name = _target_class_from_path(filepath)
     if _is_gai_class(class_name) and not _gai_module_available():
         pytest.skip(
-            f"{class_name!r} lives in nist_ai_rmf_gai - run "
-            "`gen-python --no-mergeimports src/nist_ai_rmf/schema/nist_ai_rmf_gai.yaml` "
+            f"{class_name!r} lives in nist_ai_600_1 - run "
+            "`gen-python --no-mergeimports src/nist_ai_rmf/schema/nist_ai_600_1.yaml` "
             "to generate the dataclasses."
         )
     _, module_name = _resolve_schema_and_module(class_name)

@@ -7,9 +7,9 @@
       "iso27001": "https://w3id.org/lmodel/iso27001/",
       "iso29100": "https://w3id.org/lmodel/iso29100/",
       "linkml": "https://w3id.org/linkml/",
+      "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
+      "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
       "nist_ai_rmf": "https://w3id.org/lmodel/nist-ai-rmf/",
-      "nist_ai_rmf_core": "https://w3id.org/lmodel/nist-ai-rmf-core/",
-      "nist_ai_rmf_gai": "https://w3id.org/lmodel/nist-ai-rmf-gai/",
       "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
       "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
       "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
@@ -24,7 +24,7 @@
          "@id": "about_text"
       },
       "action_id": {
-         "@id": "nist_ai_rmf_gai:action_id"
+         "@id": "nist_ai_600_1:action_id"
       },
       "actor_task": {
          "@context": {
@@ -132,7 +132,7 @@
          "@id": "dimension_kind"
       },
       "applies_to_subcategory": {
-         "@id": "nist_ai_rmf_gai:applies_to_subcategory"
+         "@id": "nist_ai_600_1:applies_to_subcategory"
       },
       "audience": {
          "@context": {
@@ -167,7 +167,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:consideration_kind"
+         "@id": "nist_ai_600_1:consideration_kind"
       },
       "current_state": {
          "@id": "current_state"
@@ -188,7 +188,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:feedback_method_kind"
+         "@id": "nist_ai_600_1:feedback_method_kind"
       },
       "function_code": {
          "@id": "function_code"
@@ -207,7 +207,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:function_prefix"
+         "@id": "nist_ai_600_1:function_prefix"
       },
       "gai_risk_kind": {
          "@context": {
@@ -215,7 +215,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:gai_risk_kind"
+         "@id": "nist_ai_600_1:gai_risk_kind"
       },
       "gai_risks": {
          "@context": {
@@ -223,27 +223,27 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:gai_risks"
+         "@id": "nist_ai_600_1:gai_risks"
       },
       "gai_risk_catalog": {
          "@type": "@id",
-         "@id": "nist_ai_rmf_gai:gai_risk_catalog"
+         "@id": "nist_ai_600_1:gai_risk_catalog"
       },
       "primary_considerations": {
          "@type": "@id",
-         "@id": "nist_ai_rmf_gai:primary_considerations"
+         "@id": "nist_ai_600_1:primary_considerations"
       },
       "structured_feedback_methods": {
          "@type": "@id",
-         "@id": "nist_ai_rmf_gai:structured_feedback_methods"
+         "@id": "nist_ai_600_1:structured_feedback_methods"
       },
       "suggested_actions": {
          "@type": "@id",
-         "@id": "nist_ai_rmf_gai:suggested_actions"
+         "@id": "nist_ai_600_1:suggested_actions"
       },
       "addressed_by_actions": {
          "@type": "@id",
-         "@id": "nist_ai_rmf_gai:addressed_by_actions"
+         "@id": "nist_ai_600_1:addressed_by_actions"
       },
       "harm_category": {
          "@context": {
@@ -330,19 +330,19 @@
          "@id": "type"
       },
       "ai_incident_definition": {
-         "@id": "nist_ai_rmf_gai:ai_incident_definition"
+         "@id": "nist_ai_600_1:ai_incident_definition"
       },
       "governance_practices": {
-         "@id": "nist_ai_rmf_gai:governance_practices"
+         "@id": "nist_ai_600_1:governance_practices"
       },
       "limitations_of_current_approaches": {
-         "@id": "nist_ai_rmf_gai:limitations_of_current_approaches"
+         "@id": "nist_ai_600_1:limitations_of_current_approaches"
       },
       "provenance_techniques": {
-         "@id": "nist_ai_rmf_gai:provenance_techniques"
+         "@id": "nist_ai_600_1:provenance_techniques"
       },
       "third_party_considerations": {
-         "@id": "nist_ai_rmf_gai:third_party_considerations"
+         "@id": "nist_ai_600_1:third_party_considerations"
       },
       "profile_type": {
          "@context": {
@@ -365,7 +365,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:red_team_type"
+         "@id": "nist_ai_600_1:red_team_type"
       },
       "references_text": {
          "@id": "references_text"
@@ -384,7 +384,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:risk_categorization"
+         "@id": "nist_ai_600_1:risk_categorization"
       },
       "risk_response": {
          "@context": {
@@ -400,7 +400,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:risk_scope"
+         "@id": "nist_ai_600_1:risk_scope"
       },
       "risk_sources": {
          "@context": {
@@ -408,7 +408,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:risk_sources"
+         "@id": "nist_ai_600_1:risk_sources"
       },
       "challenge_kind": {
          "@context": {
@@ -451,7 +451,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "nist_ai_rmf_gai:time_scale"
+         "@id": "nist_ai_600_1:time_scale"
       },
       "topics": {
          "@id": "topics"
@@ -493,7 +493,7 @@
          "@id": "AiLifecycleStage"
       },
       "AiRedTeaming": {
-         "@id": "nist_ai_rmf_gai:AiRedTeaming"
+         "@id": "nist_ai_600_1:AiRedTeaming"
       },
       "AiRmfDocument": {
          "@id": "AiRmfDocument"
@@ -523,10 +523,10 @@
          "@id": "Function"
       },
       "GaiProfile": {
-         "@id": "nist_ai_rmf_gai:GaiProfile"
+         "@id": "nist_ai_600_1:GaiProfile"
       },
       "GaiRisk": {
-         "@id": "nist_ai_rmf_gai:GaiRisk"
+         "@id": "nist_ai_600_1:GaiRisk"
       },
       "Harm": {
          "@id": "Harm"
@@ -547,7 +547,7 @@
          "@id": "PlaybookEntry"
       },
       "PrimaryGaiConsideration": {
-         "@id": "nist_ai_rmf_gai:PrimaryGaiConsideration"
+         "@id": "nist_ai_600_1:PrimaryGaiConsideration"
       },
       "ResidualRisk": {
          "@id": "ResidualRisk"
@@ -565,13 +565,13 @@
          "@id": "RmfAttribute"
       },
       "StructuredPublicFeedback": {
-         "@id": "nist_ai_rmf_gai:StructuredPublicFeedback"
+         "@id": "nist_ai_600_1:StructuredPublicFeedback"
       },
       "Subcategory": {
          "@id": "Subcategory"
       },
       "SuggestedAction": {
-         "@id": "nist_ai_rmf_gai:SuggestedAction"
+         "@id": "nist_ai_600_1:SuggestedAction"
       },
       "TrustworthinessCharacteristic": {
          "@id": "TrustworthinessCharacteristic"

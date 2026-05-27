@@ -1,10 +1,10 @@
 {
   "name": "nist-ai-rmf",
-  "description": "Umbrella LinkML schema for the NIST AI Risk Management Framework\nfamily.\n\nImports:\n  * `nist_ai_rmf_core` - AI RMF 1.0 (NIST AI 100-1) foundational\n    concepts, Core Functions / Categories / Subcategories,\n    Profiles, design attributes, and the AI RMF Playbook\n    companion data shape.\n  * `nist_ai_rmf_gai` - GAI Profile (NIST AI 600-1): 12 GAI\n    risks, Suggested Actions, Primary GAI Considerations, and\n    Structured Public Feedback methods.\n\nMost consumers should import this umbrella to get the entire\nframework via a single namespace (`nist_ai_rmf:`). Two tree-root\nclasses are exposed by the imports - `AiRmfFramework` from the\ncore module and `GaiProfile` from the GAI module - so callers\nmust pass `--target-class` when validating.",
+  "description": "Umbrella LinkML schema for the NIST AI Risk Management Framework\nfamily.\n\nImports:\n  * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational\n    concepts, Core Functions / Categories / Subcategories,\n    Profiles, design attributes, and the AI RMF Playbook\n    companion data shape.\n  * `nist_ai_600_1` - GAI Profile (NIST AI 600-1): 12 GAI\n    risks, Suggested Actions, Primary GAI Considerations, and\n    Structured Public Feedback methods.\n\nMost consumers should import this umbrella to get the entire\nframework via a single namespace (`nist_ai_rmf:`). Two tree-root\nclasses are exposed by the imports - `AiRmfFramework` from the\ncore module and `GaiProfile` from the GAI module - so callers\nmust pass `--target-class` when validating.",
   "title": "NIST AI Risk Management Framework",
   "see_also": [
-    "https://w3id.org/lmodel/nist-ai-rmf-core",
-    "https://w3id.org/lmodel/nist-ai-rmf-gai",
+    "https://w3id.org/lmodel/nist-ai-100-1",
+    "https://w3id.org/lmodel/nist-ai-600-1",
     "https://doi.org/10.6028/NIST.AI.100-1",
     "https://doi.org/10.6028/NIST.AI.600-1",
     "https://www.nist.gov/itl/ai-risk-management-framework"
@@ -13,8 +13,8 @@
   "version": "1.0.0",
   "imports": [
     "linkml:types",
-    "./nist_ai_rmf_core",
-    "./nist_ai_rmf_gai"
+    "./nist_ai_100_1",
+    "./nist_ai_600_1"
   ],
   "license": "Apache-2.0",
   "prefixes": [
@@ -23,12 +23,12 @@
       "prefix_reference": "https://w3id.org/lmodel/nist-ai-rmf/"
     },
     {
-      "prefix_prefix": "nist_ai_rmf_core",
-      "prefix_reference": "https://w3id.org/lmodel/nist-ai-rmf-core/"
+      "prefix_prefix": "nist_ai_100_1",
+      "prefix_reference": "https://w3id.org/lmodel/nist-ai-100-1/"
     },
     {
-      "prefix_prefix": "nist_ai_rmf_gai",
-      "prefix_reference": "https://w3id.org/lmodel/nist-ai-rmf-gai/"
+      "prefix_prefix": "nist_ai_600_1",
+      "prefix_reference": "https://w3id.org/lmodel/nist-ai-600-1/"
     },
     {
       "prefix_prefix": "linkml",
@@ -42,91 +42,91 @@
       "name": "core",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Core",
       "description": "Foundational concepts shared across the framework: identifier slots,\nthe abstract NamedThing root, and the container.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "framework_core",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/FrameworkCore",
       "description": "The AI RMF Core (Part 2, \u00a75): the four high-level Functions\n(GOVERN, MAP, MEASURE, MANAGE) and their Categories and\nSubcategories - the catalog backbone of the Framework.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "trustworthiness",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Trustworthiness",
       "description": "Characteristics of trustworthy AI systems (Part 1, \u00a73):\nValid and Reliable, Safe, Secure and Resilient, Accountable and\nTransparent, Explainable and Interpretable, Privacy-Enhanced, and\nFair with Harmful Bias Managed.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "lifecycle",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Lifecycle",
       "description": "AI system lifecycle stages, key dimensions, AI actor categories,\nand AI actor tasks (Part 1, \u00a72; Figures 2 and 3; Appendix A).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "risk_and_harm",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/RiskAndHarm",
       "description": "Risk, impact, harm, residual risk, risk tolerance, risk\nmeasurement challenges, and risk response options (Part 1, \u00a71).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "profiles",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Profiles",
       "description": "AI RMF profile constructs (\u00a76): use-case profiles, temporal\n(current / target) profiles, and cross-sectoral profiles.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "attributes",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Attributes",
       "description": "Design attributes of the AI RMF (Appendix D) - the qualities\nthe Framework strives to embody.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "appendices",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Appendices",
       "description": "Supplementary material from Appendices B (differences from\ntraditional software risks) and C (human-AI interaction).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "playbook",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/Playbook",
       "description": "Companion-resource enrichment of an AI RMF subcategory with\nfree-text discussion (\"about\"), suggested actions, documentation\nquestions, and references - modelled after the NIST AI RMF\nPlaybook JSON shape.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "gai_core",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiCore",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiCore",
       "description": "Foundational GAI Profile concepts - the 12 risks and their\ndimensions (Section 2).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "gai_actions",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActions",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiActions",
       "description": "Suggested Actions organised by AI RMF subcategory (Section 3).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "gai_considerations",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiConsiderations",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiConsiderations",
       "description": "Primary GAI Considerations (Appendix A): Governance,\nPre-Deployment Testing, Content Provenance, Incident Disclosure.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     },
     {
       "name": "gai_feedback",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiFeedback",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiFeedback",
       "description": "Structured Public Feedback methods and AI Red-teaming\n(Appendix A.1.5).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     }
   ],
@@ -443,7 +443,7 @@
       "name": "FunctionCode",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/FunctionCode",
       "description": "Identifier of one of the four AI RMF Core functions.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "typeof": "string",
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
@@ -454,7 +454,7 @@
       "name": "CategoryCode",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/CategoryCode",
       "description": "Identifier for a Core category (e.g., \"GOVERN 1\", \"MAP 3\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "typeof": "string",
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
@@ -465,7 +465,7 @@
       "name": "SubcategoryCode",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf/SubcategoryCode",
       "description": "Identifier for a Core subcategory (e.g., \"GOVERN 1.1\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "typeof": "string",
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
@@ -474,9 +474,9 @@
     },
     {
       "name": "GaiActionId",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionId",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiActionId",
       "description": "Action identifier used in NIST AI 600-1 Section 3, of the form\n\"<prefix>-<category>.<subcategory>-<seq>\" - e.g., \"GV-1.1-001\".\nPrefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "typeof": "string",
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
@@ -492,7 +492,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "GOVERN",
@@ -519,7 +519,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "PLAN_AND_DESIGN",
@@ -554,7 +554,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "APPLICATION_CONTEXT",
@@ -585,7 +585,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "AI_DESIGN",
@@ -656,7 +656,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "VALID_AND_RELIABLE",
@@ -695,7 +695,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "HARM_TO_PEOPLE",
@@ -718,7 +718,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "INDIVIDUAL",
@@ -741,7 +741,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "SYSTEMIC",
@@ -764,7 +764,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA",
@@ -803,7 +803,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "MITIGATING",
@@ -830,7 +830,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "USE_CASE",
@@ -857,7 +857,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "PRIMARY",
@@ -876,7 +876,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "permissible_values": [
         {
           "text": "POSITIVE",
@@ -894,12 +894,12 @@
     },
     {
       "name": "GaiRiskCategoryEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategoryEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum",
       "description": "The 12 risks unique to or exacerbated by Generative AI as\nenumerated in NIST AI 600-1 Section 2.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "CBRN_INFORMATION_OR_CAPABILITIES",
@@ -953,12 +953,12 @@
     },
     {
       "name": "GaiRiskCategorizationEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskCategorizationEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum",
       "description": "Higher-level grouping of GAI risks, derived from the UK's\nInternational Scientific Report on the Safety of Advanced AI\n(NIST AI 600-1 Section 2, footnote 5).",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "TECHNICAL_OR_MODEL_RISKS",
@@ -976,12 +976,12 @@
     },
     {
       "name": "GaiRiskScopeEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskScopeEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum",
       "description": "The scope at which a GAI risk may manifest (Section 2).",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "MODEL_OR_SYSTEM",
@@ -999,12 +999,12 @@
     },
     {
       "name": "GaiRiskSourceEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskSourceEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum",
       "description": "The source(s) from which a GAI risk may emerge (Section 2).",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "DESIGN",
@@ -1038,12 +1038,12 @@
     },
     {
       "name": "GaiRiskTimeScaleEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRiskTimeScaleEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum",
       "description": "The time scale over which a GAI risk may materialise\n(Section 2).",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "IMMEDIATE",
@@ -1057,12 +1057,12 @@
     },
     {
       "name": "GaiActionFunctionPrefixEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiActionFunctionPrefixEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum",
       "description": "Two-letter function prefix used in GAI Action IDs.",
       "in_subset": [
         "gai_actions"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "GV",
@@ -1084,12 +1084,12 @@
     },
     {
       "name": "PrimaryConsiderationEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryConsiderationEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum",
       "description": "The four overarching themes derived from the GAI PWG\nconsultation process (Appendix A).",
       "in_subset": [
         "gai_considerations"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "GOVERNANCE",
@@ -1111,12 +1111,12 @@
     },
     {
       "name": "StructuredFeedbackMethodEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredFeedbackMethodEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum",
       "description": "Categories of structured public feedback for GAI risk\nmanagement (Appendix A.1.5).",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "PARTICIPATORY_ENGAGEMENT_METHODS",
@@ -1134,12 +1134,12 @@
     },
     {
       "name": "RedTeamingTypeEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/RedTeamingTypeEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum",
       "description": "Types of AI red-teaming exercises (Appendix A.1.5).",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "permissible_values": [
         {
           "text": "GENERAL_PUBLIC",
@@ -1168,7 +1168,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -1189,7 +1189,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://www.w3.org/2000/01/rdf-schema#label"
       ],
@@ -1208,7 +1208,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/title"
       ],
@@ -1227,7 +1227,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/description"
       ],
@@ -1246,7 +1246,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/source"
       ],
@@ -1265,7 +1265,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://www.w3.org/2000/01/rdf-schema#seeAlso"
       ],
@@ -1285,7 +1285,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/function_code",
       "owner": "Function",
       "domain_of": [
@@ -1302,7 +1302,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/categories",
       "owner": "Function",
       "domain_of": [
@@ -1321,7 +1321,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/subcategories",
       "owner": "Category",
       "domain_of": [
@@ -1340,7 +1340,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/category_id",
       "owner": "Category",
       "domain_of": [
@@ -1356,7 +1356,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/subcategory_id",
       "owner": "Subcategory",
       "domain_of": [
@@ -1372,7 +1372,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "close_mappings": [
         "https://w3id.org/lmodel/nist-csf-v2/prose"
       ],
@@ -1392,7 +1392,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/impact_sign",
       "owner": "Impact",
       "domain_of": [
@@ -1409,7 +1409,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "close_mappings": [
         "https://w3id.org/lmodel/iso27001/LikelihoodRating"
       ],
@@ -1431,7 +1431,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "close_mappings": [
         "https://w3id.org/lmodel/iso27001/ImpactRating"
       ],
@@ -1452,7 +1452,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/harm_category",
       "owner": "Harm",
       "domain_of": [
@@ -1468,7 +1468,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/harm_to_people_subcategory",
       "owner": "Harm",
       "domain_of": [
@@ -1484,7 +1484,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/affects",
       "owner": "Harm",
       "domain_of": [
@@ -1502,7 +1502,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "https://w3id.org/lmodel/iso27001/RiskTreatmentOption"
       ],
@@ -1521,7 +1521,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/is_residual",
       "owner": "Risk",
       "domain_of": [
@@ -1537,7 +1537,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/lifecycle_stage",
       "owner": "GaiRisk",
       "domain_of": [
@@ -1559,7 +1559,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/ai_dimension",
       "owner": "AiActorTask",
       "domain_of": [
@@ -1577,7 +1577,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/actor_task",
       "owner": "SuggestedAction",
       "domain_of": [
@@ -1595,7 +1595,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/is_tevv",
       "owner": "AiActor",
       "domain_of": [
@@ -1611,7 +1611,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/audience",
       "owner": "AiActor",
       "domain_of": [
@@ -1627,7 +1627,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/trustworthiness_characteristic",
       "owner": "GaiRisk",
       "domain_of": [
@@ -1646,7 +1646,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/bias_category",
       "owner": "Bias",
       "domain_of": [
@@ -1663,7 +1663,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/profile_type",
       "owner": "AiRmfProfile",
       "domain_of": [
@@ -1680,7 +1680,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/target_state",
       "owner": "AiRmfProfile",
       "domain_of": [
@@ -1696,7 +1696,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/current_state",
       "owner": "AiRmfProfile",
       "domain_of": [
@@ -1712,7 +1712,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/publisher"
       ],
@@ -1731,7 +1731,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/doi",
       "owner": "AiRmfDocument",
       "domain_of": [
@@ -1747,7 +1747,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/issued"
       ],
@@ -1766,7 +1766,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://schema.org/version"
       ],
@@ -1785,7 +1785,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/about_text",
       "owner": "Subcategory",
       "domain_of": [
@@ -1801,7 +1801,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/suggested_actions_text",
       "owner": "Subcategory",
       "domain_of": [
@@ -1817,7 +1817,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/documentation_questions",
       "owner": "Subcategory",
       "domain_of": [
@@ -1833,7 +1833,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/references_text",
       "owner": "Subcategory",
       "domain_of": [
@@ -1849,7 +1849,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/topics",
       "owner": "Subcategory",
       "domain_of": [
@@ -1866,7 +1866,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/ai_actor_categories",
       "owner": "Subcategory",
       "domain_of": [
@@ -1883,7 +1883,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/function_kind",
       "range": "FunctionEnum",
       "@type": "SlotDefinition"
@@ -1895,20 +1895,20 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/category_code",
       "range": "string",
       "@type": "SlotDefinition"
     },
     {
       "name": "gai_risk_kind",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risk_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_kind",
       "description": "The GAI risk category this element represents.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risk_kind",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_kind",
       "owner": "GaiRisk",
       "domain_of": [
         "GaiRisk"
@@ -1918,13 +1918,13 @@
     },
     {
       "name": "gai_risks",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risks",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risks",
       "description": "GAI risk categories addressed by a suggested action or\nconsidered by a primary consideration.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risks",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risks",
       "owner": "SuggestedAction",
       "domain_of": [
         "SuggestedAction"
@@ -1935,13 +1935,13 @@
     },
     {
       "name": "risk_categorization",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_categorization",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_categorization",
       "description": "Higher-level categorisation - technical/model, misuse, or\necosystem/societal.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_categorization",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_categorization",
       "owner": "GaiRisk",
       "domain_of": [
         "GaiRisk"
@@ -1951,13 +1951,13 @@
     },
     {
       "name": "risk_scope",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_scope",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_scope",
       "description": "Scope levels at which the risk may manifest.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_scope",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_scope",
       "owner": "GaiRisk",
       "domain_of": [
         "GaiRisk"
@@ -1968,13 +1968,13 @@
     },
     {
       "name": "risk_sources",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_sources",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_sources",
       "description": "Sources from which the risk may emerge.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/risk_sources",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/risk_sources",
       "owner": "GaiRisk",
       "domain_of": [
         "GaiRisk"
@@ -1985,13 +1985,13 @@
     },
     {
       "name": "time_scale",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/time_scale",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/time_scale",
       "description": "Time scales over which the risk may materialise.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/time_scale",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/time_scale",
       "owner": "GaiRisk",
       "domain_of": [
         "GaiRisk"
@@ -2002,13 +2002,13 @@
     },
     {
       "name": "action_id",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/action_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/action_id",
       "description": "Identifier of a Suggested Action.",
       "in_subset": [
         "gai_actions"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/action_id",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/action_id",
       "owner": "SuggestedAction",
       "domain_of": [
         "SuggestedAction"
@@ -2019,13 +2019,13 @@
     },
     {
       "name": "function_prefix",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/function_prefix",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/function_prefix",
       "description": "Two-letter function prefix of the action's subcategory.",
       "in_subset": [
         "gai_actions"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/function_prefix",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/function_prefix",
       "owner": "SuggestedAction",
       "domain_of": [
         "SuggestedAction"
@@ -2035,16 +2035,16 @@
     },
     {
       "name": "applies_to_subcategory",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/applies_to_subcategory",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/applies_to_subcategory",
       "description": "Identifier of the AI RMF subcategory the action applies to.",
       "in_subset": [
         "gai_actions"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "close_mappings": [
         "https://w3id.org/lmodel/oscal_profile/Profile"
       ],
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/applies_to_subcategory",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/applies_to_subcategory",
       "owner": "SuggestedAction",
       "domain_of": [
         "SuggestedAction"
@@ -2054,13 +2054,13 @@
     },
     {
       "name": "consideration_kind",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/consideration_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/consideration_kind",
       "description": "Which primary consideration this element represents.",
       "in_subset": [
         "gai_considerations"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/consideration_kind",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/consideration_kind",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
         "PrimaryGaiConsideration"
@@ -2071,13 +2071,13 @@
     },
     {
       "name": "feedback_method_kind",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind",
       "description": "Which structured feedback method this element represents.",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind",
       "owner": "StructuredPublicFeedback",
       "domain_of": [
         "StructuredPublicFeedback"
@@ -2088,13 +2088,13 @@
     },
     {
       "name": "red_team_type",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/red_team_type",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/red_team_type",
       "description": "The type of AI red-teaming exercise.",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/red_team_type",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/red_team_type",
       "owner": "AiRedTeaming",
       "domain_of": [
         "AiRedTeaming"
@@ -2105,7 +2105,7 @@
     {
       "name": "aiSystemDimension__dimension_kind",
       "description": "Which of the five dimensions this instance represents.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/dimension_kind",
       "alias": "dimension_kind",
       "owner": "AiSystemDimension",
@@ -2119,7 +2119,7 @@
     {
       "name": "aiLifecycleStage__stage_kind",
       "description": "Which of the six stages this instance represents.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/stage_kind",
       "alias": "stage_kind",
       "owner": "AiLifecycleStage",
@@ -2133,7 +2133,7 @@
     {
       "name": "aiLifecycleStage__includes_tevv",
       "description": "Whether this stage incorporates TEVV activities.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/includes_tevv",
       "alias": "includes_tevv",
       "owner": "AiLifecycleStage",
@@ -2146,7 +2146,7 @@
     {
       "name": "aiActorTask__task_kind",
       "description": "Which of the actor task categories this is.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/task_kind",
       "alias": "task_kind",
       "owner": "AiActorTask",
@@ -2160,7 +2160,7 @@
     {
       "name": "aiActorTask__typical_actors",
       "description": "Representative actor roles that perform this task.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/typical_actors",
       "alias": "typical_actors",
       "owner": "AiActorTask",
@@ -2174,7 +2174,7 @@
     {
       "name": "risk__related_impacts",
       "description": "The impacts that contribute to this risk.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/related_impacts",
       "alias": "related_impacts",
       "owner": "Risk",
@@ -2190,7 +2190,7 @@
     {
       "name": "risk__affects_system",
       "description": "The AI system this risk pertains to.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/affects_system",
       "alias": "affects_system",
       "owner": "Risk",
@@ -2203,7 +2203,7 @@
     {
       "name": "riskTolerance__tolerance_statement",
       "description": "Free-text statement of the tolerance level or threshold.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/tolerance_statement",
       "alias": "tolerance_statement",
       "owner": "RiskTolerance",
@@ -2216,7 +2216,7 @@
     {
       "name": "riskTolerance__legal_basis",
       "description": "Legal or regulatory requirements influencing the tolerance.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/legal_basis",
       "alias": "legal_basis",
       "owner": "RiskTolerance",
@@ -2229,7 +2229,7 @@
     {
       "name": "riskMeasurementChallenge__challenge_kind",
       "description": "Which measurement challenge this represents.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/challenge_kind",
       "alias": "challenge_kind",
       "owner": "RiskMeasurementChallenge",
@@ -2243,7 +2243,7 @@
     {
       "name": "trustworthinessCharacteristic__characteristic_kind",
       "description": "Which trustworthiness characteristic this instance represents.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/characteristic_kind",
       "alias": "characteristic_kind",
       "owner": "TrustworthinessCharacteristic",
@@ -2257,7 +2257,7 @@
     {
       "name": "trustworthinessCharacteristic__is_base_condition",
       "description": "True when this is a necessary condition for trustworthiness\n(Valid and Reliable; per Figure 4 it is the base of all other\ncharacteristics).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/is_base_condition",
       "alias": "is_base_condition",
       "owner": "TrustworthinessCharacteristic",
@@ -2270,7 +2270,7 @@
     {
       "name": "trustworthinessCharacteristic__is_cross_cutting",
       "description": "True when this characteristic relates to all others\n(Accountable and Transparent; shown vertically in Figure 4).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/is_cross_cutting",
       "alias": "is_cross_cutting",
       "owner": "TrustworthinessCharacteristic",
@@ -2283,7 +2283,7 @@
     {
       "name": "aiRmfProfile__sector",
       "description": "The sector, industry, technology, or end-use application the\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/sector",
       "alias": "sector",
       "owner": "AiRmfProfile",
@@ -2296,7 +2296,7 @@
     {
       "name": "aiRmfProfile__addresses",
       "description": "Subcategories that the profile implements or addresses.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/addresses",
       "alias": "addresses",
       "owner": "AiRmfProfile",
@@ -2310,7 +2310,7 @@
     {
       "name": "playbookEntry__type",
       "description": "Function label as serialised in the published Playbook JSON\n(Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For\nthe controlled enum see `function_kind`.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/type",
       "alias": "type",
       "owner": "PlaybookEntry",
@@ -2323,7 +2323,7 @@
     {
       "name": "playbookEntry__title",
       "description": "Subcategory identifier (e.g., \"GOVERN 1.1\"). Mirrors the\nAI RMF Subcategory `subcategory_id`.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/title",
       "alias": "title",
       "owner": "PlaybookEntry",
@@ -2336,7 +2336,7 @@
     {
       "name": "playbookEntry__category",
       "description": "Category code in the form \"FUNCTION-N\" (e.g., \"GOVERN-1\")\nas used in the Playbook.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/category",
       "alias": "category",
       "owner": "PlaybookEntry",
@@ -2349,7 +2349,7 @@
     {
       "name": "playbookEntry__description",
       "description": "Outcome statement of the subcategory.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/description",
       "alias": "description",
       "owner": "PlaybookEntry",
@@ -2362,7 +2362,7 @@
     {
       "name": "playbookEntry__section_about",
       "description": "Free-text discussion (\"About\" section).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/section_about",
       "alias": "section_about",
       "owner": "PlaybookEntry",
@@ -2375,7 +2375,7 @@
     {
       "name": "playbookEntry__section_actions",
       "description": "Bulleted suggested actions (\"Actions\" section).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/section_actions",
       "alias": "section_actions",
       "owner": "PlaybookEntry",
@@ -2388,7 +2388,7 @@
     {
       "name": "playbookEntry__section_doc",
       "description": "Documentation questions and transparency resources\n(\"Documentation\" section).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/section_doc",
       "alias": "section_doc",
       "owner": "PlaybookEntry",
@@ -2401,7 +2401,7 @@
     {
       "name": "playbookEntry__section_ref",
       "description": "References and citations (\"References\" section).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/section_ref",
       "alias": "section_ref",
       "owner": "PlaybookEntry",
@@ -2414,7 +2414,7 @@
     {
       "name": "playbookEntry__ai_actors",
       "description": "AI actor categories the entry applies to. Free-text to\npreserve the casing of the source data (e.g., \"Governance\nand Oversight\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/ai_actors",
       "alias": "ai_actors",
       "owner": "PlaybookEntry",
@@ -2428,7 +2428,7 @@
     {
       "name": "playbookEntry__topic",
       "description": "Topic tags (e.g., \"Legal and Regulatory\", \"Validity and\nReliability\").",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/topic",
       "alias": "topic",
       "owner": "PlaybookEntry",
@@ -2442,7 +2442,7 @@
     {
       "name": "playbookCollection__entries",
       "description": "The Playbook entries in this collection.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/entries",
       "alias": "entries",
       "owner": "PlaybookCollection",
@@ -2458,7 +2458,7 @@
     {
       "name": "aiRmfFramework__document",
       "description": "Publication metadata.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/document",
       "alias": "document",
       "owner": "AiRmfFramework",
@@ -2472,7 +2472,7 @@
     {
       "name": "aiRmfFramework__functions",
       "description": "The four AI RMF Core functions and their content.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/functions",
       "alias": "functions",
       "owner": "AiRmfFramework",
@@ -2488,7 +2488,7 @@
     {
       "name": "aiRmfFramework__trustworthiness_characteristics",
       "description": "The seven characteristics of trustworthy AI.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/trustworthiness_characteristics",
       "alias": "trustworthiness_characteristics",
       "owner": "AiRmfFramework",
@@ -2504,7 +2504,7 @@
     {
       "name": "aiRmfFramework__lifecycle_stages",
       "description": "The AI lifecycle stages (Figure 2).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/lifecycle_stages",
       "alias": "lifecycle_stages",
       "owner": "AiRmfFramework",
@@ -2520,7 +2520,7 @@
     {
       "name": "aiRmfFramework__dimensions",
       "description": "The AI system dimensions (Figure 2).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/dimensions",
       "alias": "dimensions",
       "owner": "AiRmfFramework",
@@ -2536,7 +2536,7 @@
     {
       "name": "aiRmfFramework__actor_tasks",
       "description": "AI actor task categories (Appendix A).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/actor_tasks",
       "alias": "actor_tasks",
       "owner": "AiRmfFramework",
@@ -2552,7 +2552,7 @@
     {
       "name": "aiRmfFramework__profiles",
       "description": "AI RMF profiles defined alongside this Framework instance.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/profiles",
       "alias": "profiles",
       "owner": "AiRmfFramework",
@@ -2568,7 +2568,7 @@
     {
       "name": "aiRmfFramework__attributes_",
       "description": "Design attributes of the AI RMF (Appendix D).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "aliases": [
         "rmf_attributes"
       ],
@@ -2590,7 +2590,7 @@
     {
       "name": "aiRmfFramework__risk_measurement_challenges",
       "description": "Identified challenges in measuring AI risk.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/risk_measurement_challenges",
       "alias": "risk_measurement_challenges",
       "owner": "AiRmfFramework",
@@ -2606,7 +2606,7 @@
     {
       "name": "aiRmfFramework__ai_specific_risks",
       "description": "AI-specific risks compared to traditional software (Appendix B).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/ai_specific_risks",
       "alias": "ai_specific_risks",
       "owner": "AiRmfFramework",
@@ -2622,7 +2622,7 @@
     {
       "name": "aiRmfFramework__human_ai_interaction_issues",
       "description": "Human-AI interaction considerations (Appendix C).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/human_ai_interaction_issues",
       "alias": "human_ai_interaction_issues",
       "owner": "AiRmfFramework",
@@ -2638,8 +2638,8 @@
     {
       "name": "gaiRisk__addressed_by_actions",
       "description": "Suggested actions that address this risk (back-reference).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/addressed_by_actions",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/addressed_by_actions",
       "alias": "addressed_by_actions",
       "owner": "GaiRisk",
       "domain_of": [
@@ -2652,8 +2652,8 @@
     {
       "name": "primaryGaiConsideration__governance_practices",
       "description": "Governance plans and actions (A.1.2) - e.g., \"Auditing and\nassessment\", \"Data provenance\", \"Incident response\",\n\"Impact assessments\", \"Stakeholder engagement\", \"Synthetic\ncontent detection\", \"Whistleblower protections\".",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/governance_practices",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/governance_practices",
       "alias": "governance_practices",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
@@ -2666,8 +2666,8 @@
     {
       "name": "primaryGaiConsideration__third_party_considerations",
       "description": "Considerations for third-party GAI integrations,\nprocurement, SBOMs, SLAs, and SSAE reports (A.1.3).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/third_party_considerations",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/third_party_considerations",
       "alias": "third_party_considerations",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
@@ -2679,8 +2679,8 @@
     {
       "name": "primaryGaiConsideration__limitations_of_current_approaches",
       "description": "For Pre-Deployment Testing: free-text discussion of why\ncurrent TEVV approaches may be inadequate (A.1.4).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/limitations_of_current_approaches",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/limitations_of_current_approaches",
       "alias": "limitations_of_current_approaches",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
@@ -2692,8 +2692,8 @@
     {
       "name": "primaryGaiConsideration__provenance_techniques",
       "description": "For Content Provenance: provenance data tracking\ntechniques such as digital watermarking, metadata\nrecording, digital fingerprinting, human authentication\n(A.1.6).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/provenance_techniques",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/provenance_techniques",
       "alias": "provenance_techniques",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
@@ -2706,8 +2706,8 @@
     {
       "name": "primaryGaiConsideration__ai_incident_definition",
       "description": "For Incident Disclosure: the definition of AI incident\nused by the organisation (A.1.8).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/ai_incident_definition",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/ai_incident_definition",
       "alias": "ai_incident_definition",
       "owner": "PrimaryGaiConsideration",
       "domain_of": [
@@ -2719,8 +2719,8 @@
     {
       "name": "gaiProfile__gai_risk_catalog",
       "description": "The catalog of GAI risks (Section 2).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/gai_risk_catalog",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_catalog",
       "alias": "gai_risk_catalog",
       "owner": "GaiProfile",
       "domain_of": [
@@ -2735,8 +2735,8 @@
     {
       "name": "gaiProfile__suggested_actions",
       "description": "Suggested actions to manage GAI risks (Section 3).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/suggested_actions",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/suggested_actions",
       "alias": "suggested_actions",
       "owner": "GaiProfile",
       "domain_of": [
@@ -2751,8 +2751,8 @@
     {
       "name": "gaiProfile__primary_considerations",
       "description": "The primary GAI considerations from Appendix A\n(Governance, Pre-Deployment Testing, Content Provenance,\nIncident Disclosure). Discriminated by\n`consideration_kind`.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/primary_considerations",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/primary_considerations",
       "alias": "primary_considerations",
       "owner": "GaiProfile",
       "domain_of": [
@@ -2767,8 +2767,8 @@
     {
       "name": "gaiProfile__structured_feedback_methods",
       "description": "Structured public feedback methods relevant to the profile\n(A.1.5).",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/structured_feedback_methods",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/structured_feedback_methods",
       "alias": "structured_feedback_methods",
       "owner": "GaiProfile",
       "domain_of": [
@@ -2787,7 +2787,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "is_a": "is_residual",
       "domain": "ResidualRisk",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/is_residual",
@@ -2809,7 +2809,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "is_a": "categories",
       "domain": "Function",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/categories",
@@ -2833,7 +2833,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -2859,7 +2859,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "is_a": "subcategories",
       "domain": "Category",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/subcategories",
@@ -2883,7 +2883,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -2909,7 +2909,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://schema.org/identifier"
       ],
@@ -2935,7 +2935,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "mappings": [
         "http://purl.org/dc/terms/description"
       ],
@@ -2954,15 +2954,15 @@
     },
     {
       "name": "AiRedTeaming_feedback_method_kind",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind",
       "description": "Which structured feedback method this element represents.",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "is_a": "feedback_method_kind",
       "domain": "AiRedTeaming",
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/feedback_method_kind",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind",
       "ifabsent": "StructuredFeedbackMethodEnum(AI_RED_TEAMING)",
       "alias": "feedback_method_kind",
       "owner": "AiRedTeaming",
@@ -2982,7 +2982,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "is_a": "profile_type",
       "domain": "GaiProfile",
       "slot_uri": "https://w3id.org/lmodel/nist-ai-rmf/profile_type",
@@ -3007,7 +3007,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "schema:Thing"
       ],
@@ -3032,7 +3032,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiSystem"
       ],
@@ -3059,7 +3059,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiSystemDimension"
       ],
@@ -3091,7 +3091,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiLifecycleStage"
       ],
@@ -3130,7 +3130,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiActor"
       ],
@@ -3164,7 +3164,7 @@
       "in_subset": [
         "lifecycle"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiActorTask"
       ],
@@ -3206,7 +3206,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Risk",
         "iso27001:Risk"
@@ -3258,7 +3258,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Impact"
       ],
@@ -3287,7 +3287,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Harm"
       ],
@@ -3313,7 +3313,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:ResidualRisk"
       ],
@@ -3347,7 +3347,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:RiskTolerance"
       ],
@@ -3388,7 +3388,7 @@
       "in_subset": [
         "risk_and_harm"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:RiskMeasurementChallenge"
       ],
@@ -3420,7 +3420,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:TrustworthinessCharacteristic"
       ],
@@ -3466,7 +3466,7 @@
       "in_subset": [
         "trustworthiness"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Bias"
       ],
@@ -3492,7 +3492,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Function",
         "nist_csf:CSFFunction"
@@ -3520,7 +3520,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Category",
         "nist_csf:CSFCategory"
@@ -3546,7 +3546,7 @@
       "in_subset": [
         "framework_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:Subcategory",
         "nist_csf:CSFSubcategory"
@@ -3583,7 +3583,7 @@
       "in_subset": [
         "profiles"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiRmfProfile",
         "oscal_profile:Profile"
@@ -3629,7 +3629,7 @@
       "in_subset": [
         "attributes"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:RmfAttribute"
       ],
@@ -3654,7 +3654,7 @@
       "in_subset": [
         "appendices"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiSpecificRisk"
       ],
@@ -3679,7 +3679,7 @@
       "in_subset": [
         "appendices"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:HumanAiInteractionIssue"
       ],
@@ -3704,7 +3704,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:PlaybookEntry"
       ],
@@ -3797,7 +3797,7 @@
       "in_subset": [
         "playbook"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:PlaybookCollection"
       ],
@@ -3825,7 +3825,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiRmfDocument"
       ],
@@ -3858,7 +3858,7 @@
       "in_subset": [
         "core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-core",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1",
       "exact_mappings": [
         "nist_ai_rmf:AiRmfFramework"
       ],
@@ -3995,14 +3995,14 @@
     },
     {
       "name": "GaiRisk",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiRisk",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRisk",
       "description": "A risk that is novel to or exacerbated by Generative AI.\nEach instance corresponds to one of the 12 risk categories\nenumerated in NIST AI 600-1 Section 2.",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:GaiRisk"
+        "nist_ai_600_1:GaiRisk"
       ],
       "close_mappings": [
         "nist_ai_rmf:AiSpecificRisk"
@@ -4043,14 +4043,14 @@
     },
     {
       "name": "SuggestedAction",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/SuggestedAction",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/SuggestedAction",
       "description": "A suggested action an organisation can take to manage GAI\nrisks. Each action is identified by an Action ID, linked to an\nAI RMF subcategory, and may be relevant to one or more GAI\nrisks and AI actor tasks (NIST AI 600-1 Section 3).",
       "in_subset": [
         "gai_actions"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:SuggestedAction"
+        "nist_ai_600_1:SuggestedAction"
       ],
       "close_mappings": [
         "stix:CourseOfAction"
@@ -4077,14 +4077,14 @@
     },
     {
       "name": "PrimaryGaiConsideration",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/PrimaryGaiConsideration",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/PrimaryGaiConsideration",
       "description": "An overarching consideration derived from the NIST GAI PWG\nconsultation process (Appendix A). The `consideration_kind`\nattribute discriminates between the four primary\nconsiderations: Governance, Pre-Deployment Testing, Content\nProvenance, and Incident Disclosure.\n\nAll consideration-specific attributes are optional and apply\nto the appropriate `consideration_kind`:\n  * GOVERNANCE: governance_practices, third_party_considerations\n  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches\n  * CONTENT_PROVENANCE: provenance_techniques\n  * INCIDENT_DISCLOSURE: ai_incident_definition",
       "in_subset": [
         "gai_considerations"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:PrimaryGaiConsideration"
+        "nist_ai_600_1:PrimaryGaiConsideration"
       ],
       "related_mappings": [
         "nist_csf:CSFProperty"
@@ -4142,14 +4142,14 @@
     },
     {
       "name": "StructuredPublicFeedback",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/StructuredPublicFeedback",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/StructuredPublicFeedback",
       "description": "Methods used to evaluate whether GAI systems are performing as\nintended and to calibrate and verify traditional measurement\nmethods (A.1.5).",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:StructuredPublicFeedback"
+        "nist_ai_600_1:StructuredPublicFeedback"
       ],
       "related_mappings": [
         "iso27001:InterestedParty"
@@ -4168,14 +4168,14 @@
     },
     {
       "name": "AiRedTeaming",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/AiRedTeaming",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/AiRedTeaming",
       "description": "A structured testing exercise used to probe an AI system to\nfind flaws and vulnerabilities such as inaccurate, harmful, or\ndiscriminatory outputs, often in a controlled environment and\nin collaboration with system developers (A.1.5).",
       "in_subset": [
         "gai_feedback"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:AiRedTeaming"
+        "nist_ai_600_1:AiRedTeaming"
       ],
       "related_mappings": [
         "stix:AttackPattern"
@@ -4195,14 +4195,14 @@
     },
     {
       "name": "GaiProfile",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-rmf-gai/GaiProfile",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiProfile",
       "description": "Root container that bundles the NIST AI 600-1 Generative AI\nProfile: GAI risks (Section 2), suggested actions (Section 3),\nand primary considerations (Appendix A).",
       "in_subset": [
         "gai_core"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-rmf-gai",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "exact_mappings": [
-        "nist_ai_rmf_gai:GaiProfile",
+        "nist_ai_600_1:GaiProfile",
         "oscal_profile:Profile"
       ],
       "close_mappings": [
@@ -4270,15 +4270,15 @@
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_rmf.yaml",
-  "source_file_date": "2026-05-14T02:15:57",
-  "source_file_size": 1516,
-  "generation_date": "2026-05-14T02:28:17",
+  "source_file_date": "2026-05-28T00:52:46",
+  "source_file_size": 1491,
+  "generation_date": "2026-05-28T01:00:26",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_rmf.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
-    "./nist_ai_rmf_core.context.jsonld",
-    "./nist_ai_rmf_gai.context.jsonld",
+    "./nist_ai_100_1.context.jsonld",
+    "./nist_ai_600_1.context.jsonld",
     {
       "@base": "https://w3id.org/lmodel/nist-ai-rmf/"
     }

@@ -7,11 +7,11 @@ description: |-
   family.
 
   Imports:
-    * `nist_ai_rmf_core` - AI RMF 1.0 (NIST AI 100-1) foundational
+    * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational
       concepts, Core Functions / Categories / Subcategories,
       Profiles, design attributes, and the AI RMF Playbook
       companion data shape.
-    * `nist_ai_rmf_gai` - GAI Profile (NIST AI 600-1): 12 GAI
+    * `nist_ai_600_1` - GAI Profile (NIST AI 600-1): 12 GAI
       risks, Suggested Actions, Primary GAI Considerations, and
       Structured Public Feedback methods.
 
@@ -23,16 +23,16 @@ description: |-
 license: Apache-2.0
 version: 1.0.0
 see_also:
-  - https://w3id.org/lmodel/nist-ai-rmf-core
-  - https://w3id.org/lmodel/nist-ai-rmf-gai
+  - https://w3id.org/lmodel/nist-ai-100-1
+  - https://w3id.org/lmodel/nist-ai-600-1
   - https://doi.org/10.6028/NIST.AI.100-1
   - https://doi.org/10.6028/NIST.AI.600-1
   - https://www.nist.gov/itl/ai-risk-management-framework
 
 prefixes:
   nist_ai_rmf: https://w3id.org/lmodel/nist-ai-rmf/
-  nist_ai_rmf_core: https://w3id.org/lmodel/nist-ai-rmf-core/
-  nist_ai_rmf_gai: https://w3id.org/lmodel/nist-ai-rmf-gai/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
   linkml: https://w3id.org/linkml/
 
 default_prefix: nist_ai_rmf
@@ -40,5 +40,5 @@ default_range: string
 
 imports:
   - linkml:types
-  - ./nist_ai_rmf_core
-  - ./nist_ai_rmf_gai
+  - ./nist_ai_100_1
+  - ./nist_ai_600_1

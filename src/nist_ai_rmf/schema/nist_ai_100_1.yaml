@@ -1,6 +1,6 @@
 ---
-id: https://w3id.org/lmodel/nist-ai-rmf-core
-name: nist-ai-rmf-core
+id: https://w3id.org/lmodel/nist-ai-100-1
+name: nist-ai-100-1
 title: NIST AI Risk Management Framework (AI RMF 1.0) - core module
 description: |-
   Core LinkML module for the NIST AI Risk Management Framework
@@ -19,7 +19,7 @@ description: |-
   via the `nist_ai_rmf` default prefix - the file rename to `_core`
   is purely a module-organisation concern. Most consumers should
   instead import the umbrella `nist_ai_rmf` schema, which bundles
-  this module together with `nist_ai_rmf_gai`.
+  this module together with `nist_ai_600_1`.
 license: Apache-2.0
 source: https://doi.org/10.6028/NIST.AI.100-1
 version: 1.0.0
