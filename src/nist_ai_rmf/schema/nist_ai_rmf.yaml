@@ -3,8 +3,7 @@ id: https://w3id.org/lmodel/nist-ai-rmf
 name: nist-ai-rmf
 title: NIST AI Risk Management Framework
 description: |-
-  Umbrella LinkML schema for the NIST AI Risk Management Framework
-  family.
+  Merged LinkML schema for the NIST AI Risk Management Framework family.
 
   Imports:
     * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational
@@ -24,8 +23,8 @@ license: Apache-2.0
 version: 1.0.0
 see_also:
   - https://w3id.org/lmodel/nist-ai-100-1
-  - https://w3id.org/lmodel/nist-ai-600-1
   - https://doi.org/10.6028/NIST.AI.100-1
+  - https://w3id.org/lmodel/nist-ai-600-1
   - https://doi.org/10.6028/NIST.AI.600-1
   - https://www.nist.gov/itl/ai-risk-management-framework
 
@@ -40,5 +39,5 @@ default_range: string
 
 imports:
   - linkml:types
-  - ./nist_ai_100_1
-  - ./nist_ai_600_1
+  - nist_ai_100_1:schema/nist_ai_100_1
+  - nist_ai_600_1:schema/nist_ai_600_1

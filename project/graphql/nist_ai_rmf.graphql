@@ -67,6 +67,32 @@ enum GaiActionFunctionPrefixEnum
     MG
   }
 
+enum GaiActorTaskEnum
+  {
+    GOVERNANCE_AND_OVERSIGHT
+    AI_DESIGN
+    AI_DEVELOPMENT
+    AI_DEPLOYMENT
+    AI_IMPACT_ASSESSMENT
+    OPERATION_AND_MONITORING
+    TEVV
+    DOMAIN_EXPERTS
+    END_USERS
+    HUMAN_FACTORS
+    AFFECTED_INDIVIDUALS_AND_COMMUNITIES
+    PROCUREMENT
+    THIRD_PARTY_ENTITIES
+  }
+
+enum GaiLifecycleStageEnum
+  {
+    DESIGN
+    DEVELOPMENT
+    DEPLOYMENT
+    OPERATION
+    DECOMMISSIONING
+  }
+
 enum GaiRiskCategorizationEnum
   {
     TECHNICAL_OR_MODEL_RISKS
@@ -114,6 +140,35 @@ enum GaiRiskTimeScaleEnum
     PROLONGED
   }
 
+enum GovernancePracticeEnum
+  {
+    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS
+    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS
+    ALIGNMENT_TO_ORGANIZATIONAL_VALUES
+    AUDITING_AND_ASSESSMENT
+    CHANGE_MANAGEMENT_CONTROLS
+    COMMERCIAL_USE
+    DATA_PROVENANCE
+    DATA_PROTECTION
+    DATA_RETENTION
+    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS
+    DECOMMISSIONING
+    DISCOURAGING_ANONYMOUS_USE
+    EDUCATION
+    IMPACT_ASSESSMENTS
+    INCIDENT_RESPONSE
+    MONITORING
+    OPT_OUTS
+    RISK_BASED_CONTROLS
+    RISK_MAPPING_AND_MEASUREMENT
+    SCIENCE_BACKED_TEVV_PRACTICES
+    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES
+    STAKEHOLDER_ENGAGEMENT
+    SYNTHETIC_CONTENT_DETECTION_AND_LABELING
+    WHISTLEBLOWER_PROTECTIONS
+    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS
+  }
+
 enum HarmCategoryEnum
   {
     HARM_TO_PEOPLE
@@ -149,6 +204,14 @@ enum ProfileTypeEnum
     TEMPORAL_CURRENT
     TEMPORAL_TARGET
     CROSS_SECTORAL
+  }
+
+enum ProvenanceTechniqueEnum
+  {
+    DIGITAL_WATERMARKING
+    METADATA_RECORDING
+    DIGITAL_FINGERPRINTING
+    HUMAN_AUTHENTICATION
   }
 
 enum RedTeamingTypeEnum
@@ -216,10 +279,10 @@ type AiActorTask
     title: String
     description: String
     seeAlso: [String]
-    lifecycleStage: [AiLifecycleStageEnum]
-    aiDimension: [AiSystemDimensionEnum]
     taskKind: AiActorTaskEnum!
     typicalActors: [String]
+    lifecycleStage: [AiLifecycleStageEnum]
+    aiDimension: [AiSystemDimensionEnum]
   }
 
 type AiLifecycleStage
@@ -362,15 +425,10 @@ type GaiProfile
     title: String
     description: String
     seeAlso: [String]
-    currentState: String
-    targetState: String
-    sector: String
-    addresses: [Subcategory]
     gaiRiskCatalog: [GaiRisk]
     suggestedActions: [SuggestedAction]
     primaryConsiderations: [PrimaryGaiConsideration]
     structuredFeedbackMethods: [StructuredPublicFeedback]
-    profileType: ProfileTypeEnum!
   }
 
 type GaiRisk
@@ -385,9 +443,9 @@ type GaiRisk
     riskScope: [GaiRiskScopeEnum]
     riskSources: [GaiRiskSourceEnum]
     timeScale: [GaiRiskTimeScaleEnum]
-    lifecycleStage: [AiLifecycleStageEnum]
     trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
     addressedByActions: [SuggestedAction]
+    lifecycleStage: [GaiLifecycleStageEnum]
   }
 
 type Harm
@@ -461,10 +519,10 @@ type PrimaryGaiConsideration
     description: String
     seeAlso: [String]
     considerationKind: PrimaryConsiderationEnum!
-    governancePractices: [String]
+    governancePractices: [GovernancePracticeEnum]
     thirdPartyConsiderations: String
     limitationsOfCurrentApproaches: String
-    provenanceTechniques: [String]
+    provenanceTechniques: [ProvenanceTechniqueEnum]
     aiIncidentDefinition: String
   }
 
@@ -572,7 +630,7 @@ type SuggestedAction
     functionPrefix: GaiActionFunctionPrefixEnum
     appliesToSubcategory: SubcategoryCode
     gaiRisks: [GaiRiskCategoryEnum]
-    actorTask: [AiActorTaskEnum]
+    actorTask: [GaiActorTaskEnum]
     id: String!
     description: String
   }

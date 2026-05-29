@@ -1,10 +1,9 @@
 # Auto generated from nist_ai_rmf.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-28T01:00:54
+# Generation date: 2026-05-31T12:59:41
 # Schema: nist-ai-rmf
 #
 # id: https://w3id.org/lmodel/nist-ai-rmf
-# description: Umbrella LinkML schema for the NIST AI Risk Management Framework
-#   family.
+# description: Merged LinkML schema for the NIST AI Risk Management Framework family.
 #
 #   Imports:
 #     * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational
@@ -81,7 +80,7 @@ version = "1.0.0"
 # Namespaces
 DCTERMS = CurieNamespace('dcterms', 'http://purl.org/dc/terms/')
 FOAF = CurieNamespace('foaf', 'http://xmlns.com/foaf/0.1/')
-GIST = CurieNamespace('gist', 'https://w3id.org/lmodel/gist/')
+GIST_LINKML = CurieNamespace('gist_linkml', 'https://w3id.org/lmodel/gist/')
 ISO27001 = CurieNamespace('iso27001', 'https://w3id.org/lmodel/iso27001/')
 ISO29100 = CurieNamespace('iso29100', 'https://w3id.org/lmodel/iso29100/')
 LINKML = CurieNamespace('linkml', 'https://w3id.org/linkml/')
@@ -117,14 +116,6 @@ class CategoryCode(String):
     type_model_uri = NIST_AI_RMF.CategoryCode
 
 
-class SubcategoryCode(String):
-    """ Identifier for a Core subcategory (e.g., "GOVERN 1.1"). """
-    type_class_uri = XSD["string"]
-    type_class_curie = "xsd:string"
-    type_name = "SubcategoryCode"
-    type_model_uri = NIST_AI_RMF.SubcategoryCode
-
-
 class GaiActionId(String):
     """ Action identifier used in NIST AI 600-1 Section 3, of the form
 "<prefix>-<category>.<subcategory>-<seq>" - e.g., "GV-1.1-001".
@@ -133,6 +124,14 @@ Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage). """
     type_class_curie = "xsd:string"
     type_name = "GaiActionId"
     type_model_uri = NIST_AI_RMF.GaiActionId
+
+
+class SubcategoryCode(String):
+    """ Identifier for a Core subcategory (e.g., "GOVERN 1.1"). """
+    type_class_uri = XSD["string"]
+    type_class_curie = "xsd:string"
+    type_name = "SubcategoryCode"
+    type_model_uri = NIST_AI_RMF.SubcategoryCode
 
 
 # Class references
@@ -228,7 +227,7 @@ class AiRmfFrameworkId(NamedThingId):
     pass
 
 
-class GaiRiskId(AiSpecificRiskId):
+class GaiRiskId(NamedThingId):
     pass
 
 
@@ -248,8 +247,98 @@ class AiRedTeamingId(StructuredPublicFeedbackId):
     pass
 
 
-class GaiProfileId(AiRmfProfileId):
+class GaiProfileId(NamedThingId):
     pass
+
+
+@dataclass(repr=False)
+class PlaybookEntry(YAMLRoot):
+    """
+    A single AI RMF Playbook entry - an enrichment of a Core
+    subcategory with prose discussion, suggested actions,
+    documentation questions, references, and topic tags.
+
+    Attribute names use the same identifiers found in the published
+    NIST AI RMF Playbook JSON (e.g., `section_about`,
+    `section_actions`) so that the data can be loaded directly.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["PlaybookEntry"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:PlaybookEntry"
+    class_name: ClassVar[str] = "PlaybookEntry"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.PlaybookEntry
+
+    type: Optional[str] = None
+    title: Optional[str] = None
+    category: Optional[str] = None
+    description: Optional[str] = None
+    section_about: Optional[str] = None
+    section_actions: Optional[str] = None
+    section_doc: Optional[str] = None
+    section_ref: Optional[str] = None
+    ai_actors: Optional[Union[str, list[str]]] = empty_list()
+    topic: Optional[Union[str, list[str]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if self.type is not None and not isinstance(self.type, str):
+            self.type = str(self.type)
+
+        if self.title is not None and not isinstance(self.title, str):
+            self.title = str(self.title)
+
+        if self.category is not None and not isinstance(self.category, str):
+            self.category = str(self.category)
+
+        if self.description is not None and not isinstance(self.description, str):
+            self.description = str(self.description)
+
+        if self.section_about is not None and not isinstance(self.section_about, str):
+            self.section_about = str(self.section_about)
+
+        if self.section_actions is not None and not isinstance(self.section_actions, str):
+            self.section_actions = str(self.section_actions)
+
+        if self.section_doc is not None and not isinstance(self.section_doc, str):
+            self.section_doc = str(self.section_doc)
+
+        if self.section_ref is not None and not isinstance(self.section_ref, str):
+            self.section_ref = str(self.section_ref)
+
+        if not isinstance(self.ai_actors, list):
+            self.ai_actors = [self.ai_actors] if self.ai_actors is not None else []
+        self.ai_actors = [v if isinstance(v, str) else str(v) for v in self.ai_actors]
+
+        if not isinstance(self.topic, list):
+            self.topic = [self.topic] if self.topic is not None else []
+        self.topic = [v if isinstance(v, str) else str(v) for v in self.topic]
+
+        super().__post_init__(**kwargs)
+
+
+@dataclass(repr=False)
+class PlaybookCollection(YAMLRoot):
+    """
+    A container for a set of PlaybookEntry instances - the
+    serialisation root for an AI RMF Playbook companion document.
+    Validate with ``linkml-validate --target-class PlaybookCollection``;
+    the canonical tree-root for the schema is ``AiRmfFramework``.
+    """
+    _inherited_slots: ClassVar[list[str]] = []
+
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["PlaybookCollection"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:PlaybookCollection"
+    class_name: ClassVar[str] = "PlaybookCollection"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.PlaybookCollection
+
+    entries: Optional[Union[Union[dict, PlaybookEntry], list[Union[dict, PlaybookEntry]]]] = empty_list()
+
+    def __post_init__(self, *_: str, **kwargs: Any):
+        if not isinstance(self.entries, list):
+            self.entries = [self.entries] if self.entries is not None else []
+        self.entries = [v if isinstance(v, PlaybookEntry) else PlaybookEntry(**as_dict(v)) for v in self.entries]
+
+        super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
@@ -304,8 +393,8 @@ class AiSystem(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiSystem"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiSystem"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystem"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystem"
     class_name: ClassVar[str] = "AiSystem"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiSystem
 
@@ -339,8 +428,8 @@ class AiSystemDimension(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiSystemDimension"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiSystemDimension"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSystemDimension"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSystemDimension"
     class_name: ClassVar[str] = "AiSystemDimension"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiSystemDimension
 
@@ -370,8 +459,8 @@ class AiLifecycleStage(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiLifecycleStage"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiLifecycleStage"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiLifecycleStage"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiLifecycleStage"
     class_name: ClassVar[str] = "AiLifecycleStage"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiLifecycleStage
 
@@ -406,8 +495,8 @@ class AiActor(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiActor"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiActor"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActor"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActor"
     class_name: ClassVar[str] = "AiActor"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiActor
 
@@ -449,16 +538,16 @@ class AiActorTask(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiActorTask"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiActorTask"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiActorTask"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiActorTask"
     class_name: ClassVar[str] = "AiActorTask"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiActorTask
 
     id: Union[str, AiActorTaskId] = None
     task_kind: Union[str, "AiActorTaskEnum"] = None
+    typical_actors: Optional[Union[str, list[str]]] = empty_list()
     lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
     ai_dimension: Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]] = empty_list()
-    typical_actors: Optional[Union[str, list[str]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -471,6 +560,10 @@ class AiActorTask(NamedThing):
         if not isinstance(self.task_kind, AiActorTaskEnum):
             self.task_kind = AiActorTaskEnum(self.task_kind)
 
+        if not isinstance(self.typical_actors, list):
+            self.typical_actors = [self.typical_actors] if self.typical_actors is not None else []
+        self.typical_actors = [v if isinstance(v, str) else str(v) for v in self.typical_actors]
+
         if not isinstance(self.lifecycle_stage, list):
             self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
         self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
@@ -478,10 +571,6 @@ class AiActorTask(NamedThing):
         if not isinstance(self.ai_dimension, list):
             self.ai_dimension = [self.ai_dimension] if self.ai_dimension is not None else []
         self.ai_dimension = [v if isinstance(v, AiSystemDimensionEnum) else AiSystemDimensionEnum(v) for v in self.ai_dimension]
-
-        if not isinstance(self.typical_actors, list):
-            self.typical_actors = [self.typical_actors] if self.typical_actors is not None else []
-        self.typical_actors = [v if isinstance(v, str) else str(v) for v in self.typical_actors]
 
         super().__post_init__(**kwargs)
 
@@ -497,8 +586,8 @@ class Risk(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Risk"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Risk"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Risk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Risk"
     class_name: ClassVar[str] = "Risk"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Risk
 
@@ -558,8 +647,8 @@ class Impact(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Impact"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Impact"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Impact"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Impact"
     class_name: ClassVar[str] = "Impact"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Impact
 
@@ -600,8 +689,8 @@ class Harm(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Harm"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Harm"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Harm"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Harm"
     class_name: ClassVar[str] = "Harm"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Harm
 
@@ -643,8 +732,8 @@ class ResidualRisk(Risk):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["ResidualRisk"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:ResidualRisk"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["ResidualRisk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:ResidualRisk"
     class_name: ClassVar[str] = "ResidualRisk"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.ResidualRisk
 
@@ -673,8 +762,8 @@ class RiskTolerance(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["RiskTolerance"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:RiskTolerance"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskTolerance"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskTolerance"
     class_name: ClassVar[str] = "RiskTolerance"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.RiskTolerance
 
@@ -705,8 +794,8 @@ class RiskMeasurementChallenge(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["RiskMeasurementChallenge"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:RiskMeasurementChallenge"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RiskMeasurementChallenge"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RiskMeasurementChallenge"
     class_name: ClassVar[str] = "RiskMeasurementChallenge"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.RiskMeasurementChallenge
 
@@ -737,8 +826,8 @@ class TrustworthinessCharacteristic(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["TrustworthinessCharacteristic"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:TrustworthinessCharacteristic"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["TrustworthinessCharacteristic"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:TrustworthinessCharacteristic"
     class_name: ClassVar[str] = "TrustworthinessCharacteristic"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.TrustworthinessCharacteristic
 
@@ -777,8 +866,8 @@ class Bias(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Bias"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Bias"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Bias"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Bias"
     class_name: ClassVar[str] = "Bias"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Bias
 
@@ -808,8 +897,8 @@ class Function(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Function"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Function"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Function"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Function"
     class_name: ClassVar[str] = "Function"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Function
 
@@ -843,8 +932,8 @@ class Category(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Category"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Category"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Category"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Category"
     class_name: ClassVar[str] = "Category"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Category
 
@@ -880,8 +969,8 @@ class Subcategory(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["Subcategory"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:Subcategory"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["Subcategory"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:Subcategory"
     class_name: ClassVar[str] = "Subcategory"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.Subcategory
 
@@ -951,8 +1040,8 @@ class AiRmfProfile(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiRmfProfile"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiRmfProfile"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiRmfProfile"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiRmfProfile"
     class_name: ClassVar[str] = "AiRmfProfile"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiRmfProfile
 
@@ -1001,8 +1090,8 @@ class RmfAttribute(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["RmfAttribute"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:RmfAttribute"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["RmfAttribute"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:RmfAttribute"
     class_name: ClassVar[str] = "RmfAttribute"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.RmfAttribute
 
@@ -1028,8 +1117,8 @@ class AiSpecificRisk(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiSpecificRisk"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiSpecificRisk"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiSpecificRisk"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiSpecificRisk"
     class_name: ClassVar[str] = "AiSpecificRisk"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiSpecificRisk
 
@@ -1055,8 +1144,8 @@ class HumanAiInteractionIssue(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["HumanAiInteractionIssue"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:HumanAiInteractionIssue"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["HumanAiInteractionIssue"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:HumanAiInteractionIssue"
     class_name: ClassVar[str] = "HumanAiInteractionIssue"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.HumanAiInteractionIssue
 
@@ -1072,96 +1161,6 @@ class HumanAiInteractionIssue(NamedThing):
 
 
 @dataclass(repr=False)
-class PlaybookEntry(YAMLRoot):
-    """
-    A single AI RMF Playbook entry - an enrichment of a Core
-    subcategory with prose discussion, suggested actions,
-    documentation questions, references, and topic tags.
-
-    Attribute names use the same identifiers found in the published
-    NIST AI RMF Playbook JSON (e.g., `section_about`,
-    `section_actions`) so that the data can be loaded directly.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["PlaybookEntry"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:PlaybookEntry"
-    class_name: ClassVar[str] = "PlaybookEntry"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.PlaybookEntry
-
-    type: Optional[str] = None
-    title: Optional[str] = None
-    category: Optional[str] = None
-    description: Optional[str] = None
-    section_about: Optional[str] = None
-    section_actions: Optional[str] = None
-    section_doc: Optional[str] = None
-    section_ref: Optional[str] = None
-    ai_actors: Optional[Union[str, list[str]]] = empty_list()
-    topic: Optional[Union[str, list[str]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if self.type is not None and not isinstance(self.type, str):
-            self.type = str(self.type)
-
-        if self.title is not None and not isinstance(self.title, str):
-            self.title = str(self.title)
-
-        if self.category is not None and not isinstance(self.category, str):
-            self.category = str(self.category)
-
-        if self.description is not None and not isinstance(self.description, str):
-            self.description = str(self.description)
-
-        if self.section_about is not None and not isinstance(self.section_about, str):
-            self.section_about = str(self.section_about)
-
-        if self.section_actions is not None and not isinstance(self.section_actions, str):
-            self.section_actions = str(self.section_actions)
-
-        if self.section_doc is not None and not isinstance(self.section_doc, str):
-            self.section_doc = str(self.section_doc)
-
-        if self.section_ref is not None and not isinstance(self.section_ref, str):
-            self.section_ref = str(self.section_ref)
-
-        if not isinstance(self.ai_actors, list):
-            self.ai_actors = [self.ai_actors] if self.ai_actors is not None else []
-        self.ai_actors = [v if isinstance(v, str) else str(v) for v in self.ai_actors]
-
-        if not isinstance(self.topic, list):
-            self.topic = [self.topic] if self.topic is not None else []
-        self.topic = [v if isinstance(v, str) else str(v) for v in self.topic]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
-class PlaybookCollection(YAMLRoot):
-    """
-    A container for a set of PlaybookEntry instances - the
-    serialisation root for an AI RMF Playbook companion document.
-    Validate with ``linkml-validate --target-class PlaybookCollection``;
-    the canonical tree-root for the schema is ``AiRmfFramework``.
-    """
-    _inherited_slots: ClassVar[list[str]] = []
-
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["PlaybookCollection"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:PlaybookCollection"
-    class_name: ClassVar[str] = "PlaybookCollection"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.PlaybookCollection
-
-    entries: Optional[Union[Union[dict, PlaybookEntry], list[Union[dict, PlaybookEntry]]]] = empty_list()
-
-    def __post_init__(self, *_: str, **kwargs: Any):
-        if not isinstance(self.entries, list):
-            self.entries = [self.entries] if self.entries is not None else []
-        self.entries = [v if isinstance(v, PlaybookEntry) else PlaybookEntry(**as_dict(v)) for v in self.entries]
-
-        super().__post_init__(**kwargs)
-
-
-@dataclass(repr=False)
 class AiRmfDocument(NamedThing):
     """
     Publication metadata for an instance of the AI RMF (e.g., NIST
@@ -1170,8 +1169,8 @@ class AiRmfDocument(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiRmfDocument"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiRmfDocument"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiRmfDocument"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiRmfDocument"
     class_name: ClassVar[str] = "AiRmfDocument"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiRmfDocument
 
@@ -1217,8 +1216,8 @@ class AiRmfFramework(NamedThing):
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_RMF["AiRmfFramework"]
-    class_class_curie: ClassVar[str] = "nist_ai_rmf:AiRmfFramework"
+    class_class_uri: ClassVar[URIRef] = NIST_AI_100_1["AiRmfFramework"]
+    class_class_curie: ClassVar[str] = "nist_ai_100_1:AiRmfFramework"
     class_name: ClassVar[str] = "AiRmfFramework"
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.AiRmfFramework
 
@@ -1268,7 +1267,7 @@ class AiRmfFramework(NamedThing):
 
 
 @dataclass(repr=False)
-class GaiRisk(AiSpecificRisk):
+class GaiRisk(NamedThing):
     """
     A risk that is novel to or exacerbated by Generative AI.
     Each instance corresponds to one of the 12 risk categories
@@ -1287,9 +1286,9 @@ class GaiRisk(AiSpecificRisk):
     risk_scope: Optional[Union[Union[str, "GaiRiskScopeEnum"], list[Union[str, "GaiRiskScopeEnum"]]]] = empty_list()
     risk_sources: Optional[Union[Union[str, "GaiRiskSourceEnum"], list[Union[str, "GaiRiskSourceEnum"]]]] = empty_list()
     time_scale: Optional[Union[Union[str, "GaiRiskTimeScaleEnum"], list[Union[str, "GaiRiskTimeScaleEnum"]]]] = empty_list()
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
     trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
     addressed_by_actions: Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]] = empty_list()
+    lifecycle_stage: Optional[Union[Union[str, "GaiLifecycleStageEnum"], list[Union[str, "GaiLifecycleStageEnum"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -1315,10 +1314,6 @@ class GaiRisk(AiSpecificRisk):
             self.time_scale = [self.time_scale] if self.time_scale is not None else []
         self.time_scale = [v if isinstance(v, GaiRiskTimeScaleEnum) else GaiRiskTimeScaleEnum(v) for v in self.time_scale]
 
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
         if not isinstance(self.trustworthiness_characteristic, list):
             self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
         self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
@@ -1326,6 +1321,10 @@ class GaiRisk(AiSpecificRisk):
         if not isinstance(self.addressed_by_actions, list):
             self.addressed_by_actions = [self.addressed_by_actions] if self.addressed_by_actions is not None else []
         self.addressed_by_actions = [v if isinstance(v, SuggestedActionId) else SuggestedActionId(v) for v in self.addressed_by_actions]
+
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, GaiLifecycleStageEnum) else GaiLifecycleStageEnum(v) for v in self.lifecycle_stage]
 
         super().__post_init__(**kwargs)
 
@@ -1350,7 +1349,7 @@ class SuggestedAction(NamedThing):
     function_prefix: Optional[Union[str, "GaiActionFunctionPrefixEnum"]] = None
     applies_to_subcategory: Optional[Union[str, SubcategoryCode]] = None
     gai_risks: Optional[Union[Union[str, "GaiRiskCategoryEnum"], list[Union[str, "GaiRiskCategoryEnum"]]]] = empty_list()
-    actor_task: Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]] = empty_list()
+    actor_task: Optional[Union[Union[str, "GaiActorTaskEnum"], list[Union[str, "GaiActorTaskEnum"]]]] = empty_list()
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -1376,7 +1375,7 @@ class SuggestedAction(NamedThing):
 
         if not isinstance(self.actor_task, list):
             self.actor_task = [self.actor_task] if self.actor_task is not None else []
-        self.actor_task = [v if isinstance(v, AiActorTaskEnum) else AiActorTaskEnum(v) for v in self.actor_task]
+        self.actor_task = [v if isinstance(v, GaiActorTaskEnum) else GaiActorTaskEnum(v) for v in self.actor_task]
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -1409,10 +1408,10 @@ class PrimaryGaiConsideration(NamedThing):
 
     id: Union[str, PrimaryGaiConsiderationId] = None
     consideration_kind: Union[str, "PrimaryConsiderationEnum"] = None
-    governance_practices: Optional[Union[str, list[str]]] = empty_list()
+    governance_practices: Optional[Union[Union[str, "GovernancePracticeEnum"], list[Union[str, "GovernancePracticeEnum"]]]] = empty_list()
     third_party_considerations: Optional[str] = None
     limitations_of_current_approaches: Optional[str] = None
-    provenance_techniques: Optional[Union[str, list[str]]] = empty_list()
+    provenance_techniques: Optional[Union[Union[str, "ProvenanceTechniqueEnum"], list[Union[str, "ProvenanceTechniqueEnum"]]]] = empty_list()
     ai_incident_definition: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -1428,7 +1427,7 @@ class PrimaryGaiConsideration(NamedThing):
 
         if not isinstance(self.governance_practices, list):
             self.governance_practices = [self.governance_practices] if self.governance_practices is not None else []
-        self.governance_practices = [v if isinstance(v, str) else str(v) for v in self.governance_practices]
+        self.governance_practices = [v if isinstance(v, GovernancePracticeEnum) else GovernancePracticeEnum(v) for v in self.governance_practices]
 
         if self.third_party_considerations is not None and not isinstance(self.third_party_considerations, str):
             self.third_party_considerations = str(self.third_party_considerations)
@@ -1438,7 +1437,7 @@ class PrimaryGaiConsideration(NamedThing):
 
         if not isinstance(self.provenance_techniques, list):
             self.provenance_techniques = [self.provenance_techniques] if self.provenance_techniques is not None else []
-        self.provenance_techniques = [v if isinstance(v, str) else str(v) for v in self.provenance_techniques]
+        self.provenance_techniques = [v if isinstance(v, ProvenanceTechniqueEnum) else ProvenanceTechniqueEnum(v) for v in self.provenance_techniques]
 
         if self.ai_incident_definition is not None and not isinstance(self.ai_incident_definition, str):
             self.ai_incident_definition = str(self.ai_incident_definition)
@@ -1514,11 +1513,12 @@ class AiRedTeaming(StructuredPublicFeedback):
 
 
 @dataclass(repr=False)
-class GaiProfile(AiRmfProfile):
+class GaiProfile(NamedThing):
     """
     Root container that bundles the NIST AI 600-1 Generative AI
     Profile: GAI risks (Section 2), suggested actions (Section 3),
-    and primary considerations (Appendix A).
+    and primary considerations (Appendix A). The GAI Profile is a
+    *cross-sectoral* AI RMF profile (Section 1).
     """
     _inherited_slots: ClassVar[list[str]] = []
 
@@ -1528,7 +1528,6 @@ class GaiProfile(AiRmfProfile):
     class_model_uri: ClassVar[URIRef] = NIST_AI_RMF.GaiProfile
 
     id: Union[str, GaiProfileId] = None
-    profile_type: Union[str, "ProfileTypeEnum"] = 'CROSS_SECTORAL'
     gai_risk_catalog: Optional[Union[dict[Union[str, GaiRiskId], Union[dict, GaiRisk]], list[Union[dict, GaiRisk]]]] = empty_dict()
     suggested_actions: Optional[Union[dict[Union[str, SuggestedActionId], Union[dict, SuggestedAction]], list[Union[dict, SuggestedAction]]]] = empty_dict()
     primary_considerations: Optional[Union[dict[Union[str, PrimaryGaiConsiderationId], Union[dict, PrimaryGaiConsideration]], list[Union[dict, PrimaryGaiConsideration]]]] = empty_dict()
@@ -1539,11 +1538,6 @@ class GaiProfile(AiRmfProfile):
             self.MissingRequiredField("id")
         if not isinstance(self.id, GaiProfileId):
             self.id = GaiProfileId(self.id)
-
-        if self._is_empty(self.profile_type):
-            self.MissingRequiredField("profile_type")
-        if not isinstance(self.profile_type, ProfileTypeEnum):
-            self.profile_type = ProfileTypeEnum(self.profile_type)
 
         self._normalize_inlined_as_list(slot_name="gai_risk_catalog", slot_type=GaiRisk, key_name="id", keyed=True)
 
@@ -1753,56 +1747,6 @@ other AI actors.""")
 illustrated in Figure 3.""",
     )
 
-class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
-    """
-    The seven characteristics of trustworthy AI systems described in
-    Figure 4 and Part 1 §3.
-    """
-    VALID_AND_RELIABLE = PermissibleValue(
-        text="VALID_AND_RELIABLE",
-        description="""Confirmation that requirements for a specific intended use have
-been fulfilled (validation) and that the system performs as
-required without failure (reliability). A necessary condition of
-trustworthiness and the base for other characteristics.""")
-    SAFE = PermissibleValue(
-        text="SAFE",
-        description="""The system does not, under defined conditions, lead to a state
-in which human life, health, property, or the environment is
-endangered.""")
-    SECURE_AND_RESILIENT = PermissibleValue(
-        text="SECURE_AND_RESILIENT",
-        description="""The system can withstand unexpected adverse events or changes
-(resilient) and maintain confidentiality, integrity, and
-availability through protection mechanisms (secure).""")
-    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
-        text="ACCOUNTABLE_AND_TRANSPARENT",
-        description="""Trustworthy AI depends on accountability, which presupposes
-transparency - the extent to which information about an AI
-system and its outputs is available to those interacting with
-it.""")
-    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
-        text="EXPLAINABLE_AND_INTERPRETABLE",
-        description="""Explainability concerns the mechanisms underlying an AI system's
-operation; interpretability concerns the meaning of its output
-in context.""")
-    PRIVACY_ENHANCED = PermissibleValue(
-        text="PRIVACY_ENHANCED",
-        description="""Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information.""")
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
-        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
-        description="""Concerns for equality and equity by addressing issues such as
-harmful bias and discrimination, and recognising that
-perceptions of fairness differ across cultures and
-applications.""")
-
-    _defn = EnumDefinition(
-        name="TrustworthinessCharacteristicEnum",
-        description="""The seven characteristics of trustworthy AI systems described in
-Figure 4 and Part 1 §3.""",
-    )
-
 class HarmCategoryEnum(EnumDefinitionImpl):
     """
     High-level categories of harm related to AI systems (Figure 1).
@@ -2009,6 +1953,90 @@ class ImpactSignEnum(EnumDefinitionImpl):
         name="ImpactSignEnum",
         description="""Whether an impact of an AI system is positive, negative, or both
 (Part 1 §1.1).""",
+    )
+
+class GaiLifecycleStageEnum(EnumDefinitionImpl):
+    """
+    AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
+    "Risks can arise during design, development, deployment,
+    operation, and/or decommissioning." Distinct from the six-stage
+    `AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
+    """
+    DESIGN = PermissibleValue(
+        text="DESIGN",
+        description="Articulating system concept, objectives, requirements.")
+    DEVELOPMENT = PermissibleValue(
+        text="DEVELOPMENT",
+        description="Building, training, and tuning the GAI model or system.")
+    DEPLOYMENT = PermissibleValue(
+        text="DEPLOYMENT",
+        description="Placing the GAI system into a production environment.")
+    OPERATION = PermissibleValue(
+        text="OPERATION",
+        description="Running and monitoring the GAI system in use.")
+    DECOMMISSIONING = PermissibleValue(
+        text="DECOMMISSIONING",
+        description="Retiring or phasing out the GAI system.")
+
+    _defn = EnumDefinition(
+        name="GaiLifecycleStageEnum",
+        description="""AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
+\"Risks can arise during design, development, deployment,
+operation, and/or decommissioning.\" Distinct from the six-stage
+`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).""",
+    )
+
+class GaiActorTaskEnum(EnumDefinitionImpl):
+    """
+    AI Actor Tasks referenced by the Suggested Actions tables in
+    NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
+    Appendix A).
+    """
+    GOVERNANCE_AND_OVERSIGHT = PermissibleValue(
+        text="GOVERNANCE_AND_OVERSIGHT",
+        description="Management, fiduciary, and legal authority for the organization.")
+    AI_DESIGN = PermissibleValue(
+        text="AI_DESIGN",
+        description="Concept, objectives, planning, design, and data collection.")
+    AI_DEVELOPMENT = PermissibleValue(
+        text="AI_DEVELOPMENT",
+        description="Model building, selection, calibration, training, and testing.")
+    AI_DEPLOYMENT = PermissibleValue(
+        text="AI_DEPLOYMENT",
+        description="Contextual decisions on how the AI system is used and deployed.")
+    AI_IMPACT_ASSESSMENT = PermissibleValue(
+        text="AI_IMPACT_ASSESSMENT",
+        description="Assessing accountability, bias, impacts, safety, liability, security.")
+    OPERATION_AND_MONITORING = PermissibleValue(
+        text="OPERATION_AND_MONITORING",
+        description="Operating the AI system and assessing system output and impacts.")
+    TEVV = PermissibleValue(
+        text="TEVV",
+        description="Test, Evaluation, Verification, and Validation tasks.")
+    DOMAIN_EXPERTS = PermissibleValue(
+        text="DOMAIN_EXPERTS",
+        description="Multidisciplinary practitioners with sector or context expertise.")
+    END_USERS = PermissibleValue(
+        text="END_USERS",
+        description="Individuals or groups using the AI system for specific purposes.")
+    HUMAN_FACTORS = PermissibleValue(
+        text="HUMAN_FACTORS",
+        description="Human-centered design practices and end-user involvement.")
+    AFFECTED_INDIVIDUALS_AND_COMMUNITIES = PermissibleValue(
+        text="AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
+        description="Individuals, groups, or communities directly or indirectly affected.")
+    PROCUREMENT = PermissibleValue(
+        text="PROCUREMENT",
+        description="Acquisition of AI models, products, or services from third parties.")
+    THIRD_PARTY_ENTITIES = PermissibleValue(
+        text="THIRD_PARTY_ENTITIES",
+        description="Providers, developers, vendors, and evaluators external to the deploying organization.")
+
+    _defn = EnumDefinition(
+        name="GaiActorTaskEnum",
+        description="""AI Actor Tasks referenced by the Suggested Actions tables in
+NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
+Appendix A).""",
     )
 
 class GaiRiskCategoryEnum(EnumDefinitionImpl):
@@ -2311,104 +2339,258 @@ non-specialist human teams.""")
         description="Types of AI red-teaming exercises (Appendix A.1.5).",
     )
 
+class ProvenanceTechniqueEnum(EnumDefinitionImpl):
+    """
+    Provenance data tracking techniques for GAI content
+    (Appendix A.1.6). "Some well-known techniques for provenance
+    data tracking include digital watermarking, metadata
+    recording, digital fingerprinting, and human authentication,
+    among others."
+    """
+    DIGITAL_WATERMARKING = PermissibleValue(
+        text="DIGITAL_WATERMARKING",
+        description="""Overt or covert digital watermarks embedded in content to
+allow downstream verification of origin.""")
+    METADATA_RECORDING = PermissibleValue(
+        text="METADATA_RECORDING",
+        description="""Recording metadata about content (creator, date/time,
+location, modifications, sources) for text, image, video,
+audio, or underlying datasets.""")
+    DIGITAL_FINGERPRINTING = PermissibleValue(
+        text="DIGITAL_FINGERPRINTING",
+        description="""Computing a content-derived identifier that can be matched
+against a reference store to detect known content.""")
+    HUMAN_AUTHENTICATION = PermissibleValue(
+        text="HUMAN_AUTHENTICATION",
+        description="""Human-mediated verification of content origin or
+authenticity.""")
+
+    _defn = EnumDefinition(
+        name="ProvenanceTechniqueEnum",
+        description="""Provenance data tracking techniques for GAI content
+(Appendix A.1.6). \"Some well-known techniques for provenance
+data tracking include digital watermarking, metadata
+recording, digital fingerprinting, and human authentication,
+among others.\"""",
+    )
+
+class GovernancePracticeEnum(EnumDefinitionImpl):
+    """
+    Governance plans and actions for GAI systems enumerated in
+    NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").
+    """
+    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS = PermissibleValue(
+        text="ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS",
+        description="Accessibility and reasonable accommodations.")
+    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS = PermissibleValue(
+        text="AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS",
+        description="AI actor credentials and qualifications.")
+    ALIGNMENT_TO_ORGANIZATIONAL_VALUES = PermissibleValue(
+        text="ALIGNMENT_TO_ORGANIZATIONAL_VALUES",
+        description="Alignment to organizational values.")
+    AUDITING_AND_ASSESSMENT = PermissibleValue(
+        text="AUDITING_AND_ASSESSMENT",
+        description="Auditing and assessment.")
+    CHANGE_MANAGEMENT_CONTROLS = PermissibleValue(
+        text="CHANGE_MANAGEMENT_CONTROLS",
+        description="Change-management controls.")
+    COMMERCIAL_USE = PermissibleValue(
+        text="COMMERCIAL_USE",
+        description="Commercial use governance.")
+    DATA_PROVENANCE = PermissibleValue(
+        text="DATA_PROVENANCE",
+        description="Data provenance.")
+    DATA_PROTECTION = PermissibleValue(
+        text="DATA_PROTECTION",
+        description="Data protection.")
+    DATA_RETENTION = PermissibleValue(
+        text="DATA_RETENTION",
+        description="Data retention.")
+    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS = PermissibleValue(
+        text="CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS",
+        description="Consistency in use of defining key terms.")
+    DECOMMISSIONING = PermissibleValue(
+        text="DECOMMISSIONING",
+        description="Decommissioning practices.")
+    DISCOURAGING_ANONYMOUS_USE = PermissibleValue(
+        text="DISCOURAGING_ANONYMOUS_USE",
+        description="Discouraging anonymous use.")
+    EDUCATION = PermissibleValue(
+        text="EDUCATION",
+        description="Education on GAI risks and responsible use.")
+    IMPACT_ASSESSMENTS = PermissibleValue(
+        text="IMPACT_ASSESSMENTS",
+        description="Impact assessments.")
+    INCIDENT_RESPONSE = PermissibleValue(
+        text="INCIDENT_RESPONSE",
+        description="Incident response procedures.")
+    MONITORING = PermissibleValue(
+        text="MONITORING",
+        description="Ongoing monitoring of GAI systems.")
+    OPT_OUTS = PermissibleValue(
+        text="OPT_OUTS",
+        description="User opt-out mechanisms.")
+    RISK_BASED_CONTROLS = PermissibleValue(
+        text="RISK_BASED_CONTROLS",
+        description="Risk-based controls.")
+    RISK_MAPPING_AND_MEASUREMENT = PermissibleValue(
+        text="RISK_MAPPING_AND_MEASUREMENT",
+        description="Risk mapping and measurement.")
+    SCIENCE_BACKED_TEVV_PRACTICES = PermissibleValue(
+        text="SCIENCE_BACKED_TEVV_PRACTICES",
+        description="Science-backed test, evaluation, validation, and verification practices.")
+    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES = PermissibleValue(
+        text="SECURE_SOFTWARE_DEVELOPMENT_PRACTICES",
+        description="Secure software development practices.")
+    STAKEHOLDER_ENGAGEMENT = PermissibleValue(
+        text="STAKEHOLDER_ENGAGEMENT",
+        description="Stakeholder engagement.")
+    SYNTHETIC_CONTENT_DETECTION_AND_LABELING = PermissibleValue(
+        text="SYNTHETIC_CONTENT_DETECTION_AND_LABELING",
+        description="Synthetic content detection and labeling tools and techniques.")
+    WHISTLEBLOWER_PROTECTIONS = PermissibleValue(
+        text="WHISTLEBLOWER_PROTECTIONS",
+        description="Whistleblower protections.")
+    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS = PermissibleValue(
+        text="WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS",
+        description="Workforce diversity and interdisciplinary teams.")
+
+    _defn = EnumDefinition(
+        name="GovernancePracticeEnum",
+        description="""Governance plans and actions for GAI systems enumerated in
+NIST AI 600-1 Appendix A.1.2 (\"Organizational Governance\").""",
+    )
+
+class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
+    """
+    The seven characteristics of trustworthy AI systems described in
+    Figure 4 and Part 1 §3.
+    """
+    VALID_AND_RELIABLE = PermissibleValue(
+        text="VALID_AND_RELIABLE",
+        description="""Confirmation that requirements for a specific intended use have
+been fulfilled (validation) and that the system performs as
+required without failure (reliability). A necessary condition of
+trustworthiness and the base for other characteristics.""")
+    SAFE = PermissibleValue(
+        text="SAFE",
+        description="""The system does not, under defined conditions, lead to a state
+in which human life, health, property, or the environment is
+endangered.""")
+    SECURE_AND_RESILIENT = PermissibleValue(
+        text="SECURE_AND_RESILIENT",
+        description="""The system can withstand unexpected adverse events or changes
+(resilient) and maintain confidentiality, integrity, and
+availability through protection mechanisms (secure).""")
+    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
+        text="ACCOUNTABLE_AND_TRANSPARENT",
+        description="""Trustworthy AI depends on accountability, which presupposes
+transparency - the extent to which information about an AI
+system and its outputs is available to those interacting with
+it.""")
+    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
+        text="EXPLAINABLE_AND_INTERPRETABLE",
+        description="""Explainability concerns the mechanisms underlying an AI system's
+operation; interpretability concerns the meaning of its output
+in context.""")
+    PRIVACY_ENHANCED = PermissibleValue(
+        text="PRIVACY_ENHANCED",
+        description="""Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information.""")
+    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
+        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
+        description="""Concerns for equality and equity by addressing issues such as
+harmful bias and discrimination, and recognising that
+perceptions of fairness differ across cultures and
+applications.""")
+
+    _defn = EnumDefinition(
+        name="TrustworthinessCharacteristicEnum",
+        description="""The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.""",
+    )
+
 # Slots
 class slots:
     pass
 
-slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
-                   model_uri=NIST_AI_RMF.id, domain=None, range=URIRef)
-
-slots.name = Slot(uri=RDFS.label, name="name", curie=RDFS.curie('label'),
-                   model_uri=NIST_AI_RMF.name, domain=None, range=Optional[str])
-
-slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
-                   model_uri=NIST_AI_RMF.title, domain=None, range=Optional[str])
-
-slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
-                   model_uri=NIST_AI_RMF.description, domain=None, range=Optional[str])
-
 slots.source = Slot(uri=DCTERMS.source, name="source", curie=DCTERMS.curie('source'),
                    model_uri=NIST_AI_RMF.source, domain=None, range=Optional[Union[str, URIorCURIE]])
 
-slots.see_also = Slot(uri=RDFS.seeAlso, name="see_also", curie=RDFS.curie('seeAlso'),
-                   model_uri=NIST_AI_RMF.see_also, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
-
-slots.function_code = Slot(uri=NIST_AI_RMF.function_code, name="function_code", curie=NIST_AI_RMF.curie('function_code'),
+slots.function_code = Slot(uri=NIST_AI_100_1.function_code, name="function_code", curie=NIST_AI_100_1.curie('function_code'),
                    model_uri=NIST_AI_RMF.function_code, domain=None, range=Union[str, FunctionCode])
 
-slots.categories = Slot(uri=NIST_AI_RMF.categories, name="categories", curie=NIST_AI_RMF.curie('categories'),
+slots.categories = Slot(uri=NIST_AI_100_1.categories, name="categories", curie=NIST_AI_100_1.curie('categories'),
                    model_uri=NIST_AI_RMF.categories, domain=None, range=Optional[Union[dict[Union[str, CategoryId], Union[dict, Category]], list[Union[dict, Category]]]])
 
-slots.subcategories = Slot(uri=NIST_AI_RMF.subcategories, name="subcategories", curie=NIST_AI_RMF.curie('subcategories'),
+slots.subcategories = Slot(uri=NIST_AI_100_1.subcategories, name="subcategories", curie=NIST_AI_100_1.curie('subcategories'),
                    model_uri=NIST_AI_RMF.subcategories, domain=None, range=Optional[Union[dict[Union[str, SubcategoryId], Union[dict, Subcategory]], list[Union[dict, Subcategory]]]])
 
-slots.category_id = Slot(uri=NIST_AI_RMF.category_id, name="category_id", curie=NIST_AI_RMF.curie('category_id'),
+slots.category_id = Slot(uri=NIST_AI_100_1.category_id, name="category_id", curie=NIST_AI_100_1.curie('category_id'),
                    model_uri=NIST_AI_RMF.category_id, domain=None, range=Optional[Union[str, CategoryCode]])
 
-slots.subcategory_id = Slot(uri=NIST_AI_RMF.subcategory_id, name="subcategory_id", curie=NIST_AI_RMF.curie('subcategory_id'),
+slots.subcategory_id = Slot(uri=NIST_AI_100_1.subcategory_id, name="subcategory_id", curie=NIST_AI_100_1.curie('subcategory_id'),
                    model_uri=NIST_AI_RMF.subcategory_id, domain=None, range=Optional[Union[str, SubcategoryCode]])
 
-slots.outcome = Slot(uri=NIST_AI_RMF.outcome, name="outcome", curie=NIST_AI_RMF.curie('outcome'),
+slots.outcome = Slot(uri=NIST_AI_100_1.outcome, name="outcome", curie=NIST_AI_100_1.curie('outcome'),
                    model_uri=NIST_AI_RMF.outcome, domain=None, range=Optional[str])
 
-slots.impact_sign = Slot(uri=NIST_AI_RMF.impact_sign, name="impact_sign", curie=NIST_AI_RMF.curie('impact_sign'),
+slots.impact_sign = Slot(uri=NIST_AI_100_1.impact_sign, name="impact_sign", curie=NIST_AI_100_1.curie('impact_sign'),
                    model_uri=NIST_AI_RMF.impact_sign, domain=None, range=Optional[Union[str, "ImpactSignEnum"]])
 
-slots.likelihood = Slot(uri=NIST_AI_RMF.likelihood, name="likelihood", curie=NIST_AI_RMF.curie('likelihood'),
+slots.likelihood = Slot(uri=NIST_AI_100_1.likelihood, name="likelihood", curie=NIST_AI_100_1.curie('likelihood'),
                    model_uri=NIST_AI_RMF.likelihood, domain=None, range=Optional[float])
 
-slots.magnitude = Slot(uri=NIST_AI_RMF.magnitude, name="magnitude", curie=NIST_AI_RMF.curie('magnitude'),
+slots.magnitude = Slot(uri=NIST_AI_100_1.magnitude, name="magnitude", curie=NIST_AI_100_1.curie('magnitude'),
                    model_uri=NIST_AI_RMF.magnitude, domain=None, range=Optional[str])
 
-slots.harm_category = Slot(uri=NIST_AI_RMF.harm_category, name="harm_category", curie=NIST_AI_RMF.curie('harm_category'),
+slots.harm_category = Slot(uri=NIST_AI_100_1.harm_category, name="harm_category", curie=NIST_AI_100_1.curie('harm_category'),
                    model_uri=NIST_AI_RMF.harm_category, domain=None, range=Optional[Union[str, "HarmCategoryEnum"]])
 
-slots.harm_to_people_subcategory = Slot(uri=NIST_AI_RMF.harm_to_people_subcategory, name="harm_to_people_subcategory", curie=NIST_AI_RMF.curie('harm_to_people_subcategory'),
+slots.harm_to_people_subcategory = Slot(uri=NIST_AI_100_1.harm_to_people_subcategory, name="harm_to_people_subcategory", curie=NIST_AI_100_1.curie('harm_to_people_subcategory'),
                    model_uri=NIST_AI_RMF.harm_to_people_subcategory, domain=None, range=Optional[Union[str, "HarmToPeopleSubcategoryEnum"]])
 
-slots.affects = Slot(uri=NIST_AI_RMF.affects, name="affects", curie=NIST_AI_RMF.curie('affects'),
+slots.affects = Slot(uri=NIST_AI_100_1.affects, name="affects", curie=NIST_AI_100_1.curie('affects'),
                    model_uri=NIST_AI_RMF.affects, domain=None, range=Optional[Union[Union[str, NamedThingId], list[Union[str, NamedThingId]]]])
 
-slots.risk_response = Slot(uri=NIST_AI_RMF.risk_response, name="risk_response", curie=NIST_AI_RMF.curie('risk_response'),
+slots.risk_response = Slot(uri=NIST_AI_100_1.risk_response, name="risk_response", curie=NIST_AI_100_1.curie('risk_response'),
                    model_uri=NIST_AI_RMF.risk_response, domain=None, range=Optional[Union[str, "RiskResponseEnum"]])
 
-slots.is_residual = Slot(uri=NIST_AI_RMF.is_residual, name="is_residual", curie=NIST_AI_RMF.curie('is_residual'),
+slots.is_residual = Slot(uri=NIST_AI_100_1.is_residual, name="is_residual", curie=NIST_AI_100_1.curie('is_residual'),
                    model_uri=NIST_AI_RMF.is_residual, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.lifecycle_stage = Slot(uri=NIST_AI_RMF.lifecycle_stage, name="lifecycle_stage", curie=NIST_AI_RMF.curie('lifecycle_stage'),
+slots.lifecycle_stage = Slot(uri=NIST_AI_100_1.lifecycle_stage, name="lifecycle_stage", curie=NIST_AI_100_1.curie('lifecycle_stage'),
                    model_uri=NIST_AI_RMF.lifecycle_stage, domain=None, range=Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]])
 
-slots.ai_dimension = Slot(uri=NIST_AI_RMF.ai_dimension, name="ai_dimension", curie=NIST_AI_RMF.curie('ai_dimension'),
+slots.ai_dimension = Slot(uri=NIST_AI_100_1.ai_dimension, name="ai_dimension", curie=NIST_AI_100_1.curie('ai_dimension'),
                    model_uri=NIST_AI_RMF.ai_dimension, domain=None, range=Optional[Union[Union[str, "AiSystemDimensionEnum"], list[Union[str, "AiSystemDimensionEnum"]]]])
 
-slots.actor_task = Slot(uri=NIST_AI_RMF.actor_task, name="actor_task", curie=NIST_AI_RMF.curie('actor_task'),
+slots.actor_task = Slot(uri=NIST_AI_100_1.actor_task, name="actor_task", curie=NIST_AI_100_1.curie('actor_task'),
                    model_uri=NIST_AI_RMF.actor_task, domain=None, range=Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]])
 
-slots.is_tevv = Slot(uri=NIST_AI_RMF.is_tevv, name="is_tevv", curie=NIST_AI_RMF.curie('is_tevv'),
+slots.is_tevv = Slot(uri=NIST_AI_100_1.is_tevv, name="is_tevv", curie=NIST_AI_100_1.curie('is_tevv'),
                    model_uri=NIST_AI_RMF.is_tevv, domain=None, range=Optional[Union[bool, Bool]])
 
-slots.audience = Slot(uri=NIST_AI_RMF.audience, name="audience", curie=NIST_AI_RMF.curie('audience'),
+slots.audience = Slot(uri=NIST_AI_100_1.audience, name="audience", curie=NIST_AI_100_1.curie('audience'),
                    model_uri=NIST_AI_RMF.audience, domain=None, range=Optional[Union[str, "AudienceEnum"]])
 
-slots.trustworthiness_characteristic = Slot(uri=NIST_AI_RMF.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_RMF.curie('trustworthiness_characteristic'),
-                   model_uri=NIST_AI_RMF.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
-
-slots.bias_category = Slot(uri=NIST_AI_RMF.bias_category, name="bias_category", curie=NIST_AI_RMF.curie('bias_category'),
+slots.bias_category = Slot(uri=NIST_AI_100_1.bias_category, name="bias_category", curie=NIST_AI_100_1.curie('bias_category'),
                    model_uri=NIST_AI_RMF.bias_category, domain=None, range=Optional[Union[Union[str, "BiasCategoryEnum"], list[Union[str, "BiasCategoryEnum"]]]])
 
-slots.profile_type = Slot(uri=NIST_AI_RMF.profile_type, name="profile_type", curie=NIST_AI_RMF.curie('profile_type'),
+slots.profile_type = Slot(uri=NIST_AI_100_1.profile_type, name="profile_type", curie=NIST_AI_100_1.curie('profile_type'),
                    model_uri=NIST_AI_RMF.profile_type, domain=None, range=Union[str, "ProfileTypeEnum"])
 
-slots.target_state = Slot(uri=NIST_AI_RMF.target_state, name="target_state", curie=NIST_AI_RMF.curie('target_state'),
+slots.target_state = Slot(uri=NIST_AI_100_1.target_state, name="target_state", curie=NIST_AI_100_1.curie('target_state'),
                    model_uri=NIST_AI_RMF.target_state, domain=None, range=Optional[str])
 
-slots.current_state = Slot(uri=NIST_AI_RMF.current_state, name="current_state", curie=NIST_AI_RMF.curie('current_state'),
+slots.current_state = Slot(uri=NIST_AI_100_1.current_state, name="current_state", curie=NIST_AI_100_1.curie('current_state'),
                    model_uri=NIST_AI_RMF.current_state, domain=None, range=Optional[str])
 
 slots.publisher = Slot(uri=DCTERMS.publisher, name="publisher", curie=DCTERMS.curie('publisher'),
                    model_uri=NIST_AI_RMF.publisher, domain=None, range=Optional[str])
 
-slots.doi = Slot(uri=NIST_AI_RMF.doi, name="doi", curie=NIST_AI_RMF.curie('doi'),
+slots.doi = Slot(uri=NIST_AI_100_1.doi, name="doi", curie=NIST_AI_100_1.curie('doi'),
                    model_uri=NIST_AI_RMF.doi, domain=None, range=Optional[Union[str, URIorCURIE]])
 
 slots.published_date = Slot(uri=DCTERMS.issued, name="published_date", curie=DCTERMS.curie('issued'),
@@ -2417,29 +2599,110 @@ slots.published_date = Slot(uri=DCTERMS.issued, name="published_date", curie=DCT
 slots.version = Slot(uri=SCHEMA.version, name="version", curie=SCHEMA.curie('version'),
                    model_uri=NIST_AI_RMF.version, domain=None, range=Optional[str])
 
-slots.about_text = Slot(uri=NIST_AI_RMF.about_text, name="about_text", curie=NIST_AI_RMF.curie('about_text'),
+slots.about_text = Slot(uri=NIST_AI_100_1.about_text, name="about_text", curie=NIST_AI_100_1.curie('about_text'),
                    model_uri=NIST_AI_RMF.about_text, domain=None, range=Optional[str])
 
-slots.suggested_actions_text = Slot(uri=NIST_AI_RMF.suggested_actions_text, name="suggested_actions_text", curie=NIST_AI_RMF.curie('suggested_actions_text'),
+slots.suggested_actions_text = Slot(uri=NIST_AI_100_1.suggested_actions_text, name="suggested_actions_text", curie=NIST_AI_100_1.curie('suggested_actions_text'),
                    model_uri=NIST_AI_RMF.suggested_actions_text, domain=None, range=Optional[str])
 
-slots.documentation_questions = Slot(uri=NIST_AI_RMF.documentation_questions, name="documentation_questions", curie=NIST_AI_RMF.curie('documentation_questions'),
+slots.documentation_questions = Slot(uri=NIST_AI_100_1.documentation_questions, name="documentation_questions", curie=NIST_AI_100_1.curie('documentation_questions'),
                    model_uri=NIST_AI_RMF.documentation_questions, domain=None, range=Optional[str])
 
-slots.references_text = Slot(uri=NIST_AI_RMF.references_text, name="references_text", curie=NIST_AI_RMF.curie('references_text'),
+slots.references_text = Slot(uri=NIST_AI_100_1.references_text, name="references_text", curie=NIST_AI_100_1.curie('references_text'),
                    model_uri=NIST_AI_RMF.references_text, domain=None, range=Optional[str])
 
-slots.topics = Slot(uri=NIST_AI_RMF.topics, name="topics", curie=NIST_AI_RMF.curie('topics'),
+slots.topics = Slot(uri=NIST_AI_100_1.topics, name="topics", curie=NIST_AI_100_1.curie('topics'),
                    model_uri=NIST_AI_RMF.topics, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.ai_actor_categories = Slot(uri=NIST_AI_RMF.ai_actor_categories, name="ai_actor_categories", curie=NIST_AI_RMF.curie('ai_actor_categories'),
+slots.ai_actor_categories = Slot(uri=NIST_AI_100_1.ai_actor_categories, name="ai_actor_categories", curie=NIST_AI_100_1.curie('ai_actor_categories'),
                    model_uri=NIST_AI_RMF.ai_actor_categories, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.function_kind = Slot(uri=NIST_AI_RMF.function_kind, name="function_kind", curie=NIST_AI_RMF.curie('function_kind'),
+slots.function_kind = Slot(uri=NIST_AI_100_1.function_kind, name="function_kind", curie=NIST_AI_100_1.curie('function_kind'),
                    model_uri=NIST_AI_RMF.function_kind, domain=None, range=Optional[Union[str, "FunctionEnum"]])
 
-slots.category_code = Slot(uri=NIST_AI_RMF.category_code, name="category_code", curie=NIST_AI_RMF.curie('category_code'),
+slots.category_code = Slot(uri=NIST_AI_100_1.category_code, name="category_code", curie=NIST_AI_100_1.curie('category_code'),
                    model_uri=NIST_AI_RMF.category_code, domain=None, range=Optional[str])
+
+slots.dimension_kind = Slot(uri=NIST_AI_100_1.dimension_kind, name="dimension_kind", curie=NIST_AI_100_1.curie('dimension_kind'),
+                   model_uri=NIST_AI_RMF.dimension_kind, domain=None, range=Union[str, "AiSystemDimensionEnum"])
+
+slots.stage_kind = Slot(uri=NIST_AI_100_1.stage_kind, name="stage_kind", curie=NIST_AI_100_1.curie('stage_kind'),
+                   model_uri=NIST_AI_RMF.stage_kind, domain=None, range=Union[str, "AiLifecycleStageEnum"])
+
+slots.includes_tevv = Slot(uri=NIST_AI_100_1.includes_tevv, name="includes_tevv", curie=NIST_AI_100_1.curie('includes_tevv'),
+                   model_uri=NIST_AI_RMF.includes_tevv, domain=None, range=Optional[Union[bool, Bool]])
+
+slots.task_kind = Slot(uri=NIST_AI_100_1.task_kind, name="task_kind", curie=NIST_AI_100_1.curie('task_kind'),
+                   model_uri=NIST_AI_RMF.task_kind, domain=None, range=Union[str, "AiActorTaskEnum"])
+
+slots.typical_actors = Slot(uri=NIST_AI_100_1.typical_actors, name="typical_actors", curie=NIST_AI_100_1.curie('typical_actors'),
+                   model_uri=NIST_AI_RMF.typical_actors, domain=None, range=Optional[Union[str, list[str]]])
+
+slots.challenge_kind = Slot(uri=NIST_AI_100_1.challenge_kind, name="challenge_kind", curie=NIST_AI_100_1.curie('challenge_kind'),
+                   model_uri=NIST_AI_RMF.challenge_kind, domain=None, range=Union[str, "RiskMeasurementChallengeEnum"])
+
+slots.characteristic_kind = Slot(uri=NIST_AI_100_1.characteristic_kind, name="characteristic_kind", curie=NIST_AI_100_1.curie('characteristic_kind'),
+                   model_uri=NIST_AI_RMF.characteristic_kind, domain=None, range=Union[str, "TrustworthinessCharacteristicEnum"])
+
+slots.is_base_condition = Slot(uri=NIST_AI_100_1.is_base_condition, name="is_base_condition", curie=NIST_AI_100_1.curie('is_base_condition'),
+                   model_uri=NIST_AI_RMF.is_base_condition, domain=None, range=Optional[Union[bool, Bool]])
+
+slots.is_cross_cutting = Slot(uri=NIST_AI_100_1.is_cross_cutting, name="is_cross_cutting", curie=NIST_AI_100_1.curie('is_cross_cutting'),
+                   model_uri=NIST_AI_RMF.is_cross_cutting, domain=None, range=Optional[Union[bool, Bool]])
+
+slots.related_impacts = Slot(uri=NIST_AI_100_1.related_impacts, name="related_impacts", curie=NIST_AI_100_1.curie('related_impacts'),
+                   model_uri=NIST_AI_RMF.related_impacts, domain=None, range=Optional[Union[dict[Union[str, ImpactId], Union[dict, Impact]], list[Union[dict, Impact]]]])
+
+slots.affects_system = Slot(uri=NIST_AI_100_1.affects_system, name="affects_system", curie=NIST_AI_100_1.curie('affects_system'),
+                   model_uri=NIST_AI_RMF.affects_system, domain=None, range=Optional[Union[str, AiSystemId]])
+
+slots.tolerance_statement = Slot(uri=NIST_AI_100_1.tolerance_statement, name="tolerance_statement", curie=NIST_AI_100_1.curie('tolerance_statement'),
+                   model_uri=NIST_AI_RMF.tolerance_statement, domain=None, range=Optional[str])
+
+slots.legal_basis = Slot(uri=NIST_AI_100_1.legal_basis, name="legal_basis", curie=NIST_AI_100_1.curie('legal_basis'),
+                   model_uri=NIST_AI_RMF.legal_basis, domain=None, range=Optional[str])
+
+slots.sector = Slot(uri=NIST_AI_100_1.sector, name="sector", curie=NIST_AI_100_1.curie('sector'),
+                   model_uri=NIST_AI_RMF.sector, domain=None, range=Optional[str])
+
+slots.addresses = Slot(uri=NIST_AI_100_1.addresses, name="addresses", curie=NIST_AI_100_1.curie('addresses'),
+                   model_uri=NIST_AI_RMF.addresses, domain=None, range=Optional[Union[Union[str, SubcategoryId], list[Union[str, SubcategoryId]]]])
+
+slots.entries = Slot(uri=NIST_AI_100_1.entries, name="entries", curie=NIST_AI_100_1.curie('entries'),
+                   model_uri=NIST_AI_RMF.entries, domain=None, range=Optional[Union[Union[dict, PlaybookEntry], list[Union[dict, PlaybookEntry]]]])
+
+slots.document = Slot(uri=NIST_AI_100_1.document, name="document", curie=NIST_AI_100_1.curie('document'),
+                   model_uri=NIST_AI_RMF.document, domain=None, range=Optional[Union[dict, AiRmfDocument]])
+
+slots.functions = Slot(uri=NIST_AI_100_1.functions, name="functions", curie=NIST_AI_100_1.curie('functions'),
+                   model_uri=NIST_AI_RMF.functions, domain=None, range=Optional[Union[dict[Union[str, FunctionId], Union[dict, Function]], list[Union[dict, Function]]]])
+
+slots.trustworthiness_characteristics = Slot(uri=NIST_AI_100_1.trustworthiness_characteristics, name="trustworthiness_characteristics", curie=NIST_AI_100_1.curie('trustworthiness_characteristics'),
+                   model_uri=NIST_AI_RMF.trustworthiness_characteristics, domain=None, range=Optional[Union[dict[Union[str, TrustworthinessCharacteristicId], Union[dict, TrustworthinessCharacteristic]], list[Union[dict, TrustworthinessCharacteristic]]]])
+
+slots.lifecycle_stages = Slot(uri=NIST_AI_100_1.lifecycle_stages, name="lifecycle_stages", curie=NIST_AI_100_1.curie('lifecycle_stages'),
+                   model_uri=NIST_AI_RMF.lifecycle_stages, domain=None, range=Optional[Union[dict[Union[str, AiLifecycleStageId], Union[dict, AiLifecycleStage]], list[Union[dict, AiLifecycleStage]]]])
+
+slots.dimensions = Slot(uri=NIST_AI_100_1.dimensions, name="dimensions", curie=NIST_AI_100_1.curie('dimensions'),
+                   model_uri=NIST_AI_RMF.dimensions, domain=None, range=Optional[Union[dict[Union[str, AiSystemDimensionId], Union[dict, AiSystemDimension]], list[Union[dict, AiSystemDimension]]]])
+
+slots.actor_tasks = Slot(uri=NIST_AI_100_1.actor_tasks, name="actor_tasks", curie=NIST_AI_100_1.curie('actor_tasks'),
+                   model_uri=NIST_AI_RMF.actor_tasks, domain=None, range=Optional[Union[dict[Union[str, AiActorTaskId], Union[dict, AiActorTask]], list[Union[dict, AiActorTask]]]])
+
+slots.profiles = Slot(uri=NIST_AI_100_1.profiles, name="profiles", curie=NIST_AI_100_1.curie('profiles'),
+                   model_uri=NIST_AI_RMF.profiles, domain=None, range=Optional[Union[dict[Union[str, AiRmfProfileId], Union[dict, AiRmfProfile]], list[Union[dict, AiRmfProfile]]]])
+
+slots.attributes_ = Slot(uri=NIST_AI_100_1.attributes, name="attributes_", curie=NIST_AI_100_1.curie('attributes'),
+                   model_uri=NIST_AI_RMF.attributes_, domain=None, range=Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]])
+
+slots.risk_measurement_challenges = Slot(uri=NIST_AI_100_1.risk_measurement_challenges, name="risk_measurement_challenges", curie=NIST_AI_100_1.curie('risk_measurement_challenges'),
+                   model_uri=NIST_AI_RMF.risk_measurement_challenges, domain=None, range=Optional[Union[dict[Union[str, RiskMeasurementChallengeId], Union[dict, RiskMeasurementChallenge]], list[Union[dict, RiskMeasurementChallenge]]]])
+
+slots.ai_specific_risks = Slot(uri=NIST_AI_100_1.ai_specific_risks, name="ai_specific_risks", curie=NIST_AI_100_1.curie('ai_specific_risks'),
+                   model_uri=NIST_AI_RMF.ai_specific_risks, domain=None, range=Optional[Union[dict[Union[str, AiSpecificRiskId], Union[dict, AiSpecificRisk]], list[Union[dict, AiSpecificRisk]]]])
+
+slots.human_ai_interaction_issues = Slot(uri=NIST_AI_100_1.human_ai_interaction_issues, name="human_ai_interaction_issues", curie=NIST_AI_100_1.curie('human_ai_interaction_issues'),
+                   model_uri=NIST_AI_RMF.human_ai_interaction_issues, domain=None, range=Optional[Union[dict[Union[str, HumanAiInteractionIssueId], Union[dict, HumanAiInteractionIssue]], list[Union[dict, HumanAiInteractionIssue]]]])
 
 slots.gai_risk_kind = Slot(uri=NIST_AI_600_1.gai_risk_kind, name="gai_risk_kind", curie=NIST_AI_600_1.curie('gai_risk_kind'),
                    model_uri=NIST_AI_RMF.gai_risk_kind, domain=None, range=Optional[Union[str, "GaiRiskCategoryEnum"]])
@@ -2477,157 +2740,100 @@ slots.feedback_method_kind = Slot(uri=NIST_AI_600_1.feedback_method_kind, name="
 slots.red_team_type = Slot(uri=NIST_AI_600_1.red_team_type, name="red_team_type", curie=NIST_AI_600_1.curie('red_team_type'),
                    model_uri=NIST_AI_RMF.red_team_type, domain=None, range=Optional[Union[str, "RedTeamingTypeEnum"]])
 
-slots.aiSystemDimension__dimension_kind = Slot(uri=NIST_AI_RMF.dimension_kind, name="aiSystemDimension__dimension_kind", curie=NIST_AI_RMF.curie('dimension_kind'),
-                   model_uri=NIST_AI_RMF.aiSystemDimension__dimension_kind, domain=None, range=Union[str, "AiSystemDimensionEnum"])
+slots.addressed_by_actions = Slot(uri=NIST_AI_600_1.addressed_by_actions, name="addressed_by_actions", curie=NIST_AI_600_1.curie('addressed_by_actions'),
+                   model_uri=NIST_AI_RMF.addressed_by_actions, domain=None, range=Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]])
 
-slots.aiLifecycleStage__stage_kind = Slot(uri=NIST_AI_RMF.stage_kind, name="aiLifecycleStage__stage_kind", curie=NIST_AI_RMF.curie('stage_kind'),
-                   model_uri=NIST_AI_RMF.aiLifecycleStage__stage_kind, domain=None, range=Union[str, "AiLifecycleStageEnum"])
+slots.governance_practices = Slot(uri=NIST_AI_600_1.governance_practices, name="governance_practices", curie=NIST_AI_600_1.curie('governance_practices'),
+                   model_uri=NIST_AI_RMF.governance_practices, domain=None, range=Optional[Union[Union[str, "GovernancePracticeEnum"], list[Union[str, "GovernancePracticeEnum"]]]])
 
-slots.aiLifecycleStage__includes_tevv = Slot(uri=NIST_AI_RMF.includes_tevv, name="aiLifecycleStage__includes_tevv", curie=NIST_AI_RMF.curie('includes_tevv'),
-                   model_uri=NIST_AI_RMF.aiLifecycleStage__includes_tevv, domain=None, range=Optional[Union[bool, Bool]])
+slots.third_party_considerations = Slot(uri=NIST_AI_600_1.third_party_considerations, name="third_party_considerations", curie=NIST_AI_600_1.curie('third_party_considerations'),
+                   model_uri=NIST_AI_RMF.third_party_considerations, domain=None, range=Optional[str])
 
-slots.aiActorTask__task_kind = Slot(uri=NIST_AI_RMF.task_kind, name="aiActorTask__task_kind", curie=NIST_AI_RMF.curie('task_kind'),
-                   model_uri=NIST_AI_RMF.aiActorTask__task_kind, domain=None, range=Union[str, "AiActorTaskEnum"])
+slots.limitations_of_current_approaches = Slot(uri=NIST_AI_600_1.limitations_of_current_approaches, name="limitations_of_current_approaches", curie=NIST_AI_600_1.curie('limitations_of_current_approaches'),
+                   model_uri=NIST_AI_RMF.limitations_of_current_approaches, domain=None, range=Optional[str])
 
-slots.aiActorTask__typical_actors = Slot(uri=NIST_AI_RMF.typical_actors, name="aiActorTask__typical_actors", curie=NIST_AI_RMF.curie('typical_actors'),
-                   model_uri=NIST_AI_RMF.aiActorTask__typical_actors, domain=None, range=Optional[Union[str, list[str]]])
+slots.provenance_techniques = Slot(uri=NIST_AI_600_1.provenance_techniques, name="provenance_techniques", curie=NIST_AI_600_1.curie('provenance_techniques'),
+                   model_uri=NIST_AI_RMF.provenance_techniques, domain=None, range=Optional[Union[Union[str, "ProvenanceTechniqueEnum"], list[Union[str, "ProvenanceTechniqueEnum"]]]])
 
-slots.risk__related_impacts = Slot(uri=NIST_AI_RMF.related_impacts, name="risk__related_impacts", curie=NIST_AI_RMF.curie('related_impacts'),
-                   model_uri=NIST_AI_RMF.risk__related_impacts, domain=None, range=Optional[Union[dict[Union[str, ImpactId], Union[dict, Impact]], list[Union[dict, Impact]]]])
+slots.ai_incident_definition = Slot(uri=NIST_AI_600_1.ai_incident_definition, name="ai_incident_definition", curie=NIST_AI_600_1.curie('ai_incident_definition'),
+                   model_uri=NIST_AI_RMF.ai_incident_definition, domain=None, range=Optional[str])
 
-slots.risk__affects_system = Slot(uri=NIST_AI_RMF.affects_system, name="risk__affects_system", curie=NIST_AI_RMF.curie('affects_system'),
-                   model_uri=NIST_AI_RMF.risk__affects_system, domain=None, range=Optional[Union[str, AiSystemId]])
+slots.gai_risk_catalog = Slot(uri=NIST_AI_600_1.gai_risk_catalog, name="gai_risk_catalog", curie=NIST_AI_600_1.curie('gai_risk_catalog'),
+                   model_uri=NIST_AI_RMF.gai_risk_catalog, domain=None, range=Optional[Union[dict[Union[str, GaiRiskId], Union[dict, GaiRisk]], list[Union[dict, GaiRisk]]]])
 
-slots.riskTolerance__tolerance_statement = Slot(uri=NIST_AI_RMF.tolerance_statement, name="riskTolerance__tolerance_statement", curie=NIST_AI_RMF.curie('tolerance_statement'),
-                   model_uri=NIST_AI_RMF.riskTolerance__tolerance_statement, domain=None, range=Optional[str])
+slots.suggested_actions = Slot(uri=NIST_AI_600_1.suggested_actions, name="suggested_actions", curie=NIST_AI_600_1.curie('suggested_actions'),
+                   model_uri=NIST_AI_RMF.suggested_actions, domain=None, range=Optional[Union[dict[Union[str, SuggestedActionId], Union[dict, SuggestedAction]], list[Union[dict, SuggestedAction]]]])
 
-slots.riskTolerance__legal_basis = Slot(uri=NIST_AI_RMF.legal_basis, name="riskTolerance__legal_basis", curie=NIST_AI_RMF.curie('legal_basis'),
-                   model_uri=NIST_AI_RMF.riskTolerance__legal_basis, domain=None, range=Optional[str])
+slots.primary_considerations = Slot(uri=NIST_AI_600_1.primary_considerations, name="primary_considerations", curie=NIST_AI_600_1.curie('primary_considerations'),
+                   model_uri=NIST_AI_RMF.primary_considerations, domain=None, range=Optional[Union[dict[Union[str, PrimaryGaiConsiderationId], Union[dict, PrimaryGaiConsideration]], list[Union[dict, PrimaryGaiConsideration]]]])
 
-slots.riskMeasurementChallenge__challenge_kind = Slot(uri=NIST_AI_RMF.challenge_kind, name="riskMeasurementChallenge__challenge_kind", curie=NIST_AI_RMF.curie('challenge_kind'),
-                   model_uri=NIST_AI_RMF.riskMeasurementChallenge__challenge_kind, domain=None, range=Union[str, "RiskMeasurementChallengeEnum"])
+slots.structured_feedback_methods = Slot(uri=NIST_AI_600_1.structured_feedback_methods, name="structured_feedback_methods", curie=NIST_AI_600_1.curie('structured_feedback_methods'),
+                   model_uri=NIST_AI_RMF.structured_feedback_methods, domain=None, range=Optional[Union[dict[Union[str, StructuredPublicFeedbackId], Union[dict, StructuredPublicFeedback]], list[Union[dict, StructuredPublicFeedback]]]])
 
-slots.trustworthinessCharacteristic__characteristic_kind = Slot(uri=NIST_AI_RMF.characteristic_kind, name="trustworthinessCharacteristic__characteristic_kind", curie=NIST_AI_RMF.curie('characteristic_kind'),
-                   model_uri=NIST_AI_RMF.trustworthinessCharacteristic__characteristic_kind, domain=None, range=Union[str, "TrustworthinessCharacteristicEnum"])
+slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
+                   model_uri=NIST_AI_RMF.id, domain=None, range=URIRef)
 
-slots.trustworthinessCharacteristic__is_base_condition = Slot(uri=NIST_AI_RMF.is_base_condition, name="trustworthinessCharacteristic__is_base_condition", curie=NIST_AI_RMF.curie('is_base_condition'),
-                   model_uri=NIST_AI_RMF.trustworthinessCharacteristic__is_base_condition, domain=None, range=Optional[Union[bool, Bool]])
+slots.name = Slot(uri=RDFS.label, name="name", curie=RDFS.curie('label'),
+                   model_uri=NIST_AI_RMF.name, domain=None, range=Optional[str])
 
-slots.trustworthinessCharacteristic__is_cross_cutting = Slot(uri=NIST_AI_RMF.is_cross_cutting, name="trustworthinessCharacteristic__is_cross_cutting", curie=NIST_AI_RMF.curie('is_cross_cutting'),
-                   model_uri=NIST_AI_RMF.trustworthinessCharacteristic__is_cross_cutting, domain=None, range=Optional[Union[bool, Bool]])
+slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
+                   model_uri=NIST_AI_RMF.title, domain=None, range=Optional[str])
 
-slots.aiRmfProfile__sector = Slot(uri=NIST_AI_RMF.sector, name="aiRmfProfile__sector", curie=NIST_AI_RMF.curie('sector'),
-                   model_uri=NIST_AI_RMF.aiRmfProfile__sector, domain=None, range=Optional[str])
+slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
+                   model_uri=NIST_AI_RMF.description, domain=None, range=Optional[str])
 
-slots.aiRmfProfile__addresses = Slot(uri=NIST_AI_RMF.addresses, name="aiRmfProfile__addresses", curie=NIST_AI_RMF.curie('addresses'),
-                   model_uri=NIST_AI_RMF.aiRmfProfile__addresses, domain=None, range=Optional[Union[Union[str, SubcategoryId], list[Union[str, SubcategoryId]]]])
+slots.see_also = Slot(uri=RDFS.seeAlso, name="see_also", curie=RDFS.curie('seeAlso'),
+                   model_uri=NIST_AI_RMF.see_also, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
 
-slots.playbookEntry__type = Slot(uri=NIST_AI_RMF.type, name="playbookEntry__type", curie=NIST_AI_RMF.curie('type'),
+slots.trustworthiness_characteristic = Slot(uri=NIST_AI_100_1.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_100_1.curie('trustworthiness_characteristic'),
+                   model_uri=NIST_AI_RMF.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
+
+slots.playbookEntry__type = Slot(uri=NIST_AI_100_1.type, name="playbookEntry__type", curie=NIST_AI_100_1.curie('type'),
                    model_uri=NIST_AI_RMF.playbookEntry__type, domain=None, range=Optional[str])
 
-slots.playbookEntry__title = Slot(uri=NIST_AI_RMF.title, name="playbookEntry__title", curie=NIST_AI_RMF.curie('title'),
+slots.playbookEntry__title = Slot(uri=NIST_AI_100_1.title, name="playbookEntry__title", curie=NIST_AI_100_1.curie('title'),
                    model_uri=NIST_AI_RMF.playbookEntry__title, domain=None, range=Optional[str])
 
-slots.playbookEntry__category = Slot(uri=NIST_AI_RMF.category, name="playbookEntry__category", curie=NIST_AI_RMF.curie('category'),
+slots.playbookEntry__category = Slot(uri=NIST_AI_100_1.category, name="playbookEntry__category", curie=NIST_AI_100_1.curie('category'),
                    model_uri=NIST_AI_RMF.playbookEntry__category, domain=None, range=Optional[str])
 
-slots.playbookEntry__description = Slot(uri=NIST_AI_RMF.description, name="playbookEntry__description", curie=NIST_AI_RMF.curie('description'),
+slots.playbookEntry__description = Slot(uri=NIST_AI_100_1.description, name="playbookEntry__description", curie=NIST_AI_100_1.curie('description'),
                    model_uri=NIST_AI_RMF.playbookEntry__description, domain=None, range=Optional[str])
 
-slots.playbookEntry__section_about = Slot(uri=NIST_AI_RMF.section_about, name="playbookEntry__section_about", curie=NIST_AI_RMF.curie('section_about'),
+slots.playbookEntry__section_about = Slot(uri=NIST_AI_100_1.section_about, name="playbookEntry__section_about", curie=NIST_AI_100_1.curie('section_about'),
                    model_uri=NIST_AI_RMF.playbookEntry__section_about, domain=None, range=Optional[str])
 
-slots.playbookEntry__section_actions = Slot(uri=NIST_AI_RMF.section_actions, name="playbookEntry__section_actions", curie=NIST_AI_RMF.curie('section_actions'),
+slots.playbookEntry__section_actions = Slot(uri=NIST_AI_100_1.section_actions, name="playbookEntry__section_actions", curie=NIST_AI_100_1.curie('section_actions'),
                    model_uri=NIST_AI_RMF.playbookEntry__section_actions, domain=None, range=Optional[str])
 
-slots.playbookEntry__section_doc = Slot(uri=NIST_AI_RMF.section_doc, name="playbookEntry__section_doc", curie=NIST_AI_RMF.curie('section_doc'),
+slots.playbookEntry__section_doc = Slot(uri=NIST_AI_100_1.section_doc, name="playbookEntry__section_doc", curie=NIST_AI_100_1.curie('section_doc'),
                    model_uri=NIST_AI_RMF.playbookEntry__section_doc, domain=None, range=Optional[str])
 
-slots.playbookEntry__section_ref = Slot(uri=NIST_AI_RMF.section_ref, name="playbookEntry__section_ref", curie=NIST_AI_RMF.curie('section_ref'),
+slots.playbookEntry__section_ref = Slot(uri=NIST_AI_100_1.section_ref, name="playbookEntry__section_ref", curie=NIST_AI_100_1.curie('section_ref'),
                    model_uri=NIST_AI_RMF.playbookEntry__section_ref, domain=None, range=Optional[str])
 
-slots.playbookEntry__ai_actors = Slot(uri=NIST_AI_RMF.ai_actors, name="playbookEntry__ai_actors", curie=NIST_AI_RMF.curie('ai_actors'),
+slots.playbookEntry__ai_actors = Slot(uri=NIST_AI_100_1.ai_actors, name="playbookEntry__ai_actors", curie=NIST_AI_100_1.curie('ai_actors'),
                    model_uri=NIST_AI_RMF.playbookEntry__ai_actors, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.playbookEntry__topic = Slot(uri=NIST_AI_RMF.topic, name="playbookEntry__topic", curie=NIST_AI_RMF.curie('topic'),
+slots.playbookEntry__topic = Slot(uri=NIST_AI_100_1.topic, name="playbookEntry__topic", curie=NIST_AI_100_1.curie('topic'),
                    model_uri=NIST_AI_RMF.playbookEntry__topic, domain=None, range=Optional[Union[str, list[str]]])
 
-slots.playbookCollection__entries = Slot(uri=NIST_AI_RMF.entries, name="playbookCollection__entries", curie=NIST_AI_RMF.curie('entries'),
-                   model_uri=NIST_AI_RMF.playbookCollection__entries, domain=None, range=Optional[Union[Union[dict, PlaybookEntry], list[Union[dict, PlaybookEntry]]]])
+slots.gaiRisk__lifecycle_stage = Slot(uri=NIST_AI_600_1.lifecycle_stage, name="gaiRisk__lifecycle_stage", curie=NIST_AI_600_1.curie('lifecycle_stage'),
+                   model_uri=NIST_AI_RMF.gaiRisk__lifecycle_stage, domain=None, range=Optional[Union[Union[str, "GaiLifecycleStageEnum"], list[Union[str, "GaiLifecycleStageEnum"]]]])
 
-slots.aiRmfFramework__document = Slot(uri=NIST_AI_RMF.document, name="aiRmfFramework__document", curie=NIST_AI_RMF.curie('document'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__document, domain=None, range=Optional[Union[dict, AiRmfDocument]])
+slots.suggestedAction__actor_task = Slot(uri=NIST_AI_600_1.actor_task, name="suggestedAction__actor_task", curie=NIST_AI_600_1.curie('actor_task'),
+                   model_uri=NIST_AI_RMF.suggestedAction__actor_task, domain=None, range=Optional[Union[Union[str, "GaiActorTaskEnum"], list[Union[str, "GaiActorTaskEnum"]]]])
 
-slots.aiRmfFramework__functions = Slot(uri=NIST_AI_RMF.functions, name="aiRmfFramework__functions", curie=NIST_AI_RMF.curie('functions'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__functions, domain=None, range=Optional[Union[dict[Union[str, FunctionId], Union[dict, Function]], list[Union[dict, Function]]]])
-
-slots.aiRmfFramework__trustworthiness_characteristics = Slot(uri=NIST_AI_RMF.trustworthiness_characteristics, name="aiRmfFramework__trustworthiness_characteristics", curie=NIST_AI_RMF.curie('trustworthiness_characteristics'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__trustworthiness_characteristics, domain=None, range=Optional[Union[dict[Union[str, TrustworthinessCharacteristicId], Union[dict, TrustworthinessCharacteristic]], list[Union[dict, TrustworthinessCharacteristic]]]])
-
-slots.aiRmfFramework__lifecycle_stages = Slot(uri=NIST_AI_RMF.lifecycle_stages, name="aiRmfFramework__lifecycle_stages", curie=NIST_AI_RMF.curie('lifecycle_stages'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__lifecycle_stages, domain=None, range=Optional[Union[dict[Union[str, AiLifecycleStageId], Union[dict, AiLifecycleStage]], list[Union[dict, AiLifecycleStage]]]])
-
-slots.aiRmfFramework__dimensions = Slot(uri=NIST_AI_RMF.dimensions, name="aiRmfFramework__dimensions", curie=NIST_AI_RMF.curie('dimensions'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__dimensions, domain=None, range=Optional[Union[dict[Union[str, AiSystemDimensionId], Union[dict, AiSystemDimension]], list[Union[dict, AiSystemDimension]]]])
-
-slots.aiRmfFramework__actor_tasks = Slot(uri=NIST_AI_RMF.actor_tasks, name="aiRmfFramework__actor_tasks", curie=NIST_AI_RMF.curie('actor_tasks'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__actor_tasks, domain=None, range=Optional[Union[dict[Union[str, AiActorTaskId], Union[dict, AiActorTask]], list[Union[dict, AiActorTask]]]])
-
-slots.aiRmfFramework__profiles = Slot(uri=NIST_AI_RMF.profiles, name="aiRmfFramework__profiles", curie=NIST_AI_RMF.curie('profiles'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__profiles, domain=None, range=Optional[Union[dict[Union[str, AiRmfProfileId], Union[dict, AiRmfProfile]], list[Union[dict, AiRmfProfile]]]])
-
-slots.aiRmfFramework__attributes_ = Slot(uri=NIST_AI_RMF.attributes, name="aiRmfFramework__attributes_", curie=NIST_AI_RMF.curie('attributes'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__attributes_, domain=None, range=Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]])
-
-slots.aiRmfFramework__risk_measurement_challenges = Slot(uri=NIST_AI_RMF.risk_measurement_challenges, name="aiRmfFramework__risk_measurement_challenges", curie=NIST_AI_RMF.curie('risk_measurement_challenges'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__risk_measurement_challenges, domain=None, range=Optional[Union[dict[Union[str, RiskMeasurementChallengeId], Union[dict, RiskMeasurementChallenge]], list[Union[dict, RiskMeasurementChallenge]]]])
-
-slots.aiRmfFramework__ai_specific_risks = Slot(uri=NIST_AI_RMF.ai_specific_risks, name="aiRmfFramework__ai_specific_risks", curie=NIST_AI_RMF.curie('ai_specific_risks'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__ai_specific_risks, domain=None, range=Optional[Union[dict[Union[str, AiSpecificRiskId], Union[dict, AiSpecificRisk]], list[Union[dict, AiSpecificRisk]]]])
-
-slots.aiRmfFramework__human_ai_interaction_issues = Slot(uri=NIST_AI_RMF.human_ai_interaction_issues, name="aiRmfFramework__human_ai_interaction_issues", curie=NIST_AI_RMF.curie('human_ai_interaction_issues'),
-                   model_uri=NIST_AI_RMF.aiRmfFramework__human_ai_interaction_issues, domain=None, range=Optional[Union[dict[Union[str, HumanAiInteractionIssueId], Union[dict, HumanAiInteractionIssue]], list[Union[dict, HumanAiInteractionIssue]]]])
-
-slots.gaiRisk__addressed_by_actions = Slot(uri=NIST_AI_600_1.addressed_by_actions, name="gaiRisk__addressed_by_actions", curie=NIST_AI_600_1.curie('addressed_by_actions'),
-                   model_uri=NIST_AI_RMF.gaiRisk__addressed_by_actions, domain=None, range=Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]])
-
-slots.primaryGaiConsideration__governance_practices = Slot(uri=NIST_AI_600_1.governance_practices, name="primaryGaiConsideration__governance_practices", curie=NIST_AI_600_1.curie('governance_practices'),
-                   model_uri=NIST_AI_RMF.primaryGaiConsideration__governance_practices, domain=None, range=Optional[Union[str, list[str]]])
-
-slots.primaryGaiConsideration__third_party_considerations = Slot(uri=NIST_AI_600_1.third_party_considerations, name="primaryGaiConsideration__third_party_considerations", curie=NIST_AI_600_1.curie('third_party_considerations'),
-                   model_uri=NIST_AI_RMF.primaryGaiConsideration__third_party_considerations, domain=None, range=Optional[str])
-
-slots.primaryGaiConsideration__limitations_of_current_approaches = Slot(uri=NIST_AI_600_1.limitations_of_current_approaches, name="primaryGaiConsideration__limitations_of_current_approaches", curie=NIST_AI_600_1.curie('limitations_of_current_approaches'),
-                   model_uri=NIST_AI_RMF.primaryGaiConsideration__limitations_of_current_approaches, domain=None, range=Optional[str])
-
-slots.primaryGaiConsideration__provenance_techniques = Slot(uri=NIST_AI_600_1.provenance_techniques, name="primaryGaiConsideration__provenance_techniques", curie=NIST_AI_600_1.curie('provenance_techniques'),
-                   model_uri=NIST_AI_RMF.primaryGaiConsideration__provenance_techniques, domain=None, range=Optional[Union[str, list[str]]])
-
-slots.primaryGaiConsideration__ai_incident_definition = Slot(uri=NIST_AI_600_1.ai_incident_definition, name="primaryGaiConsideration__ai_incident_definition", curie=NIST_AI_600_1.curie('ai_incident_definition'),
-                   model_uri=NIST_AI_RMF.primaryGaiConsideration__ai_incident_definition, domain=None, range=Optional[str])
-
-slots.gaiProfile__gai_risk_catalog = Slot(uri=NIST_AI_600_1.gai_risk_catalog, name="gaiProfile__gai_risk_catalog", curie=NIST_AI_600_1.curie('gai_risk_catalog'),
-                   model_uri=NIST_AI_RMF.gaiProfile__gai_risk_catalog, domain=None, range=Optional[Union[dict[Union[str, GaiRiskId], Union[dict, GaiRisk]], list[Union[dict, GaiRisk]]]])
-
-slots.gaiProfile__suggested_actions = Slot(uri=NIST_AI_600_1.suggested_actions, name="gaiProfile__suggested_actions", curie=NIST_AI_600_1.curie('suggested_actions'),
-                   model_uri=NIST_AI_RMF.gaiProfile__suggested_actions, domain=None, range=Optional[Union[dict[Union[str, SuggestedActionId], Union[dict, SuggestedAction]], list[Union[dict, SuggestedAction]]]])
-
-slots.gaiProfile__primary_considerations = Slot(uri=NIST_AI_600_1.primary_considerations, name="gaiProfile__primary_considerations", curie=NIST_AI_600_1.curie('primary_considerations'),
-                   model_uri=NIST_AI_RMF.gaiProfile__primary_considerations, domain=None, range=Optional[Union[dict[Union[str, PrimaryGaiConsiderationId], Union[dict, PrimaryGaiConsideration]], list[Union[dict, PrimaryGaiConsideration]]]])
-
-slots.gaiProfile__structured_feedback_methods = Slot(uri=NIST_AI_600_1.structured_feedback_methods, name="gaiProfile__structured_feedback_methods", curie=NIST_AI_600_1.curie('structured_feedback_methods'),
-                   model_uri=NIST_AI_RMF.gaiProfile__structured_feedback_methods, domain=None, range=Optional[Union[dict[Union[str, StructuredPublicFeedbackId], Union[dict, StructuredPublicFeedback]], list[Union[dict, StructuredPublicFeedback]]]])
-
-slots.ResidualRisk_is_residual = Slot(uri=NIST_AI_RMF.is_residual, name="ResidualRisk_is_residual", curie=NIST_AI_RMF.curie('is_residual'),
+slots.ResidualRisk_is_residual = Slot(uri=NIST_AI_100_1.is_residual, name="ResidualRisk_is_residual", curie=NIST_AI_100_1.curie('is_residual'),
                    model_uri=NIST_AI_RMF.ResidualRisk_is_residual, domain=ResidualRisk, range=Optional[Union[bool, Bool]])
 
-slots.Function_categories = Slot(uri=NIST_AI_RMF.categories, name="Function_categories", curie=NIST_AI_RMF.curie('categories'),
+slots.Function_categories = Slot(uri=NIST_AI_100_1.categories, name="Function_categories", curie=NIST_AI_100_1.curie('categories'),
                    model_uri=NIST_AI_RMF.Function_categories, domain=Function, range=Optional[Union[dict[Union[str, CategoryId], Union[dict, "Category"]], list[Union[dict, "Category"]]]])
 
 slots.Category_id = Slot(uri=SCHEMA.identifier, name="Category_id", curie=SCHEMA.curie('identifier'),
                    model_uri=NIST_AI_RMF.Category_id, domain=Category, range=Union[str, CategoryId])
 
-slots.Category_subcategories = Slot(uri=NIST_AI_RMF.subcategories, name="Category_subcategories", curie=NIST_AI_RMF.curie('subcategories'),
+slots.Category_subcategories = Slot(uri=NIST_AI_100_1.subcategories, name="Category_subcategories", curie=NIST_AI_100_1.curie('subcategories'),
                    model_uri=NIST_AI_RMF.Category_subcategories, domain=Category, range=Optional[Union[dict[Union[str, SubcategoryId], Union[dict, "Subcategory"]], list[Union[dict, "Subcategory"]]]])
 
 slots.Subcategory_id = Slot(uri=SCHEMA.identifier, name="Subcategory_id", curie=SCHEMA.curie('identifier'),
@@ -2641,6 +2847,3 @@ slots.SuggestedAction_description = Slot(uri=DCTERMS.description, name="Suggeste
 
 slots.AiRedTeaming_feedback_method_kind = Slot(uri=NIST_AI_600_1.feedback_method_kind, name="AiRedTeaming_feedback_method_kind", curie=NIST_AI_600_1.curie('feedback_method_kind'),
                    model_uri=NIST_AI_RMF.AiRedTeaming_feedback_method_kind, domain=AiRedTeaming, range=Union[str, "StructuredFeedbackMethodEnum"])
-
-slots.GaiProfile_profile_type = Slot(uri=NIST_AI_RMF.profile_type, name="GaiProfile_profile_type", curie=NIST_AI_RMF.curie('profile_type'),
-                   model_uri=NIST_AI_RMF.GaiProfile_profile_type, domain=GaiProfile, range=Union[str, "ProfileTypeEnum"])

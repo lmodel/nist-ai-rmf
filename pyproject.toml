@@ -4,7 +4,7 @@ build-backend = "hatchling.build"
 
 [project]
 name = "nist_ai_rmf"
-description = "NIST AI RMF - LinkML Schema"
+description = "NIST AI RMF - Merged LinkML Schema"
 authors = [
   {name = "Noel McLoughlin", email = "noel.mcloughlin@gmail.com"},
 ]

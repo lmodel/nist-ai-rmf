@@ -2,7 +2,9 @@
 
 # nist-ai-rmf
 
-NIST AI RMF - LinkML Schema
+NIST AI RMF - Merged LinkML Schema
+
+See [solution descrition](./docs/about.md).
 
 ## Documentation Website
 

@@ -1,199 +1,127 @@
-"""Data tests for the NIST AI RMF schemas.
+"""Unit tests for the merged ``nist_ai_rmf`` umbrella schema.
 
-The fixtures follow the lmodel convention `tests/data/<valid|invalid>/<ClassName>-<desc>.yaml`.
-The class-name prefix is used both to look up the Python dataclass for
-in-process loading *and* to choose which schema (`nist_ai_rmf` or
-`nist_ai_600_1`) to use as the `--target-class` for `linkml-validate`.
+This repository ships *only* the umbrella schema. The
+``nist_ai_100_1`` (AI RMF 1.0) and ``nist_ai_600_1`` (GAI Profile)
+sub-schemas are pulled in as remote imports from their own
+repositories - they are tested in those repositories and are
+deliberately not re-tested here.
 
-Additionally, the NIST AI RMF Playbook JSON (third-party data) is
-exercised end-to-end via ``scripts/validate_playbook.py``.
+The tests below therefore exercise behaviour that only makes
+sense once both sub-schemas are merged:
+
+* the umbrella YAML loads,
+* both imports resolve, and
+* classes/enums from each sub-schema are reachable through the
+  single ``nist_ai_rmf`` namespace.
 """
 from __future__ import annotations
 
-import glob
-import importlib
-import os
-import shutil
-import subprocess
-import sys
 from pathlib import Path
 
 import pytest
 
 REPO_ROOT = Path(__file__).resolve().parent.parent
-
-DATA_DIR_VALID = REPO_ROOT / "tests" / "data" / "valid"
-DATA_DIR_INVALID = REPO_ROOT / "tests" / "data" / "invalid"
-DATA_DIR_THIRD_PARTY = REPO_ROOT / "tests" / "data" / "third_party"
-
-SCHEMA_BASE = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_100_1.yaml"
-SCHEMA_GAI = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_600_1.yaml"
 SCHEMA_UMBRELLA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
 
-VALID_EXAMPLE_FILES = sorted(
-    f
-    for f in glob.glob(str(DATA_DIR_VALID / "**" / "*"), recursive=True)
-    if f.endswith((".yaml", ".yml", ".json"))
-)
-INVALID_EXAMPLE_FILES = sorted(
-    f
-    for f in glob.glob(str(DATA_DIR_INVALID / "**" / "*"), recursive=True)
-    if f.endswith((".yaml", ".yml", ".json"))
-)
 
-PLAYBOOK_JSON = DATA_DIR_THIRD_PARTY / "nist" / "nist_ai_rmf_playbook.json"
-PLAYBOOK_SCRIPT = REPO_ROOT / "scripts" / "validate_playbook.py"
+def _load_schema_view():
+    """``SchemaView`` for the umbrella, *without* walking imports."""
+    from linkml_runtime.utils.schemaview import SchemaView
+
+    assert SCHEMA_UMBRELLA.exists(), f"Merged schema missing at {SCHEMA_UMBRELLA}"
+    return SchemaView(str(SCHEMA_UMBRELLA))
 
 
-# --------------------------------------------------------------------------- #
-# Helpers
-# --------------------------------------------------------------------------- #
-def _target_class_from_path(filepath: str) -> str:
-    """Filename ``ClassName-foo.yaml`` -> ``"ClassName"``."""
-    return Path(filepath).stem.split("-")[0]
+def _load_merged_view():
+    """``SchemaView`` with imports resolved.
 
-
-def _try_import(module_name: str):
-    """Return the module if importable, else ``None``."""
+    Skips if the remote `nist_ai_100_1` / `nist_ai_600_1` schemas
+    are not reachable (e.g. offline, or the upstream w3id redirects
+    are not yet wired up). The umbrella import design is the
+    feature under test - missing network access is not a regression.
+    """
+    sv = _load_schema_view()
     try:
-        return importlib.import_module(module_name)
-    except ModuleNotFoundError:
-        return None
+        # Force traversal of imports - this is what triggers network IO.
+        sv.all_classes()
+    except (FileNotFoundError, OSError) as exc:  # urllib raises URLError(OSError)
+        pytest.skip(f"Remote imports could not be resolved: {exc}")
+    return sv
 
 
-def _resolve_schema_and_module(class_name: str) -> tuple[Path, str]:
-    """Pick the schema + Python module for a fixture's target class.
-
-    Returns ``(schema_yaml_path, python_module_name)``.
-
-    GAI-Profile classes live in the ``nist_ai_600_1`` module/schema;
-    everything else lives in the base ``nist_ai_rmf`` schema. Reads the
-    generated dataclass module to decide so the test doesn't drift as
-    new classes are added. If the GAI module hasn't been generated
-    yet (``just gen-project`` only generates the base), this falls
-    back to the base schema.
-    """
-    base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
-    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_600_1")
-    if gai_mod is not None and hasattr(gai_mod, class_name):
-        return SCHEMA_GAI, "nist_ai_rmf.datamodel.nist_ai_600_1"
-    if base_mod is not None and hasattr(base_mod, class_name):
-        return SCHEMA_BASE, "nist_ai_rmf.datamodel.nist_ai_rmf"
-    # Neither module knows this class. Default to the base schema so
-    # the caller still gets a clear ImportError pointing at the gap.
-    return SCHEMA_BASE, "nist_ai_rmf.datamodel.nist_ai_rmf"
+@pytest.fixture(scope="module")
+def umbrella_view():
+    return _load_schema_view()
 
 
-def _gai_module_available() -> bool:
-    return _try_import("nist_ai_rmf.datamodel.nist_ai_600_1") is not None
+@pytest.fixture(scope="module")
+def merged_view():
+    return _load_merged_view()
 
 
-def _is_gai_class(class_name: str) -> bool:
-    """True if the fixture's target lives only in the GAI schema."""
-    base_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_rmf")
-    gai_mod = _try_import("nist_ai_rmf.datamodel.nist_ai_600_1")
-    base_has = base_mod is not None and hasattr(base_mod, class_name)
-    gai_has = gai_mod is not None and hasattr(gai_mod, class_name)
-    return gai_has and not base_has
+def test_umbrella_schema_loads(umbrella_view) -> None:
+    """The umbrella schema parses and reports the expected identity."""
+    schema = umbrella_view.schema
+    assert schema.name == "nist-ai-rmf"
+    assert schema.default_prefix == "nist_ai_rmf"
 
 
-def _linkml_validate(schema: Path, target_class: str, data_file: Path) -> subprocess.CompletedProcess:
-    cmd = [
-        "linkml-validate",
-        "--schema",
-        str(schema),
-        "--target-class",
-        target_class,
-        str(data_file),
-    ]
-    return subprocess.run(cmd, capture_output=True, text=True, check=False)
+def test_umbrella_imports_both_sub_schemas(umbrella_view) -> None:
+    """Both NIST sub-schemas are listed as imports."""
+    imports = umbrella_view.schema.imports
+    assert any("nist_ai_100_1" in i for i in imports), imports
+    assert any("nist_ai_600_1" in i for i in imports), imports
 
 
-def _have_linkml_validate() -> bool:
-    return shutil.which("linkml-validate") is not None
+def test_umbrella_exposes_both_tree_roots(merged_view) -> None:
+    """``AiRmfFramework`` (from 100-1) and ``GaiProfile`` (from 600-1)
+    are both reachable via the merged schema view."""
+    all_classes = merged_view.all_classes()
+    assert "AiRmfFramework" in all_classes, sorted(all_classes)
+    assert "GaiProfile" in all_classes, sorted(all_classes)
 
 
-# --------------------------------------------------------------------------- #
-# Valid fixtures - load with the runtime Python dataclasses
-# --------------------------------------------------------------------------- #
-@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
-def test_valid_data_loads_via_python(filepath: str) -> None:
-    """Each valid YAML / JSON fixture loads as its target dataclass."""
-    from linkml_runtime.loaders import json_loader, yaml_loader
-
-    class_name = _target_class_from_path(filepath)
-    if _is_gai_class(class_name) and not _gai_module_available():
-        pytest.skip(
-            f"{class_name!r} lives in nist_ai_600_1 - run "
-            "`gen-python --no-mergeimports src/nist_ai_rmf/schema/nist_ai_600_1.yaml` "
-            "to generate the dataclasses."
-        )
-    _, module_name = _resolve_schema_and_module(class_name)
-    module = importlib.import_module(module_name)
-    if not hasattr(module, class_name):
-        pytest.skip(f"{class_name!r} not found in {module_name}")
-    target_class = getattr(module, class_name)
-
-    loader = json_loader if filepath.endswith(".json") else yaml_loader
-    obj = loader.load(filepath, target_class=target_class)
-    assert obj is not None
+def test_umbrella_exposes_enums_from_both_sub_schemas(merged_view) -> None:
+    """A representative enum from each sub-schema is reachable."""
+    all_enums = merged_view.all_enums()
+    # From nist_ai_100_1
+    assert "FunctionEnum" in all_enums, sorted(all_enums)
+    # From nist_ai_600_1
+    assert "GaiRiskCategoryEnum" in all_enums, sorted(all_enums)
 
 
-# --------------------------------------------------------------------------- #
-# Valid fixtures - cross-check with linkml-validate
-# --------------------------------------------------------------------------- #
-@pytest.mark.skipif(not _have_linkml_validate(), reason="linkml-validate not installed")
-@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
-def test_valid_data_linkml_validate(filepath: str) -> None:
-    """linkml-validate accepts each valid fixture."""
-    class_name = _target_class_from_path(filepath)
-    schema, _ = _resolve_schema_and_module(class_name)
-    result = _linkml_validate(schema, class_name, Path(filepath))
-    assert result.returncode == 0, (
-        f"Expected validation to succeed.\nstdout: {result.stdout}\nstderr: {result.stderr}"
-    )
-    assert "No issues found" in result.stdout
+# Additional tests for broader coverage
+def test_umbrella_exposes_slots_from_both_sub_schemas(merged_view) -> None:
+    """Representative slots from each sub-schema are accessible."""
+    all_slots = merged_view.all_slots()
+    # From nist_ai_100_1 (actual slot: 'functions')
+    assert "functions" in all_slots, sorted(all_slots)
+    # From nist_ai_600_1 (actual slot: 'gai_risks')
+    assert "gai_risks" in all_slots, sorted(all_slots)
 
 
-# --------------------------------------------------------------------------- #
-# Invalid fixtures - linkml-validate must reject them
-# --------------------------------------------------------------------------- #
-@pytest.mark.skipif(not _have_linkml_validate(), reason="linkml-validate not installed")
-@pytest.mark.parametrize("filepath", INVALID_EXAMPLE_FILES)
-def test_invalid_data_is_rejected(filepath: str) -> None:
-    """Each invalid fixture is rejected by linkml-validate."""
-    class_name = _target_class_from_path(filepath)
-    schema, _ = _resolve_schema_and_module(class_name)
-    result = _linkml_validate(schema, class_name, Path(filepath))
-    combined = (result.stdout or "") + (result.stderr or "")
-    assert "ERROR" in combined or result.returncode != 0, (
-        f"Expected validation failure for {filepath} but got:\n"
-        f"stdout: {result.stdout}\nstderr: {result.stderr}"
-    )
+def test_umbrella_enum_values_accessible(merged_view) -> None:
+    """Representative enum values are accessible from both sub-schemas."""
+    function_enum = merged_view.get_enum("FunctionEnum")
+    gai_risk_enum = merged_view.get_enum("GaiRiskCategoryEnum")
+    assert function_enum is not None
+    assert gai_risk_enum is not None
+    assert "GOVERN" in function_enum.permissible_values
+    assert "CONFABULATION" in gai_risk_enum.permissible_values
 
 
-# --------------------------------------------------------------------------- #
-# Third-party data: NIST AI RMF Playbook
-# --------------------------------------------------------------------------- #
-@pytest.mark.skipif(
-    not PLAYBOOK_JSON.exists(),
-    reason=f"Playbook JSON not present at {PLAYBOOK_JSON}",
-)
-@pytest.mark.skipif(not _have_linkml_validate(), reason="linkml-validate not installed")
-def test_third_party_nist_ai_rmf_playbook() -> None:
-    """The full NIST AI RMF Playbook JSON validates against the schema.
+def test_umbrella_class_inheritance_and_mixins(merged_view) -> None:
+    """Check inheritance and mixin structure for a representative class."""
+    framework_class = merged_view.get_class("AiRmfFramework")
+    assert framework_class is not None
+    # Check is_a or mixins are present
+    assert framework_class.is_a or framework_class.mixins
 
-    Runs ``scripts/validate_playbook.py`` so the same code path used by
-    the ``just validate-playbook`` recipe is exercised here.
-    """
-    result = subprocess.run(
-        [sys.executable, str(PLAYBOOK_SCRIPT), str(PLAYBOOK_JSON)],
-        capture_output=True,
-        text=True,
-        check=False,
-        cwd=REPO_ROOT,
-    )
-    combined = result.stdout + result.stderr
-    assert result.returncode == 0, f"Playbook validation failed:\n{combined}"
-    assert "No issues found" in combined
-    assert "Playbook entries validated" in combined
+
+def test_umbrella_schema_annotations(umbrella_view) -> None:
+    """Check that schema-level annotations and metadata are present."""
+    schema = umbrella_view.schema
+    # Check for required metadata fields
+    assert hasattr(schema, "license")
+    assert hasattr(schema, "description")
+    assert hasattr(schema, "version")

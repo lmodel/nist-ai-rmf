@@ -3,7 +3,7 @@
       "xsd": "http://www.w3.org/2001/XMLSchema#",
       "dcterms": "http://purl.org/dc/terms/",
       "foaf": "http://xmlns.com/foaf/0.1/",
-      "gist": "https://w3id.org/lmodel/gist/",
+      "gist_linkml": "https://w3id.org/lmodel/gist/",
       "iso27001": "https://w3id.org/lmodel/iso27001/",
       "iso29100": "https://w3id.org/lmodel/iso29100/",
       "linkml": "https://w3id.org/linkml/",
@@ -21,7 +21,7 @@
       "stix": "https://w3id.org/lmodel/stix/",
       "@vocab": "https://w3id.org/lmodel/nist-ai-rmf/",
       "about_text": {
-         "@id": "about_text"
+         "@id": "nist_ai_100_1:about_text"
       },
       "action_id": {
          "@id": "nist_ai_600_1:action_id"
@@ -32,14 +32,30 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "actor_task"
+         "@id": "nist_ai_600_1:actor_task"
+      },
+      "actor_tasks": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:actor_tasks"
+      },
+      "addressed_by_actions": {
+         "@type": "@id",
+         "@id": "nist_ai_600_1:addressed_by_actions"
+      },
+      "addresses": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:addresses"
       },
       "affects": {
          "@type": "@id",
-         "@id": "affects"
+         "@id": "nist_ai_100_1:affects"
+      },
+      "affects_system": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:affects_system"
       },
       "ai_actor_categories": {
-         "@id": "ai_actor_categories"
+         "@id": "nist_ai_100_1:ai_actor_categories"
       },
       "ai_dimension": {
          "@context": {
@@ -47,92 +63,21 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "ai_dimension"
+         "@id": "nist_ai_100_1:ai_dimension"
       },
-      "task_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "task_kind"
-      },
-      "typical_actors": {
-         "@id": "typical_actors"
-      },
-      "includes_tevv": {
-         "@type": "xsd:boolean",
-         "@id": "includes_tevv"
-      },
-      "stage_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "stage_kind"
-      },
-      "actor_tasks": {
-         "@type": "@id",
-         "@id": "actor_tasks"
+      "ai_incident_definition": {
+         "@id": "nist_ai_600_1:ai_incident_definition"
       },
       "ai_specific_risks": {
          "@type": "@id",
-         "@id": "ai_specific_risks"
-      },
-      "attributes_": {
-         "@type": "@id",
-         "@id": "attributes"
-      },
-      "dimensions": {
-         "@type": "@id",
-         "@id": "dimensions"
-      },
-      "document": {
-         "@type": "@id",
-         "@id": "document"
-      },
-      "functions": {
-         "@type": "@id",
-         "@id": "functions"
-      },
-      "human_ai_interaction_issues": {
-         "@type": "@id",
-         "@id": "human_ai_interaction_issues"
-      },
-      "lifecycle_stages": {
-         "@type": "@id",
-         "@id": "lifecycle_stages"
-      },
-      "profiles": {
-         "@type": "@id",
-         "@id": "profiles"
-      },
-      "risk_measurement_challenges": {
-         "@type": "@id",
-         "@id": "risk_measurement_challenges"
-      },
-      "trustworthiness_characteristics": {
-         "@type": "@id",
-         "@id": "trustworthiness_characteristics"
-      },
-      "addresses": {
-         "@type": "@id",
-         "@id": "addresses"
-      },
-      "sector": {
-         "@id": "sector"
-      },
-      "dimension_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "dimension_kind"
+         "@id": "nist_ai_100_1:ai_specific_risks"
       },
       "applies_to_subcategory": {
          "@id": "nist_ai_600_1:applies_to_subcategory"
+      },
+      "attributes_": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:attributes"
       },
       "audience": {
          "@context": {
@@ -140,7 +85,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "audience"
+         "@id": "nist_ai_100_1:audience"
       },
       "bias_category": {
          "@context": {
@@ -148,19 +93,35 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "bias_category"
+         "@id": "nist_ai_100_1:bias_category"
       },
       "categories": {
          "@type": "@id",
-         "@id": "categories"
+         "@id": "nist_ai_100_1:categories"
       },
       "category_code": {
-         "@id": "category_code"
+         "@id": "nist_ai_100_1:category_code"
       },
       "category_id": {
-         "@id": "category_id"
+         "@id": "nist_ai_100_1:category_id"
       },
       "id": "@id",
+      "challenge_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:challenge_kind"
+      },
+      "characteristic_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:characteristic_kind"
+      },
       "consideration_kind": {
          "@context": {
             "text": "skos:notation",
@@ -170,17 +131,37 @@
          "@id": "nist_ai_600_1:consideration_kind"
       },
       "current_state": {
-         "@id": "current_state"
+         "@id": "nist_ai_100_1:current_state"
       },
       "description": {
-         "@id": "description"
+         "@id": "nist_ai_100_1:description"
+      },
+      "dimension_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:dimension_kind"
+      },
+      "dimensions": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:dimensions"
+      },
+      "document": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:document"
       },
       "documentation_questions": {
-         "@id": "documentation_questions"
+         "@id": "nist_ai_100_1:documentation_questions"
       },
       "doi": {
          "@type": "xsd:anyURI",
-         "@id": "doi"
+         "@id": "nist_ai_100_1:doi"
+      },
+      "entries": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:entries"
       },
       "feedback_method_kind": {
          "@context": {
@@ -191,7 +172,7 @@
          "@id": "nist_ai_600_1:feedback_method_kind"
       },
       "function_code": {
-         "@id": "function_code"
+         "@id": "nist_ai_100_1:function_code"
       },
       "function_kind": {
          "@context": {
@@ -199,7 +180,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "function_kind"
+         "@id": "nist_ai_100_1:function_kind"
       },
       "function_prefix": {
          "@context": {
@@ -208,6 +189,14 @@
             "meaning": "@id"
          },
          "@id": "nist_ai_600_1:function_prefix"
+      },
+      "functions": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:functions"
+      },
+      "gai_risk_catalog": {
+         "@type": "@id",
+         "@id": "nist_ai_600_1:gai_risk_catalog"
       },
       "gai_risk_kind": {
          "@context": {
@@ -225,25 +214,21 @@
          },
          "@id": "nist_ai_600_1:gai_risks"
       },
-      "gai_risk_catalog": {
-         "@type": "@id",
-         "@id": "nist_ai_600_1:gai_risk_catalog"
+      "lifecycle_stage": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:lifecycle_stage"
       },
-      "primary_considerations": {
-         "@type": "@id",
-         "@id": "nist_ai_600_1:primary_considerations"
-      },
-      "structured_feedback_methods": {
-         "@type": "@id",
-         "@id": "nist_ai_600_1:structured_feedback_methods"
-      },
-      "suggested_actions": {
-         "@type": "@id",
-         "@id": "nist_ai_600_1:suggested_actions"
-      },
-      "addressed_by_actions": {
-         "@type": "@id",
-         "@id": "nist_ai_600_1:addressed_by_actions"
+      "governance_practices": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_600_1:governance_practices"
       },
       "harm_category": {
          "@context": {
@@ -251,7 +236,7 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "harm_category"
+         "@id": "nist_ai_100_1:harm_category"
       },
       "harm_to_people_subcategory": {
          "@context": {
@@ -259,7 +244,11 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "harm_to_people_subcategory"
+         "@id": "nist_ai_100_1:harm_to_people_subcategory"
+      },
+      "human_ai_interaction_issues": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:human_ai_interaction_issues"
       },
       "impact_sign": {
          "@context": {
@@ -267,82 +256,81 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "impact_sign"
+         "@id": "nist_ai_100_1:impact_sign"
+      },
+      "includes_tevv": {
+         "@type": "xsd:boolean",
+         "@id": "nist_ai_100_1:includes_tevv"
+      },
+      "is_base_condition": {
+         "@type": "xsd:boolean",
+         "@id": "nist_ai_100_1:is_base_condition"
+      },
+      "is_cross_cutting": {
+         "@type": "xsd:boolean",
+         "@id": "nist_ai_100_1:is_cross_cutting"
       },
       "is_residual": {
          "@type": "xsd:boolean",
-         "@id": "is_residual"
+         "@id": "nist_ai_100_1:is_residual"
       },
       "is_tevv": {
          "@type": "xsd:boolean",
-         "@id": "is_tevv"
+         "@id": "nist_ai_100_1:is_tevv"
       },
-      "lifecycle_stage": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "lifecycle_stage"
+      "legal_basis": {
+         "@id": "nist_ai_100_1:legal_basis"
+      },
+      "lifecycle_stages": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:lifecycle_stages"
       },
       "likelihood": {
          "@type": "xsd:float",
-         "@id": "likelihood"
+         "@id": "nist_ai_100_1:likelihood"
+      },
+      "limitations_of_current_approaches": {
+         "@id": "nist_ai_600_1:limitations_of_current_approaches"
       },
       "magnitude": {
-         "@id": "magnitude"
+         "@id": "nist_ai_100_1:magnitude"
       },
       "name": {
          "@id": "rdfs:label"
       },
       "outcome": {
-         "@id": "outcome"
-      },
-      "entries": {
-         "@type": "@id",
-         "@id": "entries"
+         "@id": "nist_ai_100_1:outcome"
       },
       "ai_actors": {
-         "@id": "ai_actors"
+         "@id": "nist_ai_100_1:ai_actors"
       },
       "category": {
-         "@id": "category"
+         "@id": "nist_ai_100_1:category"
       },
       "section_about": {
-         "@id": "section_about"
+         "@id": "nist_ai_100_1:section_about"
       },
       "section_actions": {
-         "@id": "section_actions"
+         "@id": "nist_ai_100_1:section_actions"
       },
       "section_doc": {
-         "@id": "section_doc"
+         "@id": "nist_ai_100_1:section_doc"
       },
       "section_ref": {
-         "@id": "section_ref"
+         "@id": "nist_ai_100_1:section_ref"
       },
       "title": {
          "@id": "dcterms:title"
       },
       "topic": {
-         "@id": "topic"
+         "@id": "nist_ai_100_1:topic"
       },
       "type": {
-         "@id": "type"
+         "@id": "nist_ai_100_1:type"
       },
-      "ai_incident_definition": {
-         "@id": "nist_ai_600_1:ai_incident_definition"
-      },
-      "governance_practices": {
-         "@id": "nist_ai_600_1:governance_practices"
-      },
-      "limitations_of_current_approaches": {
-         "@id": "nist_ai_600_1:limitations_of_current_approaches"
-      },
-      "provenance_techniques": {
-         "@id": "nist_ai_600_1:provenance_techniques"
-      },
-      "third_party_considerations": {
-         "@id": "nist_ai_600_1:third_party_considerations"
+      "primary_considerations": {
+         "@type": "@id",
+         "@id": "nist_ai_600_1:primary_considerations"
       },
       "profile_type": {
          "@context": {
@@ -350,7 +338,19 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "profile_type"
+         "@id": "nist_ai_100_1:profile_type"
+      },
+      "profiles": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:profiles"
+      },
+      "provenance_techniques": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_600_1:provenance_techniques"
       },
       "published_date": {
          "@type": "xsd:date",
@@ -368,15 +368,11 @@
          "@id": "nist_ai_600_1:red_team_type"
       },
       "references_text": {
-         "@id": "references_text"
-      },
-      "affects_system": {
-         "@type": "@id",
-         "@id": "affects_system"
+         "@id": "nist_ai_100_1:references_text"
       },
       "related_impacts": {
          "@type": "@id",
-         "@id": "related_impacts"
+         "@id": "nist_ai_100_1:related_impacts"
       },
       "risk_categorization": {
          "@context": {
@@ -386,13 +382,17 @@
          },
          "@id": "nist_ai_600_1:risk_categorization"
       },
+      "risk_measurement_challenges": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:risk_measurement_challenges"
+      },
       "risk_response": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "risk_response"
+         "@id": "nist_ai_100_1:risk_response"
       },
       "risk_scope": {
          "@context": {
@@ -410,19 +410,8 @@
          },
          "@id": "nist_ai_600_1:risk_sources"
       },
-      "challenge_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "challenge_kind"
-      },
-      "legal_basis": {
-         "@id": "legal_basis"
-      },
-      "tolerance_statement": {
-         "@id": "tolerance_statement"
+      "sector": {
+         "@id": "nist_ai_100_1:sector"
       },
       "see_also": {
          "@type": "xsd:anyURI",
@@ -432,18 +421,45 @@
          "@type": "xsd:anyURI",
          "@id": "dcterms:source"
       },
+      "stage_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:stage_kind"
+      },
+      "structured_feedback_methods": {
+         "@type": "@id",
+         "@id": "nist_ai_600_1:structured_feedback_methods"
+      },
       "subcategories": {
          "@type": "@id",
-         "@id": "subcategories"
+         "@id": "nist_ai_100_1:subcategories"
       },
       "subcategory_id": {
-         "@id": "subcategory_id"
+         "@id": "nist_ai_100_1:subcategory_id"
+      },
+      "suggested_actions": {
+         "@type": "@id",
+         "@id": "nist_ai_600_1:suggested_actions"
       },
       "suggested_actions_text": {
-         "@id": "suggested_actions_text"
+         "@id": "nist_ai_100_1:suggested_actions_text"
       },
       "target_state": {
-         "@id": "target_state"
+         "@id": "nist_ai_100_1:target_state"
+      },
+      "task_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "nist_ai_100_1:task_kind"
+      },
+      "third_party_considerations": {
+         "@id": "nist_ai_600_1:third_party_considerations"
       },
       "time_scale": {
          "@context": {
@@ -453,8 +469,11 @@
          },
          "@id": "nist_ai_600_1:time_scale"
       },
+      "tolerance_statement": {
+         "@id": "nist_ai_100_1:tolerance_statement"
+      },
       "topics": {
-         "@id": "topics"
+         "@id": "nist_ai_100_1:topics"
       },
       "trustworthiness_characteristic": {
          "@context": {
@@ -462,65 +481,56 @@
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "trustworthiness_characteristic"
+         "@id": "nist_ai_100_1:trustworthiness_characteristic"
       },
-      "characteristic_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "characteristic_kind"
+      "trustworthiness_characteristics": {
+         "@type": "@id",
+         "@id": "nist_ai_100_1:trustworthiness_characteristics"
       },
-      "is_base_condition": {
-         "@type": "xsd:boolean",
-         "@id": "is_base_condition"
-      },
-      "is_cross_cutting": {
-         "@type": "xsd:boolean",
-         "@id": "is_cross_cutting"
+      "typical_actors": {
+         "@id": "nist_ai_100_1:typical_actors"
       },
       "version": {
          "@id": "schema:version"
       },
       "AiActor": {
-         "@id": "AiActor"
+         "@id": "nist_ai_100_1:AiActor"
       },
       "AiActorTask": {
-         "@id": "AiActorTask"
+         "@id": "nist_ai_100_1:AiActorTask"
       },
       "AiLifecycleStage": {
-         "@id": "AiLifecycleStage"
+         "@id": "nist_ai_100_1:AiLifecycleStage"
       },
       "AiRedTeaming": {
          "@id": "nist_ai_600_1:AiRedTeaming"
       },
       "AiRmfDocument": {
-         "@id": "AiRmfDocument"
+         "@id": "nist_ai_100_1:AiRmfDocument"
       },
       "AiRmfFramework": {
-         "@id": "AiRmfFramework"
+         "@id": "nist_ai_100_1:AiRmfFramework"
       },
       "AiRmfProfile": {
-         "@id": "AiRmfProfile"
+         "@id": "nist_ai_100_1:AiRmfProfile"
       },
       "AiSpecificRisk": {
-         "@id": "AiSpecificRisk"
+         "@id": "nist_ai_100_1:AiSpecificRisk"
       },
       "AiSystem": {
-         "@id": "AiSystem"
+         "@id": "nist_ai_100_1:AiSystem"
       },
       "AiSystemDimension": {
-         "@id": "AiSystemDimension"
+         "@id": "nist_ai_100_1:AiSystemDimension"
       },
       "Bias": {
-         "@id": "Bias"
+         "@id": "nist_ai_100_1:Bias"
       },
       "Category": {
-         "@id": "Category"
+         "@id": "nist_ai_100_1:Category"
       },
       "Function": {
-         "@id": "Function"
+         "@id": "nist_ai_100_1:Function"
       },
       "GaiProfile": {
          "@id": "nist_ai_600_1:GaiProfile"
@@ -529,52 +539,52 @@
          "@id": "nist_ai_600_1:GaiRisk"
       },
       "Harm": {
-         "@id": "Harm"
+         "@id": "nist_ai_100_1:Harm"
       },
       "HumanAiInteractionIssue": {
-         "@id": "HumanAiInteractionIssue"
+         "@id": "nist_ai_100_1:HumanAiInteractionIssue"
       },
       "Impact": {
-         "@id": "Impact"
+         "@id": "nist_ai_100_1:Impact"
       },
       "NamedThing": {
          "@id": "schema:Thing"
       },
       "PlaybookCollection": {
-         "@id": "PlaybookCollection"
+         "@id": "nist_ai_100_1:PlaybookCollection"
       },
       "PlaybookEntry": {
-         "@id": "PlaybookEntry"
+         "@id": "nist_ai_100_1:PlaybookEntry"
       },
       "PrimaryGaiConsideration": {
          "@id": "nist_ai_600_1:PrimaryGaiConsideration"
       },
       "ResidualRisk": {
-         "@id": "ResidualRisk"
+         "@id": "nist_ai_100_1:ResidualRisk"
       },
       "Risk": {
-         "@id": "Risk"
+         "@id": "nist_ai_100_1:Risk"
       },
       "RiskMeasurementChallenge": {
-         "@id": "RiskMeasurementChallenge"
+         "@id": "nist_ai_100_1:RiskMeasurementChallenge"
       },
       "RiskTolerance": {
-         "@id": "RiskTolerance"
+         "@id": "nist_ai_100_1:RiskTolerance"
       },
       "RmfAttribute": {
-         "@id": "RmfAttribute"
+         "@id": "nist_ai_100_1:RmfAttribute"
       },
       "StructuredPublicFeedback": {
          "@id": "nist_ai_600_1:StructuredPublicFeedback"
       },
       "Subcategory": {
-         "@id": "Subcategory"
+         "@id": "nist_ai_100_1:Subcategory"
       },
       "SuggestedAction": {
          "@id": "nist_ai_600_1:SuggestedAction"
       },
       "TrustworthinessCharacteristic": {
-         "@id": "TrustworthinessCharacteristic"
+         "@id": "nist_ai_100_1:TrustworthinessCharacteristic"
       }
    }
 }

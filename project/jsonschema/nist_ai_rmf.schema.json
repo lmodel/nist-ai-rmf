@@ -131,7 +131,7 @@
                 },
                 "task_kind": {
                     "$ref": "#/$defs/AiActorTaskEnum",
-                    "description": "Which of the actor task categories this is."
+                    "description": "Which AI actor task category an `AiActorTask` instance represents."
                 },
                 "title": {
                     "description": "A human-readable title.",
@@ -141,7 +141,7 @@
                     ]
                 },
                 "typical_actors": {
-                    "description": "Representative actor roles that perform this task.",
+                    "description": "Representative actor roles that perform an AI actor task.",
                     "items": {
                         "type": "string"
                     },
@@ -196,7 +196,7 @@
                     "type": "string"
                 },
                 "includes_tevv": {
-                    "description": "Whether this stage incorporates TEVV activities.",
+                    "description": "Whether the lifecycle stage incorporates TEVV activities.",
                     "type": [
                         "boolean",
                         "null"
@@ -221,7 +221,7 @@
                 },
                 "stage_kind": {
                     "$ref": "#/$defs/AiLifecycleStageEnum",
-                    "description": "Which of the six stages this instance represents."
+                    "description": "Which AI lifecycle stage an `AiLifecycleStage` instance represents."
                 },
                 "title": {
                     "description": "A human-readable title.",
@@ -448,7 +448,7 @@
                             "type": "null"
                         }
                     ],
-                    "description": "Publication metadata."
+                    "description": "Publication metadata of the framework instance."
                 },
                 "functions": {
                     "description": "The four AI RMF Core functions and their content.",
@@ -550,7 +550,7 @@
             "description": "An implementation of the AI RMF Functions, Categories, and\nSubcategories for a specific setting or application based on the\nrequirements, risk tolerance, and resources of the user (\u00a76).\nProfiles may be use-case-specific, temporal (current or target),\nor cross-sectoral.",
             "properties": {
                 "addresses": {
-                    "description": "Subcategories that the profile implements or addresses.",
+                    "description": "Subcategories that a profile implements or addresses.",
                     "items": {
                         "type": "string"
                     },
@@ -589,7 +589,7 @@
                     "description": "The kind of AI RMF Profile."
                 },
                 "sector": {
-                    "description": "The sector, industry, technology, or end-use application the\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
+                    "description": "The sector, industry, technology, or end-use application a\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
                     "type": [
                         "string",
                         "null"
@@ -752,7 +752,7 @@
                 },
                 "dimension_kind": {
                     "$ref": "#/$defs/AiSystemDimensionEnum",
-                    "description": "Which of the five dimensions this instance represents."
+                    "description": "Which AI system dimension an `AiSystemDimension` instance represents."
                 },
                 "id": {
                     "description": "A unique identifier for an element.",
@@ -1032,27 +1032,42 @@
             "title": "GaiActionFunctionPrefixEnum",
             "type": "string"
         },
+        "GaiActorTaskEnum": {
+            "description": "AI Actor Tasks referenced by the Suggested Actions tables in\nNIST AI 600-1 Section 3 (and defined in NIST AI 100-1\nAppendix A).",
+            "enum": [
+                "GOVERNANCE_AND_OVERSIGHT",
+                "AI_DESIGN",
+                "AI_DEVELOPMENT",
+                "AI_DEPLOYMENT",
+                "AI_IMPACT_ASSESSMENT",
+                "OPERATION_AND_MONITORING",
+                "TEVV",
+                "DOMAIN_EXPERTS",
+                "END_USERS",
+                "HUMAN_FACTORS",
+                "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
+                "PROCUREMENT",
+                "THIRD_PARTY_ENTITIES"
+            ],
+            "title": "GaiActorTaskEnum",
+            "type": "string"
+        },
+        "GaiLifecycleStageEnum": {
+            "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\" Distinct from the six-stage\n`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).",
+            "enum": [
+                "DESIGN",
+                "DEVELOPMENT",
+                "DEPLOYMENT",
+                "OPERATION",
+                "DECOMMISSIONING"
+            ],
+            "title": "GaiLifecycleStageEnum",
+            "type": "string"
+        },
         "GaiProfile": {
             "additionalProperties": false,
-            "description": "Root container that bundles the NIST AI 600-1 Generative AI\nProfile: GAI risks (Section 2), suggested actions (Section 3),\nand primary considerations (Appendix A).",
+            "description": "Root container that bundles the NIST AI 600-1 Generative AI\nProfile: GAI risks (Section 2), suggested actions (Section 3),\nand primary considerations (Appendix A). The GAI Profile is a\n*cross-sectoral* AI RMF profile (Section 1).",
             "properties": {
-                "addresses": {
-                    "description": "Subcategories that the profile implements or addresses.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "current_state": {
-                    "description": "For temporal current profiles - how AI is currently being managed\nand related risks in terms of current outcomes.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "description": {
                     "description": "A human-readable description.",
                     "type": [
@@ -1082,23 +1097,12 @@
                     ]
                 },
                 "primary_considerations": {
-                    "description": "The primary GAI considerations from Appendix A\n(Governance, Pre-Deployment Testing, Content Provenance,\nIncident Disclosure). Discriminated by\n`consideration_kind`.",
+                    "description": "The primary GAI considerations from Appendix A (Governance,\nPre-Deployment Testing, Content Provenance, Incident\nDisclosure). Discriminated by `consideration_kind`.",
                     "items": {
                         "$ref": "#/$defs/PrimaryGaiConsideration"
                     },
                     "type": [
                         "array",
-                        "null"
-                    ]
-                },
-                "profile_type": {
-                    "$ref": "#/$defs/ProfileTypeEnum",
-                    "description": "The kind of AI RMF Profile."
-                },
-                "sector": {
-                    "description": "The sector, industry, technology, or end-use application the\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
-                    "type": [
-                        "string",
                         "null"
                     ]
                 },
@@ -1113,7 +1117,7 @@
                     ]
                 },
                 "structured_feedback_methods": {
-                    "description": "Structured public feedback methods relevant to the profile\n(A.1.5).",
+                    "description": "Structured public feedback methods relevant to the profile\n(Appendix A.1.5).",
                     "items": {
                         "$ref": "#/$defs/StructuredPublicFeedback"
                     },
@@ -1132,13 +1136,6 @@
                         "null"
                     ]
                 },
-                "target_state": {
-                    "description": "For temporal target profiles - the outcomes needed to achieve the\ndesired AI risk management goals.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "title": {
                     "description": "A human-readable title.",
                     "type": [
@@ -1148,7 +1145,6 @@
                 }
             },
             "required": [
-                "profile_type",
                 "id"
             ],
             "title": "GaiProfile",
@@ -1159,7 +1155,7 @@
             "description": "A risk that is novel to or exacerbated by Generative AI.\nEach instance corresponds to one of the 12 risk categories\nenumerated in NIST AI 600-1 Section 2.",
             "properties": {
                 "addressed_by_actions": {
-                    "description": "Suggested actions that address this risk (back-reference).",
+                    "description": "Suggested actions that address a GAI risk (back-reference\nderived from `SuggestedAction.gai_risks`).",
                     "items": {
                         "type": "string"
                     },
@@ -1184,9 +1180,9 @@
                     "type": "string"
                 },
                 "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
+                    "description": "AI lifecycle stage(s) at which the GAI risk may arise\n(NIST AI 600-1 Section 2). Uses the GAI five-stage\nlifecycle (`GaiLifecycleStageEnum`).",
                     "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
+                        "$ref": "#/$defs/GaiLifecycleStageEnum"
                     },
                     "type": [
                         "array",
@@ -1328,6 +1324,38 @@
                 "PROLONGED"
             ],
             "title": "GaiRiskTimeScaleEnum",
+            "type": "string"
+        },
+        "GovernancePracticeEnum": {
+            "description": "Governance plans and actions for GAI systems enumerated in\nNIST AI 600-1 Appendix A.1.2 (\"Organizational Governance\").",
+            "enum": [
+                "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS",
+                "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS",
+                "ALIGNMENT_TO_ORGANIZATIONAL_VALUES",
+                "AUDITING_AND_ASSESSMENT",
+                "CHANGE_MANAGEMENT_CONTROLS",
+                "COMMERCIAL_USE",
+                "DATA_PROVENANCE",
+                "DATA_PROTECTION",
+                "DATA_RETENTION",
+                "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS",
+                "DECOMMISSIONING",
+                "DISCOURAGING_ANONYMOUS_USE",
+                "EDUCATION",
+                "IMPACT_ASSESSMENTS",
+                "INCIDENT_RESPONSE",
+                "MONITORING",
+                "OPT_OUTS",
+                "RISK_BASED_CONTROLS",
+                "RISK_MAPPING_AND_MEASUREMENT",
+                "SCIENCE_BACKED_TEVV_PRACTICES",
+                "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES",
+                "STAKEHOLDER_ENGAGEMENT",
+                "SYNTHETIC_CONTENT_DETECTION_AND_LABELING",
+                "WHISTLEBLOWER_PROTECTIONS",
+                "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS"
+            ],
+            "title": "GovernancePracticeEnum",
             "type": "string"
         },
         "Harm": {
@@ -1604,7 +1632,7 @@
             "description": "A container for a set of PlaybookEntry instances - the\nserialisation root for an AI RMF Playbook companion document.\nValidate with ``linkml-validate --target-class PlaybookCollection``;\nthe canonical tree-root for the schema is ``AiRmfFramework``.",
             "properties": {
                 "entries": {
-                    "description": "The Playbook entries in this collection.",
+                    "description": "The Playbook entries in a `PlaybookCollection`.",
                     "items": {
                         "$ref": "#/$defs/PlaybookEntry"
                     },
@@ -1717,7 +1745,7 @@
             "description": "An overarching consideration derived from the NIST GAI PWG\nconsultation process (Appendix A). The `consideration_kind`\nattribute discriminates between the four primary\nconsiderations: Governance, Pre-Deployment Testing, Content\nProvenance, and Incident Disclosure.\n\nAll consideration-specific attributes are optional and apply\nto the appropriate `consideration_kind`:\n  * GOVERNANCE: governance_practices, third_party_considerations\n  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches\n  * CONTENT_PROVENANCE: provenance_techniques\n  * INCIDENT_DISCLOSURE: ai_incident_definition",
             "properties": {
                 "ai_incident_definition": {
-                    "description": "For Incident Disclosure: the definition of AI incident\nused by the organisation (A.1.8).",
+                    "description": "For Incident Disclosure: the definition of AI incident used\nby the organisation (Appendix A.1.8).",
                     "type": [
                         "string",
                         "null"
@@ -1735,9 +1763,9 @@
                     ]
                 },
                 "governance_practices": {
-                    "description": "Governance plans and actions (A.1.2) - e.g., \"Auditing and\nassessment\", \"Data provenance\", \"Incident response\",\n\"Impact assessments\", \"Stakeholder engagement\", \"Synthetic\ncontent detection\", \"Whistleblower protections\".",
+                    "description": "Governance plans and actions enumerated in NIST AI 600-1\nAppendix A.1.2 (Organizational Governance).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/GovernancePracticeEnum"
                     },
                     "type": [
                         "array",
@@ -1749,7 +1777,7 @@
                     "type": "string"
                 },
                 "limitations_of_current_approaches": {
-                    "description": "For Pre-Deployment Testing: free-text discussion of why\ncurrent TEVV approaches may be inadequate (A.1.4).",
+                    "description": "For Pre-Deployment Testing: free-text discussion of why\ncurrent TEVV approaches may be inadequate (Appendix A.1.4).",
                     "type": [
                         "string",
                         "null"
@@ -1763,9 +1791,9 @@
                     ]
                 },
                 "provenance_techniques": {
-                    "description": "For Content Provenance: provenance data tracking\ntechniques such as digital watermarking, metadata\nrecording, digital fingerprinting, human authentication\n(A.1.6).",
+                    "description": "For Content Provenance: provenance data tracking techniques\nsuch as digital watermarking, metadata recording, digital\nfingerprinting, and human authentication (Appendix A.1.6).",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/ProvenanceTechniqueEnum"
                     },
                     "type": [
                         "array",
@@ -1783,7 +1811,7 @@
                     ]
                 },
                 "third_party_considerations": {
-                    "description": "Considerations for third-party GAI integrations,\nprocurement, SBOMs, SLAs, and SSAE reports (A.1.3).",
+                    "description": "Considerations for third-party GAI integrations, procurement,\nSBOMs, SLAs, and SSAE reports (Appendix A.1.3).",
                     "type": [
                         "string",
                         "null"
@@ -1815,6 +1843,17 @@
             "title": "ProfileTypeEnum",
             "type": "string"
         },
+        "ProvenanceTechniqueEnum": {
+            "description": "Provenance data tracking techniques for GAI content\n(Appendix A.1.6). \"Some well-known techniques for provenance\ndata tracking include digital watermarking, metadata\nrecording, digital fingerprinting, and human authentication,\namong others.\"",
+            "enum": [
+                "DIGITAL_WATERMARKING",
+                "METADATA_RECORDING",
+                "DIGITAL_FINGERPRINTING",
+                "HUMAN_AUTHENTICATION"
+            ],
+            "title": "ProvenanceTechniqueEnum",
+            "type": "string"
+        },
         "RedTeamingTypeEnum": {
             "description": "Types of AI red-teaming exercises (Appendix A.1.5).",
             "enum": [
@@ -1831,7 +1870,7 @@
             "description": "Risk remaining after risk treatment (ISO Guide 73). Documenting\nresidual risks helps system providers consider risks of deploying\nthe AI product and informs end users about potential negative\nimpacts.",
             "properties": {
                 "affects_system": {
-                    "description": "The AI system this risk pertains to.",
+                    "description": "The AI system a risk pertains to.",
                     "type": [
                         "string",
                         "null"
@@ -1893,7 +1932,7 @@
                     ]
                 },
                 "related_impacts": {
-                    "description": "The impacts that contribute to this risk.",
+                    "description": "The impacts that contribute to a risk.",
                     "items": {
                         "$ref": "#/$defs/Impact"
                     },
@@ -1945,7 +1984,7 @@
             "description": "The composite measure of an event's probability of occurring and\nthe magnitude or degree of the consequences of that event. When\nconsidering negative impact, risk is a function of (1) the\nnegative impact or magnitude of harm and (2) the likelihood of\noccurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).",
             "properties": {
                 "affects_system": {
-                    "description": "The AI system this risk pertains to.",
+                    "description": "The AI system a risk pertains to.",
                     "type": [
                         "string",
                         "null"
@@ -2007,7 +2046,7 @@
                     ]
                 },
                 "related_impacts": {
-                    "description": "The impacts that contribute to this risk.",
+                    "description": "The impacts that contribute to a risk.",
                     "items": {
                         "$ref": "#/$defs/Impact"
                     },
@@ -2060,7 +2099,7 @@
             "properties": {
                 "challenge_kind": {
                     "$ref": "#/$defs/RiskMeasurementChallengeEnum",
-                    "description": "Which measurement challenge this represents."
+                    "description": "Which risk-measurement challenge a `RiskMeasurementChallenge` represents."
                 },
                 "description": {
                     "description": "A human-readable description.",
@@ -2146,7 +2185,7 @@
                     "type": "string"
                 },
                 "legal_basis": {
-                    "description": "Legal or regulatory requirements influencing the tolerance.",
+                    "description": "Legal or regulatory requirements influencing a risk tolerance.",
                     "type": [
                         "string",
                         "null"
@@ -2177,7 +2216,7 @@
                     ]
                 },
                 "tolerance_statement": {
-                    "description": "Free-text statement of the tolerance level or threshold.",
+                    "description": "Free-text statement of a risk tolerance level or threshold.",
                     "type": [
                         "string",
                         "null"
@@ -2436,9 +2475,9 @@
                     "type": "string"
                 },
                 "actor_task": {
-                    "description": "AI actor task category.",
+                    "description": "Pertinent AI Actor Task(s) for the suggested action - i.e.,\nthe \"AI Actor Tasks\" row at the bottom of each Section 3\ntable.",
                     "items": {
-                        "$ref": "#/$defs/AiActorTaskEnum"
+                        "$ref": "#/$defs/GaiActorTaskEnum"
                     },
                     "type": [
                         "array",
@@ -2516,7 +2555,7 @@
             "properties": {
                 "characteristic_kind": {
                     "$ref": "#/$defs/TrustworthinessCharacteristicEnum",
-                    "description": "Which trustworthiness characteristic this instance represents."
+                    "description": "Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents."
                 },
                 "description": {
                     "description": "A human-readable description.",
@@ -2530,7 +2569,7 @@
                     "type": "string"
                 },
                 "is_base_condition": {
-                    "description": "True when this is a necessary condition for trustworthiness\n(Valid and Reliable; per Figure 4 it is the base of all other\ncharacteristics).",
+                    "description": "True when this characteristic is a necessary condition for\ntrustworthiness (per Figure 4 - Valid and Reliable is the base\nof all others).",
                     "type": [
                         "boolean",
                         "null"
@@ -2652,7 +2691,7 @@
                     "type": "null"
                 }
             ],
-            "description": "Publication metadata."
+            "description": "Publication metadata of the framework instance."
         },
         "functions": {
             "description": "The four AI RMF Core functions and their content.",

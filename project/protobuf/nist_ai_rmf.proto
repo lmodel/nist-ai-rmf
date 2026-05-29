@@ -28,10 +28,10 @@ message AiActorTask
   string title = 0
   string description = 0
  repeated  uriorcurie seeAlso = 0
- repeated  aiLifecycleStageEnum lifecycleStage = 0
- repeated  aiSystemDimensionEnum aiDimension = 0
   aiActorTaskEnum taskKind = 0
  repeated  string typicalActors = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  aiSystemDimensionEnum aiDimension = 0
  }
 // A stage of the AI lifecycle (Figure 2): Plan and Design,
 // Collect and Process Data, Build and Use Model, Verify and
@@ -203,7 +203,8 @@ message Function
  }
 // Root container that bundles the NIST AI 600-1 Generative AI
 // Profile: GAI risks (Section 2), suggested actions (Section 3),
-// and primary considerations (Appendix A).
+// and primary considerations (Appendix A). The GAI Profile is a
+// *cross-sectoral* AI RMF profile (Section 1).
 message GaiProfile
  {
   uriorcurie id = 0
@@ -211,15 +212,10 @@ message GaiProfile
   string title = 0
   string description = 0
  repeated  uriorcurie seeAlso = 0
-  string currentState = 0
-  string targetState = 0
-  string sector = 0
- repeated  subcategory addresses = 0
  repeated  gaiRisk gaiRiskCatalog = 0
  repeated  suggestedAction suggestedActions = 0
  repeated  primaryGaiConsideration primaryConsiderations = 0
  repeated  structuredPublicFeedback structuredFeedbackMethods = 0
-  profileTypeEnum profileType = 0
  }
 // A risk that is novel to or exacerbated by Generative AI.
 // Each instance corresponds to one of the 12 risk categories
@@ -236,9 +232,9 @@ message GaiRisk
  repeated  gaiRiskScopeEnum riskScope = 0
  repeated  gaiRiskSourceEnum riskSources = 0
  repeated  gaiRiskTimeScaleEnum timeScale = 0
- repeated  aiLifecycleStageEnum lifecycleStage = 0
  repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
  repeated  suggestedAction addressedByActions = 0
+ repeated  gaiLifecycleStageEnum lifecycleStage = 0
  }
 // A negative impact that may be experienced by individuals,
 // groups, communities, organizations, society, the environment, or
@@ -330,10 +326,10 @@ message PrimaryGaiConsideration
   string description = 0
  repeated  uriorcurie seeAlso = 0
   primaryConsiderationEnum considerationKind = 0
- repeated  string governancePractices = 0
+ repeated  governancePracticeEnum governancePractices = 0
   string thirdPartyConsiderations = 0
   string limitationsOfCurrentApproaches = 0
- repeated  string provenanceTechniques = 0
+ repeated  provenanceTechniqueEnum provenanceTechniques = 0
   string aiIncidentDefinition = 0
  }
 // Risk remaining after risk treatment (ISO Guide 73). Documenting
@@ -464,7 +460,7 @@ message SuggestedAction
   gaiActionFunctionPrefixEnum functionPrefix = 0
   subcategoryCode appliesToSubcategory = 0
  repeated  gaiRiskCategoryEnum gaiRisks = 0
- repeated  aiActorTaskEnum actorTask = 0
+ repeated  gaiActorTaskEnum actorTask = 0
   uriorcurie id = 0
   string description = 0
  }

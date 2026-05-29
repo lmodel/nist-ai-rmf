@@ -1,7 +1,7 @@
 {
    "dcterms": "http://purl.org/dc/terms/",
    "foaf": "http://xmlns.com/foaf/0.1/",
-   "gist": "https://w3id.org/lmodel/gist/",
+   "gist_linkml": "https://w3id.org/lmodel/gist/",
    "iso27001": "https://w3id.org/lmodel/iso27001/",
    "iso29100": "https://w3id.org/lmodel/iso29100/",
    "linkml": "https://w3id.org/linkml/",
@@ -16,8 +16,44 @@
    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
    "schema": "http://schema.org/",
    "stix": "https://w3id.org/lmodel/stix/",
+   "AiActor": {
+      "@id": "nist_ai_100_1:AiActor"
+   },
+   "AiActorTask": {
+      "@id": "nist_ai_100_1:AiActorTask"
+   },
+   "AiLifecycleStage": {
+      "@id": "nist_ai_100_1:AiLifecycleStage"
+   },
    "AiRedTeaming": {
       "@id": "nist_ai_600_1:AiRedTeaming"
+   },
+   "AiRmfDocument": {
+      "@id": "nist_ai_100_1:AiRmfDocument"
+   },
+   "AiRmfFramework": {
+      "@id": "nist_ai_100_1:AiRmfFramework"
+   },
+   "AiRmfProfile": {
+      "@id": "nist_ai_100_1:AiRmfProfile"
+   },
+   "AiSpecificRisk": {
+      "@id": "nist_ai_100_1:AiSpecificRisk"
+   },
+   "AiSystem": {
+      "@id": "nist_ai_100_1:AiSystem"
+   },
+   "AiSystemDimension": {
+      "@id": "nist_ai_100_1:AiSystemDimension"
+   },
+   "Bias": {
+      "@id": "nist_ai_100_1:Bias"
+   },
+   "Category": {
+      "@id": "nist_ai_100_1:Category"
+   },
+   "Function": {
+      "@id": "nist_ai_100_1:Function"
    },
    "GaiProfile": {
       "@id": "nist_ai_600_1:GaiProfile"
@@ -25,16 +61,52 @@
    "GaiRisk": {
       "@id": "nist_ai_600_1:GaiRisk"
    },
+   "Harm": {
+      "@id": "nist_ai_100_1:Harm"
+   },
+   "HumanAiInteractionIssue": {
+      "@id": "nist_ai_100_1:HumanAiInteractionIssue"
+   },
+   "Impact": {
+      "@id": "nist_ai_100_1:Impact"
+   },
    "NamedThing": {
       "@id": "schema:Thing"
+   },
+   "PlaybookCollection": {
+      "@id": "nist_ai_100_1:PlaybookCollection"
+   },
+   "PlaybookEntry": {
+      "@id": "nist_ai_100_1:PlaybookEntry"
    },
    "PrimaryGaiConsideration": {
       "@id": "nist_ai_600_1:PrimaryGaiConsideration"
    },
+   "ResidualRisk": {
+      "@id": "nist_ai_100_1:ResidualRisk"
+   },
+   "Risk": {
+      "@id": "nist_ai_100_1:Risk"
+   },
+   "RiskMeasurementChallenge": {
+      "@id": "nist_ai_100_1:RiskMeasurementChallenge"
+   },
+   "RiskTolerance": {
+      "@id": "nist_ai_100_1:RiskTolerance"
+   },
+   "RmfAttribute": {
+      "@id": "nist_ai_100_1:RmfAttribute"
+   },
    "StructuredPublicFeedback": {
       "@id": "nist_ai_600_1:StructuredPublicFeedback"
    },
+   "Subcategory": {
+      "@id": "nist_ai_100_1:Subcategory"
+   },
    "SuggestedAction": {
       "@id": "nist_ai_600_1:SuggestedAction"
+   },
+   "TrustworthinessCharacteristic": {
+      "@id": "nist_ai_100_1:TrustworthinessCharacteristic"
    }
 }

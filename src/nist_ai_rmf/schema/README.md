@@ -1,77 +1,39 @@
 # Schema Directory
 
-LinkML schemas for the NIST AI Risk Management Framework family.
+Merged LinkML schema for the NIST AI Risk Management Framework family.
 
 ## Files
 
-| File | Models | Source |
-|---|---|---|
-| [nist_ai_rmf.yaml](nist_ai_rmf.yaml) | AI RMF 1.0 - foundational concepts, Core Functions/Categories/Subcategories, Profiles, Playbook companion data | [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1) (January 2023) |
-| [nist_ai_600_1.yaml](nist_ai_600_1.yaml) | GAI Profile - 12 GAI risks, suggested actions, primary considerations | [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) (July 2024) |
-| [NIST.AI.100-1.pdf](NIST.AI.100-1.pdf), [NIST.AI.600-1.pdf](NIST.AI.600-1.pdf) | Source documents | NIST |
-| [ecosystem/](ecosystem/) | Snapshot of related lmodel schemas (NIST CSF v2, OSCAL, ISO 27001/29100, STIX, GIST, ...) used for cross-vocabulary mappings | lmodel ecosystem |
-
-## Status
-
-| Area | State |
+| File | Role |
 |---|---|
-| Coverage | 100% of NIST AI 100-1 and NIST AI 600-1 modelled |
-| `linkml-lint` | clean on both schemas (only stylistic `standard_naming` warnings for uppercase enum values, per project convention) |
-| `gen-project` | produces JSON Schema, OWL, SHACL, ShEx, Pydantic, TypeScript, Java, Protobuf, GraphQL without errors |
-| Pytest suite | 20/20 passing - valid + invalid fixtures plus the full 72-entry NIST AI RMF Playbook |
-| SSSOM mappings | 33 base + 12 GAI cross-vocabulary mappings, verifier guards against drift (`just verify-mappings`) |
-| Playbook validation | `just validate-playbook` runs the third-party NIST Playbook JSON through `scripts/validate_playbook.py` |
+| [nist_ai_rmf.yaml](nist_ai_rmf.yaml) | Merged schema. Defines no elements of its own - imports `nist_ai_100_1` (AI RMF 1.0) and `nist_ai_600_1` (GAI Profile) from their own `lmodel` repositories and re-exports them under the `nist_ai_rmf` default prefix. |
 
-## Element counts
+The sub-schemas are resolved over the network via the
+`schema_100_1:` and `schema_600_1:` prefixes declared at the top
+of `nist_ai_rmf.yaml`; they are **not** vendored here. See
+[../mappings/README.md](../mappings/README.md) for where SSSOM
+mappings live, and [../../../docs/about.md](../../../docs/about.md)
+for the overall design.
 
-### `nist_ai_rmf` (base, AI RMF 1.0)
+## Tree roots
 
-- **42** classes (e.g. `AiRmfFramework`, `Function`, `Category`, `Subcategory`, `Risk`, `Impact`, `Harm`, `AiSystem`, `AiActor`, `TrustworthinessCharacteristic`, `PlaybookEntry`)
-- **13** enums (e.g. `FunctionEnum`, `AiLifecycleStageEnum`, `AiActorTaskEnum`, `TrustworthinessCharacteristicEnum`, `HarmCategoryEnum`, `BiasCategoryEnum`, `RiskResponseEnum`)
-- **42** schema-level slots
-- **3** custom types with regex patterns: `FunctionCode`, `CategoryCode`, `SubcategoryCode`
-- **8** subsets: `core`, `framework_core`, `trustworthiness`, `lifecycle`, `risk_and_harm`, `profiles`, `attributes`, `appendices`, `playbook`
-- Tree-root: `AiRmfFramework` (auxiliary: `PlaybookCollection`)
+Both tree-root classes are contributed by the imports - the umbrella
+itself defines none. Pass `--target-class` when validating:
 
-### `nist_ai_600_1` (GAI Profile, AI 600-1)
+| Tree root | Origin schema | Use |
+|---|---|---|
+| `AiRmfFramework` | `nist_ai_100_1` | Default - bundles Functions, trustworthiness characteristics, lifecycle, profiles |
+| `PlaybookCollection` | `nist_ai_100_1` | Loads NIST AI RMF Playbook JSON |
+| `GaiProfile` | `nist_ai_600_1` | NIST AI 600-1 GAI Profile |
 
-- **17** classes including `GaiProfile` (tree-root), `GaiRisk`, `SuggestedAction`, `PrimaryGaiConsideration`, `StructuredPublicFeedback`, `AiRedTeaming`
-- **9** enums including the 12-value `GaiRiskCategoryEnum`, `GaiRiskCategorizationEnum`, `GaiRiskScopeEnum`, `GaiRiskSourceEnum`, `GaiRiskTimeScaleEnum`, `PrimaryConsiderationEnum`, `RedTeamingTypeEnum`
-- **12** schema-level slots
-- **1** custom type: `GaiActionId` (regex `^(GV|MP|MS|MG)-N.M-NNN$`)
-- **4** subsets: `gai_core`, `gai_actions`, `gai_considerations`, `gai_feedback`
-- Imports `./nist_ai_rmf`
-
-## Cross-vocabulary mappings
-
-SSSOM TSV files in [../mappings/](../mappings/) carry exact/close/broad/narrow/related mappings to:
-
-- NIST CSF v2 (`nist_csf:CSFFunction`, `CSFCategory`, `CSFSubcategory`, `CSFDocument`, `CSFMetadata`)
-- OSCAL (`oscal_catalog:Catalog`, `oscal_catalog:Control`, `oscal_profile:Profile`)
-- NIST SP 800-53 (`nist_sp_800_53:Catalog`, `Control`, `ProfileDocument`)
-- ISO 27001 (`Risk`, `ImpactRating`, `LikelihoodRating`, `RiskLevel`, `RiskTreatmentOption`, `InterestedParty`)
-- ISO 29100 (`PrivacyRisk`, `PrivacyPrinciple`)
-- STIX (`CourseOfAction`, `AttackPattern`, `Identity`)
-- GIST (`Function`, `Task`)
-- W3C / Schema.org (`schema:Thing`, `schema:CreativeWork`, `schema:SoftwareApplication`, `prov:Agent`, `foaf:Agent`)
-
-These propagate to `skos:exactMatch` / `closeMatch` / `broadMatch` / `narrowMatch` / `relatedMatch` triples in the generated OWL.
-
-## Validation, generation, and tests
+## Running
 
 ```bash
-just lint                 # linkml-lint
-just gen-project          # regenerate Python, JSON Schema, OWL, SHACL, ...
-just test                 # pytest + linkml-run-examples
-just validate-playbook    # validate tests/data/third_party/nist/nist_ai_rmf_playbook.json
-just verify-mappings      # confirm *_mappings: in YAML match the SSSOM TSV
-just refresh-playbook     # re-fetch the playbook from NIST then validate
+just lint           # linkml-lint on the umbrella (imports resolved remotely)
+just gen-project    # regenerate merged Python, JSON Schema, OWL, SHACL, ...
+just test           # pytest - umbrella-only unit tests
 ```
 
-## Tree roots and how to load data
-
-| Tree root | Schema | Use |
-|---|---|---|
-| `AiRmfFramework` | `nist_ai_rmf` | Default - bundles Functions, trustworthiness chars, lifecycle, profiles |
-| `PlaybookCollection` | `nist_ai_rmf` | Loads NIST AI RMF Playbook JSON (`--target-class PlaybookCollection`) |
-| `GaiProfile` | `nist_ai_600_1` | NIST AI 600-1 GAI Profile (`--target-class GaiProfile`) |
+Per-element examples, the SSSOM verifier, and the Playbook
+validator are owned by the upstream repositories and run in
+their CI.
