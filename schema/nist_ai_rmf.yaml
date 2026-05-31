@@ -4307,7 +4307,7 @@ classes:
     class_uri: schema:Thing
 metamodel_version: 1.11.0
 source_file: nist_ai_rmf.yaml
-source_file_date: '2026-05-31T15:21:45'
+source_file_date: '2026-05-31T15:30:07'
 source_file_size: 1525
-generation_date: '2026-05-31T15:21:54'
+generation_date: '2026-05-31T15:30:18'
 
