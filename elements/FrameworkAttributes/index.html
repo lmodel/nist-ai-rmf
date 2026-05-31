@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://lmodel.github.io/nist-ai-rmf/elements/Profiles/">
+        <link rel="canonical" href="https://lmodel.github.io/nist-ai-rmf/elements/FrameworkAttributes/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Subset: Profiles - nist-ai-rmf</title>
+        <title>Subset: FrameworkAttributes - nist-ai-rmf</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#subset-profiles" class="md-skip">
+        <a href="#subset-frameworkattributes" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Subset: Profiles
+              Subset: FrameworkAttributes
             
           </span>
         </div>
@@ -393,17 +393,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#mappings" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Mappings
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#classes-in-subset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -412,23 +401,6 @@
     </span>
   </a>
   
-    <nav class="md-nav" aria-label="Classes in subset">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#slots-from-airmfprofile-also-in-profiles" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots from AiRmfProfile also in profiles
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
 </li>
       
         <li class="md-nav__item">
@@ -436,17 +408,6 @@
     <span class="md-ellipsis">
       
         Slots in subset
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#enumerations-in-subset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Enumerations in subset
       
     </span>
   </a>
@@ -474,35 +435,16 @@
   
 
 
-<h1 id="subset-profiles">Subset: Profiles</h1>
-<p><em>AI RMF profile constructs (Part 2, §6): use-case profiles,</em></p>
-<p><em>temporal (current / target) profiles, and cross-sectoral profiles.</em></p>
+<h1 id="subset-frameworkattributes">Subset: FrameworkAttributes</h1>
+<p><em>Design attributes of the AI RMF (Appendix D "Attributes of the</em></p>
+<p><em>AI RMF") - the qualities the Framework strives to embody.</em></p>
 <div>
-<p>URI: <a href="./">Profiles</a></p>
+<p>URI: <a href="./">FrameworkAttributes</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: <a href="https://w3id.org/lmodel/nist-ai-rmf">https://w3id.org/lmodel/nist-ai-rmf</a></li>
 </ul>
-<h2 id="mappings">Mappings</h2>
-<table>
-<thead>
-<tr>
-<th>Mapping Type</th>
-<th>Mapped Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>self</td>
-<td>nist_ai_rmf:profiles</td>
-</tr>
-<tr>
-<td>native</td>
-<td>nist_ai_rmf:profiles</td>
-</tr>
-</tbody>
-</table>
 <h2 id="classes-in-subset">Classes in subset</h2>
 <table>
 <thead>
@@ -513,45 +455,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
-<td>An implementation of the AI RMF Functions, Categories, and</td>
-</tr>
-</tbody>
-</table>
-<h3 id="slots-from-airmfprofile-also-in-profiles">Slots from <a href="../AiRmfProfile/">AiRmfProfile</a> also in <em>profiles</em></h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Cardinality and Range</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../addresses/">addresses</a></td>
-<td>* <br/> <a href="../Subcategory/">Subcategory</a></td>
-<td>Subcategories that a profile implements or addresses</td>
-</tr>
-<tr>
-<td><a href="../current_state/">current_state</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>For temporal current profiles - how AI is currently being managed</td>
-</tr>
-<tr>
-<td><a href="../profile_type/">profile_type</a></td>
-<td>1 <br/> <a href="../ProfileTypeEnum/">ProfileTypeEnum</a></td>
-<td>The kind of AI RMF Profile</td>
-</tr>
-<tr>
-<td><a href="../sector/">sector</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The sector, industry, technology, or end-use application a</td>
-</tr>
-<tr>
-<td><a href="../target_state/">target_state</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>For temporal target profiles - the outcomes needed to achieve the</td>
+<td><a href="../RmfAttribute/">RmfAttribute</a></td>
+<td>A design attribute of the AI RMF (Appendix D) - one of the</td>
 </tr>
 </tbody>
 </table>
@@ -565,43 +470,8 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../addresses/">addresses</a></td>
-<td>Subcategories that a profile implements or addresses</td>
-</tr>
-<tr>
-<td><a href="../current_state/">current_state</a></td>
-<td>For temporal current profiles - how AI is currently being managed</td>
-</tr>
-<tr>
-<td><a href="../profile_type/">profile_type</a></td>
-<td>The kind of AI RMF Profile</td>
-</tr>
-<tr>
-<td><a href="../profiles/">profiles</a></td>
-<td>AI RMF profiles defined alongside this Framework instance</td>
-</tr>
-<tr>
-<td><a href="../sector/">sector</a></td>
-<td>The sector, industry, technology, or end-use application a</td>
-</tr>
-<tr>
-<td><a href="../target_state/">target_state</a></td>
-<td>For temporal target profiles - the outcomes needed to achieve the</td>
-</tr>
-</tbody>
-</table>
-<h2 id="enumerations-in-subset">Enumerations in subset</h2>
-<table>
-<thead>
-<tr>
-<th>Enumeration</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../ProfileTypeEnum/">ProfileTypeEnum</a></td>
-<td>Types of AI RMF Profile (§6)</td>
+<td><a href="../attributes/">attributes</a></td>
+<td>Design attributes of the AI RMF (Appendix D)</td>
 </tr>
 </tbody>
 </table>

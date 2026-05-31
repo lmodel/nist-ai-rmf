@@ -69,10 +69,6 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-rmf/elements/Attributes/</loc>
-         <lastmod>2026-05-31</lastmod>
-    </url>
-    <url>
          <loc>https://lmodel.github.io/nist-ai-rmf/elements/AudienceEnum/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
@@ -101,6 +97,10 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
+         <loc>https://lmodel.github.io/nist-ai-rmf/elements/CategoryEnum/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
          <loc>https://lmodel.github.io/nist-ai-rmf/elements/Curie/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
@@ -126,6 +126,10 @@
     </url>
     <url>
          <loc>https://lmodel.github.io/nist-ai-rmf/elements/Float/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
+         <loc>https://lmodel.github.io/nist-ai-rmf/elements/FrameworkAttributes/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -293,11 +297,11 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-rmf/elements/ProfileTypeEnum/</loc>
+         <loc>https://lmodel.github.io/nist-ai-rmf/elements/ProfileConstructs/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-rmf/elements/Profiles/</loc>
+         <loc>https://lmodel.github.io/nist-ai-rmf/elements/ProfileTypeEnum/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -449,7 +453,7 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-rmf/elements/attributes_/</loc>
+         <loc>https://lmodel.github.io/nist-ai-rmf/elements/attributes/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
