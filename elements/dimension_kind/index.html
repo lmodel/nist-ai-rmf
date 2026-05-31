@@ -415,6 +415,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -486,7 +497,7 @@
 
 
 <h1 id="slot-dimension_kind">Slot: dimension_kind</h1>
-<p><em>Which of the five dimensions this instance represents.</em></p>
+<p><em>Which AI system dimension an <code>AiSystemDimension</code> instance represents.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-rmf/dimension_kind">nist_ai_rmf:dimension_kind</a></p>
 <!-- no inheritance hierarchy -->
@@ -540,26 +551,12 @@
 <td>Required</td>
 <td>Yes</td>
 </tr>
-<tr>
-<td>### Slot Characteristics</td>
-<td></td>
-</tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Owner</td>
-<td><a href="../AiSystemDimension/">AiSystemDimension</a></td>
-</tr>
-</tbody>
-</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../Lifecycle/">Lifecycle</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -587,10 +584,11 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dimension_kind</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which of the five dimensions this instance represents.</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Which AI system dimension an `AiSystemDimension` instance represents.</span>
+<span class="nt">in_subset</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lifecycle</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiSystemDimension</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiSystemDimension</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiSystemDimensionEnum</span>

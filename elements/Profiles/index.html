@@ -475,8 +475,8 @@
 
 
 <h1 id="subset-profiles">Subset: Profiles</h1>
-<p><em>AI RMF profile constructs (§6): use-case profiles, temporal</em></p>
-<p><em>(current / target) profiles, and cross-sectoral profiles.</em></p>
+<p><em>AI RMF profile constructs (Part 2, §6): use-case profiles,</em></p>
+<p><em>temporal (current / target) profiles, and cross-sectoral profiles.</em></p>
 <div>
 <p>URI: <a href="./">Profiles</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -529,6 +529,11 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../addresses/">addresses</a></td>
+<td>* <br/> <a href="../Subcategory/">Subcategory</a></td>
+<td>Subcategories that a profile implements or addresses</td>
+</tr>
+<tr>
 <td><a href="../current_state/">current_state</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>For temporal current profiles - how AI is currently being managed</td>
@@ -537,6 +542,11 @@
 <td><a href="../profile_type/">profile_type</a></td>
 <td>1 <br/> <a href="../ProfileTypeEnum/">ProfileTypeEnum</a></td>
 <td>The kind of AI RMF Profile</td>
+</tr>
+<tr>
+<td><a href="../sector/">sector</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>The sector, industry, technology, or end-use application a</td>
 </tr>
 <tr>
 <td><a href="../target_state/">target_state</a></td>
@@ -555,12 +565,24 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../addresses/">addresses</a></td>
+<td>Subcategories that a profile implements or addresses</td>
+</tr>
+<tr>
 <td><a href="../current_state/">current_state</a></td>
 <td>For temporal current profiles - how AI is currently being managed</td>
 </tr>
 <tr>
 <td><a href="../profile_type/">profile_type</a></td>
 <td>The kind of AI RMF Profile</td>
+</tr>
+<tr>
+<td><a href="../profiles/">profiles</a></td>
+<td>AI RMF profiles defined alongside this Framework instance</td>
+</tr>
+<tr>
+<td><a href="../sector/">sector</a></td>
+<td>The sector, industry, technology, or end-use application a</td>
 </tr>
 <tr>
 <td><a href="../target_state/">target_state</a></td>

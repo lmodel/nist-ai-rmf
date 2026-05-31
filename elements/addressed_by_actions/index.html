@@ -415,6 +415,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -486,7 +497,8 @@
 
 
 <h1 id="slot-addressed_by_actions">Slot: addressed_by_actions</h1>
-<p><em>Suggested actions that address this risk (back-reference).</em></p>
+<p><em>Suggested actions that address a GAI risk (back-reference</em></p>
+<p><em>derived from <code>SuggestedAction.gai_risks</code>).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-rmf/addressed_by_actions">nist_ai_rmf:addressed_by_actions</a></p>
 <!-- no inheritance hierarchy -->
@@ -540,26 +552,12 @@
 <td>Multivalued</td>
 <td>Yes</td>
 </tr>
-<tr>
-<td>### Slot Characteristics</td>
-<td></td>
-</tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Owner</td>
-<td><a href="../GaiRisk/">GaiRisk</a></td>
-</tr>
-</tbody>
-</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../GaiCore/">GaiCore</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -587,10 +585,13 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">addressed_by_actions</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suggested actions that address this risk (back-reference).</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Suggested</span><span class="nv"> </span><span class="s">actions</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">address</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risk</span><span class="nv"> </span><span class="s">(back-reference</span>
+
+<span class="w">  </span><span class="s">derived</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">`SuggestedAction.gai_risks`).&#39;</span>
+<span class="nt">in_subset</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_core</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SuggestedAction</span>

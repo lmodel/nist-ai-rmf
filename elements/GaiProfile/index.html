@@ -297,27 +297,15 @@
 <h1 id="class-gaiprofile">Class: GaiProfile</h1>
 <p><em>Root container that bundles the NIST AI 600-1 Generative AI</em></p>
 <p><em>Profile: GAI risks (Section 2), suggested actions (Section 3),</em></p>
-<p><em>and primary considerations (Appendix A).</em></p>
+<p><em>and primary considerations (Appendix A). The GAI Profile is a</em></p>
+<p><em><em>cross-sectoral</em> AI RMF profile (Section 1).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-rmf/GaiProfile">nist_ai_rmf:GaiProfile</a></p>
 <pre class="mermaid"><code> classDiagram
     class GaiProfile
     click GaiProfile href "../GaiProfile/"
-      AiRmfProfile &lt;|-- GaiProfile
-        click AiRmfProfile href "../AiRmfProfile/"
-
-      GaiProfile : addresses
-
-
-
-
-
-        GaiProfile --&gt; "*" Subcategory : addresses
-        click Subcategory href "../Subcategory/"
-
-
-
-      GaiProfile : current_state
+      NamedThing &lt;|-- GaiProfile
+        click NamedThing href "../NamedThing/"
 
       GaiProfile : description
 
@@ -347,19 +335,6 @@
 
 
 
-      GaiProfile : profile_type
-
-
-
-
-
-        GaiProfile --&gt; "1" ProfileTypeEnum : profile_type
-        click ProfileTypeEnum href "../ProfileTypeEnum/"
-
-
-
-      GaiProfile : sector
-
       GaiProfile : see_also
 
       GaiProfile : structured_feedback_methods
@@ -384,18 +359,13 @@
 
 
 
-      GaiProfile : target_state
-
       GaiProfile : title
 
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
 <li><a href="../NamedThing/">NamedThing</a><ul>
-<li><a href="../AiRmfProfile/">AiRmfProfile</a><ul>
 <li><strong>GaiProfile</strong></li>
-</ul>
-</li>
 </ul>
 </li>
 </ul>
@@ -440,7 +410,7 @@
 <tr>
 <td><a href="../primary_considerations/">primary_considerations</a></td>
 <td>* <br/> <a href="../PrimaryGaiConsideration/">PrimaryGaiConsideration</a></td>
-<td>The primary GAI considerations from Appendix A</td>
+<td>The primary GAI considerations from Appendix A (Governance,</td>
 <td>direct</td>
 </tr>
 <tr>
@@ -448,36 +418,6 @@
 <td>* <br/> <a href="../StructuredPublicFeedback/">StructuredPublicFeedback</a></td>
 <td>Structured public feedback methods relevant to the profile</td>
 <td>direct</td>
-</tr>
-<tr>
-<td><a href="../profile_type/">profile_type</a></td>
-<td>1 <br/> <a href="../ProfileTypeEnum/">ProfileTypeEnum</a></td>
-<td>The kind of AI RMF Profile</td>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
-</tr>
-<tr>
-<td><a href="../current_state/">current_state</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>For temporal current profiles - how AI is currently being managed</td>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
-</tr>
-<tr>
-<td><a href="../target_state/">target_state</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>For temporal target profiles - the outcomes needed to achieve the</td>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
-</tr>
-<tr>
-<td><a href="../sector/">sector</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>The sector, industry, technology, or end-use application the</td>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
-</tr>
-<tr>
-<td><a href="../addresses/">addresses</a></td>
-<td>* <br/> <a href="../Subcategory/">Subcategory</a></td>
-<td>Subcategories that the profile implements or addresses</td>
-<td><a href="../AiRmfProfile/">AiRmfProfile</a></td>
 </tr>
 <tr>
 <td><a href="../id/">id</a></td>
@@ -542,6 +482,10 @@
 <td>oscal_profile:Profile</td>
 </tr>
 <tr>
+<td>related</td>
+<td>nist_ai_100_1:AiRmfProfile</td>
+</tr>
+<tr>
 <td>close</td>
 <td>nist_csf:CSFDocument</td>
 </tr>
@@ -556,7 +500,9 @@
 
 <span class="w">  </span><span class="s">Profile:</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risks</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">2),</span><span class="nv"> </span><span class="s">suggested</span><span class="nv"> </span><span class="s">actions</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">3),</span>
 
-<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A).'</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A).</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">Profile</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span>
+
+<span class="w">  </span><span class="s">*cross-sectoral*</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">RMF</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">1).'</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_core</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
@@ -564,64 +510,14 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oscal_profile:Profile</span>
 <span class="nt">close_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_csf:CSFDocument</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">profile_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_type</span>
-<span class="w">    </span><span class="nt">ifabsent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProfileTypeEnum(CROSS_SECTORAL)</span>
-<span class="nt">attributes</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">gai_risk_catalog</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_risk_catalog</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The catalog of GAI risks (Section 2).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">suggested_actions</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suggested_actions</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suggested actions to manage GAI risks (Section 3).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SuggestedAction</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">primary_considerations</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary_considerations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Appendix</span><span class="nv"> </span><span class="s">A</span>
-
-<span class="w">      </span><span class="s">(Governance,</span><span class="nv"> </span><span class="s">Pre-Deployment</span><span class="nv"> </span><span class="s">Testing,</span><span class="nv"> </span><span class="s">Content</span><span class="nv"> </span><span class="s">Provenance,</span>
-
-<span class="w">      </span><span class="s">Incident</span><span class="nv"> </span><span class="s">Disclosure).</span><span class="nv"> </span><span class="s">Discriminated</span><span class="nv"> </span><span class="s">by</span>
-
-<span class="w">      </span><span class="s">`consideration_kind`.'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrimaryGaiConsideration</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">structured_feedback_methods</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">structured_feedback_methods</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Structured</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">feedback</span><span class="nv"> </span><span class="s">methods</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">profile</span>
-
-<span class="w">      </span><span class="s">(A.1.5).'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StructuredPublicFeedback</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
+<span class="nt">related_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:AiRmfProfile</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">slots</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_risk_catalog</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suggested_actions</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary_considerations</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">structured_feedback_methods</span>
 <span class="nt">tree_root</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
@@ -632,7 +528,9 @@
 
 <span class="w">  </span><span class="s">Profile:</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risks</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">2),</span><span class="nv"> </span><span class="s">suggested</span><span class="nv"> </span><span class="s">actions</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">3),</span>
 
-<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A).'</span>
+<span class="w">  </span><span class="s">and</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A).</span><span class="nv"> </span><span class="s">The</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">Profile</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span>
+
+<span class="w">  </span><span class="s">*cross-sectoral*</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">RMF</span><span class="nv"> </span><span class="s">profile</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">1).'</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_core</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
@@ -640,16 +538,16 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">oscal_profile:Profile</span>
 <span class="nt">close_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_csf:CSFDocument</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="nt">slot_usage</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">profile_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_type</span>
-<span class="w">    </span><span class="nt">ifabsent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProfileTypeEnum(CROSS_SECTORAL)</span>
+<span class="nt">related_mappings</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:AiRmfProfile</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">gai_risk_catalog</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_risk_catalog</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The catalog of GAI risks (Section 2).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
+<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_core</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -661,7 +559,9 @@
 <span class="w">  </span><span class="nt">suggested_actions</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">suggested_actions</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Suggested actions to manage GAI risks (Section 3).</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
+<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_actions</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -672,14 +572,14 @@
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">primary_considerations</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">primary_considerations</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Appendix</span><span class="nv"> </span><span class="s">A</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">primary</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">considerations</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">Appendix</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">(Governance,</span>
 
-<span class="w">      </span><span class="s">(Governance,</span><span class="nv"> </span><span class="s">Pre-Deployment</span><span class="nv"> </span><span class="s">Testing,</span><span class="nv"> </span><span class="s">Content</span><span class="nv"> </span><span class="s">Provenance,</span>
+<span class="w">      </span><span class="s">Pre-Deployment</span><span class="nv"> </span><span class="s">Testing,</span><span class="nv"> </span><span class="s">Content</span><span class="nv"> </span><span class="s">Provenance,</span><span class="nv"> </span><span class="s">Incident</span>
 
-<span class="w">      </span><span class="s">Incident</span><span class="nv"> </span><span class="s">Disclosure).</span><span class="nv"> </span><span class="s">Discriminated</span><span class="nv"> </span><span class="s">by</span>
-
-<span class="w">      </span><span class="s">`consideration_kind`.'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
+<span class="w">      </span><span class="s">Disclosure).</span><span class="nv"> </span><span class="s">Discriminated</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">`consideration_kind`.'</span>
+<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_considerations</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -692,8 +592,10 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">structured_feedback_methods</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'Structured</span><span class="nv"> </span><span class="s">public</span><span class="nv"> </span><span class="s">feedback</span><span class="nv"> </span><span class="s">methods</span><span class="nv"> </span><span class="s">relevant</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">profile</span>
 
-<span class="w">      </span><span class="s">(A.1.5).'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
+<span class="w">      </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A.1.5).'</span>
+<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_feedback</span>
+<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
@@ -702,71 +604,11 @@
 <span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">inlined_as_list</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">profile_type</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profile_type</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">The kind of AI RMF Profile.</span>
-<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profiles</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">ifabsent</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProfileTypeEnum(CROSS_SECTORAL)</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProfileTypeEnum</span>
-<span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
-<span class="w">  </span><span class="nt">current_state</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">current_state</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'For</span><span class="nv"> </span><span class="s">temporal</span><span class="nv"> </span><span class="s">current</span><span class="nv"> </span><span class="s">profiles</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">how</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">currently</span><span class="nv"> </span><span class="s">being</span><span class="nv"> </span><span class="s">managed</span>
-
-<span class="w">      </span><span class="s">and</span><span class="nv"> </span><span class="s">related</span><span class="nv"> </span><span class="s">risks</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">terms</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">current</span><span class="nv"> </span><span class="s">outcomes.'</span>
-<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profiles</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">target_state</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">target_state</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'For</span><span class="nv"> </span><span class="s">temporal</span><span class="nv"> </span><span class="s">target</span><span class="nv"> </span><span class="s">profiles</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">outcomes</span><span class="nv"> </span><span class="s">needed</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">achieve</span><span class="nv"> </span><span class="s">the</span>
-
-<span class="w">      </span><span class="s">desired</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">risk</span><span class="nv"> </span><span class="s">management</span><span class="nv"> </span><span class="s">goals.'</span>
-<span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">profiles</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">sector</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">sector</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">'The</span><span class="nv"> </span><span class="s">sector,</span><span class="nv"> </span><span class="s">industry,</span><span class="nv"> </span><span class="s">technology,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">end-use</span><span class="nv"> </span><span class="s">application</span><span class="nv"> </span><span class="s">the</span>
-
-<span class="w">      </span><span class="s">profile</span><span class="nv"> </span><span class="s">addresses</span><span class="nv"> </span><span class="s">(e.g.,</span><span class="nv"> </span><span class="s">"hiring",</span><span class="nv"> </span><span class="s">"fair</span><span class="nv"> </span><span class="s">housing").'</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-100-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
-<span class="w">  </span><span class="nt">addresses</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">addresses</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subcategories that the profile implements or addresses.</span>
-<span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-100-1</span>
-<span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiProfile</span>
-<span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiRmfProfile</span>
-<span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Subcategory</span>
-<span class="w">    </span><span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">id</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">id</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A unique identifier for an element.</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">schema:identifier</span>
@@ -780,7 +622,7 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">name</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A short human-readable name.</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdfs:label</span>
@@ -792,7 +634,7 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">title</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable title.</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:title</span>
@@ -805,7 +647,7 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">A human-readable description.</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:description</span>
@@ -818,7 +660,7 @@
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">see_also</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Related references.</span>
 <span class="w">    </span><span class="nt">in_subset</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">core</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">base</span>
 <span class="w">    </span><span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="w">    </span><span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">rdfs:seeAlso</span>

@@ -448,6 +448,28 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#slots-from-riskmeasurementchallenge-also-in-risk_and_harm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from RiskMeasurementChallenge also in risk_and_harm
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slots-from-risktolerance-also-in-risk_and_harm" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from RiskTolerance also in risk_and_harm
+      
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -498,7 +520,8 @@
 
 <h1 id="subset-riskandharm">Subset: RiskAndHarm</h1>
 <p><em>Risk, impact, harm, residual risk, risk tolerance, risk</em></p>
-<p><em>measurement challenges, and risk response options (Part 1, §1).</em></p>
+<p><em>measurement challenges, and risk response options (Part 1, §1</em></p>
+<p><em>"Framing Risk", incl. §1.2 Challenges).</em></p>
 <div>
 <p>URI: <a href="./">RiskAndHarm</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -616,6 +639,11 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../affects_system/">affects_system</a></td>
+<td>0..1 <br/> <a href="../AiSystem/">AiSystem</a></td>
+<td>The AI system a risk pertains to</td>
+</tr>
+<tr>
 <td><a href="../impact_sign/">impact_sign</a></td>
 <td>0..1 <br/> <a href="../ImpactSignEnum/">ImpactSignEnum</a></td>
 <td>Whether the impact is positive, negative, or both</td>
@@ -634,6 +662,11 @@
 <td><a href="../magnitude/">magnitude</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Magnitude or degree of consequences if the event occurs (free</td>
+</tr>
+<tr>
+<td><a href="../related_impacts/">related_impacts</a></td>
+<td>* <br/> <a href="../Impact/">Impact</a></td>
+<td>The impacts that contribute to a risk</td>
 </tr>
 <tr>
 <td><a href="../risk_response/">risk_response</a></td>
@@ -653,6 +686,11 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../affects_system/">affects_system</a></td>
+<td>0..1 <br/> <a href="../AiSystem/">AiSystem</a></td>
+<td>The AI system a risk pertains to</td>
+</tr>
+<tr>
 <td><a href="../impact_sign/">impact_sign</a></td>
 <td>0..1 <br/> <a href="../ImpactSignEnum/">ImpactSignEnum</a></td>
 <td>Whether the impact is positive, negative, or both</td>
@@ -673,9 +711,53 @@
 <td>Magnitude or degree of consequences if the event occurs (free</td>
 </tr>
 <tr>
+<td><a href="../related_impacts/">related_impacts</a></td>
+<td>* <br/> <a href="../Impact/">Impact</a></td>
+<td>The impacts that contribute to a risk</td>
+</tr>
+<tr>
 <td><a href="../risk_response/">risk_response</a></td>
 <td>0..1 <br/> <a href="../RiskResponseEnum/">RiskResponseEnum</a></td>
 <td>The chosen risk treatment option</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slots-from-riskmeasurementchallenge-also-in-risk_and_harm">Slots from <a href="../RiskMeasurementChallenge/">RiskMeasurementChallenge</a> also in <em>risk_and_harm</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../challenge_kind/">challenge_kind</a></td>
+<td>1 <br/> <a href="../RiskMeasurementChallengeEnum/">RiskMeasurementChallengeEnum</a></td>
+<td>Which risk-measurement challenge a <code>RiskMeasurementChallenge</code> represents</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slots-from-risktolerance-also-in-risk_and_harm">Slots from <a href="../RiskTolerance/">RiskTolerance</a> also in <em>risk_and_harm</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../legal_basis/">legal_basis</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Legal or regulatory requirements influencing a risk tolerance</td>
+</tr>
+<tr>
+<td><a href="../tolerance_statement/">tolerance_statement</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Free-text statement of a risk tolerance level or threshold</td>
 </tr>
 </tbody>
 </table>
@@ -691,6 +773,14 @@
 <tr>
 <td><a href="../affects/">affects</a></td>
 <td>Entities (people, organizations, ecosystems) the risk or harm</td>
+</tr>
+<tr>
+<td><a href="../affects_system/">affects_system</a></td>
+<td>The AI system a risk pertains to</td>
+</tr>
+<tr>
+<td><a href="../challenge_kind/">challenge_kind</a></td>
+<td>Which risk-measurement challenge a <code>RiskMeasurementChallenge</code> represents</td>
 </tr>
 <tr>
 <td><a href="../harm_category/">harm_category</a></td>
@@ -709,6 +799,10 @@
 <td>Whether this risk represents risk remaining after risk treatment</td>
 </tr>
 <tr>
+<td><a href="../legal_basis/">legal_basis</a></td>
+<td>Legal or regulatory requirements influencing a risk tolerance</td>
+</tr>
+<tr>
 <td><a href="../likelihood/">likelihood</a></td>
 <td>Estimated probability of the event occurring (0</td>
 </tr>
@@ -717,8 +811,20 @@
 <td>Magnitude or degree of consequences if the event occurs (free</td>
 </tr>
 <tr>
+<td><a href="../related_impacts/">related_impacts</a></td>
+<td>The impacts that contribute to a risk</td>
+</tr>
+<tr>
+<td><a href="../risk_measurement_challenges/">risk_measurement_challenges</a></td>
+<td>Identified challenges in measuring AI risk</td>
+</tr>
+<tr>
 <td><a href="../risk_response/">risk_response</a></td>
 <td>The chosen risk treatment option</td>
+</tr>
+<tr>
+<td><a href="../tolerance_statement/">tolerance_statement</a></td>
+<td>Free-text statement of a risk tolerance level or threshold</td>
 </tr>
 </tbody>
 </table>

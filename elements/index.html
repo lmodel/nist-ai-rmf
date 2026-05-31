@@ -547,8 +547,7 @@
 
 
 <h1 id="nist-ai-risk-management-framework">NIST AI Risk Management Framework</h1>
-<p>Umbrella LinkML schema for the NIST AI Risk Management Framework
-family.</p>
+<p>Merged LinkML schema for the NIST AI Risk Management Framework family.</p>
 <p>Imports:
   * <code>nist_ai_100_1</code> - AI RMF 1.0 (NIST AI 100-1) foundational
     concepts, Core Functions / Categories / Subcategories,
@@ -602,16 +601,8 @@ must pass <code>--target-class</code> when validating.</p>
 <td>An implementation of the AI RMF Functions, Categories, and</td>
 </tr>
 <tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GaiProfile/">GaiProfile</a></td>
-<td>Root container that bundles the NIST AI 600-1 Generative AI</td>
-</tr>
-<tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AiSpecificRisk/">AiSpecificRisk</a></td>
 <td>A risk that is new or increased for AI-based technology compared</td>
-</tr>
-<tr>
-<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GaiRisk/">GaiRisk</a></td>
-<td>A risk that is novel to or exacerbated by Generative AI</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="AiSystem/">AiSystem</a></td>
@@ -632,6 +623,14 @@ must pass <code>--target-class</code> when validating.</p>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Function/">Function</a></td>
 <td>A top-level AI RMF Core function</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GaiProfile/">GaiProfile</a></td>
+<td>Root container that bundles the NIST AI 600-1 Generative AI</td>
+</tr>
+<tr>
+<td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GaiRisk/">GaiRisk</a></td>
+<td>A risk that is novel to or exacerbated by Generative AI</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="Harm/">Harm</a></td>
@@ -726,11 +725,11 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="addressed_by_actions/">addressed_by_actions</a></td>
-<td>Suggested actions that address this risk (back-reference)</td>
+<td>Suggested actions that address a GAI risk (back-reference</td>
 </tr>
 <tr>
 <td><a href="addresses/">addresses</a></td>
-<td>Subcategories that the profile implements or addresses</td>
+<td>Subcategories that a profile implements or addresses</td>
 </tr>
 <tr>
 <td><a href="affects/">affects</a></td>
@@ -738,7 +737,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="affects_system/">affects_system</a></td>
-<td>The AI system this risk pertains to</td>
+<td>The AI system a risk pertains to</td>
 </tr>
 <tr>
 <td><a href="ai_actor_categories/">ai_actor_categories</a></td>
@@ -754,7 +753,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="ai_incident_definition/">ai_incident_definition</a></td>
-<td>For Incident Disclosure: the definition of AI incident</td>
+<td>For Incident Disclosure: the definition of AI incident used</td>
 </tr>
 <tr>
 <td><a href="ai_specific_risks/">ai_specific_risks</a></td>
@@ -794,11 +793,11 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="challenge_kind/">challenge_kind</a></td>
-<td>Which measurement challenge this represents</td>
+<td>Which risk-measurement challenge a <code>RiskMeasurementChallenge</code> represents</td>
 </tr>
 <tr>
 <td><a href="characteristic_kind/">characteristic_kind</a></td>
-<td>Which trustworthiness characteristic this instance represents</td>
+<td>Which trustworthiness characteristic a <code>TrustworthinessCharacteristic</code> repres...</td>
 </tr>
 <tr>
 <td><a href="consideration_kind/">consideration_kind</a></td>
@@ -814,7 +813,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="dimension_kind/">dimension_kind</a></td>
-<td>Which of the five dimensions this instance represents</td>
+<td>Which AI system dimension an <code>AiSystemDimension</code> instance represents</td>
 </tr>
 <tr>
 <td><a href="dimensions/">dimensions</a></td>
@@ -822,7 +821,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="document/">document</a></td>
-<td>Publication metadata</td>
+<td>Publication metadata of the framework instance</td>
 </tr>
 <tr>
 <td><a href="documentation_questions/">documentation_questions</a></td>
@@ -834,7 +833,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="entries/">entries</a></td>
-<td>The Playbook entries in this collection</td>
+<td>The Playbook entries in a <code>PlaybookCollection</code></td>
 </tr>
 <tr>
 <td><a href="feedback_method_kind/">feedback_method_kind</a></td>
@@ -870,7 +869,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="governance_practices/">governance_practices</a></td>
-<td>Governance plans and actions (A</td>
+<td>Governance plans and actions enumerated in NIST AI 600-1</td>
 </tr>
 <tr>
 <td><a href="harm_category/">harm_category</a></td>
@@ -894,11 +893,11 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="includes_tevv/">includes_tevv</a></td>
-<td>Whether this stage incorporates TEVV activities</td>
+<td>Whether the lifecycle stage incorporates TEVV activities</td>
 </tr>
 <tr>
 <td><a href="is_base_condition/">is_base_condition</a></td>
-<td>True when this is a necessary condition for trustworthiness</td>
+<td>True when this characteristic is a necessary condition for</td>
 </tr>
 <tr>
 <td><a href="is_cross_cutting/">is_cross_cutting</a></td>
@@ -914,7 +913,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="legal_basis/">legal_basis</a></td>
-<td>Legal or regulatory requirements influencing the tolerance</td>
+<td>Legal or regulatory requirements influencing a risk tolerance</td>
 </tr>
 <tr>
 <td><a href="lifecycle_stage/">lifecycle_stage</a></td>
@@ -946,7 +945,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="primary_considerations/">primary_considerations</a></td>
-<td>The primary GAI considerations from Appendix A</td>
+<td>The primary GAI considerations from Appendix A (Governance,</td>
 </tr>
 <tr>
 <td><a href="profile_type/">profile_type</a></td>
@@ -958,7 +957,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="provenance_techniques/">provenance_techniques</a></td>
-<td>For Content Provenance: provenance data tracking</td>
+<td>For Content Provenance: provenance data tracking techniques</td>
 </tr>
 <tr>
 <td><a href="published_date/">published_date</a></td>
@@ -978,7 +977,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="related_impacts/">related_impacts</a></td>
-<td>The impacts that contribute to this risk</td>
+<td>The impacts that contribute to a risk</td>
 </tr>
 <tr>
 <td><a href="risk_categorization/">risk_categorization</a></td>
@@ -1018,7 +1017,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="sector/">sector</a></td>
-<td>The sector, industry, technology, or end-use application the</td>
+<td>The sector, industry, technology, or end-use application a</td>
 </tr>
 <tr>
 <td><a href="see_also/">see_also</a></td>
@@ -1030,7 +1029,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="stage_kind/">stage_kind</a></td>
-<td>Which of the six stages this instance represents</td>
+<td>Which AI lifecycle stage an <code>AiLifecycleStage</code> instance represents</td>
 </tr>
 <tr>
 <td><a href="structured_feedback_methods/">structured_feedback_methods</a></td>
@@ -1058,11 +1057,11 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="task_kind/">task_kind</a></td>
-<td>Which of the actor task categories this is</td>
+<td>Which AI actor task category an <code>AiActorTask</code> instance represents</td>
 </tr>
 <tr>
 <td><a href="third_party_considerations/">third_party_considerations</a></td>
-<td>Considerations for third-party GAI integrations,</td>
+<td>Considerations for third-party GAI integrations, procurement,</td>
 </tr>
 <tr>
 <td><a href="time_scale/">time_scale</a></td>
@@ -1074,7 +1073,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="tolerance_statement/">tolerance_statement</a></td>
-<td>Free-text statement of the tolerance level or threshold</td>
+<td>Free-text statement of a risk tolerance level or threshold</td>
 </tr>
 <tr>
 <td><a href="topic/">topic</a></td>
@@ -1098,7 +1097,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="typical_actors/">typical_actors</a></td>
-<td>Representative actor roles that perform this task</td>
+<td>Representative actor roles that perform an AI actor task</td>
 </tr>
 <tr>
 <td><a href="version/">version</a></td>
@@ -1144,6 +1143,14 @@ must pass <code>--target-class</code> when validating.</p>
 <td>Two-letter function prefix used in GAI Action IDs</td>
 </tr>
 <tr>
+<td><a href="GaiActorTaskEnum/">GaiActorTaskEnum</a></td>
+<td>AI Actor Tasks referenced by the Suggested Actions tables in</td>
+</tr>
+<tr>
+<td><a href="GaiLifecycleStageEnum/">GaiLifecycleStageEnum</a></td>
+<td>AI lifecycle stages enumerated in NIST AI 600-1 Section 2:</td>
+</tr>
+<tr>
 <td><a href="GaiRiskCategorizationEnum/">GaiRiskCategorizationEnum</a></td>
 <td>Higher-level grouping of GAI risks, derived from the UK's</td>
 </tr>
@@ -1164,6 +1171,10 @@ must pass <code>--target-class</code> when validating.</p>
 <td>The time scale over which a GAI risk may materialise</td>
 </tr>
 <tr>
+<td><a href="GovernancePracticeEnum/">GovernancePracticeEnum</a></td>
+<td>Governance plans and actions for GAI systems enumerated in</td>
+</tr>
+<tr>
 <td><a href="HarmCategoryEnum/">HarmCategoryEnum</a></td>
 <td>High-level categories of harm related to AI systems (Figure 1)</td>
 </tr>
@@ -1182,6 +1193,10 @@ must pass <code>--target-class</code> when validating.</p>
 <tr>
 <td><a href="ProfileTypeEnum/">ProfileTypeEnum</a></td>
 <td>Types of AI RMF Profile (§6)</td>
+</tr>
+<tr>
+<td><a href="ProvenanceTechniqueEnum/">ProvenanceTechniqueEnum</a></td>
+<td>Provenance data tracking techniques for GAI content</td>
 </tr>
 <tr>
 <td><a href="RedTeamingTypeEnum/">RedTeamingTypeEnum</a></td>
@@ -1318,16 +1333,16 @@ must pass <code>--target-class</code> when validating.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="Appendices/">Appendices</a></td>
-<td>Supplementary material from Appendices B (differences from</td>
+<td><a href="AiRiskDistinctions/">AiRiskDistinctions</a></td>
+<td>Appendix B "How AI Risks Differ from Traditional Software Risks" -</td>
 </tr>
 <tr>
 <td><a href="Attributes/">Attributes</a></td>
-<td>Design attributes of the AI RMF (Appendix D) - the qualities</td>
+<td>Design attributes of the AI RMF (Appendix D "Attributes of the</td>
 </tr>
 <tr>
-<td><a href="Core/">Core</a></td>
-<td>Foundational concepts shared across the framework: identifier slots,</td>
+<td><a href="Base/">Base</a></td>
+<td>Schema-infrastructure elements shared across the framework:</td>
 </tr>
 <tr>
 <td><a href="FrameworkCore/">FrameworkCore</a></td>
@@ -1336,6 +1351,10 @@ must pass <code>--target-class</code> when validating.</p>
 <tr>
 <td><a href="GaiActions/">GaiActions</a></td>
 <td>Suggested Actions organised by AI RMF subcategory (Section 3)</td>
+</tr>
+<tr>
+<td><a href="GaiBase/">GaiBase</a></td>
+<td>GAI-specific base vocabulary defined locally: the divergent</td>
 </tr>
 <tr>
 <td><a href="GaiConsiderations/">GaiConsiderations</a></td>
@@ -1350,6 +1369,10 @@ must pass <code>--target-class</code> when validating.</p>
 <td>Structured Public Feedback methods and AI Red-teaming</td>
 </tr>
 <tr>
+<td><a href="HumanAiInteraction/">HumanAiInteraction</a></td>
+<td>Appendix C "AI Risk Management and Human-AI Interaction" -</td>
+</tr>
+<tr>
 <td><a href="Lifecycle/">Lifecycle</a></td>
 <td>AI system lifecycle stages, key dimensions, AI actor categories,</td>
 </tr>
@@ -1359,7 +1382,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="Profiles/">Profiles</a></td>
-<td>AI RMF profile constructs (§6): use-case profiles, temporal</td>
+<td>AI RMF profile constructs (Part 2, §6): use-case profiles,</td>
 </tr>
 <tr>
 <td><a href="RiskAndHarm/">RiskAndHarm</a></td>
@@ -1367,7 +1390,7 @@ must pass <code>--target-class</code> when validating.</p>
 </tr>
 <tr>
 <td><a href="Trustworthiness/">Trustworthiness</a></td>
-<td>Characteristics of trustworthy AI systems (Part 1, §3):</td>
+<td>Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,</td>
 </tr>
 </tbody>
 </table>

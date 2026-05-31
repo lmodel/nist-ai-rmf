@@ -415,6 +415,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -486,9 +497,9 @@
 
 
 <h1 id="slot-is_base_condition">Slot: is_base_condition</h1>
-<p><em>True when this is a necessary condition for trustworthiness</em></p>
-<p><em>(Valid and Reliable; per Figure 4 it is the base of all other</em></p>
-<p><em>characteristics).</em></p>
+<p><em>True when this characteristic is a necessary condition for</em></p>
+<p><em>trustworthiness (per Figure 4 - Valid and Reliable is the base</em></p>
+<p><em>of all others).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-rmf/is_base_condition">nist_ai_rmf:is_base_condition</a></p>
 <!-- no inheritance hierarchy -->
@@ -539,25 +550,15 @@
 </thead>
 <tbody>
 <tr>
-<td>### Slot Characteristics</td>
+<td></td>
 <td></td>
 </tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Owner</td>
-<td><a href="../TrustworthinessCharacteristic/">TrustworthinessCharacteristic</a></td>
-</tr>
-</tbody>
-</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../Trustworthiness/">Trustworthiness</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -585,14 +586,15 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">is_base_condition</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;True</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">necessary</span><span class="nv"> </span><span class="s">condition</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">trustworthiness</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;True</span><span class="nv"> </span><span class="s">when</span><span class="nv"> </span><span class="s">this</span><span class="nv"> </span><span class="s">characteristic</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">necessary</span><span class="nv"> </span><span class="s">condition</span><span class="nv"> </span><span class="s">for</span>
 
-<span class="w">  </span><span class="s">(Valid</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Reliable;</span><span class="nv"> </span><span class="s">per</span><span class="nv"> </span><span class="s">Figure</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">it</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">base</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">other</span>
+<span class="w">  </span><span class="s">trustworthiness</span><span class="nv"> </span><span class="s">(per</span><span class="nv"> </span><span class="s">Figure</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">Valid</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Reliable</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">base</span>
 
-<span class="w">  </span><span class="s">characteristics).&#39;</span>
+<span class="w">  </span><span class="s">of</span><span class="nv"> </span><span class="s">all</span><span class="nv"> </span><span class="s">others).&#39;</span>
+<span class="nt">in_subset</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trustworthiness</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TrustworthinessCharacteristic</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TrustworthinessCharacteristic</span>
 <span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">boolean</span>

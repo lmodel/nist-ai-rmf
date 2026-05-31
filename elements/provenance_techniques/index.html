@@ -415,6 +415,17 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#in-subsets" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        In Subsets
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -486,10 +497,9 @@
 
 
 <h1 id="slot-provenance_techniques">Slot: provenance_techniques</h1>
-<p><em>For Content Provenance: provenance data tracking</em></p>
-<p><em>techniques such as digital watermarking, metadata</em></p>
-<p><em>recording, digital fingerprinting, human authentication</em></p>
-<p><em>(A.1.6).</em></p>
+<p><em>For Content Provenance: provenance data tracking techniques</em></p>
+<p><em>such as digital watermarking, metadata recording, digital</em></p>
+<p><em>fingerprinting, and human authentication (Appendix A.1.6).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-rmf/provenance_techniques">nist_ai_rmf:provenance_techniques</a></p>
 <!-- no inheritance hierarchy -->
@@ -522,7 +532,7 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../String/">String</a></td>
+<td><a href="../ProvenanceTechniqueEnum/">ProvenanceTechniqueEnum</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
@@ -543,26 +553,12 @@
 <td>Multivalued</td>
 <td>Yes</td>
 </tr>
-<tr>
-<td>### Slot Characteristics</td>
-<td></td>
-</tr>
 </tbody>
 </table>
-<table>
-<thead>
-<tr>
-<th>Property</th>
-<th>Value</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>Owner</td>
-<td><a href="../PrimaryGaiConsideration/">PrimaryGaiConsideration</a></td>
-</tr>
-</tbody>
-</table>
+<h2 id="in-subsets">In Subsets</h2>
+<ul>
+<li><a href="../GaiConsiderations/">GaiConsiderations</a></li>
+</ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
@@ -590,19 +586,18 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">provenance_techniques</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;For</span><span class="nv"> </span><span class="s">Content</span><span class="nv"> </span><span class="s">Provenance:</span><span class="nv"> </span><span class="s">provenance</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">tracking</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;For</span><span class="nv"> </span><span class="s">Content</span><span class="nv"> </span><span class="s">Provenance:</span><span class="nv"> </span><span class="s">provenance</span><span class="nv"> </span><span class="s">data</span><span class="nv"> </span><span class="s">tracking</span><span class="nv"> </span><span class="s">techniques</span>
 
-<span class="w">  </span><span class="s">techniques</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">digital</span><span class="nv"> </span><span class="s">watermarking,</span><span class="nv"> </span><span class="s">metadata</span>
+<span class="w">  </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">digital</span><span class="nv"> </span><span class="s">watermarking,</span><span class="nv"> </span><span class="s">metadata</span><span class="nv"> </span><span class="s">recording,</span><span class="nv"> </span><span class="s">digital</span>
 
-<span class="w">  </span><span class="s">recording,</span><span class="nv"> </span><span class="s">digital</span><span class="nv"> </span><span class="s">fingerprinting,</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">authentication</span>
-
-<span class="w">  </span><span class="s">(A.1.6).&#39;</span>
+<span class="w">  </span><span class="s">fingerprinting,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">authentication</span><span class="nv"> </span><span class="s">(Appendix</span><span class="nv"> </span><span class="s">A.1.6).&#39;</span>
+<span class="nt">in_subset</span><span class="p">:</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_considerations</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-rmf</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrimaryGaiConsideration</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PrimaryGaiConsideration</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ProvenanceTechniqueEnum</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

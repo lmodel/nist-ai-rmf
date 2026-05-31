@@ -405,6 +405,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#slots-from-gaiprofile-also-in-gai_core" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from GaiProfile also in gai_core
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#slots-from-gairisk-also-in-gai_core" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -492,6 +503,23 @@
 </tr>
 </tbody>
 </table>
+<h3 id="slots-from-gaiprofile-also-in-gai_core">Slots from <a href="../GaiProfile/">GaiProfile</a> also in <em>gai_core</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../gai_risk_catalog/">gai_risk_catalog</a></td>
+<td>* <br/> <a href="../GaiRisk/">GaiRisk</a></td>
+<td>The catalog of GAI risks (Section 2)</td>
+</tr>
+</tbody>
+</table>
 <h3 id="slots-from-gairisk-also-in-gai_core">Slots from <a href="../GaiRisk/">GaiRisk</a> also in <em>gai_core</em></h3>
 <table>
 <thead>
@@ -502,6 +530,11 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../addressed_by_actions/">addressed_by_actions</a></td>
+<td>* <br/> <a href="../SuggestedAction/">SuggestedAction</a></td>
+<td>Suggested actions that address a GAI risk (back-reference</td>
+</tr>
 <tr>
 <td><a href="../gai_risk_kind/">gai_risk_kind</a></td>
 <td>0..1 <br/> <a href="../GaiRiskCategoryEnum/">GaiRiskCategoryEnum</a></td>
@@ -538,6 +571,14 @@
 </tr>
 </thead>
 <tbody>
+<tr>
+<td><a href="../addressed_by_actions/">addressed_by_actions</a></td>
+<td>Suggested actions that address a GAI risk (back-reference</td>
+</tr>
+<tr>
+<td><a href="../gai_risk_catalog/">gai_risk_catalog</a></td>
+<td>The catalog of GAI risks (Section 2)</td>
+</tr>
 <tr>
 <td><a href="../gai_risk_kind/">gai_risk_kind</a></td>
 <td>The GAI risk category this element represents</td>

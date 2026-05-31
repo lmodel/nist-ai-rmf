@@ -499,9 +499,34 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../ai_incident_definition/">ai_incident_definition</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>For Incident Disclosure: the definition of AI incident used</td>
+</tr>
+<tr>
 <td><a href="../consideration_kind/">consideration_kind</a></td>
 <td>1 <br/> <a href="../PrimaryConsiderationEnum/">PrimaryConsiderationEnum</a></td>
 <td>Which primary consideration this element represents</td>
+</tr>
+<tr>
+<td><a href="../governance_practices/">governance_practices</a></td>
+<td>* <br/> <a href="../GovernancePracticeEnum/">GovernancePracticeEnum</a></td>
+<td>Governance plans and actions enumerated in NIST AI 600-1</td>
+</tr>
+<tr>
+<td><a href="../limitations_of_current_approaches/">limitations_of_current_approaches</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>For Pre-Deployment Testing: free-text discussion of why</td>
+</tr>
+<tr>
+<td><a href="../provenance_techniques/">provenance_techniques</a></td>
+<td>* <br/> <a href="../ProvenanceTechniqueEnum/">ProvenanceTechniqueEnum</a></td>
+<td>For Content Provenance: provenance data tracking techniques</td>
+</tr>
+<tr>
+<td><a href="../third_party_considerations/">third_party_considerations</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>Considerations for third-party GAI integrations, procurement,</td>
 </tr>
 </tbody>
 </table>
@@ -515,8 +540,32 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../ai_incident_definition/">ai_incident_definition</a></td>
+<td>For Incident Disclosure: the definition of AI incident used</td>
+</tr>
+<tr>
 <td><a href="../consideration_kind/">consideration_kind</a></td>
 <td>Which primary consideration this element represents</td>
+</tr>
+<tr>
+<td><a href="../governance_practices/">governance_practices</a></td>
+<td>Governance plans and actions enumerated in NIST AI 600-1</td>
+</tr>
+<tr>
+<td><a href="../limitations_of_current_approaches/">limitations_of_current_approaches</a></td>
+<td>For Pre-Deployment Testing: free-text discussion of why</td>
+</tr>
+<tr>
+<td><a href="../primary_considerations/">primary_considerations</a></td>
+<td>The primary GAI considerations from Appendix A (Governance,</td>
+</tr>
+<tr>
+<td><a href="../provenance_techniques/">provenance_techniques</a></td>
+<td>For Content Provenance: provenance data tracking techniques</td>
+</tr>
+<tr>
+<td><a href="../third_party_considerations/">third_party_considerations</a></td>
+<td>Considerations for third-party GAI integrations, procurement,</td>
 </tr>
 </tbody>
 </table>
@@ -530,8 +579,16 @@
 </thead>
 <tbody>
 <tr>
+<td><a href="../GovernancePracticeEnum/">GovernancePracticeEnum</a></td>
+<td>Governance plans and actions for GAI systems enumerated in</td>
+</tr>
+<tr>
 <td><a href="../PrimaryConsiderationEnum/">PrimaryConsiderationEnum</a></td>
 <td>The four overarching themes derived from the GAI PWG</td>
+</tr>
+<tr>
+<td><a href="../ProvenanceTechniqueEnum/">ProvenanceTechniqueEnum</a></td>
+<td>Provenance data tracking techniques for GAI content</td>
 </tr>
 </tbody>
 </table>

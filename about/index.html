@@ -329,6 +329,24 @@
         
       
       
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  
+  <span class="md-ellipsis">
+    
+  
+    About
+  
+
+    
+  </span>
+  
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
       <a href="./" class="md-nav__link md-nav__link--active">
         
   
@@ -345,6 +363,58 @@
   
 
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-repository-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this repository ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
       
     </li>
   
@@ -370,6 +440,47 @@
     
   
   
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#what-this-repository-ships" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        What this repository ships
+      
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#references" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        References
+      
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
 </nav>
                   </div>
                 </div>
@@ -390,8 +501,56 @@
 
 
 <h1 id="about-nist-ai-rmf">About nist-ai-rmf</h1>
-<p>NIST AI RMF - LinkML Schema</p>
-<h1 id="references">References</h1>
+<p><code>nist-ai-rmf</code> is an <strong>umbrella LinkML schema</strong> for the NIST AI Risk
+Management Framework family. It does not redefine any classes,
+slots, enums, or types of its own - it simply pulls together two
+sibling schemas that are maintained in their own repositories:</p>
+<table>
+<thead>
+<tr>
+<th>Import</th>
+<th>Source repository</th>
+<th>Models</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>nist_ai_100_1</code></td>
+<td><a href="https://w3id.org/lmodel/nist-ai-100-1"><code>lmodel/nist-ai-100-1</code></a></td>
+<td>AI RMF 1.0 (NIST AI 100-1): foundational concepts, Core Functions / Categories / Subcategories, Profiles, design attributes, AI RMF Playbook companion data</td>
+</tr>
+<tr>
+<td><code>nist_ai_600_1</code></td>
+<td><a href="https://w3id.org/lmodel/nist-ai-600-1"><code>lmodel/nist-ai-600-1</code></a></td>
+<td>GAI Profile (NIST AI 600-1): 12 GAI risks, Suggested Actions, Primary GAI Considerations, Structured Public Feedback methods</td>
+</tr>
+</tbody>
+</table>
+<p>The sub-schemas are resolved over the network via the <code>schema_100_1:</code> and <code>schema_600_1:</code> prefixes declared in <code>src/nist_ai_rmf/schema/nist_ai_rmf.yaml</code>; they are <strong>not</strong> vendored into this repository.</p>
+<h2 id="design">Design</h2>
+<div class="highlight"><pre><span></span><code>                     nist_ai_rmf  (umbrella, this repo)
+                     /          \
+            nist_ai_100_1 ----- nist_ai_600_1
+                    \            /
+                  nist_ai_rmf_common  (hosted in nist-ai-100-1)
+</code></pre></div>
+<ul>
+<li>Both sub-schemas import a shared <strong><code>nist_ai_rmf_common</code></strong> module (hosted in <code>nist-ai-100-1</code>) that defines the one canonical base — the <code>NamedThing</code> root, identifier/title/description slots, <code>SubcategoryCode</code>, and <code>TrustworthinessCharacteristicEnum</code>. This is what lets the two be merged into one namespace without colliding.</li>
+<li>Elements re-export under the <code>nist_ai_rmf:</code> default prefix, so downstream consumers import only this umbrella to access everything.</li>
+<li>Where the two NIST documents genuinely diverge — the AI lifecycle stages and actor-task vocabularies differ between 100-1 and 600-1 — the GAI Profile keeps its own <code>GaiLifecycleStageEnum</code> / <code>GaiActorTaskEnum</code> as <strong>class-local attributes</strong> on <code>GaiRisk</code> / <code>SuggestedAction</code>, so both taxonomies survive the merge intact.</li>
+<li>Two tree-root classes are exposed by the imports:</li>
+<li><code>AiRmfFramework</code> - from <code>nist_ai_100_1</code></li>
+<li><code>GaiProfile</code> - from <code>nist_ai_600_1</code>
+  Callers must pass <code>--target-class</code> when running <code>linkml-validate</code>.</li>
+<li>SSSOM cross-vocabulary mappings, per-element example fixtures, and the NIST AI RMF Playbook validator all live in the upstream repositories and are exercised by their own CI.</li>
+</ul>
+<h2 id="what-this-repository-ships">What this repository ships</h2>
+<ul>
+<li>The single umbrella schema (<code>src/nist_ai_rmf/schema/nist_ai_rmf.yaml</code>).</li>
+<li>Merged-schema generation targets under <code>project/</code> (JSON Schema, OWL, SHACL, ShEx, GraphQL, Pydantic, etc.) produced from the umbrella with all imports inlined.</li>
+<li>Merged-only unit tests under <code>tests/</code> that verify both imports resolve and that classes/enums from each sub-schema are reachable through the merged <code>nist_ai_rmf</code> namespace.</li>
+</ul>
+<h2 id="references">References</h2>
 <ul>
 <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/nist.ai.100-1.pdf">NIST AI 100-1</a></li>
 <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST AI 600-1</a></li>

@@ -401,6 +401,23 @@
     </span>
   </a>
   
+    <nav class="md-nav" aria-label="Classes in subset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slots-from-playbookcollection-also-in-playbook" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from PlaybookCollection also in playbook
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
 </li>
       
         <li class="md-nav__item">
@@ -439,7 +456,8 @@
 <p><em>Companion-resource enrichment of an AI RMF subcategory with</em></p>
 <p><em>free-text discussion ("about"), suggested actions, documentation</em></p>
 <p><em>questions, and references - modelled after the NIST AI RMF</em></p>
-<p><em>Playbook JSON shape.</em></p>
+<p><em>Playbook JSON shape. (Not part of NIST AI 100-1 itself; cross-</em></p>
+<p><em>referenced in Part 2, §5.)</em></p>
 <div>
 <p>URI: <a href="./">Playbook</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -463,6 +481,23 @@
 <tr>
 <td><a href="../PlaybookEntry/">PlaybookEntry</a></td>
 <td>A single AI RMF Playbook entry - an enrichment of a Core</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slots-from-playbookcollection-also-in-playbook">Slots from <a href="../PlaybookCollection/">PlaybookCollection</a> also in <em>playbook</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../entries/">entries</a></td>
+<td>* <br/> <a href="../PlaybookEntry/">PlaybookEntry</a></td>
+<td>The Playbook entries in a <code>PlaybookCollection</code></td>
 </tr>
 </tbody>
 </table>
@@ -490,6 +525,10 @@
 <tr>
 <td><a href="../documentation_questions/">documentation_questions</a></td>
 <td>Free-text documentation questions and transparency resources</td>
+</tr>
+<tr>
+<td><a href="../entries/">entries</a></td>
+<td>The Playbook entries in a <code>PlaybookCollection</code></td>
 </tr>
 <tr>
 <td><a href="../references_text/">references_text</a></td>

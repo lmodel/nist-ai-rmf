@@ -427,10 +427,32 @@
 </li>
         
           <li class="md-nav__item">
+  <a href="#slots-from-ailifecyclestage-also-in-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from AiLifecycleStage also in lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#slots-from-aisystem-also-in-lifecycle" class="md-nav__link">
     <span class="md-ellipsis">
       
         Slots from AiSystem also in lifecycle
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#slots-from-aisystemdimension-also-in-lifecycle" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from AiSystemDimension also in lifecycle
       
     </span>
   </a>
@@ -487,7 +509,8 @@
 
 <h1 id="subset-lifecycle">Subset: Lifecycle</h1>
 <p><em>AI system lifecycle stages, key dimensions, AI actor categories,</em></p>
-<p><em>and AI actor tasks (Part 1, §2; Figures 2 and 3; Appendix A).</em></p>
+<p><em>and AI actor tasks (Part 1, §2 Audience; Figures 2 and 3;</em></p>
+<p><em>Appendix A "Descriptions of AI Actor Tasks").</em></p>
 <div>
 <p>URI: <a href="./">Lifecycle</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -578,6 +601,38 @@
 <td>* <br/> <a href="../AiLifecycleStageEnum/">AiLifecycleStageEnum</a></td>
 <td>The AI lifecycle stage(s) the element applies to</td>
 </tr>
+<tr>
+<td><a href="../task_kind/">task_kind</a></td>
+<td>1 <br/> <a href="../AiActorTaskEnum/">AiActorTaskEnum</a></td>
+<td>Which AI actor task category an <code>AiActorTask</code> instance represents</td>
+</tr>
+<tr>
+<td><a href="../typical_actors/">typical_actors</a></td>
+<td>* <br/> <a href="../String/">String</a></td>
+<td>Representative actor roles that perform an AI actor task</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slots-from-ailifecyclestage-also-in-lifecycle">Slots from <a href="../AiLifecycleStage/">AiLifecycleStage</a> also in <em>lifecycle</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../includes_tevv/">includes_tevv</a></td>
+<td>0..1 <br/> <a href="../Boolean/">Boolean</a></td>
+<td>Whether the lifecycle stage incorporates TEVV activities</td>
+</tr>
+<tr>
+<td><a href="../stage_kind/">stage_kind</a></td>
+<td>1 <br/> <a href="../AiLifecycleStageEnum/">AiLifecycleStageEnum</a></td>
+<td>Which AI lifecycle stage an <code>AiLifecycleStage</code> instance represents</td>
+</tr>
 </tbody>
 </table>
 <h3 id="slots-from-aisystem-also-in-lifecycle">Slots from <a href="../AiSystem/">AiSystem</a> also in <em>lifecycle</em></h3>
@@ -602,6 +657,23 @@
 </tr>
 </tbody>
 </table>
+<h3 id="slots-from-aisystemdimension-also-in-lifecycle">Slots from <a href="../AiSystemDimension/">AiSystemDimension</a> also in <em>lifecycle</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../dimension_kind/">dimension_kind</a></td>
+<td>1 <br/> <a href="../AiSystemDimensionEnum/">AiSystemDimensionEnum</a></td>
+<td>Which AI system dimension an <code>AiSystemDimension</code> instance represents</td>
+</tr>
+</tbody>
+</table>
 <h2 id="slots-in-subset">Slots in subset</h2>
 <table>
 <thead>
@@ -616,6 +688,10 @@
 <td>AI actor task category</td>
 </tr>
 <tr>
+<td><a href="../actor_tasks/">actor_tasks</a></td>
+<td>AI actor task categories (Appendix A)</td>
+</tr>
+<tr>
 <td><a href="../ai_dimension/">ai_dimension</a></td>
 <td>The AI system dimension the element applies to</td>
 </tr>
@@ -624,12 +700,40 @@
 <td>Whether the actor is part of the <em>primary</em> AI RMF audience or the</td>
 </tr>
 <tr>
+<td><a href="../dimension_kind/">dimension_kind</a></td>
+<td>Which AI system dimension an <code>AiSystemDimension</code> instance represents</td>
+</tr>
+<tr>
+<td><a href="../dimensions/">dimensions</a></td>
+<td>The AI system dimensions (Figure 2)</td>
+</tr>
+<tr>
+<td><a href="../includes_tevv/">includes_tevv</a></td>
+<td>Whether the lifecycle stage incorporates TEVV activities</td>
+</tr>
+<tr>
 <td><a href="../is_tevv/">is_tevv</a></td>
 <td>Whether the actor or task is a Test, Evaluation, Verification, and</td>
 </tr>
 <tr>
 <td><a href="../lifecycle_stage/">lifecycle_stage</a></td>
 <td>The AI lifecycle stage(s) the element applies to</td>
+</tr>
+<tr>
+<td><a href="../lifecycle_stages/">lifecycle_stages</a></td>
+<td>The AI lifecycle stages (Figure 2)</td>
+</tr>
+<tr>
+<td><a href="../stage_kind/">stage_kind</a></td>
+<td>Which AI lifecycle stage an <code>AiLifecycleStage</code> instance represents</td>
+</tr>
+<tr>
+<td><a href="../task_kind/">task_kind</a></td>
+<td>Which AI actor task category an <code>AiActorTask</code> instance represents</td>
+</tr>
+<tr>
+<td><a href="../typical_actors/">typical_actors</a></td>
+<td>Representative actor roles that perform an AI actor task</td>
 </tr>
 </tbody>
 </table>
