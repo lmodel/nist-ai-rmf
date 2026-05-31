@@ -402,6 +402,89 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#solution-design-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution design state
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution design state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-data-vendored-under-testsfixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data vendored under tests/fixtures/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-emitters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator emitters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-framework-sssom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-framework SSSOM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariants-enforced-by-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invariants enforced by CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope-intentionally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope (intentionally)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#references" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -465,6 +548,89 @@
       
     </span>
   </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#solution-design-state" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Solution design state
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Solution design state">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#pipeline" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Pipeline
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#reference-data-vendored-under-testsfixtures" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Reference data vendored under tests/fixtures/
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#generator-emitters" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Generator emitters
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#cross-framework-sssom" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Cross-framework SSSOM
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#invariants-enforced-by-ci" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Invariants enforced by CI
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#out-of-scope-intentionally" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Out of scope (intentionally)
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
   
 </li>
       
@@ -549,6 +715,174 @@ sibling schemas that are maintained in their own repositories:</p>
 <li>The single umbrella schema (<code>src/nist_ai_rmf/schema/nist_ai_rmf.yaml</code>).</li>
 <li>Merged-schema generation targets under <code>project/</code> (JSON Schema, OWL, SHACL, ShEx, GraphQL, Pydantic, etc.) produced from the umbrella with all imports inlined.</li>
 <li>Merged-only unit tests under <code>tests/</code> that verify both imports resolve and that classes/enums from each sub-schema are reachable through the merged <code>nist_ai_rmf</code> namespace.</li>
+<li>A <strong>third-party fixture pipeline</strong> that round-trips real-world governance artefacts through the umbrella schema (see <em>Solution design state</em> below).</li>
+<li><strong>Cross-framework SSSOM mappings</strong> under <a href="../src/nist_ai_rmf/mappings/"><code>src/nist_ai_rmf/mappings/</code></a> that link RMF subcategories and GAI risks to OWASP ASI, OWASP LLM, EU AI Act, SOC 2, and the AGT ATF.</li>
+</ul>
+<h2 id="solution-design-state">Solution design state</h2>
+<p>The umbrella schema is <em>consumed</em> by a deterministic transformer that
+converts a pinned snapshot of the <strong>Microsoft Agent Governance Toolkit
+(AGT) v3.7.0</strong> into validatable <code>nist-ai-rmf</code> instances. This proves
+the schema can express a real, externally-maintained governance
+corpus end-to-end and gives us regression coverage every time the
+umbrella or either sub-schema changes.</p>
+<h3 id="pipeline">Pipeline</h3>
+<div class="highlight"><pre><span></span><code>upstream-releases/agent-governance-toolkit/   (vendored AGT v3.7.0 snapshot)
+   examples/policies/*.yaml                          \
+   examples/policy-templates/*.yaml                   \
+   examples/atr-community-rules/*.yaml                 \   tests/fixtures/agt_to_rmf.py
+   examples/maf-scenarios/*.yaml                       --&gt; (deterministic, network-free,
+   examples/aegis/*.yaml                               /    md5-stable, PyYAML + stdlib only)
+   docs/compliance/*.md           (RMF / OWASP / ...) /                       |
+                                                                              v
+                                                       tests/data/third-party/microsoft-agt/
+                                                          valid/   AiRmfProfile-*.yaml
+                                                                    GaiRisk-asi-*.yaml
+                                                                    SuggestedAction-*.yaml
+                                                                    Actor-*.yaml
+                                                                    StructuredPublicFeedback-*.yaml
+                                                          invalid/ (5 negative fixtures)
+                                                                              |
+                                                                              v
+                                                       linkml-validate (closed=True)
+                                                          --target-class inferred from filename stem
+</code></pre></div>
+<h3 id="reference-data-vendored-under-testsfixtures">Reference data vendored under <code>tests/fixtures/</code></h3>
+<table>
+<thead>
+<tr>
+<th>File</th>
+<th>Purpose</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../tests/fixtures/nist_ai_600_1_actions.yaml"><code>nist_ai_600_1_actions.yaml</code></a></td>
+<td>Real NIST AI 600-1 <code>SuggestedAction</code> reference data (action_id, function_prefix, applies_to_subcategory, gai_risks, actor_task) used to enrich AGT-derived ATR rules and attestation suggested-actions.</td>
+</tr>
+<tr>
+<td><a href="../tests/fixtures/owasp_asi_catalog.yaml"><code>owasp_asi_catalog.yaml</code></a></td>
+<td>Canonical OWASP Agentic Security Initiative Top-10 (2026) catalog: ASI-01..ASI-10 titles + closest <code>GaiRiskCategoryEnum</code> value + mapping rationale, sourced from the AGT <code>owasp-asi-policy-mapping.md</code> compliance doc.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="generator-emitters">Generator emitters</h3>
+<p><code>tests/fixtures/agt_to_rmf.py</code> registers ten emitters (currently
+producing 69 fixtures):</p>
+<table>
+<thead>
+<tr>
+<th>Emitter</th>
+<th>Upstream source</th>
+<th>Target class</th>
+<th>Count</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>emit_aegis_profiles</code></td>
+<td><code>examples/aegis/*.yaml</code></td>
+<td><code>AiRmfProfile</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>emit_policy_templates</code></td>
+<td><code>examples/policy-templates/*.yaml</code></td>
+<td><code>AiRmfProfile</code></td>
+<td>4</td>
+</tr>
+<tr>
+<td><code>emit_production_policies</code></td>
+<td><code>examples/policies/production/*.yaml</code></td>
+<td><code>AiRmfProfile</code> (+ derived <code>Actor</code> / <code>StructuredPublicFeedback</code>)</td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>emit_maf_scenarios</code></td>
+<td><code>examples/maf-scenarios/*.yaml</code></td>
+<td><code>AiRmfProfile</code> (+ derived)</td>
+<td>12</td>
+</tr>
+<tr>
+<td><code>emit_atr_suggested_actions</code></td>
+<td><code>examples/atr-community-rules/atr_security_policy.yaml</code></td>
+<td><code>SuggestedAction</code></td>
+<td>20</td>
+</tr>
+<tr>
+<td><code>emit_asi_gai_risks</code></td>
+<td><a href="../tests/fixtures/owasp_asi_catalog.yaml"><code>owasp_asi_catalog.yaml</code></a></td>
+<td><code>GaiRisk</code></td>
+<td>10</td>
+</tr>
+<tr>
+<td><code>emit_attestation_suggested_actions</code></td>
+<td><code>examples/attestation/*</code></td>
+<td><code>SuggestedAction</code></td>
+<td>3</td>
+</tr>
+<tr>
+<td><code>emit_github_actors</code></td>
+<td><code>examples/github-actors/*.yaml</code></td>
+<td><code>Actor</code></td>
+<td>2</td>
+</tr>
+<tr>
+<td><code>emit_decision_bom_feedback</code></td>
+<td><code>examples/decision-bom/*.yaml</code></td>
+<td><code>StructuredPublicFeedback</code></td>
+<td>1</td>
+</tr>
+<tr>
+<td><code>emit_invalid_fixtures</code></td>
+<td>hand-authored</td>
+<td>mixed</td>
+<td>5</td>
+</tr>
+</tbody>
+</table>
+<p>All AGT-derived <code>AiRmfProfile</code> fixtures are enriched with a <code>see_also</code>
+pointer to
+<a href="../upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md"><code>docs/compliance/nist-ai-rmf-alignment.md</code></a>
+and a one-line coverage attribution sourced from AGT's published
+self-assessment (12/19 RMF subcategories fully addressed, 7/19
+partially).</p>
+<h3 id="cross-framework-sssom">Cross-framework SSSOM</h3>
+<p><a href="../src/nist_ai_rmf/mappings/nist_ai_rmf.sssom.tsv"><code>src/nist_ai_rmf/mappings/nist_ai_rmf.sssom.tsv</code></a>
+seeds 60+ cross-framework rows from two AGT compliance docs:</p>
+<ul>
+<li><strong>Section 9</strong> of <code>nist-ai-rmf-alignment.md</code> — RMF category ↔ EU AI
+  Act Article ↔ SOC 2 TSC ↔ AGT ATF reference ↔ OWASP LLM Top 10.</li>
+<li>The regulatory-alignment + cross-reference tables of
+  <code>owasp-asi-policy-mapping.md</code> — <code>GaiRisk</code> ↔ OWASP ASI-01..10.</li>
+</ul>
+<p>Predicates are <code>skos:closeMatch</code> / <code>skos:relatedMatch</code>; justification
+is <code>semapv:ManualMappingCuration</code>. The curie_map covers
+<code>nist_ai_100_1</code>, <code>nist_ai_600_1</code>, <code>nist_csf</code>, <code>oscal_catalog</code>,
+<code>iso42001</code>, <code>eu_ai_act</code>, <code>soc2</code>, <code>cis_v8</code>, <code>owasp_asi</code>, <code>owasp_llm</code>,
+and <code>agt_atf</code>.</p>
+<h3 id="invariants-enforced-by-ci">Invariants enforced by CI</h3>
+<ul>
+<li><strong>Determinism</strong> — <code>python -m tests.fixtures.agt_to_rmf</code> is
+  idempotent; running it twice produces byte-identical fixture trees
+  (md5-stable). No network, no clocks, PyYAML + stdlib only.</li>
+<li><strong>Pinned upstream</strong> — <code>upstream-releases/agent-governance-toolkit/</code>
+  is a pinned v3.7.0 snapshot. Its <code>docs/</code> subtree is gitignored
+  except for <code>docs/compliance/</code>, which the fixture pipeline reads
+  from directly.</li>
+<li><strong>Closed-world validation</strong> — every fixture round-trips through
+  <code>linkml-validate</code> with <code>JsonschemaValidationPlugin(closed=True)</code>
+  against the merged umbrella schema; <code>--target-class</code> is inferred
+  from each filename stem.</li>
+<li><strong>77/77 pytest cases green</strong> at the current head.</li>
+</ul>
+<h3 id="out-of-scope-intentionally">Out of scope (intentionally)</h3>
+<ul>
+<li>Element-level <code>*_mappings:</code> curation — these continue to live in
+  the upstream <code>nist-ai-100-1</code> and <code>nist-ai-600-1</code> repositories.</li>
+<li>Hosting the AGT snapshot as a git submodule — kept as a vendored
+  pinned copy to guarantee reproducible test runs.</li>
+<li>Subcategory-level back-fill of <code>AiRmfProfile.addresses</code> — the AGT
+  alignment evidence is currently at RMF <em>category</em> granularity only.</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
@@ -556,6 +890,8 @@ sibling schemas that are maintained in their own repositories:</p>
 <li><a href="https://nvlpubs.nist.gov/nistpubs/ai/NIST.AI.600-1.pdf">NIST AI 600-1</a></li>
 <li><a href="https://airc.nist.gov/airmf-resources/playbook/">NIST AIRC Playbooks</a></li>
 <li><a href="https://www.nist.gov/itl/ai-risk-management-framework">NIST AI RMF Website</a></li>
+<li><a href="https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/">OWASP Top 10 for Agentic Applications (2026)</a></li>
+<li><a href="https://github.com/microsoft/agent-governance-toolkit">Microsoft Agent Governance Toolkit</a> (v3.7.0 vendored under <code>upstream-releases/</code>)</li>
 </ul>
 
 
