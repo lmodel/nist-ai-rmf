@@ -1273,6 +1273,10 @@ enums:
           aversion, automation bias, over-reliance, or emotional
 
           entanglement with GAI systems.'
+        close_mappings:
+        - owasp_asi:08
+        - owasp_asi:09
+        - owasp_asi:10
       INFORMATION_INTEGRITY:
         text: INFORMATION_INTEGRITY
         description: 'Lowered barrier to entry to generate and support the
@@ -1284,6 +1288,9 @@ enums:
           uncertainties, or could be leveraged for large-scale
 
           dis- and mis-information campaigns.'
+        close_mappings:
+        - owasp_asi:01
+        - owasp_asi:06
       INFORMATION_SECURITY:
         text: INFORMATION_SECURITY
         description: 'Lowered barriers for offensive cyber capabilities,
@@ -1297,6 +1304,11 @@ enums:
           or the confidentiality or integrity of training data,
 
           code, or model weights.'
+        close_mappings:
+        - owasp_asi:02
+        - owasp_asi:03
+        - owasp_asi:05
+        - owasp_asi:07
       INTELLECTUAL_PROPERTY:
         text: INTELLECTUAL_PROPERTY
         description: 'Eased production or replication of alleged copyrighted,
@@ -1328,6 +1340,8 @@ enums:
           across the AI lifecycle; or other issues that diminish
 
           transparency or accountability for downstream users.'
+        close_mappings:
+        - owasp_asi:04
   GaiRiskCategorizationEnum:
     name: GaiRiskCategorizationEnum
     definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum
@@ -4307,7 +4321,7 @@ classes:
     class_uri: schema:Thing
 metamodel_version: 1.11.0
 source_file: nist_ai_rmf.yaml
-source_file_date: '2026-05-31T15:30:07'
+source_file_date: '2026-05-31T15:42:02'
 source_file_size: 1525
-generation_date: '2026-05-31T15:30:18'
+generation_date: '2026-05-31T15:42:13'
 
