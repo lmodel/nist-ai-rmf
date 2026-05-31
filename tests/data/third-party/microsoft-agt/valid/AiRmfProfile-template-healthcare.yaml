@@ -1,0 +1,14 @@
+description: >-
+  OWASP ASI-mapped governance starter pack for healthcare and health-tech.
+  Enforces HIPAA-aligned controls with explicit traceability to ASI-01
+  through ASI-10. Deny-all default follows the Least Agency principle.
+  Per the AGT NIST AI RMF self-assessment, AGT fully addresses 12/19
+  RMF subcategories and partially addresses the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/template/healthcare
+name: healthcare-asi-starter
+profile_type: CROSS_SECTORAL
+sector: healthcare
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'Policy template profile: healthcare'

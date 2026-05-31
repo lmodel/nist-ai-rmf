@@ -1,0 +1,7 @@
+description: Summarizes sales data from the data warehouse.
+id: nist_ai_rmf_test:ai-actor/github/sales-summarizer
+is_tevv: false
+name: sales-summarizer
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/github-actions-governance/agents.yaml
+title: 'CI/CD AI actor: sales-summarizer'

@@ -1,0 +1,8 @@
+description: >-
+  Governance policy for the CI/CD pipeline safety example using the
+  real AGT .NET kernel and Agent Framework adapter.
+id: nist_ai_rmf_test:ai-system/maf/05-devops-deploy
+name: maf-05-devops-deploy
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/05-devops-deploy/dotnet/policies/devops_governance.yaml
+title: 'MAF scenario AI system: 05-devops-deploy'

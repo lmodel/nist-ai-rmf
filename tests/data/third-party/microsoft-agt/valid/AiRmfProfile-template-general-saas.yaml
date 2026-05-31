@@ -1,0 +1,15 @@
+description: >-
+  OWASP ASI-aligned policy rules for general SaaS deployments. Covers
+  prompt injection, tool misuse, privilege escalation, supply-chain,
+  code execution, context poisoning, communication manipulation, cascading
+  failures, trust exploitation, and rogue agent detection. Per the
+  AGT NIST AI RMF self-assessment, AGT fully addresses 12/19 RMF subcategories
+  and partially addresses the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/template/general-saas
+name: owasp-asi-general-saas
+profile_type: CROSS_SECTORAL
+sector: general-saas
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/general-saas.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'Policy template profile: general-saas'

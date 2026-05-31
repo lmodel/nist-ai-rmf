@@ -1,0 +1,11 @@
+description: >-
+  Maximum-security allowlist-only governance. Per the AGT NIST AI
+  RMF self-assessment, AGT fully addresses 12/19 RMF subcategories
+  and partially addresses the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/production/strict
+name: strict-governance
+profile_type: USE_CASE
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policies/production/strict.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'Production policy profile: strict'

@@ -1,0 +1,19 @@
+action_id: MP-2.3-004
+actor_task:
+  - AI_IMPACT_ASSESSMENT
+  - AI_DEPLOYMENT
+applies_to_subcategory: MAP 2.3
+description: >-
+  Suggested mitigation derived from ATR community rule `atr-2026-00268`.
+  Upstream action: 'deny'. Joined to NIST AI 600-1 reference action
+  MP-2.3-004.
+function_prefix: MP
+gai_risks:
+  - HARMFUL_BIAS_OR_HOMOGENIZATION
+  - INFORMATION_INTEGRITY
+  - HUMAN_AI_CONFIGURATION
+id: nist_ai_rmf_test:suggested-action/atr/atr-2026-00268
+name: atr-2026-00268
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/atr-community-rules/atr_security_policy.yaml
+title: '[ATR-2026-00268] Historical / Future Tense Framing Bypass'

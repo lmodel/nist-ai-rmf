@@ -1,0 +1,15 @@
+description: >-
+  OWASP ASI-mapped governance starter pack for financial services.
+  Enforces SOX/PCI DSS/AML-aligned controls with explicit traceability
+  to ASI-01 through ASI-10. Deny-all default follows the Least Agency
+  principle. Per the AGT NIST AI RMF self-assessment, AGT fully addresses
+  12/19 RMF subcategories and partially addresses the remaining 7
+  (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/template/financial-services
+name: financial-services-asi-starter
+profile_type: CROSS_SECTORAL
+sector: financial-services
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/financial-services.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'Policy template profile: financial-services'

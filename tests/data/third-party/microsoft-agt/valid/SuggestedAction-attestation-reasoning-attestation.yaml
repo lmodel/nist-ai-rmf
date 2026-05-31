@@ -1,0 +1,19 @@
+action_id: MP-2.3-004
+actor_task:
+  - AI_IMPACT_ASSESSMENT
+  - AI_DEPLOYMENT
+applies_to_subcategory: MAP 2.3
+description: >-
+  Suggested action derived from the AGT 'reasoning-attestation-governed'
+  example. Maps to provenance technique 'METADATA_RECORDING'. Joined
+  to NIST AI 600-1 reference action MP-2.3-004.
+function_prefix: MP
+gai_risks:
+  - HARMFUL_BIAS_OR_HOMOGENIZATION
+  - INFORMATION_INTEGRITY
+  - HUMAN_AI_CONFIGURATION
+id: nist_ai_rmf_test:suggested-action/attestation/reasoning-attestation
+name: attestation-reasoning-attestation
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/reasoning-attestation-governed/README.md
+title: 'Provenance attestation suggested action: reasoning-attestation'

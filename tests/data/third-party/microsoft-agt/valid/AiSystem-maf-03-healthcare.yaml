@@ -1,0 +1,8 @@
+description: >-
+  Governance policy for the HIPAA healthcare example using the real
+  AGT .NET kernel and Agent Framework adapter.
+id: nist_ai_rmf_test:ai-system/maf/03-healthcare
+name: maf-03-healthcare
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/03-healthcare/dotnet/policies/healthcare_governance.yaml
+title: 'MAF scenario AI system: 03-healthcare'

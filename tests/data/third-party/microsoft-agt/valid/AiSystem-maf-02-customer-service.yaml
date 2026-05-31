@@ -1,0 +1,9 @@
+description: >-
+  Governance policy for the customer support example using the real
+  AGT .NET kernel. Rules are aligned to the deterministic demo prompts
+  and tool names.
+id: nist_ai_rmf_test:ai-system/maf/02-customer-service
+name: maf-02-customer-service
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/02-customer-service/dotnet/policies/support_governance.yaml
+title: 'MAF scenario AI system: 02-customer-service'

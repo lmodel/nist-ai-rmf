@@ -1,0 +1,76 @@
+# Canonical OWASP Agentic Security Initiative (ASI) Top 10 (2026) catalog.
+#
+# Sources (vendored under upstream-releases/):
+#   - upstream-releases/agent-governance-toolkit/docs/compliance/
+#       owasp-asi-policy-mapping.md         (canonical ASI titles & risk coverage matrix)
+#       owasp-agentic-top10-architecture.md (full risk descriptions, optional)
+#   - https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/
+#
+# Each entry is consumed by `emit_asi_gai_risks` in
+# `tests/fixtures/agt_to_rmf.py` to produce a `GaiRisk` fixture per ASI id.
+# The `gai_risk_kind` value is the closest match in `GaiRiskCategoryEnum`
+#  (defined by NIST AI 600-1, re-exported by the NIST AI RMF umbrella schema).
+#
+# Where multiple NIST GAI risk categories apply, the closest single
+# value is chosen; documented in `mapping_rationale` for traceability.
+
+risks:
+  "01":
+    title: "Agent Goal Hijack"
+    gai_risk_kind: INFORMATION_INTEGRITY
+    mapping_rationale: |-
+      Manipulation of an agent's planning/goal stack distorts the
+      integrity of information acted upon by the agent.
+  "02":
+    title: "Tool Misuse & Exploitation"
+    gai_risk_kind: INFORMATION_SECURITY
+    mapping_rationale: |-
+      Abuse of agent tools (shell, network, files) is fundamentally an
+      information-security violation of the agent's capability boundary.
+  "03":
+    title: "Identity & Privilege Abuse"
+    gai_risk_kind: INFORMATION_SECURITY
+    mapping_rationale: |-
+      Privilege escalation, credential theft, and impersonation are
+      classic information-security failures.
+  "04":
+    title: "Agentic Supply Chain"
+    gai_risk_kind: VALUE_CHAIN_AND_COMPONENT_INTEGRATION
+    mapping_rationale: |-
+      Compromised tools, plugins, and dependencies are value-chain /
+      component-integration risks per NIST AI 600-1.
+  "05":
+    title: "Unexpected Code Execution"
+    gai_risk_kind: INFORMATION_SECURITY
+    mapping_rationale: |-
+      Unsandboxed eval/exec is an information-security control gap.
+  "06":
+    title: "Memory & Context Poisoning"
+    gai_risk_kind: INFORMATION_INTEGRITY
+    mapping_rationale: |-
+      Tampered conversation history, RAG context, or persistent memory
+      undermines the integrity of model inputs and outputs.
+  "07":
+    title: "Insecure Inter-Agent Communication"
+    gai_risk_kind: INFORMATION_SECURITY
+    mapping_rationale: |-
+      Unauthenticated / unauthorised messages between agents are an
+      information-security violation of trust boundaries.
+  "08":
+    title: "Cascading Agent Failures"
+    gai_risk_kind: HUMAN_AI_CONFIGURATION
+    mapping_rationale: |-
+      Failure cascades through multi-agent systems are a configuration
+      / orchestration risk (limits, circuit-breakers, human-in-the-loop).
+  "09":
+    title: "Human-Agent Trust Exploitation"
+    gai_risk_kind: HUMAN_AI_CONFIGURATION
+    mapping_rationale: |-
+      Manipulating human approval, urgency, or authority cues is a
+      human-AI interaction / configuration risk.
+  "10":
+    title: "Rogue Agents"
+    gai_risk_kind: HUMAN_AI_CONFIGURATION
+    mapping_rationale: |-
+      Autonomous agents acting outside their charter are a
+      human-AI configuration (oversight / kill-switch) risk.

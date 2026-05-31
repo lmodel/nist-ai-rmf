@@ -1,0 +1,91 @@
+# mapping_set_id: https://w3id.org/lmodel/nist-ai-rmf/mappings/nist_ai_rmf
+# mapping_set_title: NIST AI RMF (umbrella) - SSSOM mapping set
+# mapping_set_description: |-
+#   Cross-framework mappings for the NIST AI RMF umbrella schema
+#   (re-exporting NIST AI 100-1 and NIST AI 600-1). Subject CURIEs
+#   refer to schema-level concepts in nist_ai_rmf / nist_ai_100_1 and
+#   to RMF subcategory / category identifiers (e.g.
+#   nist_ai_100_1:GOVERN-1, nist_ai_100_1:GOVERN-1.1). Seeded from the
+#   Microsoft Agent Governance Toolkit (AGT) v3.7.0 compliance docs
+#   vendored under upstream-releases/agent-governance-toolkit/docs/compliance/
+#   (nist-ai-rmf-alignment.md Section 9; owasp-asi-policy-mapping.md).
+#
+# curie_map:
+#   nist_ai_rmf: 'https://w3id.org/lmodel/nist-ai-rmf/'
+#   nist_ai_100_1: 'https://w3id.org/lmodel/nist-ai-100-1/'
+#   nist_ai_600_1: 'https://w3id.org/lmodel/nist-ai-600-1/'
+#   nist_csf: 'https://w3id.org/lmodel/nist-csf-v2/'
+#   oscal_catalog: 'https://w3id.org/lmodel/oscal_catalog/'
+#   iso42001: 'https://w3id.org/lmodel/iso42001/'
+#   eu_ai_act: 'https://eur-lex.europa.eu/eli/reg/2024/1689/oj#'
+#   soc2: 'https://w3id.org/lmodel/soc2-tsc/'
+#   cis_v8: 'https://w3id.org/lmodel/cis-v8/'
+#   owasp_asi: 'https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-'
+#   owasp_llm: 'https://genai.owasp.org/resource/owasp-top-10-for-llm-applications/llm-'
+#   agt_atf: 'https://github.com/microsoft/agent-governance-toolkit/blob/main/docs/compliance/atf-conformance-assessment.md#'
+#   skos: 'http://www.w3.org/2004/02/skos/core#'
+#   semapv: 'https://w3id.org/semapv/vocab/'
+# license: https://creativecommons.org/licenses/by/4.0/
+# subject_source: nist_ai_rmf
+# subject_source_version: 0.1.0
+# mapping_provider: https://w3id.org/lmodel/nist-ai-rmf
+# mapping_date: 2026-05-14
+subject_id	subject_label	predicate_id	object_id	object_label	mapping_justification	comment
+nist_ai_rmf:AiRmfFramework	AiRmfFramework	skos:closeMatch	nist_ai_100_1:AiRmfFramework	AiRmfFramework	semapv:LLMBasedMatching	Umbrella tree-root re-exports the 100-1 framework root.
+nist_ai_rmf:GaiProfile	GaiProfile	skos:exactMatch	nist_ai_600_1:GaiProfile	GaiProfile	semapv:LLMBasedMatching	Umbrella re-exports the 600-1 tree-root.
+nist_ai_rmf:AiRmfProfile	AiRmfProfile	skos:relatedMatch	nist_ai_600_1:GaiProfile	GaiProfile	semapv:LLMBasedMatching	GaiProfile is a 600-1 specialisation of the 100-1 AiRmfProfile concept.
+nist_ai_rmf:AiRmfFramework	AiRmfFramework	skos:relatedMatch	iso42001:ManagementSystem	ManagementSystem	semapv:LLMBasedMatching	ISO/IEC 42001 AI management system is the analogous ISO instrument.
+nist_ai_rmf:AiRmfFramework	AiRmfFramework	skos:relatedMatch	nist_csf:CSFDocument	CSFDocument	semapv:LLMBasedMatching	NIST CSF v2 profile document is the structural analogue.
+nist_ai_100_1:Subcategory	Subcategory	skos:closeMatch	oscal_catalog:Control	Control	semapv:LLMBasedMatching	RMF Subcategory is the catalog-of-controls leaf equivalent.
+nist_ai_100_1:GOVERN-1	GOVERN 1 (Policies, processes, procedures)	skos:relatedMatch	eu_ai_act:Article9	Article 9 (Risk management system)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-1	GOVERN 1 (Policies, processes, procedures)	skos:relatedMatch	soc2:CC6.1	CC6.1 (Logical access)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-1	GOVERN 1 (Policies, processes, procedures)	skos:relatedMatch	agt_atf:A-1	A-1 Policy definition	semapv:LLMBasedMatching	AGT ATF conformance reference.
+nist_ai_100_1:GOVERN-2	GOVERN 2 (Accountability structures)	skos:relatedMatch	eu_ai_act:Article12	Article 12 (Record-keeping)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-2	GOVERN 2 (Accountability structures)	skos:relatedMatch	soc2:CC4.1	CC4.1 (Monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-2	GOVERN 2 (Accountability structures)	skos:relatedMatch	agt_atf:A-5	A-5 Audit trails	semapv:LLMBasedMatching	AGT ATF conformance reference.
+nist_ai_100_1:GOVERN-3	GOVERN 3 (Workforce)	skos:relatedMatch	eu_ai_act:Article14	Article 14 (Human oversight)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-4	GOVERN 4 (Third-party considerations)	skos:relatedMatch	eu_ai_act:Article28	Article 28 (Deployer obligations)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-4	GOVERN 4 (Third-party considerations)	skos:relatedMatch	soc2:CC9.2	CC9.2 (Vendor management)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-4	GOVERN 4 (Third-party considerations)	skos:relatedMatch	owasp_llm:05	Supply Chain Vulnerabilities	semapv:LLMBasedMatching	AGT cross-reference (OWASP LLM Top 10 supply-chain risk).
+nist_ai_100_1:GOVERN-4	GOVERN 4 (Third-party considerations)	skos:closeMatch	owasp_asi:04	Agentic Supply Chain	semapv:LLMBasedMatching	Both target supply-chain/third-party tooling risk.
+nist_ai_100_1:GOVERN-5	GOVERN 5 (Risk processes)	skos:relatedMatch	eu_ai_act:Article9	Article 9 (Risk management system)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-5	GOVERN 5 (Risk processes)	skos:relatedMatch	soc2:CC3.2	CC3.2 (Risk assessment)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:GOVERN-5	GOVERN 5 (Risk processes)	skos:relatedMatch	agt_atf:A-3	A-3 Risk assessment	semapv:LLMBasedMatching	AGT ATF conformance reference.
+nist_ai_100_1:MAP-1	MAP 1 (Context established)	skos:relatedMatch	eu_ai_act:Article9	Article 9.2 (Intended purpose)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-1	MAP 1 (Context established)	skos:relatedMatch	agt_atf:B-1	B-1 Execution boundaries	semapv:LLMBasedMatching	AGT ATF conformance reference.
+nist_ai_100_1:MAP-2	MAP 2 (Categorization)	skos:relatedMatch	eu_ai_act:Article6	Article 6 (Classification rules)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-2	MAP 2 (Categorization)	skos:relatedMatch	agt_atf:A-3	A-3 Risk classification	semapv:LLMBasedMatching	AGT ATF conformance reference.
+nist_ai_100_1:MAP-3	MAP 3 (Benefits/costs)	skos:relatedMatch	eu_ai_act:Article9	Article 9.4 (Cost proportionality)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-4	MAP 4 (Risks identified)	skos:relatedMatch	eu_ai_act:Article9	Article 9.2 (Risk identification)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-4	MAP 4 (Risks identified)	skos:relatedMatch	soc2:CC3.2	CC3.2 (Risk assessment)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-4	MAP 4 (Risks identified)	skos:relatedMatch	owasp_asi:01	Agent Goal Hijack	semapv:LLMBasedMatching	AGT cross-reference (OWASP Agentic Top 10 - all risks per MAP 4).
+nist_ai_100_1:MAP-5	MAP 5 (Individual/societal impacts)	skos:relatedMatch	eu_ai_act:Article10	Article 10 (Data governance)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-5	MAP 5 (Individual/societal impacts)	skos:relatedMatch	soc2:P1	P1-P8 Privacy criteria	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MAP-5	MAP 5 (Individual/societal impacts)	skos:relatedMatch	owasp_llm:08	Excessive Agency	semapv:LLMBasedMatching	AGT cross-reference (OWASP LLM Top 10 v1).
+nist_ai_100_1:MEASURE-1	MEASURE 1 (Metrics identified)	skos:relatedMatch	eu_ai_act:Article9	Article 9.7 (Testing/metrics)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-1	MEASURE 1 (Metrics identified)	skos:relatedMatch	soc2:CC4.1	CC4.1 (Monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-2	MEASURE 2 (Evaluation)	skos:relatedMatch	eu_ai_act:Article9	Article 9.5 (Testing)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-2	MEASURE 2 (Evaluation)	skos:relatedMatch	soc2:CC7.1	CC7.1 (System monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-3	MEASURE 3 (Risk tracking)	skos:relatedMatch	eu_ai_act:Article9	Article 9.8 (Risk monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-3	MEASURE 3 (Risk tracking)	skos:relatedMatch	soc2:CC7.2	CC7.2 (Change monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-4	MEASURE 4 (Feedback)	skos:relatedMatch	eu_ai_act:Article9	Article 9.9 (Documentation updates)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MEASURE-4	MEASURE 4 (Feedback)	skos:relatedMatch	soc2:CC4.2	CC4.2 (Deficiency management)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-1	MANAGE 1 (Risk response)	skos:relatedMatch	eu_ai_act:Article14	Article 14 (Human oversight)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-1	MANAGE 1 (Risk response)	skos:relatedMatch	soc2:CC7.3	CC7.3 (Change management)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-1	MANAGE 1 (Risk response)	skos:relatedMatch	owasp_asi:08	Cascading Agent Failures	semapv:LLMBasedMatching	AGT cross-reference (kill-switch / circuit-breaker controls).
+nist_ai_100_1:MANAGE-3	MANAGE 3 (Third-party risks)	skos:relatedMatch	eu_ai_act:Article28	Article 28 (Deployer obligations)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-3	MANAGE 3 (Third-party risks)	skos:relatedMatch	soc2:CC9.2	CC9.2 (Vendor management)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-3	MANAGE 3 (Third-party risks)	skos:closeMatch	owasp_asi:04	Agentic Supply Chain	semapv:LLMBasedMatching	AGT cross-reference (OWASP Agentic Top 10).
+nist_ai_100_1:MANAGE-4	MANAGE 4 (Monitoring/communication)	skos:relatedMatch	eu_ai_act:Article72	Article 72 (Post-market monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-4	MANAGE 4 (Monitoring/communication)	skos:relatedMatch	soc2:CC7.1	CC7.1 (System monitoring)	semapv:LLMBasedMatching	AGT nist-ai-rmf-alignment.md Section 9 cross-reference.
+nist_ai_100_1:MANAGE-4	MANAGE 4 (Monitoring/communication)	skos:relatedMatch	owasp_llm:09	Overreliance	semapv:LLMBasedMatching	AGT cross-reference (OWASP LLM Top 10 v1).
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:01	Agent Goal Hijack	semapv:LLMBasedMatching	OWASP ASI-01 maps to GaiRiskCategoryEnum.INFORMATION_INTEGRITY (per vendored ASI catalog).
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:02	Tool Misuse & Exploitation	semapv:LLMBasedMatching	OWASP ASI-02 -> GaiRiskCategoryEnum.INFORMATION_SECURITY.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:03	Identity & Privilege Abuse	semapv:LLMBasedMatching	OWASP ASI-03 -> GaiRiskCategoryEnum.INFORMATION_SECURITY.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:04	Agentic Supply Chain	semapv:LLMBasedMatching	OWASP ASI-04 -> GaiRiskCategoryEnum.VALUE_CHAIN_AND_COMPONENT_INTEGRATION.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:05	Unexpected Code Execution	semapv:LLMBasedMatching	OWASP ASI-05 -> GaiRiskCategoryEnum.INFORMATION_SECURITY.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:06	Memory & Context Poisoning	semapv:LLMBasedMatching	OWASP ASI-06 -> GaiRiskCategoryEnum.INFORMATION_INTEGRITY.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:07	Insecure Inter-Agent Communication	semapv:LLMBasedMatching	OWASP ASI-07 -> GaiRiskCategoryEnum.INFORMATION_SECURITY.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:08	Cascading Agent Failures	semapv:LLMBasedMatching	OWASP ASI-08 -> GaiRiskCategoryEnum.HUMAN_AI_CONFIGURATION.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:09	Human-Agent Trust Exploitation	semapv:LLMBasedMatching	OWASP ASI-09 -> GaiRiskCategoryEnum.HUMAN_AI_CONFIGURATION.
+nist_ai_600_1:GaiRisk	GaiRisk	skos:closeMatch	owasp_asi:10	Rogue Agents	semapv:LLMBasedMatching	OWASP ASI-10 -> GaiRiskCategoryEnum.HUMAN_AI_CONFIGURATION.

@@ -1,0 +1,19 @@
+action_id: MS-2.7-005
+actor_task:
+  - TEVV
+  - AI_DEPLOYMENT
+applies_to_subcategory: MEASURE 2.7
+description: >-
+  Suggested action derived from the AGT 'crypto-attestation-governed'
+  example. Maps to provenance technique 'DIGITAL_FINGERPRINTING'.
+  Joined to NIST AI 600-1 reference action MS-2.7-005.
+function_prefix: MS
+gai_risks:
+  - INFORMATION_INTEGRITY
+  - INFORMATION_SECURITY
+  - CONFABULATION
+id: nist_ai_rmf_test:suggested-action/attestation/crypto-attestation
+name: attestation-crypto-attestation
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/crypto-attestation-governed/README.md
+title: 'Provenance attestation suggested action: crypto-attestation'

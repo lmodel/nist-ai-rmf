@@ -1,0 +1,11 @@
+description: >-
+  GAI-risk fixture derived from OWASP Agentic Security Initiative
+  item ASI-09: Human-Agent Trust Exploitation. Mapped to GaiRiskCategoryEnum.HUMAN_AI_CONFIGURATION
+  per the vendored ASI catalog.
+gai_risk_kind: HUMAN_AI_CONFIGURATION
+id: nist_ai_rmf_test:gai-risk/asi-09
+name: ASI-09
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/owasp-asi-policy-mapping.md
+title: Human-Agent Trust Exploitation

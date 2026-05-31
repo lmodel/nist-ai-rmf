@@ -1,12 +1,17 @@
 # Mappings
 
-This directory is intentionally **empty of mapping files**.
+This directory holds **umbrella-level SSSOM mappings** that are
+specific to the `nist-ai-rmf` schema (i.e. mappings whose subject is
+the merged AI 100-1 + 600-1 namespace, or RMF function/category/
+subcategory identifiers cross-referenced against frameworks the
+sub-schemas do not curate themselves).
 
-`nist-ai-rmf` is an umbrella schema that imports `nist_ai_100_1`
-(AI RMF 1.0) and `nist_ai_600_1` (GAI Profile) from their own
-repositories. The SSSOM TSV mapping sets and the `*_mappings:`
-fields on each schema element are maintained alongside those
-sub-schemas, **not here**:
+| File | Purpose |
+|---|---|
+| [`nist_ai_rmf.sssom.tsv`](nist_ai_rmf.sssom.tsv) | Cross-framework mappings (RMF subcategory &harr; EU AI Act / SOC 2 / OWASP ASI / OWASP LLM / AGT ATF), seeded from the Microsoft AGT compliance docs vendored under `upstream-releases/agent-governance-toolkit/docs/compliance/`. |
+
+The element-level `*_mappings:` slot bindings on each schema class /
+slot / enum continue to live in the upstream sub-schemas:
 
 | Sub-schema | Mappings location |
 |---|---|
@@ -22,7 +27,7 @@ Each upstream repository:
 * enforces that sync in CI via its own `just verify-mappings`
   recipe.
 
-Because the umbrella merely imports those schemas, the mappings
-flow through automatically into the merged artefacts generated
-under `project/` - there is nothing to curate or verify in this
-repository.
+Because the umbrella merely imports those schemas, the per-element
+mappings flow through automatically into the merged artefacts
+generated under `project/`. The only mapping curation in *this*
+repository is the cross-framework SSSOM TSV listed above.

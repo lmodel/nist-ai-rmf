@@ -87,6 +87,11 @@ deploy: site
 [group('model development')]
 test: _test-schema _test-python _test-examples
 
+# Regenerate AGT-derived test fixtures under tests/data/third-party/microsoft-agt/{valid,invalid}/
+[group('model development')]
+gen-fixtures:
+  uv run python -m tests.fixtures.agt_to_rmf
+
 # Run linting
 [group('model development')]
 lint:
@@ -197,8 +202,8 @@ _test-examples: _ensure_examples_output && _test-examples-extra
     --input-formats yaml \
     --output-formats json \
     --output-formats yaml \
-    --counter-example-input-directory tests/data/invalid \
-    --input-directory tests/data/valid \
+    --counter-example-input-directory tests/data/third-party/microsoft-agt/invalid \
+    --input-directory tests/data/third-party/microsoft-agt/valid \
     --output-directory examples/output \
     --schema {{source_schema_path}} > examples/output/README.md
 

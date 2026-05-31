@@ -1,0 +1,15 @@
+description: >-
+  Standard governance profile for research-class agents. Permits information-gathering
+  and summarization actions over public and published-research scopes;
+  denies destructive actions and access to confidential or PII-bearing
+  scopes. Per the AGT NIST AI RMF self-assessment, AGT fully addresses
+  12/19 RMF subcategories and partially addresses the remaining 7
+  (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/aegis/research-agent-standard
+name: research-agent-standard
+profile_type: USE_CASE
+sector: research
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/aegis-governance-profile/profile-research-agent.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'AEGIS profile: research-agent-standard'

@@ -1,0 +1,8 @@
+id: nist_ai_rmf_test:risk-tolerance/production/enterprise
+name: enterprise-tolerance
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policies/production/enterprise.yaml
+title: Risk tolerance derived from enterprise production policy
+tolerance_statement: >-
+  Risk tolerance tier 'enterprise' synthesised from upstream rule
+  pack default action 'deny'.

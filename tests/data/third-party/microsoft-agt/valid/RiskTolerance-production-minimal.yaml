@@ -1,0 +1,8 @@
+id: nist_ai_rmf_test:risk-tolerance/production/minimal
+name: minimal-tolerance
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policies/production/minimal.yaml
+title: Risk tolerance derived from minimal production policy
+tolerance_statement: >-
+  Risk tolerance tier 'minimal' synthesised from upstream rule pack
+  default action 'allow'.

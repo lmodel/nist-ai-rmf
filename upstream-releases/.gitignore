@@ -1,0 +1,95 @@
+# Snapshots of third-party upstream releases are vendored under this
+# directory for traceability (the `see_also` slot in generated fixtures
+# points back into them). Only a small subset of each snapshot is
+# actually consumed by the build:
+#
+#   agent-governance-toolkit/
+#     examples/   <- read by tests/fixtures/agt_to_rmf.py
+#     VERSION     <- read by tests/fixtures/agt_to_rmf.py
+#     LICENSE     <- kept for attribution
+#     NOTICE      <- kept for attribution
+#     README.md   <- kept for attribution
+#
+# Everything else in the snapshot (language-specific SDKs, generated
+# docs, CI scripts, tests, build configs, .github metadata, etc.) is
+# bulky and unused, so it is git-ignored below.
+
+# --- agent-governance-toolkit: ignore unused language SDKs ---
+agent-governance-toolkit/agent-governance-antigravity-cli/
+agent-governance-toolkit/agent-governance-claude-code/
+agent-governance-toolkit/agent-governance-copilot-cli/
+agent-governance-toolkit/agent-governance-dotnet/
+agent-governance-toolkit/agent-governance-golang/
+agent-governance-toolkit/agent-governance-opencode/
+agent-governance-toolkit/agent-governance-python/
+agent-governance-toolkit/agent-governance-rust/
+agent-governance-toolkit/agent-governance-typescript/
+
+# --- agent-governance-toolkit: ignore unused top-level subdirs ---
+agent-governance-toolkit/action/
+agent-governance-toolkit/scripts/
+agent-governance-toolkit/tests/
+
+# --- agent-governance-toolkit/docs/: keep ONLY docs/compliance/ ---
+# The compliance subtree contains authoritative cross-framework mappings
+# (NIST AI RMF, ISO 42001, EU AI Act, SOC2, CIS, OWASP ASI/LLM, MCP, NSA)
+# that seed our schema enrichment, fixture metadata, and the SSSOM
+# mapping table under src/nist_ai_rmf/mappings/. Everything else under
+# docs/ is bulky vendor content and is ignored explicitly below.
+agent-governance-toolkit/docs/*.md
+agent-governance-toolkit/docs/adr/
+agent-governance-toolkit/docs/assets/
+agent-governance-toolkit/docs/benchmarks/
+agent-governance-toolkit/docs/case-studies/
+agent-governance-toolkit/docs/demos/
+agent-governance-toolkit/docs/dependency-audits/
+agent-governance-toolkit/docs/deployment/
+agent-governance-toolkit/docs/diagrams/
+agent-governance-toolkit/docs/i18n/
+agent-governance-toolkit/docs/integrations/
+agent-governance-toolkit/docs/operations/
+agent-governance-toolkit/docs/overrides/
+agent-governance-toolkit/docs/package-consolidation/
+agent-governance-toolkit/docs/packages/
+agent-governance-toolkit/docs/policies/
+agent-governance-toolkit/docs/proposals/
+agent-governance-toolkit/docs/reference/
+agent-governance-toolkit/docs/releases/
+agent-governance-toolkit/docs/security/
+agent-governance-toolkit/docs/specs/
+agent-governance-toolkit/docs/stylesheets/
+agent-governance-toolkit/docs/tutorials/
+agent-governance-toolkit/docs/workshop/
+
+# --- agent-governance-toolkit: ignore unused dotfile metadata dirs ---
+agent-governance-toolkit/.claude-plugin/
+agent-governance-toolkit/.clusterfuzzlite/
+agent-governance-toolkit/.github/
+
+# --- agent-governance-toolkit: ignore unused top-level files ---
+agent-governance-toolkit/AGENTS.md
+agent-governance-toolkit/ANTITRUST.md
+agent-governance-toolkit/BREAKING_CHANGES.md
+agent-governance-toolkit/CHANGELOG.md
+agent-governance-toolkit/CHARTER.md
+agent-governance-toolkit/CODE_OF_CONDUCT.md
+agent-governance-toolkit/CONTRIBUTING.md
+agent-governance-toolkit/Dockerfile
+agent-governance-toolkit/GOVERNANCE.md
+agent-governance-toolkit/MAINTAINERS.md
+agent-governance-toolkit/SECURITY.md
+agent-governance-toolkit/SUPPORT.md
+agent-governance-toolkit/TRADEMARKS.md
+agent-governance-toolkit/docker-compose.yml
+agent-governance-toolkit/mkdocs.yml
+agent-governance-toolkit/.cspell.json
+agent-governance-toolkit/.cspell-repo-terms.txt
+agent-governance-toolkit/.dockerignore
+agent-governance-toolkit/.gitattributes
+agent-governance-toolkit/.gitignore
+agent-governance-toolkit/.gitleaksignore
+agent-governance-toolkit/.npmrc
+agent-governance-toolkit/.pre-commit-hooks.yaml
+agent-governance-toolkit/.safety-policy.yml
+agent-governance-toolkit/.safety.yml
+agent-governance-toolkit/.shellcheckrc

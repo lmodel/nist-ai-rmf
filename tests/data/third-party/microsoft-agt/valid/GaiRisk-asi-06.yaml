@@ -1,0 +1,11 @@
+description: >-
+  GAI-risk fixture derived from OWASP Agentic Security Initiative
+  item ASI-06: Memory & Context Poisoning. Mapped to GaiRiskCategoryEnum.INFORMATION_INTEGRITY
+  per the vendored ASI catalog.
+gai_risk_kind: INFORMATION_INTEGRITY
+id: nist_ai_rmf_test:gai-risk/asi-06
+name: ASI-06
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/owasp-asi-policy-mapping.md
+title: Memory & Context Poisoning

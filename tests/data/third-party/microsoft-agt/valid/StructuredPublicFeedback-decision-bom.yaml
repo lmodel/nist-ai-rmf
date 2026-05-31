@@ -1,0 +1,10 @@
+description: >-
+  Structured feedback fixture derived from the AGT decision-bom example,
+  which reconstructs a complete Bill of Materials for any governance
+  decision from observability signals.
+feedback_method_kind: PARTICIPATORY_ENGAGEMENT_METHODS
+id: nist_ai_rmf_test:structured-feedback/decision-bom
+name: decision-bom-audit
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/decision-bom/README.md
+title: Structured feedback derived from Decision BOM example

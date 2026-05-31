@@ -1,0 +1,8 @@
+id: nist_ai_rmf_test:risk-tolerance/production/healthcare
+name: healthcare-tolerance
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policies/production/healthcare.yaml
+title: Risk tolerance derived from healthcare production policy
+tolerance_statement: >-
+  Risk tolerance tier 'healthcare' synthesised from upstream rule
+  pack default action 'deny'.

@@ -1,0 +1,19 @@
+action_id: MG-2.4-002
+actor_task:
+  - GOVERNANCE_AND_OVERSIGHT
+  - OPERATION_AND_MONITORING
+applies_to_subcategory: MANAGE 2.4
+description: >-
+  Suggested mitigation derived from ATR community rule `atr-2026-00119`.
+  Upstream action: 'deny'. Joined to NIST AI 600-1 reference action
+  MG-2.4-002.
+function_prefix: MG
+gai_risks:
+  - INFORMATION_SECURITY
+  - DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
+  - HUMAN_AI_CONFIGURATION
+id: nist_ai_rmf_test:suggested-action/atr/atr-2026-00119
+name: atr-2026-00119
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/atr-community-rules/atr_security_policy.yaml
+title: '[ATR-2026-00119] Social Engineering Attack via Agent Output'

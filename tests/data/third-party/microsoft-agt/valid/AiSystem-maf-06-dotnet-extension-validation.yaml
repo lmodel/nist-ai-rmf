@@ -1,0 +1,5 @@
+id: nist_ai_rmf_test:ai-system/maf/06-dotnet-extension-validation
+name: maf-06-dotnet-extension-validation
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/06-dotnet-extension-validation/dotnet/policies/maf_validation.yaml
+title: 'MAF scenario AI system: 06-dotnet-extension-validation'

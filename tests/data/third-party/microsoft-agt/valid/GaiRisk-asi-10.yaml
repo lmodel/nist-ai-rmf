@@ -1,0 +1,11 @@
+description: >-
+  GAI-risk fixture derived from OWASP Agentic Security Initiative
+  item ASI-10: Rogue Agents. Mapped to GaiRiskCategoryEnum.HUMAN_AI_CONFIGURATION
+  per the vendored ASI catalog.
+gai_risk_kind: HUMAN_AI_CONFIGURATION
+id: nist_ai_rmf_test:gai-risk/asi-10
+name: ASI-10
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/owasp-asi-policy-mapping.md
+title: Rogue Agents

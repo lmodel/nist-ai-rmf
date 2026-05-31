@@ -1,0 +1,10 @@
+description: >-
+  Governance policy for the Contoso Bank loan officer demo. The rules
+  are tuned to the walkthrough prompts and tool calls so the real
+  Microsoft Agent Framework pipeline can demonstrate AGT run governance,
+  tool governance, and audit correlation end-to-end.
+id: nist_ai_rmf_test:ai-system/maf/01-loan-processing
+name: maf-01-loan-processing
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/01-loan-processing/dotnet/policies/loan_governance.yaml
+title: 'MAF scenario AI system: 01-loan-processing'

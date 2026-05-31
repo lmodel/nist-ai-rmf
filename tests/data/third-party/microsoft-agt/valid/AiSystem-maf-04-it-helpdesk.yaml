@@ -1,0 +1,8 @@
+description: >-
+  Governance policy for the IT helpdesk example using the real AGT
+  .NET kernel and Agent Framework adapter.
+id: nist_ai_rmf_test:ai-system/maf/04-it-helpdesk
+name: maf-04-it-helpdesk
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/04-it-helpdesk/dotnet/policies/helpdesk_governance.yaml
+title: 'MAF scenario AI system: 04-it-helpdesk'

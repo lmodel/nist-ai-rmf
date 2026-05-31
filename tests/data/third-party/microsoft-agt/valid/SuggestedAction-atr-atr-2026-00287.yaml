@@ -1,0 +1,18 @@
+action_id: GV-1.1-001
+actor_task:
+  - GOVERNANCE_AND_OVERSIGHT
+applies_to_subcategory: GOVERN 1.1
+description: >-
+  Suggested mitigation derived from ATR community rule `atr-2026-00287`.
+  Upstream action: 'deny'. Joined to NIST AI 600-1 reference action
+  GV-1.1-001.
+function_prefix: GV
+gai_risks:
+  - DATA_PRIVACY
+  - HARMFUL_BIAS_OR_HOMOGENIZATION
+  - INTELLECTUAL_PROPERTY
+id: nist_ai_rmf_test:suggested-action/atr/atr-2026-00287
+name: atr-2026-00287
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/atr-community-rules/atr_security_policy.yaml
+title: '[ATR-2026-00287] ThreatenJSON — Coercive Output Format Threat'

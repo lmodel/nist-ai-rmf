@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_rmf.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-31T12:59:41
+# Generation date: 2026-05-31T14:57:48
 # Schema: nist-ai-rmf
 #
 # id: https://w3id.org/lmodel/nist-ai-rmf

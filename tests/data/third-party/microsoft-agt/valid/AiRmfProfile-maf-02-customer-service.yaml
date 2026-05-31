@@ -1,0 +1,13 @@
+description: >-
+  Governance policy for the customer support example using the real
+  AGT .NET kernel. Rules are aligned to the deterministic demo prompts
+  and tool names. Per the AGT NIST AI RMF self-assessment, AGT fully
+  addresses 12/19 RMF subcategories and partially addresses the remaining
+  7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/maf/02-customer-service
+name: contoso-support-governance
+profile_type: USE_CASE
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/02-customer-service/dotnet/policies/support_governance.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'MAF governance profile: 02-customer-service'

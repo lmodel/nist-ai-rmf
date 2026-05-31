@@ -1,0 +1,14 @@
+description: >-
+  Protocol-aware governance rules for SQL and Kubernetes API calls.
+  Lets AGT distinguish safe reads from destructive writes at the policy
+  level without requiring changes to agent code. Per the AGT NIST
+  AI RMF self-assessment, AGT fully addresses 12/19 RMF subcategories
+  and partially addresses the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/template/wire-protocol-rules
+name: wire-protocol-rules
+profile_type: CROSS_SECTORAL
+sector: wire-protocol-rules
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/wire-protocol-rules.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'Policy template profile: wire-protocol-rules'

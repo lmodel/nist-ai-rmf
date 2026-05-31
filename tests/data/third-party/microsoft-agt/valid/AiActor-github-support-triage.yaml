@@ -1,0 +1,7 @@
+description: Triages incoming support tickets.
+id: nist_ai_rmf_test:ai-actor/github/support-triage
+is_tevv: false
+name: support-triage
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/github-actions-governance/agents.yaml
+title: 'CI/CD AI actor: support-triage'

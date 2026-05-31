@@ -1,0 +1,12 @@
+description: >-
+  Governance policy for the HIPAA healthcare example using the real
+  AGT .NET kernel and Agent Framework adapter. Per the AGT NIST AI
+  RMF self-assessment, AGT fully addresses 12/19 RMF subcategories
+  and partially addresses the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/maf/03-healthcare
+name: medassist-healthcare-governance
+profile_type: USE_CASE
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/maf-integration/03-healthcare/dotnet/policies/healthcare_governance.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'MAF governance profile: 03-healthcare'

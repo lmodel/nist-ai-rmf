@@ -1,0 +1,11 @@
+description: >-
+  GAI-risk fixture derived from OWASP Agentic Security Initiative
+  item ASI-02: Tool Misuse & Exploitation. Mapped to GaiRiskCategoryEnum.INFORMATION_SECURITY
+  per the vendored ASI catalog.
+gai_risk_kind: INFORMATION_SECURITY
+id: nist_ai_rmf_test:gai-risk/asi-02
+name: ASI-02
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/owasp-asi-policy-mapping.md
+title: Tool Misuse & Exploitation

@@ -1,0 +1,11 @@
+description: >-
+  GAI-risk fixture derived from OWASP Agentic Security Initiative
+  item ASI-04: Agentic Supply Chain. Mapped to GaiRiskCategoryEnum.VALUE_CHAIN_AND_COMPONENT_INTEGRATION
+  per the vendored ASI catalog.
+gai_risk_kind: VALUE_CHAIN_AND_COMPONENT_INTEGRATION
+id: nist_ai_rmf_test:gai-risk/asi-04
+name: ASI-04
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policy-templates/healthcare.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/owasp-asi-policy-mapping.md
+title: Agentic Supply Chain

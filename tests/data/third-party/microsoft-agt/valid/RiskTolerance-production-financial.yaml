@@ -1,0 +1,8 @@
+id: nist_ai_rmf_test:risk-tolerance/production/financial
+name: financial-tolerance
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/policies/production/financial.yaml
+title: Risk tolerance derived from financial production policy
+tolerance_statement: >-
+  Risk tolerance tier 'financial' synthesised from upstream rule pack
+  default action 'deny'.

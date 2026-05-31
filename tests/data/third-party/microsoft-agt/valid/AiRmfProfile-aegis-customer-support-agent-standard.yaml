@@ -1,0 +1,15 @@
+description: >-
+  Standard governance profile for customer-support-class agents. Permits
+  customer record lookup and reply drafting over the customer-support
+  scope; denies access to billing, internal escalation paths, and
+  any administrative actions. Per the AGT NIST AI RMF self-assessment,
+  AGT fully addresses 12/19 RMF subcategories and partially addresses
+  the remaining 7 (see `nist-ai-rmf-alignment.md`).
+id: nist_ai_rmf_test:profile/aegis/customer-support-agent-standard
+name: customer-support-agent-standard
+profile_type: USE_CASE
+sector: customer-support
+see_also:
+  - upstream-releases/agent-governance-toolkit/examples/aegis-governance-profile/profile-customer-support-agent.yaml
+  - upstream-releases/agent-governance-toolkit/docs/compliance/nist-ai-rmf-alignment.md
+title: 'AEGIS profile: customer-support-agent-standard'

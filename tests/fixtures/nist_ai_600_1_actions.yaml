@@ -1,0 +1,109 @@
+# Curated reference subset of real NIST AI 600-1 SuggestedAction records.
+#
+# Source of truth: the sibling `nist-ai-600-1` LinkML project's own
+# validated test fixtures at
+#   tests/data/valid/SuggestedAction-*.yaml
+#   tests/data/valid/GaiProfile-comprehensive.yaml
+# (https://github.com/lmodel/nist-ai-600-1) and the corresponding
+# action ids cited in the NIST AI 600-1 publication
+# (https://doi.org/10.6028/NIST.AI.600-1).
+#
+# This file is *vendored* (not network-fetched) to keep the
+# `tests/fixtures/agt_to_rmf.py` transformer hermetic. Only fields
+# required to enrich a generated SuggestedAction are included.
+#
+# Each entry's `action_id` matches the schema regex
+#   ^(GV|MP|MS|MG)-[0-9]+\.[0-9]+-[0-9]{3}$
+# and was copy-verified from the sibling repo's vetted fixtures.
+
+actions:
+  GV-1.1-001:
+    function_prefix: GV
+    applies_to_subcategory: GOVERN 1.1
+    title: Align GAI development with applicable laws and regulations
+    description: |-
+      Align GAI development and use with applicable laws and
+      regulations, including those related to data privacy,
+      copyright, and intellectual property law.
+    gai_risks:
+      - DATA_PRIVACY
+      - HARMFUL_BIAS_OR_HOMOGENIZATION
+      - INTELLECTUAL_PROPERTY
+    actor_task:
+      - GOVERNANCE_AND_OVERSIGHT
+  MP-2.3-004:
+    function_prefix: MP
+    applies_to_subcategory: MAP 2.3
+    title: Re-evaluate context of use for GAI systems
+    description: |-
+      Re-evaluate the context of use whenever GAI capabilities
+      or deployment conditions change materially.
+    gai_risks:
+      - HARMFUL_BIAS_OR_HOMOGENIZATION
+      - INFORMATION_INTEGRITY
+      - HUMAN_AI_CONFIGURATION
+    actor_task:
+      - AI_IMPACT_ASSESSMENT
+      - AI_DEPLOYMENT
+  MS-2.7-005:
+    function_prefix: MS
+    applies_to_subcategory: MEASURE 2.7
+    title: Conduct AI red-teaming to assess content provenance
+    description: |-
+      Conduct adversarial testing to assess resilience against
+      attacks on content-provenance mechanisms and to evaluate
+      output integrity.
+    gai_risks:
+      - INFORMATION_INTEGRITY
+      - INFORMATION_SECURITY
+      - CONFABULATION
+    actor_task:
+      - TEVV
+      - AI_DEPLOYMENT
+  MG-2.4-002:
+    function_prefix: MG
+    applies_to_subcategory: MANAGE 2.4
+    title: Establish incident response procedures for GAI
+    description: |-
+      Establish, document, and maintain incident response
+      procedures for GAI systems, including triage, containment,
+      and post-incident review.
+    gai_risks:
+      - INFORMATION_SECURITY
+      - DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
+      - HUMAN_AI_CONFIGURATION
+    actor_task:
+      - GOVERNANCE_AND_OVERSIGHT
+      - OPERATION_AND_MONITORING
+
+# Ordered keyword routing table used by the transformer.
+# The first entry whose any `match` substring appears (case-insensitive)
+# in the source text wins. `default_action_id` is used if nothing matches.
+#
+# This table is intentionally short and conservative: every target id
+# above is a verified NIST AI 600-1 reference action.
+atr_routing:
+  default_action_id: GV-1.1-001
+  rules:
+    - match:
+        [
+          red-team,
+          red team,
+          adversarial,
+          jailbreak,
+          prompt injection,
+          injection,
+        ]
+      action_id: MS-2.7-005
+    - match: [incident, escalation, attack, exploit, sybil, spoof, hijack]
+      action_id: MG-2.4-002
+    - match: [scope, context, redirect, framing, persona, roleplay]
+      action_id: MP-2.3-004
+
+attestation_routing:
+  # Provenance attestation examples are governance / measurement actions
+  # for content provenance. Each AGT attestation flavour gets a single
+  # real reference action.
+  crypto-attestation-governed: MS-2.7-005
+  physical-attestation-governed: MG-2.4-002
+  reasoning-attestation-governed: MP-2.3-004
