@@ -90,6 +90,71 @@ communicate about incidents or events. */
     MANAGE = "MANAGE",
 };
 /**
+* The AI RMF Core categories (Part 2, §5) - the second-level groupings
+within each Function, keyed by the compact "FUNCTION-N" code. Cross-
+framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
+ATF) are attached as SSSOM mappings and are sourced from
+src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.
+*/
+export enum CategoryEnum {
+    
+    /** Policies, processes, procedures, and practices across the organization
+related to the mapping, measuring, and managing of AI risks are in
+place, transparent, and implemented effectively. */
+    GOVERN_1 = "GOVERN-1",
+    /** Accountability structures are in place so that the appropriate teams
+and individuals are empowered, responsible, and trained for mapping,
+measuring, and managing AI risks. */
+    GOVERN_2 = "GOVERN-2",
+    /** Workforce diversity, equity, inclusion, and accessibility processes
+are prioritized in the mapping, measuring, and managing of AI risks
+throughout the lifecycle. */
+    GOVERN_3 = "GOVERN-3",
+    /** Organizational teams are committed to a culture that considers and
+communicates AI risk. */
+    GOVERN_4 = "GOVERN-4",
+    /** Processes are in place for robust engagement with relevant AI actors. */
+    GOVERN_5 = "GOVERN-5",
+    /** Policies and procedures are in place to address AI risks and benefits
+arising from third-party software and data and other supply chain
+issues. */
+    GOVERN_6 = "GOVERN-6",
+    /** Context is established and understood. */
+    MAP_1 = "MAP-1",
+    /** Categorization of the AI system is performed. */
+    MAP_2 = "MAP-2",
+    /** AI capabilities, targeted usage, goals, and expected benefits and
+costs compared with appropriate benchmarks are understood. */
+    MAP_3 = "MAP-3",
+    /** Risks and benefits are mapped for all components of the AI system
+including third-party software and data. */
+    MAP_4 = "MAP-4",
+    /** Impacts to individuals, groups, communities, organizations, and
+society are characterized. */
+    MAP_5 = "MAP-5",
+    /** Appropriate methods and metrics are identified and applied. */
+    MEASURE_1 = "MEASURE-1",
+    /** AI systems are evaluated for trustworthy characteristics. */
+    MEASURE_2 = "MEASURE-2",
+    /** Mechanisms for tracking identified AI risks over time are in place. */
+    MEASURE_3 = "MEASURE-3",
+    /** Feedback about efficacy of measurement is gathered and assessed. */
+    MEASURE_4 = "MEASURE-4",
+    /** AI risks based on assessments and other analytical output from the MAP
+and MEASURE functions are prioritized, responded to, and managed. */
+    MANAGE_1 = "MANAGE-1",
+    /** Strategies to maximize AI benefits and minimize negative impacts are
+planned, prepared, implemented, documented, and informed by input from
+relevant AI actors. */
+    MANAGE_2 = "MANAGE-2",
+    /** AI risks and benefits from third-party entities are managed. */
+    MANAGE_3 = "MANAGE-3",
+    /** Risk treatments, including response and recovery, and communication
+plans for the identified and measured AI risks are documented and
+monitored regularly. */
+    MANAGE_4 = "MANAGE-4",
+};
+/**
 * AI lifecycle stages as defined in Figure 2 (modified from
 OECD 2022). Each stage corresponds to one of the AI system
 dimensions (see AiSystemDimensionEnum).
@@ -1158,7 +1223,7 @@ export interface AiRmfFramework extends NamedThing {
     /** AI RMF profiles defined alongside this Framework instance. */
     profiles?: AiRmfProfile[],
     /** Design attributes of the AI RMF (Appendix D). */
-    attributes_?: RmfAttribute[],
+    attributes?: RmfAttribute[],
     /** Identified challenges in measuring AI risk. */
     risk_measurement_challenges?: RiskMeasurementChallenge[],
     /** AI-specific risks compared to traditional software (Appendix B). */

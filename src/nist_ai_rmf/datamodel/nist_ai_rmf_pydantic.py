@@ -196,6 +196,109 @@ operate on specific AI systems and lifecycle stages.
     """
 
 
+class CategoryEnum(str, Enum):
+    """
+    The AI RMF Core categories (Part 2, §5) - the second-level groupings
+within each Function, keyed by the compact "FUNCTION-N" code. Cross-
+framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
+ATF) are attached as SSSOM mappings and are sourced from
+src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.
+    """
+    GOVERN_1 = "GOVERN-1"
+    """
+    Policies, processes, procedures, and practices across the organization
+    related to the mapping, measuring, and managing of AI risks are in
+    place, transparent, and implemented effectively.
+    """
+    GOVERN_2 = "GOVERN-2"
+    """
+    Accountability structures are in place so that the appropriate teams
+    and individuals are empowered, responsible, and trained for mapping,
+    measuring, and managing AI risks.
+    """
+    GOVERN_3 = "GOVERN-3"
+    """
+    Workforce diversity, equity, inclusion, and accessibility processes
+    are prioritized in the mapping, measuring, and managing of AI risks
+    throughout the lifecycle.
+    """
+    GOVERN_4 = "GOVERN-4"
+    """
+    Organizational teams are committed to a culture that considers and
+    communicates AI risk.
+    """
+    GOVERN_5 = "GOVERN-5"
+    """
+    Processes are in place for robust engagement with relevant AI actors.
+    """
+    GOVERN_6 = "GOVERN-6"
+    """
+    Policies and procedures are in place to address AI risks and benefits
+    arising from third-party software and data and other supply chain
+    issues.
+    """
+    MAP_1 = "MAP-1"
+    """
+    Context is established and understood.
+    """
+    MAP_2 = "MAP-2"
+    """
+    Categorization of the AI system is performed.
+    """
+    MAP_3 = "MAP-3"
+    """
+    AI capabilities, targeted usage, goals, and expected benefits and
+    costs compared with appropriate benchmarks are understood.
+    """
+    MAP_4 = "MAP-4"
+    """
+    Risks and benefits are mapped for all components of the AI system
+    including third-party software and data.
+    """
+    MAP_5 = "MAP-5"
+    """
+    Impacts to individuals, groups, communities, organizations, and
+    society are characterized.
+    """
+    MEASURE_1 = "MEASURE-1"
+    """
+    Appropriate methods and metrics are identified and applied.
+    """
+    MEASURE_2 = "MEASURE-2"
+    """
+    AI systems are evaluated for trustworthy characteristics.
+    """
+    MEASURE_3 = "MEASURE-3"
+    """
+    Mechanisms for tracking identified AI risks over time are in place.
+    """
+    MEASURE_4 = "MEASURE-4"
+    """
+    Feedback about efficacy of measurement is gathered and assessed.
+    """
+    MANAGE_1 = "MANAGE-1"
+    """
+    AI risks based on assessments and other analytical output from the MAP
+    and MEASURE functions are prioritized, responded to, and managed.
+    """
+    MANAGE_2 = "MANAGE-2"
+    """
+    Strategies to maximize AI benefits and minimize negative impacts are
+    planned, prepared, implemented, documented, and informed by input from
+    relevant AI actors.
+    """
+    MANAGE_3 = "MANAGE-3"
+    """
+    AI risks and benefits from third-party entities are managed.
+    """
+    MANAGE_4 = "MANAGE-4"
+    """
+    Risk treatments, including response and recovery, and communication
+    plans for the identified and measured AI risks are documented and
+    monitored regularly.
+    """
+
+
 class AiLifecycleStageEnum(str, Enum):
     """
     AI lifecycle stages as defined in Figure 2 (modified from
@@ -1683,16 +1786,16 @@ class AiRmfProfile(NamedThing):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_sp_800_53:ProfileDocument'],
          'exact_mappings': ['oscal_profile:Profile'],
          'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
-         'in_subset': ['profiles']})
+         'in_subset': ['profile_constructs']})
 
-    profile_type: ProfileTypeEnum = Field(default=..., description="""The kind of AI RMF Profile.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
+    profile_type: ProfileTypeEnum = Field(default=..., description="""The kind of AI RMF Profile.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profile_constructs']} })
     current_state: Optional[str] = Field(default=None, description="""For temporal current profiles - how AI is currently being managed
-and related risks in terms of current outcomes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
+and related risks in terms of current outcomes.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profile_constructs']} })
     target_state: Optional[str] = Field(default=None, description="""For temporal target profiles - the outcomes needed to achieve the
-desired AI risk management goals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
+desired AI risk management goals.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profile_constructs']} })
     sector: Optional[str] = Field(default=None, description="""The sector, industry, technology, or end-use application a
-profile addresses (e.g., \"hiring\", \"fair housing\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
-    addresses: Optional[list[str]] = Field(default=None, description="""Subcategories that a profile implements or addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profiles']} })
+profile addresses (e.g., \"hiring\", \"fair housing\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profile_constructs']} })
+    addresses: Optional[list[str]] = Field(default=None, description="""Subcategories that a profile implements or addresses.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile'], 'in_subset': ['profile_constructs']} })
     id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
          'in_subset': ['base'],
          'slot_uri': 'schema:identifier'} })
@@ -1715,7 +1818,7 @@ class RmfAttribute(NamedThing):
     standards, law- and regulation-agnostic, living document).
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1',
-         'in_subset': ['attributes'],
+         'in_subset': ['framework_attributes'],
          'related_mappings': ['nist_csf:CSFProperty']})
 
     id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
@@ -1889,11 +1992,8 @@ class AiRmfFramework(NamedThing):
     lifecycle_stages: Optional[list[AiLifecycleStage]] = Field(default=None, description="""The AI lifecycle stages (Figure 2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['lifecycle']} })
     dimensions: Optional[list[AiSystemDimension]] = Field(default=None, description="""The AI system dimensions (Figure 2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['lifecycle']} })
     actor_tasks: Optional[list[AiActorTask]] = Field(default=None, description="""AI actor task categories (Appendix A).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['lifecycle']} })
-    profiles: Optional[list[AiRmfProfile]] = Field(default=None, description="""AI RMF profiles defined alongside this Framework instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['profiles']} })
-    attributes_: Optional[list[RmfAttribute]] = Field(default=None, description="""Design attributes of the AI RMF (Appendix D).""", json_schema_extra = { "linkml_meta": {'aliases': ['rmf_attributes'],
-         'domain_of': ['AiRmfFramework'],
-         'in_subset': ['attributes'],
-         'slot_uri': 'nist_ai_100_1:attributes'} })
+    profiles: Optional[list[AiRmfProfile]] = Field(default=None, description="""AI RMF profiles defined alongside this Framework instance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['profile_constructs']} })
+    attributes: Optional[list[RmfAttribute]] = Field(default=None, description="""Design attributes of the AI RMF (Appendix D).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['framework_attributes']} })
     risk_measurement_challenges: Optional[list[RiskMeasurementChallenge]] = Field(default=None, description="""Identified challenges in measuring AI risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['risk_and_harm']} })
     ai_specific_risks: Optional[list[AiSpecificRisk]] = Field(default=None, description="""AI-specific risks compared to traditional software (Appendix B).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['ai_risk_distinctions']} })
     human_ai_interaction_issues: Optional[list[HumanAiInteractionIssue]] = Field(default=None, description="""Human-AI interaction considerations (Appendix C).""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfFramework'], 'in_subset': ['human_ai_interaction']} })

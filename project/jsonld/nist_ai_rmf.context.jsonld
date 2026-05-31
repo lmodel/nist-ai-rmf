@@ -75,7 +75,7 @@
       "applies_to_subcategory": {
          "@id": "nist_ai_600_1:applies_to_subcategory"
       },
-      "attributes_": {
+      "attributes": {
          "@type": "@id",
          "@id": "nist_ai_100_1:attributes"
       },
@@ -100,6 +100,11 @@
          "@id": "nist_ai_100_1:categories"
       },
       "category_code": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
          "@id": "nist_ai_100_1:category_code"
       },
       "category_id": {

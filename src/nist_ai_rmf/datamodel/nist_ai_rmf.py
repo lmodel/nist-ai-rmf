@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_rmf.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-31T14:57:48
+# Generation date: 2026-05-31T16:38:59
 # Schema: nist-ai-rmf
 #
 # id: https://w3id.org/lmodel/nist-ai-rmf
@@ -1229,7 +1229,7 @@ class AiRmfFramework(NamedThing):
     dimensions: Optional[Union[dict[Union[str, AiSystemDimensionId], Union[dict, AiSystemDimension]], list[Union[dict, AiSystemDimension]]]] = empty_dict()
     actor_tasks: Optional[Union[dict[Union[str, AiActorTaskId], Union[dict, AiActorTask]], list[Union[dict, AiActorTask]]]] = empty_dict()
     profiles: Optional[Union[dict[Union[str, AiRmfProfileId], Union[dict, AiRmfProfile]], list[Union[dict, AiRmfProfile]]]] = empty_dict()
-    attributes_: Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]] = empty_dict()
+    attributes: Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]] = empty_dict()
     risk_measurement_challenges: Optional[Union[dict[Union[str, RiskMeasurementChallengeId], Union[dict, RiskMeasurementChallenge]], list[Union[dict, RiskMeasurementChallenge]]]] = empty_dict()
     ai_specific_risks: Optional[Union[dict[Union[str, AiSpecificRiskId], Union[dict, AiSpecificRisk]], list[Union[dict, AiSpecificRisk]]]] = empty_dict()
     human_ai_interaction_issues: Optional[Union[dict[Union[str, HumanAiInteractionIssueId], Union[dict, HumanAiInteractionIssue]], list[Union[dict, HumanAiInteractionIssue]]]] = empty_dict()
@@ -1255,7 +1255,7 @@ class AiRmfFramework(NamedThing):
 
         self._normalize_inlined_as_list(slot_name="profiles", slot_type=AiRmfProfile, key_name="id", keyed=True)
 
-        self._normalize_inlined_as_list(slot_name="attributes_", slot_type=RmfAttribute, key_name="id", keyed=True)
+        self._normalize_inlined_as_list(slot_name="attributes", slot_type=RmfAttribute, key_name="id", keyed=True)
 
         self._normalize_inlined_as_list(slot_name="risk_measurement_challenges", slot_type=RiskMeasurementChallenge, key_name="id", keyed=True)
 
@@ -1584,6 +1584,119 @@ communicate about incidents or events.""")
 cross-cutting function applied throughout; MAP, MEASURE, and MANAGE
 operate on specific AI systems and lifecycle stages.""",
     )
+
+class CategoryEnum(EnumDefinitionImpl):
+    """
+    The AI RMF Core categories (Part 2, §5) - the second-level groupings
+    within each Function, keyed by the compact "FUNCTION-N" code. Cross-
+    framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
+    ATF) are attached as SSSOM mappings and are sourced from
+    src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.
+    """
+    _defn = EnumDefinition(
+        name="CategoryEnum",
+        description="""The AI RMF Core categories (Part 2, §5) - the second-level groupings
+within each Function, keyed by the compact \"FUNCTION-N\" code. Cross-
+framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
+ATF) are attached as SSSOM mappings and are sourced from
+src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.""",
+    )
+
+    @classmethod
+    def _addvals(cls):
+        setattr(cls, "GOVERN-1",
+            PermissibleValue(
+                text="GOVERN-1",
+                description="""Policies, processes, procedures, and practices across the organization
+related to the mapping, measuring, and managing of AI risks are in
+place, transparent, and implemented effectively."""))
+        setattr(cls, "GOVERN-2",
+            PermissibleValue(
+                text="GOVERN-2",
+                description="""Accountability structures are in place so that the appropriate teams
+and individuals are empowered, responsible, and trained for mapping,
+measuring, and managing AI risks."""))
+        setattr(cls, "GOVERN-3",
+            PermissibleValue(
+                text="GOVERN-3",
+                description="""Workforce diversity, equity, inclusion, and accessibility processes
+are prioritized in the mapping, measuring, and managing of AI risks
+throughout the lifecycle."""))
+        setattr(cls, "GOVERN-4",
+            PermissibleValue(
+                text="GOVERN-4",
+                description="""Organizational teams are committed to a culture that considers and
+communicates AI risk."""))
+        setattr(cls, "GOVERN-5",
+            PermissibleValue(
+                text="GOVERN-5",
+                description="Processes are in place for robust engagement with relevant AI actors."))
+        setattr(cls, "GOVERN-6",
+            PermissibleValue(
+                text="GOVERN-6",
+                description="""Policies and procedures are in place to address AI risks and benefits
+arising from third-party software and data and other supply chain
+issues."""))
+        setattr(cls, "MAP-1",
+            PermissibleValue(
+                text="MAP-1",
+                description="Context is established and understood."))
+        setattr(cls, "MAP-2",
+            PermissibleValue(
+                text="MAP-2",
+                description="Categorization of the AI system is performed."))
+        setattr(cls, "MAP-3",
+            PermissibleValue(
+                text="MAP-3",
+                description="""AI capabilities, targeted usage, goals, and expected benefits and
+costs compared with appropriate benchmarks are understood."""))
+        setattr(cls, "MAP-4",
+            PermissibleValue(
+                text="MAP-4",
+                description="""Risks and benefits are mapped for all components of the AI system
+including third-party software and data."""))
+        setattr(cls, "MAP-5",
+            PermissibleValue(
+                text="MAP-5",
+                description="""Impacts to individuals, groups, communities, organizations, and
+society are characterized."""))
+        setattr(cls, "MEASURE-1",
+            PermissibleValue(
+                text="MEASURE-1",
+                description="Appropriate methods and metrics are identified and applied."))
+        setattr(cls, "MEASURE-2",
+            PermissibleValue(
+                text="MEASURE-2",
+                description="AI systems are evaluated for trustworthy characteristics."))
+        setattr(cls, "MEASURE-3",
+            PermissibleValue(
+                text="MEASURE-3",
+                description="Mechanisms for tracking identified AI risks over time are in place."))
+        setattr(cls, "MEASURE-4",
+            PermissibleValue(
+                text="MEASURE-4",
+                description="Feedback about efficacy of measurement is gathered and assessed."))
+        setattr(cls, "MANAGE-1",
+            PermissibleValue(
+                text="MANAGE-1",
+                description="""AI risks based on assessments and other analytical output from the MAP
+and MEASURE functions are prioritized, responded to, and managed."""))
+        setattr(cls, "MANAGE-2",
+            PermissibleValue(
+                text="MANAGE-2",
+                description="""Strategies to maximize AI benefits and minimize negative impacts are
+planned, prepared, implemented, documented, and informed by input from
+relevant AI actors."""))
+        setattr(cls, "MANAGE-3",
+            PermissibleValue(
+                text="MANAGE-3",
+                description="AI risks and benefits from third-party entities are managed."))
+        setattr(cls, "MANAGE-4",
+            PermissibleValue(
+                text="MANAGE-4",
+                description="""Risk treatments, including response and recovery, and communication
+plans for the identified and measured AI risks are documented and
+monitored regularly."""))
 
 class AiLifecycleStageEnum(EnumDefinitionImpl):
     """
@@ -2621,7 +2734,7 @@ slots.function_kind = Slot(uri=NIST_AI_100_1.function_kind, name="function_kind"
                    model_uri=NIST_AI_RMF.function_kind, domain=None, range=Optional[Union[str, "FunctionEnum"]])
 
 slots.category_code = Slot(uri=NIST_AI_100_1.category_code, name="category_code", curie=NIST_AI_100_1.curie('category_code'),
-                   model_uri=NIST_AI_RMF.category_code, domain=None, range=Optional[str])
+                   model_uri=NIST_AI_RMF.category_code, domain=None, range=Optional[Union[str, "CategoryEnum"]])
 
 slots.dimension_kind = Slot(uri=NIST_AI_100_1.dimension_kind, name="dimension_kind", curie=NIST_AI_100_1.curie('dimension_kind'),
                    model_uri=NIST_AI_RMF.dimension_kind, domain=None, range=Union[str, "AiSystemDimensionEnum"])
@@ -2692,8 +2805,8 @@ slots.actor_tasks = Slot(uri=NIST_AI_100_1.actor_tasks, name="actor_tasks", curi
 slots.profiles = Slot(uri=NIST_AI_100_1.profiles, name="profiles", curie=NIST_AI_100_1.curie('profiles'),
                    model_uri=NIST_AI_RMF.profiles, domain=None, range=Optional[Union[dict[Union[str, AiRmfProfileId], Union[dict, AiRmfProfile]], list[Union[dict, AiRmfProfile]]]])
 
-slots.attributes_ = Slot(uri=NIST_AI_100_1.attributes, name="attributes_", curie=NIST_AI_100_1.curie('attributes'),
-                   model_uri=NIST_AI_RMF.attributes_, domain=None, range=Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]])
+slots.attributes = Slot(uri=NIST_AI_100_1.attributes, name="attributes", curie=NIST_AI_100_1.curie('attributes'),
+                   model_uri=NIST_AI_RMF.attributes, domain=None, range=Optional[Union[dict[Union[str, RmfAttributeId], Union[dict, RmfAttribute]], list[Union[dict, RmfAttribute]]]])
 
 slots.risk_measurement_challenges = Slot(uri=NIST_AI_100_1.risk_measurement_challenges, name="risk_measurement_challenges", curie=NIST_AI_100_1.curie('risk_measurement_challenges'),
                    model_uri=NIST_AI_RMF.risk_measurement_challenges, domain=None, range=Optional[Union[dict[Union[str, RiskMeasurementChallengeId], Union[dict, RiskMeasurementChallenge]], list[Union[dict, RiskMeasurementChallenge]]]])
