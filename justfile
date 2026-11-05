@@ -110,11 +110,6 @@ site: gen-project gen-doc
 [group('model development')]
 test: _test-schema _test-python _test-examples
 
-# Regenerate AGT-derived test fixtures under tests/data/third-party/microsoft-agt/{valid,invalid}/
-[group('model development')]
-gen-fixtures:
-  uv run python -m tests.fixtures.agt_to_rmf
-
 # Run linting
 [group('model development')]
 lint:
@@ -136,7 +131,7 @@ gen-python:
 
 # Generate project files including Python data model
 [group('model development')]
-gen-project: && gen-extra-schemas
+gen-project:
   uv run gen-project {{config_yaml}} -d {{dest}} {{source_schema_path}}
   mkdir -p {{pymodel}}
   mv {{dest}}/*.py {{pymodel}}/
@@ -220,14 +215,14 @@ _test-python: gen-python
   uv run python -m pytest
 
 # Run example tests
-_test-examples: _ensure_examples_output && _test-examples-extra
+_test-examples: _ensure_examples_output
   uv run linkml-run-examples \
     --input-formats json \
     --input-formats yaml \
     --output-formats json \
     --output-formats yaml \
-    --counter-example-input-directory tests/data/third-party/microsoft-agt/invalid \
-    --input-directory tests/data/third-party/microsoft-agt/valid \
+    --counter-example-input-directory tests/data/invalid \
+    --input-directory tests/data/valid \
     --output-directory examples/output \
     --schema {{source_schema_path}} > examples/output/README.md
 
