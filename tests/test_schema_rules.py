@@ -251,7 +251,9 @@ def test_this_copy_holds_each_family_copy(name):
     for kind in ("classes", "enums", "types", "slots"):
         for element, body in (theirs.get(kind) or {}).items():
             assert element in mine[kind], (kind, element)
-            assert _without_written_iri(mine[kind][element]) == _without_written_iri(body), (
+            assert _without_written_iri(mine[kind][element]) == _without_written_iri(
+                body
+            ), (
                 kind,
                 element,
             )

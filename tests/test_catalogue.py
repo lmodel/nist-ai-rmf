@@ -107,7 +107,9 @@ def test_each_element_keeps_its_publications_iri(key):
 
     def expand(curie):
         prefix, _, local = curie.partition(":")
-        return context[prefix] + local if isinstance(context.get(prefix), str) else curie
+        return (
+            context[prefix] + local if isinstance(context.get(prefix), str) else curie
+        )
 
     for name in own.all_classes():
         assert merged.get_uri(name, expand=True) == own.get_uri(name, expand=True), name

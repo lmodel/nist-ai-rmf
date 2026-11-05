@@ -88,7 +88,9 @@ def check_vendored() -> tuple[list[str], bool]:
     for repository, pinned in sorted(VENDORED_FROM.items()):
         latest = _latest_release(repository)
         if latest == pinned:
-            report.append(f"- {repository}: vendored from `{pinned}`, its latest state.")
+            report.append(
+                f"- {repository}: vendored from `{pinned}`, its latest state."
+            )
         else:
             attention = True
             report.append(
@@ -118,7 +120,13 @@ def main(argv: list[str] | None = None) -> int:
     for check in (check_vendored, check_crosswalk):
         try:
             found, moved = check()
-        except (urllib.error.URLError, TimeoutError, OSError, KeyError, ValueError) as err:
+        except (
+            urllib.error.URLError,
+            TimeoutError,
+            OSError,
+            KeyError,
+            ValueError,
+        ) as err:
             found, moved = [f"- **A check could not finish: {err}.**"], True
         lines += found
         attention = attention or moved

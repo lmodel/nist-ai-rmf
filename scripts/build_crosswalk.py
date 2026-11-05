@@ -122,7 +122,10 @@ def object_of(number: str) -> tuple[str, str]:
     number = MISPRINTED_NUMBERS.get(number, number)
     if number.startswith("B."):
         control = "A." + number[2:]
-        return f"iso42001:AimsAnnexAControl#{control.lower().replace('.', '_')}", control
+        return (
+            f"iso42001:AimsAnnexAControl#{control.lower().replace('.', '_')}",
+            control,
+        )
     return f"iso42001:AimsClause#clause_{number.replace('.', '_')}", number
 
 
@@ -203,7 +206,9 @@ def _download() -> bytes:
     with urllib.request.urlopen(req, timeout=120) as resp:  # noqa: S310
         data = resp.read(MAX_BYTES + 1)
     if len(data) > MAX_BYTES:
-        raise urllib.error.URLError(f"{PDF_URL} answered with more than {MAX_BYTES} bytes")
+        raise urllib.error.URLError(
+            f"{PDF_URL} answered with more than {MAX_BYTES} bytes"
+        )
     return data
 
 
@@ -219,7 +224,9 @@ def _subcategories() -> set[str]:
 
 def _objects() -> set[str] | None:
     if not ISO42001_COPY.exists():
-        print("No copy of lmodel/iso42001 in tests/neighbours/, so the objects go unchecked.")
+        print(
+            "No copy of lmodel/iso42001 in tests/neighbours/, so the objects go unchecked."
+        )
         return None
     enums = yaml.safe_load(ISO42001_COPY.read_text(encoding="utf-8"))["enums"]
     return {
@@ -231,7 +238,9 @@ def _objects() -> set[str] | None:
 
 def main(argv: list[str] | None = None) -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--pdf", type=Path, help="Read this copy instead of downloading")
+    parser.add_argument(
+        "--pdf", type=Path, help="Read this copy instead of downloading"
+    )
     parser.add_argument("--output", type=Path, default=OUTPUT)
     args = parser.parse_args(argv)
     data = args.pdf.read_bytes() if args.pdf else _download()

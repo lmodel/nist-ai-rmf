@@ -118,7 +118,9 @@ def test_a_pdf_with_other_bytes_is_refused(builder, tmp_path, capsys):
     """Only the pinned bytes are read."""
     other = tmp_path / "other.pdf"
     other.write_bytes(b"not the crosswalk")
-    assert builder.main(["--pdf", str(other), "--output", str(tmp_path / "out.tsv")]) == 1
+    assert (
+        builder.main(["--pdf", str(other), "--output", str(tmp_path / "out.tsv")]) == 1
+    )
     assert "not the pinned one" in capsys.readouterr().out
     assert not (tmp_path / "out.tsv").exists()
 
