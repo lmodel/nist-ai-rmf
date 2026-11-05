@@ -10,7 +10,7 @@ gh_action_docs_preview: false
 gh_action_pypi: false
 github_org: lmodel
 license: Apache-2.0
-project_description: NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)
+project_description: 'NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)'
 project_name: nist-ai-rmf
 project_slug: nist_ai_rmf
 
