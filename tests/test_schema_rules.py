@@ -263,8 +263,9 @@ def test_this_copy_holds_each_family_copy(name):
 )
 def test_a_top_level_slot_keeps_its_publications_iri(name, prefix):
     """Each top-level slot of a family copy keeps its IRI here. A class attribute takes this
-    schema's prefix in this copy alone: lokf issue 168, which the committed JSON-LD context
-    does not share, and tests/test_catalogue.py holds that context to each publication."""
+    schema's prefix in this copy alone: lokf issue 168, closed with no release since lokf
+    0.9.0. The committed JSON-LD context does not share it, and tests/test_catalogue.py holds
+    that context to each publication."""
     mine = yaml.safe_load(COPY.read_text())["slots"]
     theirs = yaml.safe_load((NEIGHBOUR_DIR / name).read_text())["slots"]
     for slot, body in theirs.items():

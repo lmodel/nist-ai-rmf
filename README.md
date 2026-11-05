@@ -50,7 +50,7 @@ The copy roots on `Concept` what the two repositories root. In Obsidian, add the
 AiRmfFunction, AiRmfCategory, AiRmfSubcategory, AiRmfTrustworthinessCharacteristic, AiRmfDimension, AiRmfLifecycleStage, AiRmfActorTask, AiRmfManagementChallenge, AiRmfMeasurementChallenge, AiRmfSpecificRisk, AiRmfHumanAiIssue, AiRmfAttribute, AiRmfSystem, AiRmfActor, AiRmfRisk, AiRmfResidualRisk, AiRmfImpact, AiRmfHarm, AiRmfRiskTolerance, AiRmfBias, AiRmfProfile, GaiRisk, GaiSubcategory, GaiGovernanceConsideration, GaiPreDeploymentTestingConsideration, GaiContentProvenanceConsideration, GaiIncidentDisclosureConsideration, GaiParticipatoryEngagement, GaiFieldTesting, GaiAiRedTeaming, GaiProfile
 ```
 
-Import this copy in place of the two repositories' copies, never beside them. In this copy a class attribute projects under `nist_ai_rmf:` rather than its publication's prefix, which [lokf issue 168](https://github.com/nicholsn/lokf/issues/168) reports; a top-level slot and the committed JSON-LD context keep each publication's IRI. `tests/test_schema_rules.py` holds all this.
+Import this copy in place of the two repositories' copies, never beside them. In this copy a class attribute projects under `nist_ai_rmf:` rather than its publication's prefix, which [lokf issue 168](https://github.com/nicholsn/lokf/issues/168) reports, closed with no release since lokf 0.9.0; a top-level slot and the committed JSON-LD context keep each publication's IRI. `tests/test_schema_rules.py` holds all this.
 
 ## License
 
