@@ -86,11 +86,12 @@ def test_header_holds_what_the_standard_asks():
 
 def test_the_repository_carries_no_crosswalk():
     """The crosswalk states no licence, so neither its PDF nor its pairs are committed."""
+    skipped = {".git", ".venv", "tmp", "node_modules"}
     tracked_like = [
         p
         for p in ROOT.rglob("*")
         if p.is_file()
-        and not {".git", ".venv", "tmp", "node_modules", ".lokf"} & set(p.parts)
+        and not skipped & set(p.relative_to(ROOT).parts)
         and p.suffix in {".tsv", ".pdf"}
     ]
     assert not tracked_like, tracked_like

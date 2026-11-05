@@ -10,6 +10,7 @@ from pathlib import Path
 import jsonschema
 import pytest
 import yaml
+from linkml.generators.jsonschemagen import JsonSchemaGenerator
 from linkml.validator import validate
 from linkml_runtime.loaders import yaml_loader
 from linkml_runtime.utils.schemaview import SchemaView
@@ -58,6 +59,18 @@ def test_the_committed_json_schema_refuses_another_key():
     schema = json.loads(JSON_SCHEMA.read_text(encoding="utf-8"))
     with pytest.raises(jsonschema.ValidationError):
         jsonschema.Draft201909Validator(schema).validate({"ai_rmf_version": "1.0"})
+
+
+def test_the_committed_json_schema_is_current():
+    """The committed JSON Schema is what the schema generates today, under the settings
+    .linkml/generators.yaml names, so an edit to one cannot leave the other behind."""
+    generated = JsonSchemaGenerator(
+        str(SCHEMA),
+        mergeimports=True,
+        top_class="NistAiRmfFamily",
+        include_range_class_descendants=True,
+    ).serialize()
+    assert json.loads(generated) == json.loads(JSON_SCHEMA.read_text(encoding="utf-8"))
 
 
 @pytest.mark.parametrize("key", PUBLICATIONS)
