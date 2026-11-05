@@ -50,7 +50,7 @@ def test_vendored_files_are_the_pinned_ones():
     held = {
         str(p.relative_to(SCHEMA_DIR))
         for p in SCHEMA_DIR.rglob("*.yaml")
-        if p != SCHEMA and "overlay" not in p.name
+        if p != SCHEMA
     } | {str(p.relative_to(ROOT)) for p in UPSTREAM.iterdir()}
     assert held == set(VENDORED_PINS)
     for name, sha256 in VENDORED_PINS.items():
