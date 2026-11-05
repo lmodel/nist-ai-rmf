@@ -74,9 +74,11 @@ linkml_meta = LinkMLMeta({'comments': ['The version is the 1.0.0 both publicatio
                   'network, and tests/test_upstream.py holds them to their hashes. '
                   'Each element keeps the IRI of its publication, and this schema '
                   'adds only the class below.',
-                  "NIST's crosswalk to ISO/IEC 42001 is in "
-                  'src/nist_ai_rmf/mappings/ as SSSOM, since it pairs records, not '
-                  'schema elements.'],
+                  'The AI RMF to ISO/IEC 42001 crosswalk pairs records, not schema '
+                  'elements, so it is no mapping of this schema. '
+                  'scripts/build_crosswalk.py writes it as SSSOM under tmp/, and '
+                  'the repository carries neither it nor its PDF, which states no '
+                  'licence.'],
      'default_prefix': 'nist_ai_rmf',
      'default_range': 'string',
      'description': 'One LinkML schema for two NIST publications: the AI Risk '

@@ -9,8 +9,9 @@ comments:
   folder as released, so the schema needs no network, and tests/test_upstream.py holds
   them to their hashes. Each element keeps the IRI of its publication, and this schema
   adds only the class below.
-- NIST's crosswalk to ISO/IEC 42001 is in src/nist_ai_rmf/mappings/ as SSSOM, since
-  it pairs records, not schema elements.
+- The AI RMF to ISO/IEC 42001 crosswalk pairs records, not schema elements, so it
+  is no mapping of this schema. scripts/build_crosswalk.py writes it as SSSOM under
+  tmp/, and the repository carries neither it nor its PDF, which states no licence.
 source: https://www.nist.gov/itl/ai-risk-management-framework
 see_also:
 - https://lmodel.github.io/nist-ai-rmf
@@ -4106,6 +4107,6 @@ classes:
     class_uri: nist_ai_600_1:AiRedTeaming
 metamodel_version: 1.12.0
 source_file: nist_ai_rmf.yaml
-source_file_date: '2026-11-05T09:36:57'
-source_file_size: 2037
+source_file_date: '2026-11-05T10:44:04'
+source_file_size: 2164
 
