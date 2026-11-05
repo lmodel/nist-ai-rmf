@@ -4,7 +4,7 @@ okf_version: "0.2"
 base_iri: https://w3id.org/lmodel/nist-ai-rmf/knowledge/
 context: https://w3id.org/lokf/context.jsonld
 title: nist-ai-rmf Knowledge Bundle
-description: NIST AI 600-1 AI RMF Generative AI Profile (LinkML)
+description: "NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)"
 license: https://creativecommons.org/licenses/by/4.0/
 publisher:
   type: Person
@@ -18,5 +18,3 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for nist-ai-rmf. Every M
 
 # Services
 
-* [Example Service A](services/example-service-a.md) - Placeholder service; replace with a real service of nist-ai-rmf.
-* [Example Service B](services/example-service-b.md) - Placeholder service; replace with a real service of nist-ai-rmf.
