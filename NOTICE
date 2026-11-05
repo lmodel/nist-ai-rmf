@@ -1,0 +1,104 @@
+NIST AI RMF family LinkML Schema (nist-ai-rmf)
+Copyright 2026 Noel McLoughlin
+
+The code in this repository is licensed under the Apache License,
+Version 2.0 (see LICENSE). Some of the content it carries is third-party
+work under its own terms, listed below.
+
+lmodel/nist-ai-100-1 and lmodel/nist-ai-600-1
+---------------------------------------------
+
+src/nist_ai_rmf/schema/nist_ai_100_1/ and src/nist_ai_rmf/schema/nist_ai_600_1*.yaml
+hold the schema modules of lmodel/nist-ai-100-1
+(https://github.com/lmodel/nist-ai-100-1) and lmodel/nist-ai-600-1
+(https://github.com/lmodel/nist-ai-600-1), each at its v0.1.0, unchanged, under
+the Apache License, Version 2.0. tests/upstream/ holds their catalogues at the
+same tags, under the terms each one's NOTICE gives. tests/test_upstream.py holds
+each file to its hash. They model publications of the National Institute of
+Standards and Technology (NIST), https://doi.org/10.6028/NIST.AI.100-1 and
+https://doi.org/10.6028/NIST.AI.600-1; they are not NIST's, and their use does
+not imply endorsement by NIST.
+
+NIST's statement on its works, read on 2026-11-05 at
+https://www.nist.gov/open/copyright-fair-use-and-licensing-statements-srd-data-software-and-technical-series-publications,
+says that works authored by NIST employees are not subject to copyright
+protection within the United States. To the extent NIST may assert rights
+outside the United States, it grants the public a non-exclusive, perpetual,
+paid-up, royalty-free, worldwide right to reprint them in all formats,
+including derivative works. It asks for its recommended citation followed by
+"Republished courtesy of the National Institute of Standards and Technology."
+The text the publications quote from others keeps its owners' rights.
+
+  National Institute of Standards and Technology (2023), Artificial Intelligence
+  Risk Management Framework (AI RMF 1.0), NIST AI 100-1, National Institute of
+  Standards and Technology, Gaithersburg, MD,
+  https://doi.org/10.6028/NIST.AI.100-1 (Accessed November 5, 2026). Republished
+  courtesy of the National Institute of Standards and Technology.
+
+  National Institute of Standards and Technology (2024), Artificial
+  Intelligence Risk Management Framework: Generative Artificial Intelligence
+  Profile, NIST AI 600-1, National Institute of Standards and Technology,
+  Gaithersburg, MD, https://doi.org/10.6028/NIST.AI.600-1 (Accessed
+  November 5, 2026). Republished courtesy of the National Institute of Standards
+  and Technology.
+
+The AI RMF to ISO/IEC 42001 crosswalk
+-------------------------------------
+
+scripts/build_crosswalk.py reads the crosswalk that Microsoft provided and NIST's
+AI Resource Center lists,
+https://airc.nist.gov/docs/NIST_AI_RMF_to_ISO_IEC_42001_Crosswalk.pdf. NIST's
+listing says inclusion implies no endorsement. The document states no licence and
+quotes ISO's headings, so this repository carries neither the document nor its
+pairs. The script writes them under tmp/, which git ignores, for the person who
+runs it. ISO/IEC 42001 is copyright ISO and IEC, and no text of it is reproduced
+here.
+
+linkml-project-copier
+---------------------
+
+This project was generated from linkml-project-copier
+(https://github.com/linkml/linkml-project-copier), and its justfile,
+configuration and documentation scaffolding derive from that template:
+
+  The MIT License (MIT)
+  Copyright (c) 2025 David Linke
+
+  Permission is hereby granted, free of charge, to any person obtaining a
+  copy of this software and associated documentation files (the
+  "Software"), to deal in the Software without restriction, including
+  without limitation the rights to use, copy, modify, merge, publish,
+  distribute, sublicense, and/or sell copies of the Software, and to permit
+  persons to whom the Software is furnished to do so, subject to the
+  following conditions:
+
+  The above copyright notice and this permission notice shall be included
+  in all copies or substantial portions of the Software.
+
+  THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS
+  OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF
+  MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN
+  NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM,
+  DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR
+  OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE
+  USE OR OTHER DEALINGS IN THE SOFTWARE.
+
+Knowledge bundle
+----------------
+
+This product maintains its documentation as a Linked Open Knowledge Format
+(LOKF) bundle under .lokf/: https://lokf.nolan-nichols.com/specification/
+
+LOKF is a semantic profile of the Open Knowledge Format (OKF) specification
+by Google Cloud Platform:
+https://github.com/GoogleCloudPlatform/open-knowledge-format/blob/main/SPEC.md
+
+The scripts under .lokf/scripts/ and .lokf/m365/ and the
+knowledge-librarian, knowledge-registrar, knowledge-release and
+knowledge-sync workflows under .github/workflows/ are copies of the
+ktl-sidecar templates in knowledge-trust-ladder
+(https://github.com/noelmcloughlin/knowledge-trust-ladder). The site under
+website/ and the knowledge-website workflow derive from the ktl-website
+templates in the same repository, and website/NOTICE lists the part
+adapted from the LOKF toolkit's site. All of them are licensed under the
+Apache License, Version 2.0.
