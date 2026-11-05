@@ -1,0 +1,68 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
+name: nist_ai_100_1_profiles
+title: AI RMF 1.0 profiles
+description: >-
+  The AI RMF profile of section 6: an implementation of the Core for one setting, application
+  or technology, a description of a current or target state, or a treatment of risks common
+  across sectors.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-100-1
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  oscal: https://w3id.org/lmodel/oscal/
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1_base
+
+classes:
+  AiRmfProfile:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:Profile
+    description: >-
+      An implementation of the Core's functions, categories and subcategories for a setting,
+      application or technology, based on the adopter's requirements, risk tolerance and
+      resources.
+    comments:
+      - The publication prescribes no profile template, so only the kinds and the subcategories are structured.
+    related_mappings:
+      - oscal:Profile
+    attributes:
+      ai_rmf_profile_kinds:
+        description: Which of the publication's kinds of profile this is. A current profile for one use case is both.
+        range: AiRmfProfileKind
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+      ai_rmf_profile_setting:
+        description: The sector, industry, technology, organization or end use the profile covers, such as hiring.
+      ai_rmf_profile_subcategories:
+        description: The subcategories the profile selects. An adopter may select from them rather than apply all.
+        range: ai_rmf_subcategory_identifier
+        multivalued: true
+
+enums:
+  AiRmfProfileKind:
+    description: The kinds of AI RMF profile that section 6 names.
+    permissible_values:
+      use_case:
+        title: Use-case profile
+        description: The Core implemented for a specific setting or application.
+      current:
+        title: Current Profile
+        description: A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes.
+      target:
+        title: Target Profile
+        description: A temporal profile saying which outcomes the desired risk management goals need.
+      cross_sectoral:
+        title: Cross-sectoral profile
+        description: >-
+          Covers risks of models or applications used across use cases or sectors, or activities
+          common to them, such as using large language models.

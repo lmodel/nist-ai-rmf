@@ -1,0 +1,596 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_foundations
+name: nist_ai_100_1_foundations
+title: AI RMF 1.0 foundational information and appendices
+description: >-
+  Part 1 and the appendices of the publication: how it frames risk, impact and harm, its
+  audience and lifecycle, the trustworthiness characteristics, and the lists of Appendices A
+  to D, with classes for what an adopter records about its own AI systems.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-100-1
+prefixes:
+  iso27001: https://w3id.org/lmodel/iso27001/
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  prov: http://www.w3.org/ns/prov#
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1_base
+
+slots:
+  ai_rmf_likelihood:
+    description: How likely the event or impact is, on whatever scale the adopter uses.
+    comments:
+      - The publication sets no scale, and the Playbook allows qualitative ones, so this is text rather than a probability.
+
+  ai_rmf_magnitude:
+    description: How large the consequences are, on whatever scale the adopter uses.
+
+classes:
+  # What the publication lists. The catalogue holds one record per item.
+  AiRmfTrustworthinessCharacteristic:
+    class_uri: nist_ai_100_1:TrustworthinessCharacteristic
+    description: A characteristic of trustworthy AI systems, each with a subsection of section 3.
+    comments:
+      - Addressing the characteristics one by one does not make a system trustworthy, since they trade off against each other.
+    slots:
+      - description
+    attributes:
+      ai_rmf_characteristic_name:
+        description: Which characteristic this is.
+        range: AiRmfCharacteristicName
+        required: true
+      ai_rmf_characteristic_section:
+        description: The subsection of the publication that describes it, such as 3.1.
+        pattern: "^3\\.[1-7]$"
+        required: true
+      ai_rmf_characteristic_is_base:
+        description: Whether Figure 4 shows it as the necessary condition under the others.
+        range: boolean
+      ai_rmf_characteristic_relates_to_all:
+        description: Whether Figure 4 shows it relating to all the others.
+        range: boolean
+
+  AiRmfDimension:
+    class_uri: nist_ai_100_1:Dimension
+    description: One of the five key socio-technical dimensions of an AI system in Figure 2.
+    slots:
+      - description
+    attributes:
+      ai_rmf_dimension_name:
+        description: Which dimension this is.
+        range: AiRmfDimensionName
+        required: true
+      ai_rmf_dimension_audience:
+        description: The AI RMF audience formed by the AI actors in this dimension.
+        range: AiRmfAudience
+        required: true
+
+  AiRmfLifecycleStage:
+    class_uri: nist_ai_100_1:LifecycleStage
+    description: A stage of the AI lifecycle as a column of Figure 3 shows it, under its dimension.
+    slots:
+      - description
+    attributes:
+      ai_rmf_lifecycle_stage_name:
+        description: Which stage this is.
+        range: AiRmfLifecycleStageName
+        required: true
+      ai_rmf_lifecycle_stage_dimension:
+        description: The dimension Figure 3 places the stage under.
+        range: AiRmfDimensionName
+        required: true
+      ai_rmf_lifecycle_stage_tevv:
+        description: The testing, evaluation, verification and validation (TEVV) Figure 3 gives the stage.
+      ai_rmf_lifecycle_stage_representative_actors:
+        description: The representative AI actors Figure 3 lists for the stage.
+        multivalued: true
+
+  AiRmfActorTask:
+    class_uri: nist_ai_100_1:ActorTask
+    description: A task or additional AI actor of Appendix A.
+    slots:
+      - description
+    attributes:
+      ai_rmf_actor_task_name:
+        description: Which task or additional AI actor this is.
+        range: AiRmfActorTaskName
+        required: true
+      ai_rmf_actor_task_is_additional_actor:
+        description: Whether Appendix A lists it under Additional AI Actors rather than as a task.
+        range: boolean
+      ai_rmf_actor_task_representative_actors:
+        description: The AI actors that Appendix A says carry out the task.
+        multivalued: true
+
+  AiRmfManagementChallenge:
+    class_uri: nist_ai_100_1:ManagementChallenge
+    description: One of the four challenges for AI risk management in section 1.2.
+    slots:
+      - description
+    attributes:
+      ai_rmf_management_challenge_name:
+        description: Which challenge this is.
+        range: AiRmfManagementChallengeName
+        required: true
+      ai_rmf_management_challenge_measurement_challenges:
+        description: The risk measurement challenges of section 1.2.1, under the challenge of risk measurement.
+        range: AiRmfMeasurementChallenge
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+  AiRmfMeasurementChallenge:
+    class_uri: nist_ai_100_1:MeasurementChallenge
+    description: One of the challenges of measuring AI risk in section 1.2.1.
+    slots:
+      - description
+    attributes:
+      ai_rmf_measurement_challenge_name:
+        description: Which challenge this is.
+        range: AiRmfMeasurementChallengeName
+        required: true
+
+  AiRmfSpecificRisk:
+    class_uri: nist_ai_100_1:SpecificRisk
+    description: A risk that Appendix B says is new or increased for AI compared with traditional software.
+    slots:
+      - title
+      - description
+    slot_usage:
+      title:
+        description: This project's short name for the item. Appendix B gives its items no names.
+        required: true
+    attributes:
+      ai_rmf_specific_risk_position:
+        description: The item's position in Appendix B's list, which is not numbered.
+        range: integer
+        minimum_value: 1
+        required: true
+
+  AiRmfHumanAiIssue:
+    class_uri: nist_ai_100_1:HumanAiIssue
+    description: An issue of human-AI interaction that Appendix C says merits further consideration and research.
+    slots:
+      - title
+      - description
+    slot_usage:
+      title:
+        required: true
+    attributes:
+      ai_rmf_human_ai_issue_number:
+        description: The issue's number in Appendix C.
+        range: integer
+        minimum_value: 1
+        required: true
+
+  AiRmfAttribute:
+    class_uri: nist_ai_100_1:Attribute
+    description: A key attribute of the AI RMF in Appendix D, which guided its development.
+    slots:
+      - title
+      - description
+    slot_usage:
+      title:
+        required: true
+    attributes:
+      ai_rmf_attribute_number:
+        description: The attribute's number in Appendix D.
+        range: integer
+        minimum_value: 1
+        required: true
+
+  # What an adopter records about its own systems.
+  AiRmfSystem:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:AiSystem
+    description: >-
+      A machine-based system that produces outputs such as predictions or decisions for given
+      objectives, with varying autonomy.
+    attributes:
+      ai_rmf_system_intended_purposes:
+        description: What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document.
+        multivalued: true
+      ai_rmf_system_deployment_settings:
+        description: The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document.
+        multivalued: true
+      ai_rmf_system_lifecycle_stages:
+        description: The lifecycle stages the record covers.
+        range: AiRmfLifecycleStageName
+        multivalued: true
+      ai_rmf_system_actors:
+        description: The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements.
+        range: AiRmfActor
+        multivalued: true
+
+  AiRmfActor:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:AiActor
+    description: An organization or individual with an active role in an AI system's lifecycle.
+    broad_mappings:
+      - prov:Agent
+    attributes:
+      ai_rmf_actor_tasks:
+        description: The tasks the actor carries out, or the additional AI actor it is.
+        range: AiRmfActorTaskName
+        multivalued: true
+      ai_rmf_actor_audience:
+        description: The AI RMF audience the actor belongs to.
+        range: AiRmfAudience
+      ai_rmf_actor_lifecycle_stages:
+        description: The lifecycle stages the actor works in.
+        range: AiRmfLifecycleStageName
+        multivalued: true
+
+  AiRmfRisk:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:Risk
+    description: How likely an event is, combined with how severe its consequences are.
+    related_mappings:
+      - iso27001:IsmsRisk
+    slots:
+      - ai_rmf_likelihood
+      - ai_rmf_magnitude
+    attributes:
+      ai_rmf_risk_system:
+        description: The AI system the risk concerns.
+        range: AiRmfSystem
+      ai_rmf_risk_impacts:
+        description: The impacts that contribute to the risk.
+        range: AiRmfImpact
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_risk_characteristics:
+        description: The trustworthiness characteristics the risk bears on.
+        range: AiRmfCharacteristicName
+        multivalued: true
+      ai_rmf_risk_lifecycle_stages:
+        description: The lifecycle stages where the risk is measured or arises.
+        range: AiRmfLifecycleStageName
+        multivalued: true
+      ai_rmf_risk_responses:
+        description: The responses chosen for the risk.
+        range: AiRmfRiskResponse
+        multivalued: true
+      ai_rmf_risk_priority:
+        description: The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.
+        comments:
+          - MANAGE 1.3 speaks of risks deemed high priority and the publication sets no scale, so this is text.
+      ai_rmf_risk_tolerance:
+        description: The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.
+        range: AiRmfRiskTolerance
+
+  AiRmfResidualRisk:
+    is_a: AiRmfRisk
+    class_uri: nist_ai_100_1:ResidualRisk
+    description: The risk that remains after risk treatment.
+    comments:
+      - >-
+        Section 1.2.3 defines residual risk this way, after ISO Guide 73. MANAGE 1.4 instead
+        calls negative residual risks the sum of all unmitigated risks.
+
+  AiRmfImpact:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:Impact
+    description: A consequence of an AI system, which may be an opportunity, a threat or both.
+    slots:
+      - ai_rmf_likelihood
+      - ai_rmf_magnitude
+    attributes:
+      ai_rmf_impact_direction:
+        description: Whether the consequence is positive, negative or both.
+        range: AiRmfImpactDirection
+        required: true
+      ai_rmf_impact_affected_parties:
+        description: Who or what experiences the consequence.
+        range: AiRmfAffectedParty
+        multivalued: true
+
+  AiRmfHarm:
+    is_a: AiRmfImpact
+    class_uri: nist_ai_100_1:Harm
+    description: A negative impact, sorted as in Figure 1 by whether it falls on people, an organization or an ecosystem.
+    attributes:
+      ai_rmf_harm_category:
+        description: The heading of Figure 1 the harm falls under.
+        range: AiRmfHarmCategory
+        required: true
+      ai_rmf_harm_example:
+        description: The example of Figure 1 the harm matches, which must sit under the harm's category.
+        range: AiRmfHarmExample
+    rules:
+      - description: A harm is a negative impact.
+        preconditions:
+          slot_conditions:
+            ai_rmf_harm_category:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            ai_rmf_impact_direction:
+              equals_string: negative
+      - description: An example of harm to people goes with harm to people.
+        preconditions:
+          slot_conditions:
+            ai_rmf_harm_category:
+              equals_string: people
+            ai_rmf_harm_example:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            ai_rmf_harm_example:
+              any_of:
+                - equals_string: individual
+                - equals_string: group_or_community
+                - equals_string: societal
+      - description: An example of harm to an organization goes with harm to an organization.
+        preconditions:
+          slot_conditions:
+            ai_rmf_harm_category:
+              equals_string: organization
+            ai_rmf_harm_example:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            ai_rmf_harm_example:
+              any_of:
+                - equals_string: business_operations
+                - equals_string: security_breach_or_monetary_loss
+                - equals_string: reputation
+      - description: An example of harm to an ecosystem goes with harm to an ecosystem.
+        preconditions:
+          slot_conditions:
+            ai_rmf_harm_category:
+              equals_string: ecosystem
+            ai_rmf_harm_example:
+              value_presence: PRESENT
+        postconditions:
+          slot_conditions:
+            ai_rmf_harm_example:
+              any_of:
+                - equals_string: interdependent_elements
+                - equals_string: financial_or_supply_systems
+                - equals_string: natural_resources_and_environment
+
+  AiRmfRiskTolerance:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:RiskTolerance
+    description: >-
+      An organization's or AI actor's readiness to bear risk to achieve its objectives. The
+      AI RMF prescribes none.
+    attributes:
+      ai_rmf_risk_tolerance_holder:
+        description: The organization or AI actor whose tolerance this is.
+        range: AiRmfActor
+      ai_rmf_risk_tolerance_influences:
+        description: What influences it, such as a law, a regulation, a policy or a norm.
+        multivalued: true
+
+  AiRmfBias:
+    is_a: AiRmfRecord
+    class_uri: nist_ai_100_1:Bias
+    description: A bias to consider and manage, sorted into NIST's three major categories.
+    see_also:
+      - https://doi.org/10.6028/NIST.SP.1270
+    attributes:
+      ai_rmf_bias_categories:
+        description: The categories it falls under.
+        range: AiRmfBiasCategory
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+
+enums:
+  AiRmfDimensionName:
+    description: The key dimensions of an AI system in Figure 2.
+    permissible_values:
+      application_context:
+        title: Application Context
+        description: The setting the system is planned for and operated in.
+      data_and_input:
+        title: Data and Input
+        description: The data the system is built from and takes in.
+      ai_model:
+        title: AI Model
+        description: The models built, used, verified and validated.
+      task_and_output:
+        title: Task and Output
+        description: What the system does and produces once deployed.
+      people_and_planet:
+        title: People and Planet
+        description: Human rights and the well-being of society and the planet, at the center of Figure 2.
+
+  AiRmfLifecycleStageName:
+    description: The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.
+    permissible_values:
+      plan_and_design:
+        title: Plan and Design
+        description: Documenting the concept, objectives, assumptions, context and requirements.
+      collect_and_process_data:
+        title: Collect and Process Data
+        description: Gathering, validating and cleaning data, and recording what it holds.
+      build_and_use_model:
+        title: Build and Use Model
+        description: Creating or selecting algorithms and training models.
+      verify_and_validate:
+        title: Verify and Validate
+        description: Verifying, validating, calibrating and interpreting model output.
+      deploy_and_use:
+        title: Deploy and Use
+        description: Piloting, checking compatibility and compliance, managing change and evaluating user experience.
+      operate_and_monitor:
+        title: Operate and Monitor
+        description: Operating the system and continually assessing its recommendations and impacts.
+      use_or_impacted_by:
+        title: Use or Impacted by
+        description: Using the technology or being affected by it, which Figure 3 places under People and Planet.
+
+  AiRmfAudience:
+    description: The two AI RMF audiences of section 2.
+    permissible_values:
+      primary:
+        title: Primary audience
+        description: AI actors who carry out or manage work on AI systems and drive their risk management.
+      informing:
+        title: Informing audience
+        description: AI actors in the People and Planet dimension, who inform the primary audience.
+
+  AiRmfManagementChallengeName:
+    description: The challenges for AI risk management in section 1.2.
+    permissible_values:
+      risk_measurement:
+        title: Risk Measurement
+        description: AI risks that are poorly defined or understood are hard to measure, which does not mean they are high or low.
+      risk_tolerance:
+        title: Risk Tolerance
+        description: The AI RMF can prioritize risk but prescribes no tolerance, which depends on context and changes over time.
+      risk_prioritization:
+        title: Risk Prioritization
+        description: Eliminating all negative risk is unrealistic, so effort goes first to the highest risks in a context of use.
+      organizational_integration_and_management_of_risk:
+        title: Organizational Integration and Management of Risk
+        description: AI risk belongs inside broader enterprise risk management, with accountability and commitment from senior levels.
+
+  AiRmfMeasurementChallengeName:
+    description: The challenges of measuring AI risk in section 1.2.1.
+    permissible_values:
+      third_party_software_hardware_and_data:
+        title: Risks related to third-party software, hardware, and data
+        description: Third-party parts can speed work, but their metrics may not match or be disclosed, and how they are used adds risk.
+      tracking_emergent_risks:
+        title: Tracking emergent risks
+        description: New risks need identifying, tracking and measuring, which impact assessment helps with.
+      availability_of_reliable_metrics:
+        title: Availability of reliable metrics
+        description: There is no consensus on robust, verifiable methods, and metrics can be oversimplified or gamed.
+      risk_at_different_lifecycle_stages:
+        title: Risk at different stages of the AI lifecycle
+        description: Results differ by stage, some risks stay latent, and AI actors see risk differently.
+      risk_in_real_world_settings:
+        title: Risk in real-world settings
+        description: What a laboratory measures may differ from what emerges in operation.
+      inscrutability:
+        title: Inscrutability
+        description: Opaque systems, poor documentation and inherent uncertainty complicate measurement.
+      human_baseline:
+        title: Human baseline
+        description: A system that augments or replaces human activity needs a baseline, which is hard to systematize.
+
+  AiRmfRiskResponse:
+    description: The risk response options MANAGE 1.3 names.
+    permissible_values:
+      mitigating:
+        title: Mitigating
+        description: Reducing the likelihood or magnitude of the risk.
+      transferring:
+        title: Transferring
+        description: Shifting the risk to another party.
+      avoiding:
+        title: Avoiding
+        description: Not carrying out what creates the risk.
+      accepting:
+        title: Accepting
+        description: Bearing the risk without further action.
+
+  AiRmfImpactDirection:
+    description: Whether an impact is positive, negative or both, as section 1.1 puts it.
+    permissible_values:
+      positive:
+        title: Positive
+        description: An opportunity or benefit.
+      negative:
+        title: Negative
+        description: A threat or harm.
+      both:
+        title: Both
+        description: Positive and negative at once.
+
+  AiRmfAffectedParty:
+    description: Who section 1.1 says can experience negative impact or harm.
+    permissible_values:
+      individuals:
+        title: Individuals
+        description: Particular people.
+      groups:
+        title: Groups
+        description: Groups of people.
+      communities:
+        title: Communities
+        description: Communities of people.
+      organizations:
+        title: Organizations
+        description: Organizations.
+      society:
+        title: Society
+        description: Society at large.
+      environment:
+        title: The environment
+        description: The natural environment.
+      planet:
+        title: The planet
+        description: The planet as a whole.
+
+  AiRmfHarmCategory:
+    description: The three headings of Figure 1.
+    permissible_values:
+      people:
+        title: Harm to People
+        description: Harm that falls on individuals, groups, communities or society.
+      organization:
+        title: Harm to an Organization
+        description: Harm that falls on an organization.
+      ecosystem:
+        title: Harm to an Ecosystem
+        description: Harm that falls on interconnected systems and resources.
+
+  AiRmfHarmExample:
+    description: The examples of potential harm in Figure 1, which NIST offers as examples and not as a closed list.
+    permissible_values:
+      individual:
+        title: Individual
+        description: To a person's civil liberties, rights, safety or economic opportunity.
+      group_or_community:
+        title: Group/Community
+        description: To a group, such as discrimination against a sub-group of a population.
+      societal:
+        title: Societal
+        description: To democratic participation or educational access.
+      business_operations:
+        title: Business operations
+        description: To how an organization operates.
+      security_breach_or_monetary_loss:
+        title: Security breaches or monetary loss
+        description: To an organization through a breach of security or a loss of money.
+      reputation:
+        title: Reputation
+        description: To an organization's standing.
+      interdependent_elements:
+        title: Interconnected and interdependent elements and resources
+        description: To parts and resources that depend on each other.
+      financial_or_supply_systems:
+        title: Global financial system, supply chain, or interrelated systems
+        description: To large systems that link organizations.
+      natural_resources_and_environment:
+        title: Natural resources, the environment, and planet
+        description: To the natural world.
+
+  AiRmfBiasCategory:
+    description: The three major categories of AI bias in section 3.7, each of which can occur without prejudice or discriminatory intent.
+    see_also:
+      - https://doi.org/10.6028/NIST.SP.1270
+    permissible_values:
+      systemic:
+        title: Systemic
+        description: In datasets, in organizational norms and processes, and in the wider society that uses AI.
+      computational_and_statistical:
+        title: Computational and statistical
+        description: In datasets and algorithms, often from systematic errors due to samples that are not representative.
+      human_cognitive:
+        title: Human-cognitive
+        description: In how people perceive system information to decide, or think about what a system is for.

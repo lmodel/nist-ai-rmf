@@ -1,1367 +1,980 @@
-export type NamedThingId = string;
-export type AiSystemId = string;
-export type AiSystemDimensionId = string;
-export type AiLifecycleStageId = string;
-export type AiActorId = string;
-export type AiActorTaskId = string;
-export type RiskId = string;
-export type ImpactId = string;
-export type HarmId = string;
-export type ResidualRiskId = string;
-export type RiskToleranceId = string;
-export type RiskMeasurementChallengeId = string;
-export type TrustworthinessCharacteristicId = string;
-export type BiasId = string;
-export type FunctionId = string;
-export type CategoryId = string;
-export type SubcategoryId = string;
-export type AiRmfProfileId = string;
-export type RmfAttributeId = string;
-export type AiSpecificRiskId = string;
-export type HumanAiInteractionIssueId = string;
-export type AiRmfDocumentId = string;
-export type AiRmfFrameworkId = string;
-export type GaiRiskId = string;
-export type SuggestedActionId = string;
-export type PrimaryGaiConsiderationId = string;
-export type StructuredPublicFeedbackId = string;
-export type AiRedTeamingId = string;
-export type GaiProfileId = string;
+export type AiRmfRecordAiRmfId = string;
+export type AiRmfSystemAiRmfId = string;
+export type AiRmfActorAiRmfId = string;
+export type AiRmfRiskAiRmfId = string;
+export type AiRmfResidualRiskAiRmfId = string;
+export type AiRmfImpactAiRmfId = string;
+export type AiRmfHarmAiRmfId = string;
+export type AiRmfRiskToleranceAiRmfId = string;
+export type AiRmfBiasAiRmfId = string;
+export type AiRmfProfileAiRmfId = string;
+export type GaiProfileAiRmfId = string;
 /**
-* The seven characteristics of trustworthy AI systems described in
-Figure 4 and Part 1 §3.
+* The seven characteristics of trustworthy AI systems in section 3 of the publication.
 */
-export enum TrustworthinessCharacteristicEnum {
+export enum AiRmfCharacteristicName {
     
-    /** Confirmation that requirements for a specific intended use have
-been fulfilled (validation) and that the system performs as
-required without failure (reliability). A necessary condition of
-trustworthiness and the base for other characteristics. */
-    VALID_AND_RELIABLE = "VALID_AND_RELIABLE",
-    /** The system does not, under defined conditions, lead to a state
-in which human life, health, property, or the environment is
-endangered. */
-    SAFE = "SAFE",
-    /** The system can withstand unexpected adverse events or changes
-(resilient) and maintain confidentiality, integrity, and
-availability through protection mechanisms (secure). */
-    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT",
-    /** Trustworthy AI depends on accountability, which presupposes
-transparency - the extent to which information about an AI
-system and its outputs is available to those interacting with
-it. */
-    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT",
-    /** Explainability concerns the mechanisms underlying an AI system's
-operation; interpretability concerns the meaning of its output
-in context. */
-    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE",
-    /** Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information. */
-    PRIVACY_ENHANCED = "PRIVACY_ENHANCED",
-    /** Concerns for equality and equity by addressing issues such as
-harmful bias and discrimination, and recognising that
-perceptions of fairness differ across cultures and
-applications. */
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+    /** Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others. */
+    Valid_and_Reliable = "valid_and_reliable",
+    /** Keeps people, property and the environment out of danger under defined conditions. */
+    Safe = "safe",
+    /** Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack. */
+    Secure_and_Resilient = "secure_and_resilient",
+    /** Answerable for outcomes, which rests on people being able to get information about the system and its outputs. Figure 4 shows it relating to all the others. */
+    Accountable_and_Transparent = "accountable_and_transparent",
+    /** Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user). */
+    Explainable_and_Interpretable = "explainable_and_interpretable",
+    /** Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control. */
+    Privacy_Enhanced = "privacy_enhanced",
+    /** Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications. */
+    Fair_EN_DASH_with_Harmful_Bias_Managed = "fair_with_harmful_bias_managed",
 };
 /**
-* The four high-level AI RMF Core functions. GOVERN is a
-cross-cutting function applied throughout; MAP, MEASURE, and MANAGE
-operate on specific AI systems and lifecycle stages.
+* The ten AI actor tasks and five additional AI actors of Appendix A.
 */
-export enum FunctionEnum {
+export enum AiRmfActorTaskName {
     
-    /** Cultivates and implements a culture of risk management; outlines
-processes, documents, and organizational schemes that anticipate,
-identify, and manage AI risks. */
-    GOVERN = "GOVERN",
-    /** Establishes the context to frame risks related to an AI system;
-identifies risks based on intended purposes, capabilities, and
-contextual factors. */
-    MAP = "MAP",
-    /** Employs quantitative, qualitative, or mixed-method tools to
-analyze, assess, benchmark, and monitor AI risk and related impacts. */
-    MEASURE = "MEASURE",
-    /** Allocates risk resources to mapped and measured risks on a
-regular basis and as defined by the GOVERN function; risk
-treatment includes plans to respond to, recover from, and
-communicate about incidents or events. */
-    MANAGE = "MANAGE",
+    /** Setting what the system is for, planning and designing it, and gathering and preparing its data. */
+    AI_Design = "ai_design",
+    /** Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models. */
+    AI_Development = "ai_development",
+    /** Deciding how the system is used and putting it into production, including pilots and compliance checks. */
+    AI_Deployment = "ai_deployment",
+    /** Running the system and regularly assessing its output and impacts. */
+    Operation_and_Monitoring = "operation_and_monitoring",
+    /** Examining the system or its components and finding and fixing problems, throughout the lifecycle. */
+    Test_Evaluation_Verification_and_Validation_LEFT_PARENTHESISTEVVRIGHT_PARENTHESIS = "tevv",
+    /** Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design. */
+    Human_Factors = "human_factors",
+    /** Giving knowledge of the sector or setting where the system is used. */
+    Domain_Expert = "domain_expert",
+    /** Assessing accountability, harmful bias, impacts, product safety, liability and security. */
+    AI_Impact_Assessment = "ai_impact_assessment",
+    /** Acquiring AI from another party, under financial, legal or policy authority. */
+    Procurement = "procurement",
+    /** Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed. */
+    Governance_and_Oversight = "governance_and_oversight",
+    /** Outside organizations that supply or evaluate the data, models, systems or services an organization acquires. */
+    Third_party_entities = "third_party_entities",
+    /** The people or groups who use the system, whether new to technology or expert in AI. */
+    End_users = "end_users",
+    /** Those directly or indirectly affected by the system or its output, whether or not they interact with it. */
+    Affected_individualsSOLIDUScommunities = "affected_individuals_and_communities",
+    /** Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers. */
+    Other_AI_actors = "other_ai_actors",
+    /** Those most likely to experience the impacts directly, who may motivate what other AI actors do. */
+    General_public = "general_public",
 };
 /**
-* The AI RMF Core categories (Part 2, §5) - the second-level groupings
-within each Function, keyed by the compact "FUNCTION-N" code. Cross-
-framework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT
-ATF) are attached as SSSOM mappings and are sourced from
-src/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.
+* The key dimensions of an AI system in Figure 2.
 */
-export enum CategoryEnum {
+export enum AiRmfDimensionName {
     
-    /** Policies, processes, procedures, and practices across the organization
-related to the mapping, measuring, and managing of AI risks are in
-place, transparent, and implemented effectively. */
-    GOVERN_1 = "GOVERN-1",
-    /** Accountability structures are in place so that the appropriate teams
-and individuals are empowered, responsible, and trained for mapping,
-measuring, and managing AI risks. */
-    GOVERN_2 = "GOVERN-2",
-    /** Workforce diversity, equity, inclusion, and accessibility processes
-are prioritized in the mapping, measuring, and managing of AI risks
-throughout the lifecycle. */
-    GOVERN_3 = "GOVERN-3",
-    /** Organizational teams are committed to a culture that considers and
-communicates AI risk. */
-    GOVERN_4 = "GOVERN-4",
-    /** Processes are in place for robust engagement with relevant AI actors. */
-    GOVERN_5 = "GOVERN-5",
-    /** Policies and procedures are in place to address AI risks and benefits
-arising from third-party software and data and other supply chain
-issues. */
-    GOVERN_6 = "GOVERN-6",
-    /** Context is established and understood. */
-    MAP_1 = "MAP-1",
-    /** Categorization of the AI system is performed. */
-    MAP_2 = "MAP-2",
-    /** AI capabilities, targeted usage, goals, and expected benefits and
-costs compared with appropriate benchmarks are understood. */
-    MAP_3 = "MAP-3",
-    /** Risks and benefits are mapped for all components of the AI system
-including third-party software and data. */
-    MAP_4 = "MAP-4",
-    /** Impacts to individuals, groups, communities, organizations, and
-society are characterized. */
-    MAP_5 = "MAP-5",
-    /** Appropriate methods and metrics are identified and applied. */
-    MEASURE_1 = "MEASURE-1",
-    /** AI systems are evaluated for trustworthy characteristics. */
-    MEASURE_2 = "MEASURE-2",
-    /** Mechanisms for tracking identified AI risks over time are in place. */
-    MEASURE_3 = "MEASURE-3",
-    /** Feedback about efficacy of measurement is gathered and assessed. */
-    MEASURE_4 = "MEASURE-4",
-    /** AI risks based on assessments and other analytical output from the MAP
-and MEASURE functions are prioritized, responded to, and managed. */
-    MANAGE_1 = "MANAGE-1",
-    /** Strategies to maximize AI benefits and minimize negative impacts are
-planned, prepared, implemented, documented, and informed by input from
-relevant AI actors. */
-    MANAGE_2 = "MANAGE-2",
-    /** AI risks and benefits from third-party entities are managed. */
-    MANAGE_3 = "MANAGE-3",
-    /** Risk treatments, including response and recovery, and communication
-plans for the identified and measured AI risks are documented and
-monitored regularly. */
-    MANAGE_4 = "MANAGE-4",
+    /** The setting the system is planned for and operated in. */
+    Application_Context = "application_context",
+    /** The data the system is built from and takes in. */
+    Data_and_Input = "data_and_input",
+    /** The models built, used, verified and validated. */
+    AI_Model = "ai_model",
+    /** What the system does and produces once deployed. */
+    Task_and_Output = "task_and_output",
+    /** Human rights and the well-being of society and the planet, at the center of Figure 2. */
+    People_and_Planet = "people_and_planet",
 };
 /**
-* AI lifecycle stages as defined in Figure 2 (modified from
-OECD 2022). Each stage corresponds to one of the AI system
-dimensions (see AiSystemDimensionEnum).
+* The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.
 */
-export enum AiLifecycleStageEnum {
+export enum AiRmfLifecycleStageName {
     
-    /** Articulate and document the system's concept and objectives,
-underlying assumptions, context, and requirements (Application
-Context dimension). */
-    PLAN_AND_DESIGN = "PLAN_AND_DESIGN",
-    /** Gather, validate, and clean data and document the metadata and
-characteristics of the dataset (Data and Input dimension). */
-    COLLECT_AND_PROCESS_DATA = "COLLECT_AND_PROCESS_DATA",
-    /** Create or select algorithms; train models (AI Model dimension). */
-    BUILD_AND_USE_MODEL = "BUILD_AND_USE_MODEL",
-    /** Verify, validate, calibrate, and interpret model output
-(AI Model dimension). */
-    VERIFY_AND_VALIDATE = "VERIFY_AND_VALIDATE",
-    /** Pilot; check compatibility with legacy systems; verify regulatory
-compliance; manage organizational change; and evaluate user
-experience (Task and Output dimension). */
-    DEPLOY_AND_USE = "DEPLOY_AND_USE",
-    /** Operate the AI system and continuously assess its recommendations
-and impacts (both intended and unintended) in light of objectives,
-legal and regulatory requirements, and ethical considerations
-(Application Context dimension). */
-    OPERATE_AND_MONITOR = "OPERATE_AND_MONITOR",
+    /** Documenting the concept, objectives, assumptions, context and requirements. */
+    Plan_and_Design = "plan_and_design",
+    /** Gathering, validating and cleaning data, and recording what it holds. */
+    Collect_and_Process_Data = "collect_and_process_data",
+    /** Creating or selecting algorithms and training models. */
+    Build_and_Use_Model = "build_and_use_model",
+    /** Verifying, validating, calibrating and interpreting model output. */
+    Verify_and_Validate = "verify_and_validate",
+    /** Piloting, checking compatibility and compliance, managing change and evaluating user experience. */
+    Deploy_and_Use = "deploy_and_use",
+    /** Operating the system and continually assessing its recommendations and impacts. */
+    Operate_and_Monitor = "operate_and_monitor",
+    /** Using the technology or being affected by it, which Figure 3 places under People and Planet. */
+    Use_or_Impacted_by = "use_or_impacted_by",
 };
 /**
-* Key socio-technical dimensions of an AI system (Figure 2).
-People and Planet sits at the centre representing human and
-societal well-being.
+* The two AI RMF audiences of section 2.
 */
-export enum AiSystemDimensionEnum {
+export enum AiRmfAudience {
     
-    /** The setting in which an AI system is deployed - includes legal,
-regulatory, ethical, and societal considerations. */
-    APPLICATION_CONTEXT = "APPLICATION_CONTEXT",
-    /** The data and inputs an AI system uses, including training,
-validation, test data, and operational inputs. */
-    DATA_AND_INPUT = "DATA_AND_INPUT",
-    /** The model(s) and algorithms at the heart of an AI system. */
-    AI_MODEL = "AI_MODEL",
-    /** The task the AI system is designed to perform and the outputs
-it produces (predictions, recommendations, decisions). */
-    TASK_AND_OUTPUT = "TASK_AND_OUTPUT",
-    /** Human rights and the broader well-being of society and the
-planet - centred in Figure 2. */
-    PEOPLE_AND_PLANET = "PEOPLE_AND_PLANET",
+    /** AI actors who carry out or manage work on AI systems and drive their risk management. */
+    Primary_audience = "primary",
+    /** AI actors in the People and Planet dimension, who inform the primary audience. */
+    Informing_audience = "informing",
 };
 /**
-* Categories of AI actor tasks as described in Appendix A and
-illustrated in Figure 3.
+* The challenges for AI risk management in section 1.2.
 */
-export enum AiActorTaskEnum {
+export enum AiRmfManagementChallengeName {
     
-    /** Performed during the Application Context and Data and Input
-phases; create the concept and objectives of AI systems and are
-responsible for planning, design, and data collection. */
-    AI_DESIGN = "AI_DESIGN",
-    /** Performed during the AI Model phase; provide the initial
-infrastructure of AI systems (model building, selection,
-calibration, training, testing). */
-    AI_DEVELOPMENT = "AI_DEVELOPMENT",
-    /** Performed during the Task and Output phase; responsible for
-contextual decisions on how the AI system is used and for
-assuring deployment into production. */
-    AI_DEPLOYMENT = "AI_DEPLOYMENT",
-    /** Performed in the Application Context / Operate and Monitor
-phase; operating the AI system and regularly assessing system
-output and impacts. */
-    OPERATION_AND_MONITORING = "OPERATION_AND_MONITORING",
-    /** Test, Evaluation, Verification, and Validation tasks performed
-throughout the AI lifecycle; examine the AI system or its
-components, and detect and remediate problems. */
-    TEVV = "TEVV",
-    /** Human-centered design practices and methodologies; promoting
-active involvement of end users and other interested parties;
-incorporating context-specific norms and values. */
-    HUMAN_FACTORS = "HUMAN_FACTORS",
-    /** Input from multidisciplinary practitioners or scholars who
-provide knowledge or expertise in - and about - an industry
-sector, context, or application area. */
-    DOMAIN_EXPERT = "DOMAIN_EXPERT",
-    /** Assess and evaluate requirements for AI system accountability,
-combat harmful bias, examine impacts, product safety, liability,
-and security. */
-    AI_IMPACT_ASSESSMENT = "AI_IMPACT_ASSESSMENT",
-    /** Conducted by AI actors with financial, legal, or policy
-management authority for acquisition of AI models, products, or
-services from a third party. */
-    PROCUREMENT = "PROCUREMENT",
-    /** Assumed by AI actors with management, fiduciary, and legal
-authority for the organization, including senior leadership and
-the Board of Directors. */
-    GOVERNANCE_AND_OVERSIGHT = "GOVERNANCE_AND_OVERSIGHT",
-    /** Providers, developers, vendors, and evaluators of data,
-algorithms, models, and/or systems and related services external
-to the deploying organization. */
-    THIRD_PARTY_ENTITIES = "THIRD_PARTY_ENTITIES",
-    /** Individuals or groups that use the AI system for specific
-purposes; range in competency from AI experts to first-time
-users. */
-    END_USERS = "END_USERS",
-    /** All individuals, groups, communities, or organizations directly
-or indirectly affected by AI systems or decisions based on the
-output of AI systems. */
-    AFFECTED_INDIVIDUALS_OR_COMMUNITIES = "AFFECTED_INDIVIDUALS_OR_COMMUNITIES",
-    /** Provide formal or quasi-formal norms or guidance - includes
-trade associations, standards developing organizations, advocacy
-groups, researchers, environmental groups, and civil society
-organizations. */
-    OTHER_AI_ACTORS = "OTHER_AI_ACTORS",
-    /** Most likely to directly experience positive and negative impacts
-of AI technologies; provides motivation for actions taken by
-other AI actors. */
-    GENERAL_PUBLIC = "GENERAL_PUBLIC",
+    /** AI risks that are poorly defined or understood are hard to measure, which does not mean they are high or low. */
+    Risk_Measurement = "risk_measurement",
+    /** The AI RMF can prioritize risk but prescribes no tolerance, which depends on context and changes over time. */
+    Risk_Tolerance = "risk_tolerance",
+    /** Eliminating all negative risk is unrealistic, so effort goes first to the highest risks in a context of use. */
+    Risk_Prioritization = "risk_prioritization",
+    /** AI risk belongs inside broader enterprise risk management, with accountability and commitment from senior levels. */
+    Organizational_Integration_and_Management_of_Risk = "organizational_integration_and_management_of_risk",
 };
 /**
-* High-level categories of harm related to AI systems (Figure 1).
+* The challenges of measuring AI risk in section 1.2.1.
 */
-export enum HarmCategoryEnum {
+export enum AiRmfMeasurementChallengeName {
     
-    /** Harm to individuals, groups/communities, or society at large
-(including civil liberties, rights, physical or psychological
-safety, economic opportunity, democratic participation, and
-educational access). */
-    HARM_TO_PEOPLE = "HARM_TO_PEOPLE",
-    /** Harm to an organization's business operations, security
-breaches or monetary loss, or reputation. */
-    HARM_TO_AN_ORGANIZATION = "HARM_TO_AN_ORGANIZATION",
-    /** Harm to interconnected and interdependent elements and
-resources, the global financial system, supply chain, natural
-resources, the environment, and the planet. */
-    HARM_TO_AN_ECOSYSTEM = "HARM_TO_AN_ECOSYSTEM",
+    /** Third-party parts can speed work, but their metrics may not match or be disclosed, and how they are used adds risk. */
+    Risks_related_to_third_party_software_hardware_and_data = "third_party_software_hardware_and_data",
+    /** New risks need identifying, tracking and measuring, which impact assessment helps with. */
+    Tracking_emergent_risks = "tracking_emergent_risks",
+    /** There is no consensus on robust, verifiable methods, and metrics can be oversimplified or gamed. */
+    Availability_of_reliable_metrics = "availability_of_reliable_metrics",
+    /** Results differ by stage, some risks stay latent, and AI actors see risk differently. */
+    Risk_at_different_stages_of_the_AI_lifecycle = "risk_at_different_lifecycle_stages",
+    /** What a laboratory measures may differ from what emerges in operation. */
+    Risk_in_real_world_settings = "risk_in_real_world_settings",
+    /** Opaque systems, poor documentation and inherent uncertainty complicate measurement. */
+    Inscrutability = "inscrutability",
+    /** A system that augments or replaces human activity needs a baseline, which is hard to systematize. */
+    Human_baseline = "human_baseline",
 };
 /**
-* Sub-categories of harm to people, per Figure 1.
+* The risk response options MANAGE 1.3 names.
 */
-export enum HarmToPeopleSubcategoryEnum {
-    
-    /** Harm to a person's civil liberties, rights, physical or
-psychological safety, or economic opportunity. */
-    INDIVIDUAL = "INDIVIDUAL",
-    /** Harm to a group such as discrimination against a population
-sub-group. */
-    GROUP_OR_COMMUNITY = "GROUP_OR_COMMUNITY",
-    /** Harm to democratic participation or educational access. */
-    SOCIETAL = "SOCIETAL",
-};
-/**
-* The three major categories of AI bias identified by NIST
-(Part 1 §3.7; see NIST SP 1270).
-*/
-export enum BiasCategoryEnum {
-    
-    /** Bias present in AI datasets, organizational norms, practices,
-and processes across the AI lifecycle, and the broader society
-that uses AI systems. */
-    SYSTEMIC = "SYSTEMIC",
-    /** Bias present in AI datasets and algorithmic processes; often
-stems from systematic errors due to non-representative samples. */
-    COMPUTATIONAL_AND_STATISTICAL = "COMPUTATIONAL_AND_STATISTICAL",
-    /** Bias related to how an individual or group perceives AI system
-information to make a decision or fill in missing information;
-omnipresent in decision-making across the AI lifecycle. */
-    HUMAN_COGNITIVE = "HUMAN_COGNITIVE",
-};
-/**
-* Challenges that complicate AI risk measurement (Part 1 §1.2.1).
-*/
-export enum RiskMeasurementChallengeEnum {
-    
-    /** Risks related to third-party software, hardware, and data,
-including misalignment of risk metrics or methodologies between
-developers, deployers, and operators. */
-    THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA = "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA",
-    /** Identifying and tracking emergent risks and considering
-techniques for measuring them; impact assessment helps
-understand context-specific harms. */
-    TRACKING_EMERGENT_RISKS = "TRACKING_EMERGENT_RISKS",
-    /** Lack of consensus on robust and verifiable measurement methods
-for risk and trustworthiness, and their applicability to
-different use cases. */
-    AVAILABILITY_OF_RELIABLE_METRICS = "AVAILABILITY_OF_RELIABLE_METRICS",
-    /** Measuring risk at different stages may yield different results;
-some risks may be latent and increase as systems adapt and
-evolve. */
-    RISK_AT_DIFFERENT_LIFECYCLE_STAGES = "RISK_AT_DIFFERENT_LIFECYCLE_STAGES",
-    /** Lab measurements may differ from risks that emerge in
-operational, real-world settings. */
-    RISK_IN_REAL_WORLD_SETTINGS = "RISK_IN_REAL_WORLD_SETTINGS",
-    /** Opaque systems with limited explainability or interpretability,
-poor documentation, or inherent uncertainty complicate risk
-measurement. */
-    INSCRUTABILITY = "INSCRUTABILITY",
-    /** AI systems intended to augment or replace human activity
-require a human baseline for comparison, which is difficult to
-systematize. */
-    HUMAN_BASELINE = "HUMAN_BASELINE",
-};
-/**
-* Treatment options for AI risks (MANAGE 1.3).
-*/
-export enum RiskResponseEnum {
+export enum AiRmfRiskResponse {
     
     /** Reducing the likelihood or magnitude of the risk. */
-    MITIGATING = "MITIGATING",
-    /** Shifting the risk to another party (e.g., via insurance or contract). */
-    TRANSFERRING = "TRANSFERRING",
-    /** Choosing not to engage in the activity that creates the risk. */
-    AVOIDING = "AVOIDING",
-    /** Acknowledging the risk and taking no further action. */
-    ACCEPTING = "ACCEPTING",
+    Mitigating = "mitigating",
+    /** Shifting the risk to another party. */
+    Transferring = "transferring",
+    /** Not carrying out what creates the risk. */
+    Avoiding = "avoiding",
+    /** Bearing the risk without further action. */
+    Accepting = "accepting",
 };
 /**
-* Types of AI RMF Profile (§6).
+* Whether an impact is positive, negative or both, as section 1.1 puts it.
 */
-export enum ProfileTypeEnum {
+export enum AiRmfImpactDirection {
     
-    /** Implementation of the AI RMF Core for a specific setting or
-application (e.g., a hiring profile, a fair housing profile). */
-    USE_CASE = "USE_CASE",
-    /** Description of the current state of AI risk management
-activities within a sector, industry, organization, or
-application context. */
-    TEMPORAL_CURRENT = "TEMPORAL_CURRENT",
-    /** Description of the desired or target state of AI risk
-management activities. */
-    TEMPORAL_TARGET = "TEMPORAL_TARGET",
-    /** Risks of models or applications used across use cases or
-sectors (e.g., large language models, cloud-based services,
-acquisition). */
-    CROSS_SECTORAL = "CROSS_SECTORAL",
+    /** An opportunity or benefit. */
+    Positive = "positive",
+    /** A threat or harm. */
+    Negative = "negative",
+    /** Positive and negative at once. */
+    Both = "both",
 };
 /**
-* Audience categorisation for the AI RMF (Part 1 §2).
+* Who section 1.1 says can experience negative impact or harm.
 */
-export enum AudienceEnum {
+export enum AiRmfAffectedParty {
     
-    /** AI actors who perform or manage the design, development,
-deployment, evaluation, and use of AI systems and drive AI
-risk management efforts. */
-    PRIMARY = "PRIMARY",
-    /** AI actors in the People and Planet dimension who *inform* the
-primary audience - trade associations, standards developers,
-researchers, advocacy groups, civil society organisations,
-end users, and impacted individuals or communities. */
-    INFORMING = "INFORMING",
+    /** Particular people. */
+    Individuals = "individuals",
+    /** Groups of people. */
+    Groups = "groups",
+    /** Communities of people. */
+    Communities = "communities",
+    /** Organizations. */
+    Organizations = "organizations",
+    /** Society at large. */
+    Society = "society",
+    /** The natural environment. */
+    The_environment = "environment",
+    /** The planet as a whole. */
+    The_planet = "planet",
 };
 /**
-* Whether an impact of an AI system is positive, negative, or both
-(Part 1 §1.1).
+* The three headings of Figure 1.
 */
-export enum ImpactSignEnum {
+export enum AiRmfHarmCategory {
     
-    /** A beneficial impact or opportunity. */
-    POSITIVE = "POSITIVE",
-    /** A harmful impact or threat. */
-    NEGATIVE = "NEGATIVE",
-    /** An impact that is both positive and negative. */
-    MIXED = "MIXED",
+    /** Harm that falls on individuals, groups, communities or society. */
+    Harm_to_People = "people",
+    /** Harm that falls on an organization. */
+    Harm_to_an_Organization = "organization",
+    /** Harm that falls on interconnected systems and resources. */
+    Harm_to_an_Ecosystem = "ecosystem",
 };
 /**
-* AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
-"Risks can arise during design, development, deployment,
-operation, and/or decommissioning." Distinct from the six-stage
-`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
+* The examples of potential harm in Figure 1, which NIST offers as examples and not as a closed list.
 */
-export enum GaiLifecycleStageEnum {
+export enum AiRmfHarmExample {
     
-    /** Articulating system concept, objectives, requirements. */
-    DESIGN = "DESIGN",
-    /** Building, training, and tuning the GAI model or system. */
-    DEVELOPMENT = "DEVELOPMENT",
-    /** Placing the GAI system into a production environment. */
-    DEPLOYMENT = "DEPLOYMENT",
-    /** Running and monitoring the GAI system in use. */
-    OPERATION = "OPERATION",
-    /** Retiring or phasing out the GAI system. */
-    DECOMMISSIONING = "DECOMMISSIONING",
+    /** To a person's civil liberties, rights, safety or economic opportunity. */
+    Individual = "individual",
+    /** To a group, such as discrimination against a sub-group of a population. */
+    GroupSOLIDUSCommunity = "group_or_community",
+    /** To democratic participation or educational access. */
+    Societal = "societal",
+    /** To how an organization operates. */
+    Business_operations = "business_operations",
+    /** To an organization through a breach of security or a loss of money. */
+    Security_breaches_or_monetary_loss = "security_breach_or_monetary_loss",
+    /** To an organization's standing. */
+    Reputation = "reputation",
+    /** To parts and resources that depend on each other. */
+    Interconnected_and_interdependent_elements_and_resources = "interdependent_elements",
+    /** To large systems that link organizations. */
+    Global_financial_system_supply_chain_or_interrelated_systems = "financial_or_supply_systems",
+    /** To the natural world. */
+    Natural_resources_the_environment_and_planet = "natural_resources_and_environment",
 };
 /**
-* AI Actor Tasks referenced by the Suggested Actions tables in
-NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
-Appendix A).
+* The three major categories of AI bias in section 3.7, each of which can occur without prejudice or discriminatory intent.
 */
-export enum GaiActorTaskEnum {
+export enum AiRmfBiasCategory {
     
-    /** Management, fiduciary, and legal authority for the organization. */
-    GOVERNANCE_AND_OVERSIGHT = "GOVERNANCE_AND_OVERSIGHT",
-    /** Concept, objectives, planning, design, and data collection. */
-    AI_DESIGN = "AI_DESIGN",
-    /** Model building, selection, calibration, training, and testing. */
-    AI_DEVELOPMENT = "AI_DEVELOPMENT",
-    /** Contextual decisions on how the AI system is used and deployed. */
-    AI_DEPLOYMENT = "AI_DEPLOYMENT",
-    /** Assessing accountability, bias, impacts, safety, liability, security. */
-    AI_IMPACT_ASSESSMENT = "AI_IMPACT_ASSESSMENT",
-    /** Operating the AI system and assessing system output and impacts. */
-    OPERATION_AND_MONITORING = "OPERATION_AND_MONITORING",
-    /** Test, Evaluation, Verification, and Validation tasks. */
-    TEVV = "TEVV",
-    /** Multidisciplinary practitioners with sector or context expertise. */
-    DOMAIN_EXPERTS = "DOMAIN_EXPERTS",
-    /** Individuals or groups using the AI system for specific purposes. */
-    END_USERS = "END_USERS",
-    /** Human-centered design practices and end-user involvement. */
-    HUMAN_FACTORS = "HUMAN_FACTORS",
-    /** Individuals, groups, or communities directly or indirectly affected. */
-    AFFECTED_INDIVIDUALS_AND_COMMUNITIES = "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
-    /** Acquisition of AI models, products, or services from third parties. */
-    PROCUREMENT = "PROCUREMENT",
-    /** Providers, developers, vendors, and evaluators external to the deploying organization. */
-    THIRD_PARTY_ENTITIES = "THIRD_PARTY_ENTITIES",
+    /** In datasets, in organizational norms and processes, and in the wider society that uses AI. */
+    Systemic = "systemic",
+    /** In datasets and algorithms, often from systematic errors due to samples that are not representative. */
+    Computational_and_statistical = "computational_and_statistical",
+    /** In how people perceive system information to decide, or think about what a system is for. */
+    Human_cognitive = "human_cognitive",
 };
 /**
-* The 12 risks unique to or exacerbated by Generative AI as
-enumerated in NIST AI 600-1 Section 2.
+* The kinds of AI RMF profile that section 6 names.
 */
-export enum GaiRiskCategoryEnum {
+export enum AiRmfProfileKind {
     
-    /** Eased access to or synthesis of materially nefarious
-information or design capabilities related to chemical,
-biological, radiological, or nuclear (CBRN) weapons or
-other dangerous materials or agents. */
-    CBRN_INFORMATION_OR_CAPABILITIES = "CBRN_INFORMATION_OR_CAPABILITIES",
-    /** The production of confidently stated but erroneous or
-false content (colloquially "hallucinations" or
-"fabrications") by which users may be misled or deceived. */
-    CONFABULATION = "CONFABULATION",
-    /** Eased production of and access to violent, inciting,
-radicalizing, or threatening content as well as
-recommendations to carry out self-harm or conduct illegal
-activities. Includes difficulty controlling public
-exposure to hateful and disparaging or stereotyping
-content. */
-    DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT = "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT",
-    /** Impacts due to leakage and unauthorized use, disclosure, or
-de-anonymization of biometric, health, location, or other
-personally identifiable information or sensitive data. */
-    DATA_PRIVACY = "DATA_PRIVACY",
-    /** Impacts due to high compute resource utilization in
-training or operating GAI models, and related outcomes that
-may adversely impact ecosystems. */
-    ENVIRONMENTAL_IMPACTS = "ENVIRONMENTAL_IMPACTS",
-    /** Amplification and exacerbation of historical, societal,
-and systemic biases; performance disparities between
-sub-groups or languages, possibly due to non-representative
-training data, resulting in discrimination, amplification
-of biases, or incorrect presumptions about performance;
-undesired homogeneity that skews system or model outputs. */
-    HARMFUL_BIAS_OR_HOMOGENIZATION = "HARMFUL_BIAS_OR_HOMOGENIZATION",
-    /** Arrangements of or interactions between a human and an AI
-system which can result in the human inappropriately
-anthropomorphising GAI systems or experiencing algorithmic
-aversion, automation bias, over-reliance, or emotional
-entanglement with GAI systems. */
-    HUMAN_AI_CONFIGURATION = "HUMAN_AI_CONFIGURATION",
-    /** Lowered barrier to entry to generate and support the
-exchange and consumption of content which may not
-distinguish fact from opinion or fiction or acknowledge
-uncertainties, or could be leveraged for large-scale
-dis- and mis-information campaigns. */
-    INFORMATION_INTEGRITY = "INFORMATION_INTEGRITY",
-    /** Lowered barriers for offensive cyber capabilities,
-including via automated discovery and exploitation of
-vulnerabilities; increased attack surface for targeted
-cyberattacks, which may compromise a system's availability
-or the confidentiality or integrity of training data,
-code, or model weights. */
-    INFORMATION_SECURITY = "INFORMATION_SECURITY",
-    /** Eased production or replication of alleged copyrighted,
-trademarked, or licensed content without authorization
-(possibly outside fair use); eased exposure of trade
-secrets; or plagiarism or illegal replication. */
-    INTELLECTUAL_PROPERTY = "INTELLECTUAL_PROPERTY",
-    /** Eased production of and access to obscene, degrading,
-and/or abusive imagery which can cause harm, including
-synthetic child sexual abuse material (CSAM) and
-nonconsensual intimate images (NCII) of adults. */
-    OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT = "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT",
-    /** Non-transparent or untraceable integration of upstream
-third-party components, including data that has been
-improperly obtained or not processed and cleaned due to
-increased automation from GAI; improper supplier vetting
-across the AI lifecycle; or other issues that diminish
-transparency or accountability for downstream users. */
-    VALUE_CHAIN_AND_COMPONENT_INTEGRATION = "VALUE_CHAIN_AND_COMPONENT_INTEGRATION",
+    /** The Core implemented for a specific setting or application. */
+    Use_case_profile = "use_case",
+    /** A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes. */
+    Current_Profile = "current",
+    /** A temporal profile saying which outcomes the desired risk management goals need. */
+    Target_Profile = "target",
+    /** Covers risks of models or applications used across use cases or sectors, or activities common to them, such as using large language models. */
+    Cross_sectoral_profile = "cross_sectoral",
 };
 /**
-* Higher-level grouping of GAI risks, derived from the UK's
-International Scientific Report on the Safety of Advanced AI
-(NIST AI 600-1 Section 2, footnote 5).
+* The 12 risks of section 2.
 */
-export enum GaiRiskCategorizationEnum {
+export enum GaiRiskName {
     
-    /** Risks from malfunction. Examples include confabulation;
-dangerous or violent recommendations; data privacy; value
-chain and component integration; harmful bias and
-homogenization. */
-    TECHNICAL_OR_MODEL_RISKS = "TECHNICAL_OR_MODEL_RISKS",
-    /** Risks from malicious use. Examples include CBRN information
-or capabilities; data privacy; human-AI configuration;
-obscene, degrading, and/or abusive content; information
-integrity; information security. */
-    MISUSE_BY_HUMANS = "MISUSE_BY_HUMANS",
-    /** Systemic risks. Examples include data privacy;
-environmental impacts; intellectual property. */
-    ECOSYSTEM_OR_SOCIETAL_RISKS = "ECOSYSTEM_OR_SOCIETAL_RISKS",
+    /** Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons. */
+    CBRN_Information_or_Capabilities = "cbrn_information_or_capabilities",
+    /** Confident but wrong output that can mislead users. */
+    Confabulation = "confabulation",
+    /** Easier production of content that incites or threatens, recommends harm, or disparages. */
+    Dangerous_Violent_or_Hateful_Content = "dangerous_violent_or_hateful_content",
+    /** Leaks, misuse or de-anonymization of personal or sensitive data. */
+    Data_Privacy = "data_privacy",
+    /** Effects on ecosystems from the heavy computing that training and operating models need. */
+    Environmental_Impacts = "environmental_impacts",
+    /** Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness. */
+    Harmful_Bias_or_Homogenization = "harmful_bias_or_homogenization",
+    /** Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it. */
+    Human_AI_Configuration = "human_ai_configuration",
+    /** Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns. */
+    Information_Integrity = "information_integrity",
+    /** Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights. */
+    Information_Security = "information_security",
+    /** Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism. */
+    Intellectual_Property = "intellectual_property",
+    /** Easier production of harmful imagery, including synthetic abuse material and intimate images without consent. */
+    Obscene_Degrading_andSOLIDUSor_Abusive_Content = "obscene_degrading_or_abusive_content",
+    /** Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream. */
+    Value_Chain_and_Component_Integration = "value_chain_and_component_integration",
 };
 /**
-* The scope at which a GAI risk may manifest (Section 2).
+* The three groups into which footnote 5 says an organization could sort the risks, as one possible way.
 */
-export enum GaiRiskScopeEnum {
+export enum GaiRiskGrouping {
     
-    /** Individual GAI model or system level. */
-    MODEL_OR_SYSTEM = "MODEL_OR_SYSTEM",
-    /** Specific application or implementation - i.e., a particular
-use case. */
-    APPLICATION_OR_IMPLEMENTATION = "APPLICATION_OR_IMPLEMENTATION",
-    /** Beyond a single system or organizational context - e.g.,
-algorithmic monocultures, labor-market impacts, creative
-economies. */
-    ECOSYSTEM = "ECOSYSTEM",
+    /** Risks from malfunction. */
+    Technical_SOLIDUS_Model_risks = "technical_or_model",
+    /** Risks from malicious use. */
+    Misuse_by_humans = "misuse_by_humans",
+    /** Systemic risks. */
+    Ecosystem_SOLIDUS_societal_risks = "ecosystem_or_societal",
 };
 /**
-* The source(s) from which a GAI risk may emerge (Section 2).
+* The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.
 */
-export enum GaiRiskSourceEnum {
+export enum GaiLifecycleStage {
     
-    /** From decisions made during model or system design. */
-    DESIGN = "DESIGN",
-    /** From the training data or training process. */
-    TRAINING = "TRAINING",
-    /** From operating the GAI model or system. */
-    OPERATION = "OPERATION",
-    /** From inputs supplied to the model at inference time. */
-    MODEL_INPUTS = "MODEL_INPUTS",
-    /** From the GAI system's generated outputs. */
-    MODEL_OUTPUTS = "MODEL_OUTPUTS",
-    /** From human behaviour - abuse, misuse, or unsafe repurposing
-by humans (adversarial or not). */
-    HUMAN_BEHAVIOR = "HUMAN_BEHAVIOR",
-    /** From interactions between a human and the AI system. */
-    HUMAN_AI_INTERACTION = "HUMAN_AI_INTERACTION",
+    /** Setting out the system before it is built. */
+    Design = "design",
+    /** Building and training it. */
+    Development = "development",
+    /** Putting it into use. */
+    Deployment = "deployment",
+    /** Running it. */
+    Operation = "operation",
+    /** Retiring it. */
+    Decommissioning = "decommissioning",
 };
 /**
-* The time scale over which a GAI risk may materialise
-(Section 2).
+* The levels where section 2 says a risk may exist.
 */
-export enum GaiRiskTimeScaleEnum {
+export enum GaiRiskScope {
     
-    /** Materialises abruptly (e.g., distribution of deepfakes). */
-    IMMEDIATE = "IMMEDIATE",
-    /** Materialises across extended periods (e.g., long-term
-effect of disinformation on societal trust). */
-    PROLONGED = "PROLONGED",
+    /** The level of one model or system. */
+    Model_or_system = "model_or_system",
+    /** The level of one specific use case. */
+    Application_or_implementation = "application_or_implementation",
+    /** Beyond one system or organization, such as algorithmic monocultures or effects on labor markets. */
+    Ecosystem = "ecosystem",
 };
 /**
-* Two-letter function prefix used in GAI Action IDs.
+* Where section 2 says a risk may come from.
 */
-export enum GaiActionFunctionPrefixEnum {
+export enum GaiRiskSource {
     
-    /** Govern function. */
-    GV = "GV",
-    /** Map function. */
-    MP = "MP",
-    /** Measure function. */
-    MS = "MS",
-    /** Manage function. */
-    MG = "MG",
+    /** The design of the model itself. */
+    Design = "design",
+    /** The training of the model. */
+    Training = "training",
+    /** The operation of the model. */
+    Operation = "operation",
+    /** What goes into the model or system. */
+    Inputs = "inputs",
+    /** What the system produces. */
+    Outputs = "outputs",
+    /** Abuse, misuse or unsafe repurposing by people, whether adversarial or not. */
+    Human_behavior = "human_behavior",
+    /** How a person and a system act on each other. */
+    Human_AI_interaction = "human_ai_interaction",
 };
 /**
-* The four overarching themes derived from the GAI PWG
-consultation process (Appendix A).
+* How section 2 says a risk may materialize over time.
 */
-export enum PrimaryConsiderationEnum {
+export enum GaiRiskTimeScale {
     
-    /** How organizational governance regimes may be re-evaluated
-and adjusted for GAI contexts (A.1). */
-    GOVERNANCE = "GOVERNANCE",
-    /** Test, evaluation, validation, and verification practices
-appropriate for GAI prior to deployment (A.1.4). */
-    PRE_DEPLOYMENT_TESTING = "PRE_DEPLOYMENT_TESTING",
-    /** Digital transparency mechanisms (provenance data tracking,
-watermarking, synthetic content detection) for tracing
-origin and history of content (A.1.6 - A.1.7). */
-    CONTENT_PROVENANCE = "CONTENT_PROVENANCE",
-    /** Documenting, reporting, and sharing information about AI
-incidents to mitigate harm and improve risk management
-(A.1.8). */
-    INCIDENT_DISCLOSURE = "INCIDENT_DISCLOSURE",
+    /** All at once, such as immediate emotional harm from a harmful deepfake image. */
+    Abruptly = "abrupt",
+    /** Slowly, such as the long-term effect of disinformation on trust in institutions. */
+    Across_extended_periods = "extended",
 };
 /**
-* Categories of structured public feedback for GAI risk
-management (Appendix A.1.5).
+* The plans and actions that section A.1.2 says apply to GAI from other AI governance.
 */
-export enum StructuredFeedbackMethodEnum {
+export enum GaiGovernancePlan {
     
-    /** Methods used to solicit feedback from civil society groups,
-affected communities, and users (focus groups, small user
-studies, surveys). */
-    PARTICIPATORY_ENGAGEMENT_METHODS = "PARTICIPATORY_ENGAGEMENT_METHODS",
-    /** Methods used to determine how people interact with,
-consume, use, and make sense of AI-generated information
-(UX, usability, randomised experiments). */
-    FIELD_TESTING = "FIELD_TESTING",
-    /** A structured testing exercise used to probe an AI system
-to find flaws and vulnerabilities such as inaccurate,
-harmful, or discriminatory outputs. */
-    AI_RED_TEAMING = "AI_RED_TEAMING",
+    Accessibility_and_reasonable_accommodations = "accessibility_and_reasonable_accommodations",
+    AI_actor_credentials_and_qualifications = "ai_actor_credentials_and_qualifications",
+    Alignment_to_organizational_values = "alignment_to_organizational_values",
+    Auditing_and_assessment = "auditing_and_assessment",
+    Change_management_controls = "change_management_controls",
+    Commercial_use = "commercial_use",
+    Data_provenance = "data_provenance",
+    Data_protection = "data_protection",
+    Data_retention = "data_retention",
+    Consistency_in_use_of_defining_key_terms = "consistency_in_use_of_defining_key_terms",
+    Decommissioning = "decommissioning",
+    Discouraging_anonymous_use = "discouraging_anonymous_use",
+    Education = "education",
+    Impact_assessments = "impact_assessments",
+    Incident_response = "incident_response",
+    Monitoring = "monitoring",
+    Opt_outs = "opt_outs",
+    Risk_based_controls = "risk_based_controls",
+    Risk_mapping_and_measurement = "risk_mapping_and_measurement",
+    Science_backed_TEVV_practices = "science_backed_tevv_practices",
+    Secure_software_development_practices = "secure_software_development_practices",
+    Stakeholder_engagement = "stakeholder_engagement",
+    Synthetic_content_detection_and_labeling_tools_and_techniques = "synthetic_content_detection_and_labeling_tools_and_techniques",
+    Whistleblower_protections = "whistleblower_protections",
+    Workforce_diversity_and_interdisciplinary_teams = "workforce_diversity_and_interdisciplinary_teams",
 };
 /**
-* Types of AI red-teaming exercises (Appendix A.1.5).
+* The existing controls that section A.1.3 says can apply to third-party GAI.
 */
-export enum RedTeamingTypeEnum {
+export enum GaiThirdPartyControl {
     
-    /** Performed by general users not necessarily having AI or
-technical expertise. */
-    GENERAL_PUBLIC = "GENERAL_PUBLIC",
-    /** Performed by specialists with expertise in the domain or
-specific red-teaming context (medicine, biotech,
-cybersecurity). */
-    EXPERT = "EXPERT",
-    /** Hybrid exercises using both expert and general-public
-participants. */
-    COMBINATION = "COMBINATION",
-    /** Performed by GAI in combination with specialist or
-non-specialist human teams. */
-    HUMAN_AND_AI = "HUMAN_AND_AI",
+    /** Checking a provider before acquiring its GAI technology or data. */
+    Acquisition_and_procurement_due_diligence = "acquisition_and_procurement_due_diligence",
+    /** Asking a provider what its software is made of. */
+    Requests_for_software_bills_of_materials = "software_bills_of_materials",
+    /** Holding a provider to agreed levels of service. */
+    Application_of_service_level_agreements = "service_level_agreements",
+    /** Asking for a provider's attestation reports. */
+    Statement_on_standards_for_attestation_engagement_reports = "ssae_reports",
 };
 /**
-* Provenance data tracking techniques for GAI content
-(Appendix A.1.6). "Some well-known techniques for provenance
-data tracking include digital watermarking, metadata
-recording, digital fingerprinting, and human authentication,
-among others."
+* The types of AI red-teaming in section A.1.5.
 */
-export enum ProvenanceTechniqueEnum {
+export enum GaiRedTeamingType {
     
-    /** Overt or covert digital watermarks embedded in content to
-allow downstream verification of origin. */
-    DIGITAL_WATERMARKING = "DIGITAL_WATERMARKING",
-    /** Recording metadata about content (creator, date/time,
-location, modifications, sources) for text, image, video,
-audio, or underlying datasets. */
-    METADATA_RECORDING = "METADATA_RECORDING",
-    /** Computing a content-derived identifier that can be matched
-against a reference store to detect known content. */
-    DIGITAL_FINGERPRINTING = "DIGITAL_FINGERPRINTING",
-    /** Human-mediated verification of content origin or
-authenticity. */
-    HUMAN_AUTHENTICATION = "HUMAN_AUTHENTICATION",
+    /** By general users who are not necessarily AI or technical experts. */
+    General_Public = "general_public",
+    /** By specialists in the domain or the context of use. */
+    Expert = "expert",
+    /** By both experts and general public participants. */
+    Combination = "combination",
+    /** By GAI together with human teams, specialist or not. */
+    Human_SOLIDUS_AI = "human_ai",
 };
 /**
-* Governance plans and actions for GAI systems enumerated in
-NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").
+* The techniques for provenance data tracking in section A.1.6.
 */
-export enum GovernancePracticeEnum {
+export enum GaiProvenanceTechnique {
     
-    /** Accessibility and reasonable accommodations. */
-    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS = "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS",
-    /** AI actor credentials and qualifications. */
-    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS = "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS",
-    /** Alignment to organizational values. */
-    ALIGNMENT_TO_ORGANIZATIONAL_VALUES = "ALIGNMENT_TO_ORGANIZATIONAL_VALUES",
-    /** Auditing and assessment. */
-    AUDITING_AND_ASSESSMENT = "AUDITING_AND_ASSESSMENT",
-    /** Change-management controls. */
-    CHANGE_MANAGEMENT_CONTROLS = "CHANGE_MANAGEMENT_CONTROLS",
-    /** Commercial use governance. */
-    COMMERCIAL_USE = "COMMERCIAL_USE",
-    /** Data provenance. */
-    DATA_PROVENANCE = "DATA_PROVENANCE",
-    /** Data protection. */
-    DATA_PROTECTION = "DATA_PROTECTION",
-    /** Data retention. */
-    DATA_RETENTION = "DATA_RETENTION",
-    /** Consistency in use of defining key terms. */
-    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS = "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS",
-    /** Decommissioning practices. */
-    DECOMMISSIONING = "DECOMMISSIONING",
-    /** Discouraging anonymous use. */
-    DISCOURAGING_ANONYMOUS_USE = "DISCOURAGING_ANONYMOUS_USE",
-    /** Education on GAI risks and responsible use. */
-    EDUCATION = "EDUCATION",
-    /** Impact assessments. */
-    IMPACT_ASSESSMENTS = "IMPACT_ASSESSMENTS",
-    /** Incident response procedures. */
-    INCIDENT_RESPONSE = "INCIDENT_RESPONSE",
-    /** Ongoing monitoring of GAI systems. */
-    MONITORING = "MONITORING",
-    /** User opt-out mechanisms. */
-    OPT_OUTS = "OPT_OUTS",
-    /** Risk-based controls. */
-    RISK_BASED_CONTROLS = "RISK_BASED_CONTROLS",
-    /** Risk mapping and measurement. */
-    RISK_MAPPING_AND_MEASUREMENT = "RISK_MAPPING_AND_MEASUREMENT",
-    /** Science-backed test, evaluation, validation, and verification practices. */
-    SCIENCE_BACKED_TEVV_PRACTICES = "SCIENCE_BACKED_TEVV_PRACTICES",
-    /** Secure software development practices. */
-    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES = "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES",
-    /** Stakeholder engagement. */
-    STAKEHOLDER_ENGAGEMENT = "STAKEHOLDER_ENGAGEMENT",
-    /** Synthetic content detection and labeling tools and techniques. */
-    SYNTHETIC_CONTENT_DETECTION_AND_LABELING = "SYNTHETIC_CONTENT_DETECTION_AND_LABELING",
-    /** Whistleblower protections. */
-    WHISTLEBLOWER_PROTECTIONS = "WHISTLEBLOWER_PROTECTIONS",
-    /** Workforce diversity and interdisciplinary teams. */
-    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS = "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS",
+    /** Placing visible or hidden marks on content. */
+    Digital_watermarking = "digital_watermarking",
+    /** Recording facts about the content, such as its creator, date and sources. */
+    Metadata_recording = "metadata_recording",
+    /** Identifying content from its own characteristics. */
+    Digital_fingerprinting = "digital_fingerprinting",
+    /** Having people confirm where content came from. */
+    Human_authentication = "human_authentication",
+};
+/**
+* The kinds of harm that section A.1.8's definition of an AI incident names.
+*/
+export enum GaiIncidentHarm {
+    
+    /** To a person or group, including psychological harm and harm to mental health. */
+    Injury_or_harm_to_health = "injury_or_harm_to_health",
+    /** To its management and operation. */
+    Disruption_of_critical_infrastructure = "critical_infrastructure_disruption",
+    /** Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights. */
+    Violations_of_rights_or_legal_obligations = "rights_violations",
+    /** To things and groups beyond the individual. */
+    Harm_to_property_communities_or_the_environment = "harm_to_property_communities_or_environment",
 };
 
 
 /**
- * A generic grouping for any identifiable AI RMF element.
+ * The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.
  */
-export interface NamedThing {
-    /** A unique identifier for an element. */
-    id: string,
-    /** A short human-readable name. */
-    name?: string,
-    /** A human-readable title. */
+export interface AiRmfRecord {
+    /** The identifier an adopter gives a record of its own. */
+    ai_rmf_id: string,
+    /** The element's name. */
     title?: string,
-    /** A human-readable description. */
+    /** What the element says or is. */
     description?: string,
-    /** Related references. */
-    see_also?: string[],
 }
 
 
 /**
- * An engineered or machine-based system that can, for a given set
-of objectives, generate outputs such as predictions,
-recommendations, or decisions influencing real or virtual
-environments. AI systems are designed to operate with varying
-levels of autonomy (Adapted from OECD Recommendation on AI:2019;
-ISO/IEC 22989:2022).
+ * A characteristic of trustworthy AI systems, each with a subsection of section 3.
  */
-export interface AiSystem extends NamedThing {
-    /** The AI lifecycle stage(s) the element applies to. */
-    lifecycle_stage?: string,
-    /** The AI system dimension the element applies to. */
-    ai_dimension?: string,
-}
-
-
-/**
- * A socio-technical dimension of an AI system (Figure 2):
-Application Context, Data and Input, AI Model, Task and Output,
-or People and Planet.
- */
-export interface AiSystemDimension extends NamedThing {
-    /** Which AI system dimension an `AiSystemDimension` instance represents. */
-    dimension_kind: string,
-}
-
-
-/**
- * A stage of the AI lifecycle (Figure 2): Plan and Design,
-Collect and Process Data, Build and Use Model, Verify and
-Validate, Deploy and Use, or Operate and Monitor.
- */
-export interface AiLifecycleStage extends NamedThing {
-    /** Which AI lifecycle stage an `AiLifecycleStage` instance represents. */
-    stage_kind: string,
-    /** Whether the lifecycle stage incorporates TEVV activities. */
-    includes_tevv?: boolean,
-}
-
-
-/**
- * An organization or individual that plays an active role in the AI
-system lifecycle. AI actors include those who deploy or operate
-AI as well as those who inform via formal or quasi-formal norms
-and guidance (OECD 2019).
- */
-export interface AiActor extends NamedThing {
-    /** AI actor task category. */
-    actor_task?: string,
-    /** The AI lifecycle stage(s) the element applies to. */
-    lifecycle_stage?: string,
-    /** Whether the actor or task is a Test, Evaluation, Verification, and
-Validation (TEVV) actor / task. */
-    is_tevv?: boolean,
-    /** Whether the actor is part of the *primary* AI RMF audience or the
-*informing* People-and-Planet audience. */
-    audience?: string,
-}
-
-
-/**
- * A category of task performed by AI actors (Appendix A). Each
-task is associated with one or more lifecycle stages and a
-typical set of actor roles.
- */
-export interface AiActorTask extends NamedThing {
-    /** Which AI actor task category an `AiActorTask` instance represents. */
-    task_kind: string,
-    /** Representative actor roles that perform an AI actor task. */
-    typical_actors?: string[],
-    /** The AI lifecycle stage(s) the element applies to. */
-    lifecycle_stage?: string,
-    /** The AI system dimension the element applies to. */
-    ai_dimension?: string,
-}
-
-
-/**
- * The composite measure of an event's probability of occurring and
-the magnitude or degree of the consequences of that event. When
-considering negative impact, risk is a function of (1) the
-negative impact or magnitude of harm and (2) the likelihood of
-occurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).
- */
-export interface Risk extends NamedThing {
-    /** Estimated probability of the event occurring (0.0 to 1.0). The
-AI RMF leaves quantification approaches to the implementer. */
-    likelihood?: number,
-    /** Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale). */
-    magnitude?: string,
-    /** Whether the impact is positive, negative, or both. */
-    impact_sign?: string,
-    /** Whether this risk represents risk remaining after risk treatment
-(residual risk per ISO Guide 73). */
-    is_residual?: boolean,
-    /** The chosen risk treatment option. */
-    risk_response?: string,
-    /** The AI lifecycle stage(s) the element applies to. */
-    lifecycle_stage?: string,
-    /** Trustworthiness characteristic(s) the element pertains to. */
-    trustworthiness_characteristic?: string,
-    /** The impacts that contribute to a risk. */
-    related_impacts?: Impact[],
-    /** The AI system a risk pertains to. */
-    affects_system?: AiSystemId,
-}
-
-
-/**
- * A positive, negative, or both consequence of an AI system. Impacts
-can manifest as opportunities (positive) or threats (negative).
- */
-export interface Impact extends NamedThing {
-    /** Whether the impact is positive, negative, or both. */
-    impact_sign?: string,
-    /** Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale). */
-    magnitude?: string,
-    /** Estimated probability of the event occurring (0.0 to 1.0). The
-AI RMF leaves quantification approaches to the implementer. */
-    likelihood?: number,
-    /** Entities (people, organizations, ecosystems) the risk or harm
-may affect. */
-    affects?: NamedThingId[],
-}
-
-
-/**
- * A negative impact that may be experienced by individuals,
-groups, communities, organizations, society, the environment, or
-the planet (Figure 1).
- */
-export interface Harm extends NamedThing {
-    /** The high-level harm category (people / organization / ecosystem). */
-    harm_category?: string,
-    /** The sub-category when harm is to people (individual / group / societal). */
-    harm_to_people_subcategory?: string,
-    /** Magnitude or degree of consequences if the event occurs (free
-text or qualitative scale). */
-    magnitude?: string,
-    /** Entities (people, organizations, ecosystems) the risk or harm
-may affect. */
-    affects?: NamedThingId[],
-}
-
-
-/**
- * Risk remaining after risk treatment (ISO Guide 73). Documenting
-residual risks helps system providers consider risks of deploying
-the AI product and informs end users about potential negative
-impacts.
- */
-export interface ResidualRisk extends Risk {
-}
-
-
-/**
- * The organization's or AI actor's readiness to bear risk in order
-to achieve its objectives (Adapted from ISO Guide 73). Risk
-tolerance is highly contextual and application- and use-case
-specific.
- */
-export interface RiskTolerance extends NamedThing {
-    /** Free-text statement of a risk tolerance level or threshold. */
-    tolerance_statement?: string,
-    /** Legal or regulatory requirements influencing a risk tolerance. */
-    legal_basis?: string,
-}
-
-
-/**
- * A challenge that complicates measurement of AI risks
-(Part 1 §1.2.1).
- */
-export interface RiskMeasurementChallenge extends NamedThing {
-    /** Which risk-measurement challenge a `RiskMeasurementChallenge` represents. */
-    challenge_kind: string,
-}
-
-
-/**
- * A characteristic of a trustworthy AI system (Figure 4 / Part 1
-§3). The seven characteristics are inter-related; addressing them
-individually does not guarantee trustworthiness, and tradeoffs
-are usually involved.
- */
-export interface TrustworthinessCharacteristic extends NamedThing {
-    /** Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents. */
-    characteristic_kind: string,
-    /** True when this characteristic is a necessary condition for
-trustworthiness (per Figure 4 - Valid and Reliable is the base
-of all others). */
-    is_base_condition?: boolean,
-    /** True when this characteristic relates to all others
-(Accountable and Transparent; shown vertically in Figure 4). */
-    is_cross_cutting?: boolean,
-}
-
-
-/**
- * A form of AI bias - a deviation that may be perpetuated or
-amplified by AI systems. NIST identifies three major categories:
-systemic, computational/statistical, and human-cognitive
-(Part 1 §3.7; NIST SP 1270).
- */
-export interface Bias extends NamedThing {
-    /** Category or categories of bias addressed. */
-    bias_category?: string,
-}
-
-
-/**
- * A top-level AI RMF Core function. Each function organizes AI risk
-management activities at the highest level. GOVERN applies across
-all stages; MAP, MEASURE, and MANAGE apply to AI-system-specific
-contexts and lifecycle stages.
- */
-export interface Function extends NamedThing {
-    /** The function code (GOVERN, MAP, MEASURE, or MANAGE). */
-    function_code: string,
-    /** Categories that belong to a Function. */
-    categories?: Category[],
-}
-
-
-/**
- * A category within an AI RMF Core function (e.g., "GOVERN 1:
-Policies, processes, procedures, and practices ... are in place,
-transparent, and implemented effectively"). Categories group
-related subcategories.
- */
-export interface Category extends NamedThing {
-    /** Identifier of a Category (e.g., "GOVERN 1"). */
-    category_id?: string,
-    /** The outcome statement of a Category or Subcategory - the desired
-result of carrying out its actions. */
-    outcome?: string,
-    /** Subcategories that belong to a Category. */
-    subcategories?: Subcategory[],
-}
-
-
-/**
- * A subcategory within an AI RMF Core category (e.g., "GOVERN 1.1:
-Legal and regulatory requirements involving AI are understood,
-managed, and documented"). Subcategories express specific
-outcomes.
- */
-export interface Subcategory extends NamedThing {
-    /** Identifier of a Subcategory (e.g., "GOVERN 1.1"). */
-    subcategory_id?: string,
-    /** The outcome statement of a Category or Subcategory - the desired
-result of carrying out its actions. */
-    outcome?: string,
-    /** Trustworthiness characteristic(s) the element pertains to. */
-    trustworthiness_characteristic?: string,
-    /** The AI lifecycle stage(s) the element applies to. */
-    lifecycle_stage?: string,
-    /** Free-text discussion of the subcategory or related concept.
-Corresponds to the AI RMF Playbook "About" section. */
-    about_text?: string,
-    /** Free-text bulleted list of suggested actions an organization can
-take. Corresponds to the AI RMF Playbook "Actions" section. */
-    suggested_actions_text?: string,
-    /** Free-text documentation questions and transparency resources.
-Corresponds to the AI RMF Playbook "Documentation" section. */
-    documentation_questions?: string,
-    /** Free-text list of references, citations, and supporting
-resources. Corresponds to the AI RMF Playbook "References"
-section. */
-    references_text?: string,
-    /** Free-text topic tags applied to a playbook entry (e.g.,
-"Governance", "Trustworthy Characteristics", "Validity and
-Reliability"). */
-    topics?: string[],
-    /** Free-text list of AI Actor categories the entry applies to,
-preserving the original case used in the AI RMF Playbook
-(e.g., "Governance and Oversight", "TEVV"). For controlled
-enum values see `actor_task` (range AiActorTaskEnum). */
-    ai_actor_categories?: string[],
-}
-
-
-/**
- * An implementation of the AI RMF Functions, Categories, and
-Subcategories for a specific setting or application based on the
-requirements, risk tolerance, and resources of the user (§6).
-Profiles may be use-case-specific, temporal (current or target),
-or cross-sectoral.
- */
-export interface AiRmfProfile extends NamedThing {
-    /** The kind of AI RMF Profile. */
-    profile_type: string,
-    /** For temporal current profiles - how AI is currently being managed
-and related risks in terms of current outcomes. */
-    current_state?: string,
-    /** For temporal target profiles - the outcomes needed to achieve the
-desired AI risk management goals. */
-    target_state?: string,
-    /** The sector, industry, technology, or end-use application a
-profile addresses (e.g., "hiring", "fair housing"). */
-    sector?: string,
-    /** Subcategories that a profile implements or addresses. */
-    addresses?: SubcategoryId[],
-}
-
-
-/**
- * A design attribute of the AI RMF (Appendix D) - one of the
-qualities the Framework strives to embody (e.g., risk-based,
-consensus-driven, plain language, common language, easily usable,
-universally applicable, outcome-focused, leveraging existing
-standards, law- and regulation-agnostic, living document).
- */
-export interface RmfAttribute extends NamedThing {
-}
-
-
-/**
- * A risk that is new or increased for AI-based technology compared
-to traditional software (Appendix B) - e.g., data quality, model
-drift, opacity, scale and complexity, pre-trained model
-uncertainty, emergent properties, privacy aggregation, or
-environmental cost.
- */
-export interface AiSpecificRisk extends NamedThing {
-}
-
-
-/**
- * An issue that merits further consideration in human-AI
-interaction (Appendix C) - e.g., clear human roles and
-responsibilities, systemic and human-cognitive biases in design,
-variability of human-AI interaction outcomes, complexity of
-presenting AI system information to humans.
- */
-export interface HumanAiInteractionIssue extends NamedThing {
-}
-
-
-/**
- * A single AI RMF Playbook entry - an enrichment of a Core
-subcategory with prose discussion, suggested actions,
-documentation questions, references, and topic tags.
-
-Attribute names use the same identifiers found in the published
-NIST AI RMF Playbook JSON (e.g., `section_about`,
-`section_actions`) so that the data can be loaded directly.
- */
-export interface PlaybookEntry {
-    /** Function label as serialised in the published Playbook JSON
-(Title case - "Govern", "Map", "Measure", "Manage"). For
-the controlled enum see `function_kind`. */
-    type?: string,
-    /** Subcategory identifier (e.g., "GOVERN 1.1"). Mirrors the
-AI RMF Subcategory `subcategory_id`. */
-    title?: string,
-    /** Category code in the form "FUNCTION-N" (e.g., "GOVERN-1")
-as used in the Playbook. */
-    category?: string,
-    /** Outcome statement of the subcategory. */
+export interface AiRmfTrustworthinessCharacteristic {
+    /** What the element says or is. */
     description?: string,
-    /** Free-text discussion ("About" section). */
-    section_about?: string,
-    /** Bulleted suggested actions ("Actions" section). */
-    section_actions?: string,
-    /** Documentation questions and transparency resources
-("Documentation" section). */
-    section_doc?: string,
-    /** References and citations ("References" section). */
-    section_ref?: string,
-    /** AI actor categories the entry applies to. Free-text to
-preserve the casing of the source data (e.g., "Governance
-and Oversight"). */
-    ai_actors?: string[],
-    /** Topic tags (e.g., "Legal and Regulatory", "Validity and
-Reliability"). */
-    topic?: string[],
+    /** Which characteristic this is. */
+    ai_rmf_characteristic_name: string,
+    /** The subsection of the publication that describes it, such as 3.1. */
+    ai_rmf_characteristic_section: string,
+    /** Whether Figure 4 shows it as the necessary condition under the others. */
+    ai_rmf_characteristic_is_base?: boolean,
+    /** Whether Figure 4 shows it relating to all the others. */
+    ai_rmf_characteristic_relates_to_all?: boolean,
 }
 
 
 /**
- * A container for a set of PlaybookEntry instances - the
-serialisation root for an AI RMF Playbook companion document.
-Validate with ``linkml-validate --target-class PlaybookCollection``;
-the canonical tree-root for the schema is ``AiRmfFramework``.
+ * One of the five key socio-technical dimensions of an AI system in Figure 2.
  */
-export interface PlaybookCollection {
-    /** The Playbook entries in a `PlaybookCollection`. */
-    entries?: PlaybookEntry[],
+export interface AiRmfDimension {
+    /** What the element says or is. */
+    description?: string,
+    /** Which dimension this is. */
+    ai_rmf_dimension_name: string,
+    /** The AI RMF audience formed by the AI actors in this dimension. */
+    ai_rmf_dimension_audience: string,
 }
 
 
 /**
- * Publication metadata for an instance of the AI RMF (e.g., NIST
-AI 100-1, January 2023). The Framework is intended to be a
-living document, employing a two-number versioning system (major.minor).
+ * A stage of the AI lifecycle as a column of Figure 3 shows it, under its dimension.
  */
-export interface AiRmfDocument extends NamedThing {
-    /** Version identifier of the document. */
-    version?: string,
-    /** The publisher of the document (e.g., NIST). */
-    publisher?: string,
-    /** Digital Object Identifier for the document. */
-    doi?: string,
-    /** Date the document was published. */
-    published_date?: date,
-    /** Reference to the source of the element (typically the document
-or section it originated from). */
-    source?: string,
+export interface AiRmfLifecycleStage {
+    /** What the element says or is. */
+    description?: string,
+    /** Which stage this is. */
+    ai_rmf_lifecycle_stage_name: string,
+    /** The dimension Figure 3 places the stage under. */
+    ai_rmf_lifecycle_stage_dimension: string,
+    /** The testing, evaluation, verification and validation (TEVV) Figure 3 gives the stage. */
+    ai_rmf_lifecycle_stage_tevv?: string,
+    /** The representative AI actors Figure 3 lists for the stage. */
+    ai_rmf_lifecycle_stage_representative_actors?: string[],
 }
 
 
 /**
- * Root container that bundles the AI RMF Core (Functions) with
-foundational concepts (trustworthiness characteristics,
-lifecycle, actors, risks, harms), profiles, and Framework
-attributes. Designed for serialising the Framework or a tailored
-instance of it as a single JSON / YAML document.
+ * A task or additional AI actor of Appendix A.
  */
-export interface AiRmfFramework extends NamedThing {
-    /** Publication metadata of the framework instance. */
-    document?: AiRmfDocument,
-    /** The four AI RMF Core functions and their content. */
-    functions?: Function[],
-    /** The seven characteristics of trustworthy AI. */
-    trustworthiness_characteristics?: TrustworthinessCharacteristic[],
-    /** The AI lifecycle stages (Figure 2). */
-    lifecycle_stages?: AiLifecycleStage[],
-    /** The AI system dimensions (Figure 2). */
-    dimensions?: AiSystemDimension[],
-    /** AI actor task categories (Appendix A). */
-    actor_tasks?: AiActorTask[],
-    /** AI RMF profiles defined alongside this Framework instance. */
-    profiles?: AiRmfProfile[],
-    /** Design attributes of the AI RMF (Appendix D). */
-    attributes?: RmfAttribute[],
-    /** Identified challenges in measuring AI risk. */
-    risk_measurement_challenges?: RiskMeasurementChallenge[],
-    /** AI-specific risks compared to traditional software (Appendix B). */
-    ai_specific_risks?: AiSpecificRisk[],
-    /** Human-AI interaction considerations (Appendix C). */
-    human_ai_interaction_issues?: HumanAiInteractionIssue[],
+export interface AiRmfActorTask {
+    /** What the element says or is. */
+    description?: string,
+    /** Which task or additional AI actor this is. */
+    ai_rmf_actor_task_name: string,
+    /** Whether Appendix A lists it under Additional AI Actors rather than as a task. */
+    ai_rmf_actor_task_is_additional_actor?: boolean,
+    /** The AI actors that Appendix A says carry out the task. */
+    ai_rmf_actor_task_representative_actors?: string[],
 }
 
 
 /**
- * A risk that is novel to or exacerbated by Generative AI.
-Each instance corresponds to one of the 12 risk categories
-enumerated in NIST AI 600-1 Section 2.
+ * One of the four challenges for AI risk management in section 1.2.
  */
-export interface GaiRisk extends NamedThing {
-    /** The GAI risk category this element represents. */
-    gai_risk_kind?: string,
-    /** Higher-level categorisation - technical/model, misuse, or
-ecosystem/societal. */
-    risk_categorization?: string,
-    /** Scope levels at which the risk may manifest. */
-    risk_scope?: string,
-    /** Sources from which the risk may emerge. */
-    risk_sources?: string,
-    /** Time scales over which the risk may materialise. */
-    time_scale?: string,
-    /** Trustworthiness characteristic(s) the element pertains to. */
-    trustworthiness_characteristic?: string,
-    /** Suggested actions that address a GAI risk (back-reference
-derived from `SuggestedAction.gai_risks`). */
-    addressed_by_actions?: SuggestedActionId[],
-    /** AI lifecycle stage(s) at which the GAI risk may arise
-(NIST AI 600-1 Section 2). Uses the GAI five-stage
-lifecycle (`GaiLifecycleStageEnum`). */
-    lifecycle_stage?: string,
+export interface AiRmfManagementChallenge {
+    /** What the element says or is. */
+    description?: string,
+    /** Which challenge this is. */
+    ai_rmf_management_challenge_name: string,
+    /** The risk measurement challenges of section 1.2.1, under the challenge of risk measurement. */
+    ai_rmf_management_challenge_measurement_challenges?: AiRmfMeasurementChallenge[],
 }
 
 
 /**
- * A suggested action an organisation can take to manage GAI
-risks. Each action is identified by an Action ID, linked to an
-AI RMF subcategory, and may be relevant to one or more GAI
-risks and AI actor tasks (NIST AI 600-1 Section 3).
+ * One of the challenges of measuring AI risk in section 1.2.1.
  */
-export interface SuggestedAction extends NamedThing {
-    /** Identifier of a Suggested Action. */
-    action_id: string,
-    /** Two-letter function prefix of the action's subcategory. */
-    function_prefix?: string,
-    /** Identifier of the AI RMF subcategory the action applies to. */
-    applies_to_subcategory?: string,
-    /** GAI risk categories addressed by a suggested action or
-considered by a primary consideration. */
-    gai_risks?: string,
-    /** Pertinent AI Actor Task(s) for the suggested action - i.e.,
-the "AI Actor Tasks" row at the bottom of each Section 3
-table. */
-    actor_task?: string,
+export interface AiRmfMeasurementChallenge {
+    /** What the element says or is. */
+    description?: string,
+    /** Which challenge this is. */
+    ai_rmf_measurement_challenge_name: string,
 }
 
 
 /**
- * An overarching consideration derived from the NIST GAI PWG
-consultation process (Appendix A). The `consideration_kind`
-attribute discriminates between the four primary
-considerations: Governance, Pre-Deployment Testing, Content
-Provenance, and Incident Disclosure.
-
-All consideration-specific attributes are optional and apply
-to the appropriate `consideration_kind`:
-  * GOVERNANCE: governance_practices, third_party_considerations
-  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
-  * CONTENT_PROVENANCE: provenance_techniques
-  * INCIDENT_DISCLOSURE: ai_incident_definition
+ * A risk that Appendix B says is new or increased for AI compared with traditional software.
  */
-export interface PrimaryGaiConsideration extends NamedThing {
-    /** Which primary consideration this element represents. */
-    consideration_kind: string,
-    /** Governance plans and actions enumerated in NIST AI 600-1
-Appendix A.1.2 (Organizational Governance). */
-    governance_practices?: string,
-    /** Considerations for third-party GAI integrations, procurement,
-SBOMs, SLAs, and SSAE reports (Appendix A.1.3). */
-    third_party_considerations?: string,
-    /** For Pre-Deployment Testing: free-text discussion of why
-current TEVV approaches may be inadequate (Appendix A.1.4). */
-    limitations_of_current_approaches?: string,
-    /** For Content Provenance: provenance data tracking techniques
-such as digital watermarking, metadata recording, digital
-fingerprinting, and human authentication (Appendix A.1.6). */
-    provenance_techniques?: string,
-    /** For Incident Disclosure: the definition of AI incident used
-by the organisation (Appendix A.1.8). */
-    ai_incident_definition?: string,
+export interface AiRmfSpecificRisk {
+    /** This project's short name for the item. Appendix B gives its items no names. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+    /** The item's position in Appendix B's list, which is not numbered. */
+    ai_rmf_specific_risk_position: number,
 }
 
 
 /**
- * Methods used to evaluate whether GAI systems are performing as
-intended and to calibrate and verify traditional measurement
-methods (A.1.5).
+ * An issue of human-AI interaction that Appendix C says merits further consideration and research.
  */
-export interface StructuredPublicFeedback extends NamedThing {
-    /** Which structured feedback method this element represents. */
-    feedback_method_kind: string,
+export interface AiRmfHumanAiIssue {
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+    /** The issue's number in Appendix C. */
+    ai_rmf_human_ai_issue_number: number,
 }
 
 
 /**
- * A structured testing exercise used to probe an AI system to
-find flaws and vulnerabilities such as inaccurate, harmful, or
-discriminatory outputs, often in a controlled environment and
-in collaboration with system developers (A.1.5).
+ * A key attribute of the AI RMF in Appendix D, which guided its development.
  */
-export interface AiRedTeaming extends StructuredPublicFeedback {
-    /** The type of AI red-teaming exercise. */
-    red_team_type?: string,
+export interface AiRmfAttribute {
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+    /** The attribute's number in Appendix D. */
+    ai_rmf_attribute_number: number,
 }
 
 
 /**
- * Root container that bundles the NIST AI 600-1 Generative AI
-Profile: GAI risks (Section 2), suggested actions (Section 3),
-and primary considerations (Appendix A). The GAI Profile is a
-*cross-sectoral* AI RMF profile (Section 1).
+ * A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.
  */
-export interface GaiProfile extends NamedThing {
-    /** The catalog of GAI risks (Section 2). */
-    gai_risk_catalog?: GaiRisk[],
-    /** Suggested actions to manage GAI risks (Section 3). */
-    suggested_actions?: SuggestedAction[],
-    /** The primary GAI considerations from Appendix A (Governance,
-Pre-Deployment Testing, Content Provenance, Incident
-Disclosure). Discriminated by `consideration_kind`. */
-    primary_considerations?: PrimaryGaiConsideration[],
-    /** Structured public feedback methods relevant to the profile
-(Appendix A.1.5). */
-    structured_feedback_methods?: StructuredPublicFeedback[],
+export interface AiRmfSystem extends AiRmfRecord {
+    /** What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document. */
+    ai_rmf_system_intended_purposes?: string[],
+    /** The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document. */
+    ai_rmf_system_deployment_settings?: string[],
+    /** The lifecycle stages the record covers. */
+    ai_rmf_system_lifecycle_stages?: string,
+    /** The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements. */
+    ai_rmf_system_actors?: AiRmfActorAiRmfId[],
+}
+
+
+/**
+ * An organization or individual with an active role in an AI system's lifecycle.
+ */
+export interface AiRmfActor extends AiRmfRecord {
+    /** The tasks the actor carries out, or the additional AI actor it is. */
+    ai_rmf_actor_tasks?: string,
+    /** The AI RMF audience the actor belongs to. */
+    ai_rmf_actor_audience?: string,
+    /** The lifecycle stages the actor works in. */
+    ai_rmf_actor_lifecycle_stages?: string,
+}
+
+
+/**
+ * How likely an event is, combined with how severe its consequences are.
+ */
+export interface AiRmfRisk extends AiRmfRecord {
+    /** How likely the event or impact is, on whatever scale the adopter uses. */
+    ai_rmf_likelihood?: string,
+    /** How large the consequences are, on whatever scale the adopter uses. */
+    ai_rmf_magnitude?: string,
+    /** The AI system the risk concerns. */
+    ai_rmf_risk_system?: AiRmfSystemAiRmfId,
+    /** The impacts that contribute to the risk. */
+    ai_rmf_risk_impacts?: AiRmfImpact[],
+    /** The trustworthiness characteristics the risk bears on. */
+    ai_rmf_risk_characteristics?: string,
+    /** The lifecycle stages where the risk is measured or arises. */
+    ai_rmf_risk_lifecycle_stages?: string,
+    /** The responses chosen for the risk. */
+    ai_rmf_risk_responses?: string,
+    /** The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks. */
+    ai_rmf_risk_priority?: string,
+    /** The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document. */
+    ai_rmf_risk_tolerance?: AiRmfRiskToleranceAiRmfId,
+}
+
+
+/**
+ * The risk that remains after risk treatment.
+ */
+export interface AiRmfResidualRisk extends AiRmfRisk {
+}
+
+
+/**
+ * A consequence of an AI system, which may be an opportunity, a threat or both.
+ */
+export interface AiRmfImpact extends AiRmfRecord {
+    /** How likely the event or impact is, on whatever scale the adopter uses. */
+    ai_rmf_likelihood?: string,
+    /** How large the consequences are, on whatever scale the adopter uses. */
+    ai_rmf_magnitude?: string,
+    /** Whether the consequence is positive, negative or both. */
+    ai_rmf_impact_direction: string,
+    /** Who or what experiences the consequence. */
+    ai_rmf_impact_affected_parties?: string,
+}
+
+
+/**
+ * A negative impact, sorted as in Figure 1 by whether it falls on people, an organization or an ecosystem.
+ */
+export interface AiRmfHarm extends AiRmfImpact {
+    /** The heading of Figure 1 the harm falls under. */
+    ai_rmf_harm_category: string,
+    /** The example of Figure 1 the harm matches, which must sit under the harm's category. */
+    ai_rmf_harm_example?: string,
+}
+
+
+/**
+ * An organization's or AI actor's readiness to bear risk to achieve its objectives. The AI RMF prescribes none.
+ */
+export interface AiRmfRiskTolerance extends AiRmfRecord {
+    /** The organization or AI actor whose tolerance this is. */
+    ai_rmf_risk_tolerance_holder?: AiRmfActorAiRmfId,
+    /** What influences it, such as a law, a regulation, a policy or a norm. */
+    ai_rmf_risk_tolerance_influences?: string[],
+}
+
+
+/**
+ * A bias to consider and manage, sorted into NIST's three major categories.
+ */
+export interface AiRmfBias extends AiRmfRecord {
+    /** The categories it falls under. */
+    ai_rmf_bias_categories: string,
+}
+
+
+/**
+ * One of the four functions that organize AI risk management at the highest level. GOVERN cuts across the other three.
+ */
+export interface AiRmfFunction {
+    /** The function's name, such as GOVERN. */
+    ai_rmf_function_id: string,
+    /** The one-sentence overview in NIST's catalog. The publication gives each function a section of its own instead. */
+    description?: string,
+    /** The categories of the function. A knowledge bundle relates a category to its function with isPartOf instead. */
+    ai_rmf_function_categories?: AiRmfCategory[],
+}
+
+
+/**
+ * A group of related outcomes within a function, such as GOVERN 1, which Tables 1 to 4 state.
+ */
+export interface AiRmfCategory {
+    /** The category's identifier, such as GOVERN 1. */
+    ai_rmf_category_id: string,
+    /** The category's statement in the publication. */
+    description: string,
+    /** The subcategories of the category. A knowledge bundle relates a subcategory to its category with isPartOf instead. */
+    ai_rmf_category_subcategories?: AiRmfSubcategory[],
+}
+
+
+/**
+ * A specific outcome within a category, such as GOVERN 1.1, which Tables 1 to 4 state, and its Playbook material.
+ */
+export interface AiRmfSubcategory {
+    /** The subcategory's identifier, such as GOVERN 1.1. */
+    ai_rmf_subcategory_id: string,
+    /** The subcategory's statement in the publication. */
+    description: string,
+    /** The Playbook's discussion of the outcome. */
+    ai_rmf_subcategory_about?: string[],
+    /** The steps the Playbook suggests towards the outcome. They are voluntary and are not a checklist. */
+    ai_rmf_subcategory_suggested_actions?: AiRmfSuggestedAction[],
+    /** What the Playbook suggests an organization document, mostly as questions. */
+    ai_rmf_subcategory_documentation?: AiRmfDocumentationItem[],
+    /** The sources the Playbook names as AI transparency resources. */
+    ai_rmf_subcategory_transparency_resources?: AiRmfResource[],
+    /** The Playbook's references for the outcome. */
+    ai_rmf_subcategory_references?: AiRmfResource[],
+    /** The AI actors the Playbook tags the outcome with. */
+    ai_rmf_subcategory_ai_actors?: string,
+    /** The topics the Playbook tags the outcome with. NIST keeps no closed list of them. */
+    ai_rmf_subcategory_topics?: string[],
+}
+
+
+/**
+ * One step the Playbook suggests towards a subcategory's outcome.
+ */
+export interface AiRmfSuggestedAction {
+    /** The suggested action's identifier, such as SA-GOVERN_1.1-1. */
+    ai_rmf_suggested_action_id: string,
+    /** What the element says or is. */
+    description: string,
+}
+
+
+/**
+ * One thing the Playbook suggests an organization document for a subcategory.
+ */
+export interface AiRmfDocumentationItem {
+    /** The documentation prompt's identifier, such as D-GOVERN_1.1-1. */
+    ai_rmf_documentation_id: string,
+    /** What the element says or is. */
+    description: string,
+}
+
+
+/**
+ * A source the Playbook points to, by the title and address NIST's catalog gives it.
+ */
+export interface AiRmfResource {
+    /** The element's name. */
+    title: string,
+    /** The UUID of the resource in the back matter of NIST's catalog. */
+    ai_rmf_resource_uuid: string,
+    /** The address NIST's catalog gives the source. The catalog gives none for a few. */
+    ai_rmf_resource_address?: string,
+}
+
+
+/**
+ * An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.
+ */
+export interface AiRmfProfile extends AiRmfRecord {
+    /** Which of the publication's kinds of profile this is. A current profile for one use case is both. */
+    ai_rmf_profile_kinds: string,
+    /** The sector, industry, technology, organization or end use the profile covers, such as hiring. */
+    ai_rmf_profile_setting?: string,
+    /** The subcategories the profile selects. An adopter may select from them rather than apply all. */
+    ai_rmf_profile_subcategories?: string[],
+}
+
+
+/**
+ * One edition of the AI RMF as a whole, with the Core and the lists the publication gives.
+ */
+export interface AiRmfFramework {
+    /** The edition in NIST's two-number form, such as 1.0. */
+    ai_rmf_version: string,
+    /** The four functions, in the publication's order. */
+    ai_rmf_functions: AiRmfFunction[],
+    /** The trustworthiness characteristics of section 3. */
+    ai_rmf_characteristics?: AiRmfTrustworthinessCharacteristic[],
+    /** The key dimensions of Figure 2. */
+    ai_rmf_dimensions?: AiRmfDimension[],
+    /** The lifecycle stages of Figure 3. */
+    ai_rmf_lifecycle_stages?: AiRmfLifecycleStage[],
+    /** The AI actor tasks and additional AI actors of Appendix A. */
+    ai_rmf_actor_task_list?: AiRmfActorTask[],
+    /** The challenges for AI risk management of section 1.2. */
+    ai_rmf_management_challenges?: AiRmfManagementChallenge[],
+    /** The AI-specific risks of Appendix B. */
+    ai_rmf_specific_risks?: AiRmfSpecificRisk[],
+    /** The human-AI interaction issues of Appendix C. */
+    ai_rmf_human_ai_issues?: AiRmfHumanAiIssue[],
+    /** The attributes of the AI RMF in Appendix D. */
+    ai_rmf_attributes?: AiRmfAttribute[],
+}
+
+
+/**
+ * A risk that section 2 defines as unique to or made worse by the development and use of GAI.
+ */
+export interface GaiRisk {
+    /** The risk's definition in section 2. */
+    description?: string,
+    /** Which of the 12 risks this is. */
+    gai_risk_name: string,
+    /** The subsection of section 2 that discusses the risk, such as 2.1. */
+    gai_risk_section: string,
+    /** The AI RMF's trustworthiness characteristics that the subsection names for the risk. */
+    gai_risk_characteristics?: string,
+    /** The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three. */
+    gai_risk_groupings?: string,
+    /** The lifecycle stages where the risk can arise for the adopter's model, system or use case. */
+    gai_risk_lifecycle_stages?: string,
+    /** The levels where the risk exists for the adopter's model, system or use case. */
+    gai_risk_scopes?: string,
+    /** Where the risk comes from for the adopter's model, system or use case. */
+    gai_risk_sources?: string,
+    /** How the risk materializes over time for the adopter's model, system or use case. */
+    gai_risk_time_scales?: string,
+}
+
+
+/**
+ * An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
+ */
+export interface GaiSubcategory {
+    /** The subcategory's identifier, such as GOVERN 1.1. */
+    ai_rmf_subcategory_id: string,
+    /** The subcategory's statement as the table restates it. */
+    description: string,
+    /** The suggested actions the table lists. */
+    gai_subcategory_actions: GaiSuggestedAction[],
+    /** The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action. */
+    gai_subcategory_actor_tasks?: string,
+}
+
+
+/**
+ * A step an organization or AI actor can take to manage GAI risks, which one row of a table states.
+ */
+export interface GaiSuggestedAction {
+    /** The action's identifier, such as GV-1.1-001. */
+    gai_action_id: string,
+    /** The action's text in the table. */
+    description: string,
+    /** The GAI risks the row tags the action with. */
+    gai_action_risks?: string,
+}
+
+
+/**
+ * One of the four primary considerations of Appendix A, which also inform the suggested actions.
+ */
+export interface GaiPrimaryConsideration {
+    /** Which of the four classes this record is. */
+    gai_consideration_type: string,
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+    /** The subsections of Appendix A that discuss the consideration, such as A.1.2. */
+    gai_consideration_sections?: string[],
+}
+
+
+/**
+ * How an organization's governance can be revisited for GAI, including across the AI value chain.
+ */
+export interface GaiGovernanceConsideration extends GaiPrimaryConsideration {
+    /** The plans and actions that section A.1.2 lists from other AI governance. */
+    gai_governance_plans?: string,
+    /** The existing controls that section A.1.3 says can apply to third-party GAI. */
+    gai_third_party_controls?: string,
+}
+
+
+/**
+ * How GAI can be tested before deployment while better approaches mature, and where current tests fall short.
+ */
+export interface GaiPreDeploymentTestingConsideration extends GaiPrimaryConsideration {
+    /** The kinds of structured public feedback section A.1.5 gives as examples. */
+    gai_structured_feedback?: GaiStructuredFeedback[],
+}
+
+
+/**
+ * How tracking the origin and history of content helps tell authentic content from synthetic content.
+ */
+export interface GaiContentProvenanceConsideration extends GaiPrimaryConsideration {
+    /** The well-known techniques for provenance data tracking that section A.1.6 names. */
+    gai_provenance_techniques?: string,
+}
+
+
+/**
+ * How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.
+ */
+export interface GaiIncidentDisclosureConsideration extends GaiPrimaryConsideration {
+    /** The kinds of harm that section A.1.8's definition of an AI incident names. */
+    gai_incident_harms?: string,
+}
+
+
+/**
+ * A way of using structured public feedback to evaluate whether GAI systems perform as intended.
+ */
+export interface GaiStructuredFeedback {
+    /** Which of the three classes this record is. */
+    gai_feedback_type: string,
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+}
+
+
+/**
+ * Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.
+ */
+export interface GaiParticipatoryEngagement extends GaiStructuredFeedback {
+}
+
+
+/**
+ * Structured settings that show how people interact with and use AI-generated information.
+ */
+export interface GaiFieldTesting extends GaiStructuredFeedback {
+}
+
+
+/**
+ * A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.
+ */
+export interface GaiAiRedTeaming extends GaiStructuredFeedback {
+    /** The kinds of AI red-teaming that may suit the use case. */
+    gai_red_teaming_types?: string,
+}
+
+
+/**
+ * The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.
+ */
+export interface GaiProfile extends AiRmfProfile {
+    /** The 12 risks of section 2. */
+    gai_risks: GaiRisk[],
+    /** The tables of section 3, in the publication's order. */
+    gai_subcategories: GaiSubcategory[],
+    /** The four primary considerations of Appendix A. */
+    gai_primary_considerations?: GaiPrimaryConsideration[],
+}
+
+
+/**
+ * The two publications held in one document, each as its own schema renders it.
+ */
+export interface NistAiRmfFamily {
+    /** The AI RMF, as lmodel/nist-ai-100-1 renders it. */
+    nist_ai_rmf_framework?: AiRmfFramework,
+    /** The Generative AI Profile, as lmodel/nist-ai-600-1 renders it. */
+    nist_ai_rmf_generative_ai_profile?: GaiProfile,
 }
 
 

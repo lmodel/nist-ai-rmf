@@ -1,0 +1,4 @@
+# linkml-lint reads this file from the directory `just lint` runs in.
+# The recommended rules apply unchanged: classes, enums and types carry the
+# rule's usual forms, and slots and permissible values are snake_case.
+extends: recommended

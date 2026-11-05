@@ -37,6 +37,11 @@ generator_args:
     mergeimports: true
   jsonschema:
     mergeimports: true
+    # Two imported classes are tree roots as well, so name the top level.
+    top_class: NistAiRmfFamily
+    # A consideration or a kind of feedback ranges over an abstract class. With
+    # its concrete descendants the schema offers each kind a record may be.
+    include_range_class_descendants: true
   jsonldcontext:
     mergeimports: true
   # gen-pydantic is not yet supported by gen-project.
