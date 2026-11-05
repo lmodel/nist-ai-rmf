@@ -10,8 +10,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 - **The two repositories' modules, vendored at each one's v0.1.0**, in place of an import by address, so the schema needs no network and cannot move under a release. A test holds each file to its hash.
 - **`NistAiRmfFamily`**, which holds both publications and is the JSON Schema's top level. Each publication's root stays a root.
-- **`scripts/build_crosswalk.py`**, which writes the ISO/IEC 42001 crosswalk under `tmp/` as SSSOM. That document states no licence, so the repository carries neither it nor its pairs.
-- **A weekly watch** that reports a release of either repository and a change to the crosswalk's bytes. It reads only https addresses on its two hosts.
+- **`scripts/build_crosswalk.py`**, which writes the ISO/IEC 42001 crosswalk under `tmp/` as SSSOM. That document carries no licence line and NIST's listing says its crosswalks come from the user community, so the repository carries neither it nor its pairs. The script reads only its pinned address over https.
+- **A weekly watch** that reports a release of either repository and a change to the crosswalk's bytes. It reads only https addresses on its two hosts, and quotes what a server answers as code.
 - **Tests** that validate both catalogues under one schema, hold every element to its publication's IRI, and run both repositories' examples and counter-examples.
 - **`.lokf/nist-ai-rmf.yaml`, the schema's `lokf adapt` copy.** The knowledge release attaches it as `schema-<tag>-nist-ai-rmf.yaml`.
 - **The repository's Knowledge Trust Ladder (KTL) knowledge bundle and its sidecar automation**, from the KTL v0.61.0 templates with the lokf floor at 0.9.0, and a knowledge website that replaces the mkdocs site.

@@ -18,7 +18,7 @@ The document names no relation between its two columns, and NIST's listing says 
 
 Three rows print a number with a heading the document gives that number nowhere else. Each row keeps the number and says so in its comment, and the constants at the top of the script list them. This project does not settle whether the author meant the number or the heading.
 
-The document states no licence, so the repository carries neither it nor its pairs. The set exists only on the machine that runs `just build-crosswalk`.
+The document carries no copyright or licence line, and NIST's listing says its crosswalks come from the AI RMF user community, so NIST's own reprint statement does not reach it. The repository carries neither the document nor its pairs; the set exists only on the machine that runs `just build-crosswalk`.
 
 ## What it leaves out
 

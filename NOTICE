@@ -48,9 +48,11 @@ The AI RMF to ISO/IEC 42001 crosswalk
 scripts/build_crosswalk.py reads the crosswalk that Microsoft provided and NIST's
 AI Resource Center lists,
 https://airc.nist.gov/docs/NIST_AI_RMF_to_ISO_IEC_42001_Crosswalk.pdf. NIST's
-listing says inclusion implies no endorsement. The document states no licence and
-quotes ISO's headings, so this repository carries neither the document nor its
-pairs. The script writes them under tmp/, which git ignores, for the person who
+listing, read on 2026-11-05, says its crosswalks come from the AI RMF user
+community and that inclusion implies no endorsement, so NIST's statement on its
+own works does not reach this one. The document carries no copyright or licence
+line and quotes ISO's headings, so this repository carries neither the document
+nor its pairs. The script writes them under tmp/, which git ignores, for the person who
 runs it. ISO/IEC 42001 is copyright ISO and IEC, and no text of it is reproduced
 here.
 
