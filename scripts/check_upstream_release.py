@@ -20,6 +20,7 @@ from __future__ import annotations
 
 import argparse
 import hashlib
+import http.client
 import json
 import sys
 import urllib.error
@@ -71,6 +72,12 @@ def _download(url: str) -> bytes:
     return data
 
 
+def _code(text: object) -> str:
+    """Text a server chose, such as a tag name or an error that quotes a redirect target,
+    as a code span, so it cannot mention a person or add a link in the issue."""
+    return "`" + str(text).replace("`", "'") + "`"
+
+
 def _latest_release(repository: str) -> str | None:
     """The repository's latest release tag, or None when it has none."""
     url = f"https://api.github.com/repos/{repository}/releases/latest"
@@ -94,7 +101,7 @@ def check_vendored() -> tuple[list[str], bool]:
         else:
             attention = True
             report.append(
-                f"- **{repository} released `{latest}`, and the modules here are from "
+                f"- **{repository} released {_code(latest)}, and the modules here are from "
                 f"`{pinned}`.** Copy its modules and asset, move the pins, and run `just test`."
             )
     return report, attention
@@ -120,14 +127,11 @@ def main(argv: list[str] | None = None) -> int:
     for check in (check_vendored, check_crosswalk):
         try:
             found, moved = check()
-        except (
-            urllib.error.URLError,
-            TimeoutError,
-            OSError,
-            KeyError,
-            ValueError,
-        ) as err:
-            found, moved = [f"- **A check could not finish: {err}.**"], True
+        # OSError covers a refused or failed fetch, a timeout and URLError;
+        # HTTPException a connection cut off mid-read; KeyError and ValueError
+        # an answer that is not the JSON the check expects.
+        except (OSError, http.client.HTTPException, KeyError, ValueError) as err:
+            found, moved = [f"- **A check could not finish: {_code(err)}.**"], True
         lines += found
         attention = attention or moved
     text = "\n".join(lines) + "\n"

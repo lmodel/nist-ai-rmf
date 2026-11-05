@@ -198,12 +198,25 @@ def tsv(rows: list[dict[str, str]]) -> str:
     return HEADER + "\n".join(lines) + "\n"
 
 
+class _HttpsOnly(urllib.request.HTTPRedirectHandler):
+    """Follow a redirect only over https, and only to the host the script reads from."""
+
+    def redirect_request(self, req, fp, code, msg, headers, newurl):
+        parts = urllib.parse.urlsplit(newurl)
+        if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
+            raise urllib.error.URLError(f"refused a redirect to {newurl}")
+        return super().redirect_request(req, fp, code, msg, headers, newurl)
+
+
 def _download() -> bytes:
+    """The PDF from its address. It carries no token, and the address it starts from is
+    held to the same rule as a redirect."""
     parts = urllib.parse.urlsplit(PDF_URL)
     if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
         raise urllib.error.URLError(f"refused to read {PDF_URL}")
+    opener = urllib.request.build_opener(_HttpsOnly)
     req = urllib.request.Request(PDF_URL, headers={"User-Agent": USER_AGENT})
-    with urllib.request.urlopen(req, timeout=120) as resp:  # noqa: S310
+    with opener.open(req, timeout=120) as resp:
         data = resp.read(MAX_BYTES + 1)
     if len(data) > MAX_BYTES:
         raise urllib.error.URLError(
