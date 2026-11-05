@@ -1,7 +1,7 @@
 """Checks the crosswalk builder's rules on pairs written here, so they need no PDF.
 
-`just build-crosswalk`, which main.yaml runs, holds the real pairs to the catalogue and to
-lmodel/iso42001's copy.
+`just build-crosswalk`, which main.yaml runs, holds the real pairs to the catalogue, and to
+lmodel/iso42001's copy when tests/neighbours/ holds one.
 """
 
 import importlib.util
@@ -53,7 +53,7 @@ def test_a_row_with_another_clauses_heading_keeps_its_number(builder):
     """A row printed with the wrong heading keeps the number and says so."""
     row = builder.row_of("GOVERN 3.2", "B.3.2")
     assert row["object_id"] == "iso42001:AimsAnnexAControl#a_3_2"
-    assert "clause 9.3.2's heading" in row["comment"]
+    assert "the heading it gives 9.3.2 elsewhere" in row["comment"]
 
 
 def test_a_repeated_pair_gives_one_row(builder):
@@ -99,6 +99,12 @@ def test_check_stops_on_an_object_the_copy_lacks(builder):
     pairs, rows, subjects, objects = _valid(builder)
     objects.discard("iso42001:AimsClause#clause_6_1_1")
     assert builder.check(pairs, rows, subjects, objects)
+
+
+def test_check_leaves_objects_alone_with_no_copy(builder):
+    """With no copy of lmodel/iso42001 to read, the objects go unchecked."""
+    pairs, rows, subjects, _objects = _valid(builder)
+    assert builder.check(pairs, rows, subjects, None) == []
 
 
 def test_check_stops_when_a_listed_misprint_is_gone(builder):
