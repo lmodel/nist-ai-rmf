@@ -1,3 +1,8 @@
+"""nist-ai-rmf.
+
+NIST AI RMF - Merged LinkML Schema
+"""
+
 try:
     from nist_ai_rmf._version import __version__, __version_tuple__
 except ImportError:  # pragma: no cover
