@@ -1,0 +1,4 @@
+ai_rmf_version: '1.0'
+ai_rmf_functions:
+  - ai_rmf_function_id: GOVERN
+    description: A culture of risk management is cultivated and present.

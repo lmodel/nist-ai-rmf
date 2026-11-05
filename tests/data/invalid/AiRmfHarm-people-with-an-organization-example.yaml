@@ -1,0 +1,5 @@
+# Fails at: /ai_rmf_harm_example
+ai_rmf_id: https://example.org/harms/reputation
+ai_rmf_impact_direction: negative
+ai_rmf_harm_category: people
+ai_rmf_harm_example: reputation

@@ -1,0 +1,5 @@
+# Fails at: /gai_consideration_sections/0
+gai_consideration_type: GaiGovernanceConsideration
+title: Governance
+gai_consideration_sections:
+  - A.2

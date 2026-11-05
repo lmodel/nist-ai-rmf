@@ -1,0 +1,9 @@
+ai_rmf_subcategory_id: GOVERN 1.1
+description: Legal and regulatory requirements involving AI are understood, managed, and documented.
+gai_subcategory_actions:
+  - gai_action_id: GV-1.1-001
+    description: Align GAI development and use with applicable laws and regulations.
+    gai_action_risks:
+      - data_privacy
+gai_subcategory_actor_tasks:
+  - governance_and_oversight

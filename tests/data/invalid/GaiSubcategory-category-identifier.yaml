@@ -1,0 +1,6 @@
+# Fails at: /ai_rmf_subcategory_id
+ai_rmf_subcategory_id: GOVERN 1
+description: A statement.
+gai_subcategory_actions:
+  - gai_action_id: GV-1.1-001
+    description: An action.

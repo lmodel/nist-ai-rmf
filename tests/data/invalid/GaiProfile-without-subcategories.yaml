@@ -1,0 +1,7 @@
+# Fails at: /
+ai_rmf_id: https://doi.org/10.6028/NIST.AI.600-1
+ai_rmf_profile_kinds:
+  - cross_sectoral
+gai_risks:
+  - gai_risk_name: confabulation
+    gai_risk_section: '2.2'

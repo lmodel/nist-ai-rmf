@@ -1,0 +1,5 @@
+# Fails at: /gai_provenance_techniques/0
+gai_consideration_type: GaiContentProvenanceConsideration
+title: Content Provenance
+gai_provenance_techniques:
+  - blockchain

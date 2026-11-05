@@ -1,0 +1,5 @@
+# Fails at: /gai_third_party_controls/0
+gai_consideration_type: GaiGovernanceConsideration
+title: Governance
+gai_third_party_controls:
+  - penetration_test

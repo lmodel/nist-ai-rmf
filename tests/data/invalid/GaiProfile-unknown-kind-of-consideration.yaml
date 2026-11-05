@@ -1,0 +1,17 @@
+# Fails at: /gai_primary_considerations/0
+ai_rmf_id: https://doi.org/10.6028/NIST.AI.600-1
+title: Generative AI Profile
+ai_rmf_profile_kinds:
+  - cross_sectoral
+gai_risks:
+  - gai_risk_name: confabulation
+    gai_risk_section: '2.2'
+gai_subcategories:
+  - ai_rmf_subcategory_id: GOVERN 1.1
+    description: Legal and regulatory requirements involving AI are understood, managed, and documented.
+    gai_subcategory_actions:
+      - gai_action_id: GV-1.1-001
+        description: Align GAI development and use with applicable laws and regulations.
+gai_primary_considerations:
+  - gai_consideration_type: GaiGovernance
+    title: Governance

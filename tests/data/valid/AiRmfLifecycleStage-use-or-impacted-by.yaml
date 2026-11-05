@@ -1,0 +1,6 @@
+ai_rmf_lifecycle_stage_name: use_or_impacted_by
+ai_rmf_lifecycle_stage_dimension: people_and_planet
+ai_rmf_lifecycle_stage_tevv: audit and impact assessment
+ai_rmf_lifecycle_stage_representative_actors:
+  - end users
+  - researchers

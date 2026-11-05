@@ -1,0 +1,9 @@
+gai_risk_name: data_privacy
+gai_risk_section: '2.4'
+gai_risk_characteristics:
+  - accountable_and_transparent
+  - privacy_enhanced
+gai_risk_groupings:
+  - technical_or_model
+  - misuse_by_humans
+  - ecosystem_or_societal

@@ -1,0 +1,11 @@
+gai_consideration_type: GaiPreDeploymentTestingConsideration
+title: Pre-Deployment Testing
+gai_consideration_sections:
+  - A.1.4
+gai_structured_feedback:
+  - gai_feedback_type: GaiAiRedTeaming
+    title: AI Red-teaming
+    gai_red_teaming_types:
+      - expert
+  - gai_feedback_type: GaiFieldTesting
+    title: Field Testing

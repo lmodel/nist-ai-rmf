@@ -1,0 +1,4 @@
+# Fails at: /ai_rmf_bias_categories/0
+ai_rmf_id: https://example.org/biases/training-data
+ai_rmf_bias_categories:
+  - statistical

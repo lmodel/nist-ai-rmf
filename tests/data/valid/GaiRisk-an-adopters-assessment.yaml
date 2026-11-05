@@ -1,0 +1,10 @@
+gai_risk_name: confabulation
+gai_risk_section: '2.2'
+gai_risk_lifecycle_stages:
+  - operation
+gai_risk_scopes:
+  - application_or_implementation
+gai_risk_sources:
+  - outputs
+gai_risk_time_scales:
+  - abrupt

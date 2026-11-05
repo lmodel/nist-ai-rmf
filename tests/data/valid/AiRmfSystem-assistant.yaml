@@ -1,0 +1,11 @@
+ai_rmf_id: https://example.org/systems/assistant
+title: Support assistant
+ai_rmf_system_intended_purposes:
+  - Answer customers' questions about their orders
+ai_rmf_system_deployment_settings:
+  - The web chat of an online shop
+ai_rmf_system_lifecycle_stages:
+  - deploy_and_use
+  - operate_and_monitor
+ai_rmf_system_actors:
+  - https://example.org/actors/operations

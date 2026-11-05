@@ -1,0 +1,9 @@
+ai_rmf_id: https://example.org/profiles/hiring
+title: Hiring profile, current state
+ai_rmf_profile_kinds:
+  - use_case
+  - current
+ai_rmf_profile_setting: hiring
+ai_rmf_profile_subcategories:
+  - GOVERN 1.1
+  - MAP 5.1

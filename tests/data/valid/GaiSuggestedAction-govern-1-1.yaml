@@ -1,0 +1,5 @@
+gai_action_id: GV-1.1-001
+description: Align GAI development and use with applicable laws and regulations.
+gai_action_risks:
+  - data_privacy
+  - intellectual_property

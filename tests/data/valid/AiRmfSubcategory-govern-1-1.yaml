@@ -1,0 +1,18 @@
+ai_rmf_subcategory_id: GOVERN 1.1
+description: Legal and regulatory requirements involving AI are understood, managed, and documented.
+ai_rmf_subcategory_about:
+  - AI systems may be subject to specific applicable legal and regulatory requirements.
+ai_rmf_subcategory_suggested_actions:
+  - ai_rmf_suggested_action_id: SA-GOVERN_1.1-2
+    description: Align risk management efforts with applicable legal standards.
+ai_rmf_subcategory_documentation:
+  - ai_rmf_documentation_id: D-GOVERN_1.1-2
+    description: Has the system been reviewed for its compliance to applicable laws, regulations, standards, and guidance?
+ai_rmf_subcategory_transparency_resources:
+  - ai_rmf_resource_uuid: 13f80f0c-2855-499f-be04-d937768b8f65
+    title: 'GAO-21-519SP: AI Accountability Framework for Federal Agencies & Other Entities.'
+    ai_rmf_resource_address: https://www.gao.gov/products/gao-21-519sp
+ai_rmf_subcategory_ai_actors:
+  - governance_and_oversight
+ai_rmf_subcategory_topics:
+  - Legal and Regulatory

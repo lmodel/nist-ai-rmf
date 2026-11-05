@@ -68,7 +68,7 @@ HEADER = f"""# curie_map:
 # mapping_set_description: Every pair in the crosswalk Microsoft provided and NIST's AI Resource Center lists. It was written against ISO/IEC FDIS 42001. Its numbers agree with ISO/IEC 42001:2023 but for the rows the comment column names.
 # license: {PDF_URL}
 # mapping_provider: https://airc.nist.gov/airmf-resources/crosswalks/
-# mapping_source: {PDF_URL}
+# other: "mapping_source: {PDF_URL}"
 # mapping_date: 2023-05-23
 # subject_source: https://w3id.org/lmodel/nist-ai-100-1
 # subject_source_version: "1.0"

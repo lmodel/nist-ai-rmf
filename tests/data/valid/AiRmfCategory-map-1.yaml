@@ -1,0 +1,5 @@
+ai_rmf_category_id: MAP 1
+description: Context is established and understood.
+ai_rmf_category_subcategories:
+  - ai_rmf_subcategory_id: MAP 1.5
+    description: Organizational risk tolerances are determined and documented.

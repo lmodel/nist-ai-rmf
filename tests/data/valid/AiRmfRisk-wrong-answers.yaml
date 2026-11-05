@@ -1,0 +1,16 @@
+ai_rmf_id: https://example.org/risks/wrong-answers
+title: Wrong answers to customers
+ai_rmf_likelihood: medium
+ai_rmf_magnitude: moderate
+ai_rmf_risk_system: https://example.org/systems/assistant
+ai_rmf_risk_impacts:
+  - ai_rmf_id: https://example.org/impacts/refunds
+    ai_rmf_impact_direction: negative
+ai_rmf_risk_characteristics:
+  - valid_and_reliable
+ai_rmf_risk_lifecycle_stages:
+  - operate_and_monitor
+ai_rmf_risk_responses:
+  - mitigating
+ai_rmf_risk_priority: high
+ai_rmf_risk_tolerance: https://example.org/tolerances/customer-facing

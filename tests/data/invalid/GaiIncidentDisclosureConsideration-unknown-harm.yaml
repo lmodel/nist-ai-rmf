@@ -1,0 +1,5 @@
+# Fails at: /gai_incident_harms/0
+gai_consideration_type: GaiIncidentDisclosureConsideration
+title: Incident Disclosure
+gai_incident_harms:
+  - embarrassment

@@ -1,0 +1,4 @@
+# Fails at: /ai_rmf_version
+ai_rmf_version: 1.0.0
+ai_rmf_functions:
+  - ai_rmf_function_id: GOVERN
