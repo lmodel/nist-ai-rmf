@@ -1,6 +1,6 @@
 """nist-ai-rmf.
 
-NIST AI RMF - Merged LinkML Schema
+NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)
 """
 
 try:
