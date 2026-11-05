@@ -9,7 +9,10 @@ when lmodel/iso42001's copy is present and an object is not in it.
 
 Usage::
 
-    uv run python scripts/build_crosswalk.py [--pdf FILE] [--output FILE]
+    uv run python scripts/build_crosswalk.py [--pdf FILE] [--output FILE] [--iso42001 FILE]
+
+``--iso42001`` names another copy of lmodel/iso42001's adapt copy to hold the objects to,
+such as a checkout's ``.lokf/iso42001.yaml`` before that repository releases.
 """
 
 from __future__ import annotations
@@ -235,13 +238,11 @@ def _subcategories() -> set[str]:
     }
 
 
-def _objects() -> set[str] | None:
-    if not ISO42001_COPY.exists():
-        print(
-            "No copy of lmodel/iso42001 in tests/neighbours/, so the objects go unchecked."
-        )
+def _objects(copy: Path = ISO42001_COPY) -> set[str] | None:
+    if not copy.exists():
+        print(f"No copy of lmodel/iso42001 at {copy}, so the objects go unchecked.")
         return None
-    enums = yaml.safe_load(ISO42001_COPY.read_text(encoding="utf-8"))["enums"]
+    enums = yaml.safe_load(copy.read_text(encoding="utf-8"))["enums"]
     return {
         f"iso42001:{enum}#{value}"
         for enum in ("AimsClause", "AimsAnnexAControl")
@@ -255,6 +256,12 @@ def main(argv: list[str] | None = None) -> int:
         "--pdf", type=Path, help="Read this copy instead of downloading"
     )
     parser.add_argument("--output", type=Path, default=OUTPUT)
+    parser.add_argument(
+        "--iso42001",
+        type=Path,
+        default=ISO42001_COPY,
+        help="Hold the objects to this copy of lmodel/iso42001's adapt copy",
+    )
     args = parser.parse_args(argv)
     data = args.pdf.read_bytes() if args.pdf else _download()
     if hashlib.sha256(data).hexdigest() != PDF_SHA256:
@@ -262,7 +269,7 @@ def main(argv: list[str] | None = None) -> int:
         return 1
     pairs = read_pairs(data)
     rows = rows_of(pairs)
-    problems = check(pairs, rows, _subcategories(), _objects())
+    problems = check(pairs, rows, _subcategories(), _objects(args.iso42001))
     if problems:
         print("\n".join(problems))
         return 1

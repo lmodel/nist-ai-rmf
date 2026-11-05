@@ -114,6 +114,23 @@ def test_check_stops_when_a_listed_misprint_is_gone(builder):
     assert builder.check(pairs, rows, subjects, objects)
 
 
+def test_the_objects_are_read_from_the_named_copy(builder, tmp_path, capsys):
+    """A copy named on the command line gives the objects; a missing one leaves them
+    unchecked and says so."""
+    copy = tmp_path / "iso42001.yaml"
+    copy.write_text(
+        "enums:\n  AimsClause:\n    permissible_values:\n      clause_4_1: {}\n"
+        "  AimsAnnexAControl:\n    permissible_values:\n      a_2_2: {}\n",
+        encoding="utf-8",
+    )
+    assert builder._objects(copy) == {
+        "iso42001:AimsClause#clause_4_1",
+        "iso42001:AimsAnnexAControl#a_2_2",
+    }
+    assert builder._objects(tmp_path / "absent.yaml") is None
+    assert "go unchecked" in capsys.readouterr().out
+
+
 def test_a_pdf_with_other_bytes_is_refused(builder, tmp_path, capsys):
     """Only the pinned bytes are read."""
     other = tmp_path / "other.pdf"
