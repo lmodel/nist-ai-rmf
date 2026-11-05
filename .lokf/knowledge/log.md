@@ -2,6 +2,8 @@
 
 ## 2026-11-05
 
+* **Prose**: reworded one concept body in plain English. No fact, link, number or frontmatter changed.
+* **Changed**: What the repository leaves out, a dead word out of its description.
 * **Added**: The family schema.
 * **Added**: Vendored modules.
 * **Added**: The two catalogues.

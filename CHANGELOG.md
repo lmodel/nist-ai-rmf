@@ -23,6 +23,6 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ### Removed
 
-- **The Microsoft Agent Governance Toolkit snapshot and the fixtures a script derived from it**, which tested that script and not the schema, and the old names they used.
+- **The Microsoft Agent Governance Toolkit snapshot and the fixtures a script derived from it**, which tested that script and not the schema.
 - **The SSSOM set**, whose rows came from a matching tool, and many of whose targets no schema holds.
 - **The mkdocs site**, with redirects from its addresses to the new site.

@@ -16,7 +16,7 @@ A knowledge bundle that names both the AI RMF's and the Profile's classes needs 
 
 The document names no relation between its two columns, and NIST's listing says inclusion implies no endorsement, so each row is a `skos:relatedMatch`. It was written against ISO/IEC FDIS 42001 and nothing here compares it with the published text. It cites Annex B's guidance, so a row names the Annex A control of the same number and its comment gives the number as printed.
 
-Three rows print a number with a heading the document gives that number nowhere else. Each row keeps the number and says so in its comment, and the constants at the top of the script list them. Which of the two the author meant is not settled here.
+Three rows print a number with a heading the document gives that number nowhere else. Each row keeps the number and says so in its comment, and the constants at the top of the script list them. This project does not settle whether the author meant the number or the heading.
 
 The document states no licence, so the repository carries neither it nor its pairs. The set exists only on the machine that runs `just build-crosswalk`.
 

@@ -3,7 +3,7 @@ type: Explanation
 id: https://w3id.org/lmodel/nist-ai-rmf/knowledge/explanations/scope
 genre: explanation
 title: What the repository leaves out
-description: "What this repository deliberately does not hold: a model of its own, the earlier fixtures derived from the Microsoft Agent Governance Toolkit, the earlier SSSOM set a matching tool wrote, and crosswalks whose targets have no lmodel schema."
+description: "What this repository does not hold: a model of its own, the earlier fixtures derived from the Microsoft Agent Governance Toolkit, the earlier SSSOM set a matching tool wrote, and crosswalks whose targets have no lmodel schema."
 resource: docs/about.md
 about:
   - https://w3id.org/lmodel/nist-ai-rmf/knowledge/datasets/nist-ai-rmf-linkml-schema
@@ -15,7 +15,7 @@ sources:
   - resource: docs/index.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T09:59:50Z"
+  at: "2026-11-05T10:08:28Z"
 status: draft
 ---
 

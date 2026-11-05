@@ -22,7 +22,7 @@ status: draft
 
 # GOVERN 1.1
 
-A concept may name a class the README lists as its `type`, with the copy's keys beside LOKF's.[^readme.md] This one comes from a valid example, and the concept for `GaiRisk` shows a class of the other publication in the same bundle.[^example-subcategory]
+A concept may name a class the README lists as its `type`, with the copy's keys beside LOKF's.[^readme.md] This one comes from a valid example.[^example-subcategory] The concept for `GaiRisk` shows a class of the other publication in the same bundle.
 
 [^readme.md]: README.md, the Knowledge Trust Ladder (KTL) section
 [^example-subcategory]: tests/data/valid/AiRmfSubcategory-govern-1-1.yaml
