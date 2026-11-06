@@ -14,8 +14,8 @@ ROOT = Path(__file__).parent.parent
 # neighbour is the schema asset of a release, downloaded and checked against
 # the release's .sha256 and its build-provenance attestation, and pinned here
 # by that checksum.
-COPY = ROOT / ".lokf" / "nist-ai-rmf.yaml"
-LOKF = ROOT / ".lokf" / "lokf.yaml"
+COPY = ROOT / ".lokf" / "schema" / "nist-ai-rmf.yaml"
+LOKF = ROOT / ".lokf" / "schema" / "lokf.yaml"
 # The copies this one stands in for: each repository's schema asset of its v0.1.0, checked
 # like the neighbours. They are not imported beside it, since they share elements with it.
 # lmodel/nist-ai-600-1's v0.1.1 changed no schema file and attached no asset.
