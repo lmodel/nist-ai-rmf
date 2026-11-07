@@ -17,7 +17,8 @@ ROOT = Path(__file__).parent.parent
 COPY = ROOT / ".lokf" / "nist-ai-rmf.yaml"
 LOKF = ROOT / ".lokf" / "lokf.yaml"
 # The copies this one stands in for: each repository's schema asset of its v0.1.0, checked
-# like the neighbours. lmodel/nist-ai-600-1's v0.1.1 changed no schema file and attached none. They are not imported beside it, since they share elements with it.
+# like the neighbours. They are not imported beside it, since they share elements with it.
+# lmodel/nist-ai-600-1's v0.1.1 changed no schema file and attached no asset.
 FAMILY = {
     "nist-ai-100-1.yaml": "a9498259b8ff781fa3c24e668f5258146fe1fc4cd6e08c2aac394cb63b76a3c9",
     "nist-ai-600-1.yaml": "4fffc03c0db437256b45ffa6814c54053ffeae06a933b4d4550f94c9ff0494f4",

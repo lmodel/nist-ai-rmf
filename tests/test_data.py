@@ -35,9 +35,10 @@ def test_valid_data_files(filepath):
 
 
 # The JSON Schema the validator generates is the one check that applies every
-# constraint: the generated models leave out the patterns, the rules and the
-# family's "at least one publication". So each example is held to it: a valid
-# one must pass, and a counter-example must fail.
+# constraint: the Python dataclasses leave out the patterns, and neither
+# generated model checks the rules or the family's "at least one publication".
+# So each example is held to it: a valid one must pass, and a counter-example
+# must fail.
 @pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
 def test_valid_data_files_validate(filepath, validator):
     """Every valid example passes the validator."""

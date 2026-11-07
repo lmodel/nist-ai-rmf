@@ -57,7 +57,8 @@ NUMBER = re.compile(r"^(\d+(\.+\d+)*|B\.\d+(\.\d+)*)$")
 MISPRINTED_NUMBERS = {"7..2": "7.2"}
 
 # Rows that print a number with a heading the PDF gives it nowhere else, read from the PDF
-# alone. A row keeps the number, and its comment says so. `check` stops when one is gone.
+# alone. A row keeps the number, and its comment says so. `check` reports one that is gone,
+# or whose number now has one heading, and the build stops.
 HEADING_OF_ANOTHER = {
     ("GOVERN 3.2", "B.3.2"): "the heading it gives 9.3.2 elsewhere",
     ("MAP 1.4", "B.2.2"): "the heading it gives B.10.4 elsewhere",

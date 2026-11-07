@@ -14,9 +14,9 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/nist-ai
 
 It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
-`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It asks GitHub for three repositories' latest releases and downloads the crosswalk from NIST's public address. It sends no token, follows a redirect only over https to those hosts, reads at most 20 MB and writes nothing but its report.
+`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It asks GitHub for the two vendored repositories' latest releases, and for lmodel/iso42001's until its copy is in `tests/neighbours/`, and downloads the crosswalk from NIST's public address. It sends no token, follows a redirect only over https to those hosts, reads at most 20 MB and writes nothing but its report.
 
-`scripts/build_crosswalk.py` runs in one job of `main.yaml`, with no token. It downloads that one address, refuses other bytes before it parses the PDF, and writes under `tmp/`. A test holds each vendored file to its hash.
+`scripts/build_crosswalk.py` runs in one job of `main.yaml`, with no token. It downloads the crosswalk's pinned address, refuses other bytes before it parses the PDF, and writes under `tmp/`. A test holds each vendored file to its hash.
 
 The vendored catalogues are NIST's text, and this repository treats them as data: tests validate them and nothing executes or renders them.
 
