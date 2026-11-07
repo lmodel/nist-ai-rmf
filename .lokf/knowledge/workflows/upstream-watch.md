@@ -3,7 +3,7 @@ type: Service
 id: https://w3id.org/lmodel/nist-ai-rmf/knowledge/workflows/upstream-watch
 genre: reference
 title: Upstream watch (upstream-watch.yaml)
-description: "The weekly check that `scripts/check_upstream_release.py` runs: a new release of either vendored repository, lmodel/iso42001's first release, or other bytes at the crosswalk's address, fail the run and open or update an issue."
+description: "The weekly check that `scripts/check_upstream_release.py` runs: a new release of either vendored repository, or other bytes at the crosswalk's address, fail the run and open or update an issue."
 resource: .github/workflows/upstream-watch.yaml
 about:
   - https://w3id.org/lmodel/nist-ai-rmf/knowledge/references/lmodel-nist-ai-100-1
@@ -22,7 +22,7 @@ sources:
     title: how the issue is opened
 generated:
   by: process:ktl-librarian
-  at: "2026-11-07T01:06:19Z"
+  at: "2026-11-07T18:48:05Z"
 status: draft
 ---
 
@@ -30,7 +30,7 @@ status: draft
 
 The workflow runs every Monday, and a failing check opens an issue or comments on the one already open.[^upstream-watch.yaml]
 
-The script asks GitHub for the latest release of each repository it vendors from, and of lmodel/iso42001 until its copy is in `tests/neighbours/`, and compares the crosswalk's SHA-256 with its pin. It sends no token, and follows a redirect only over https to those hosts.[^watch]
+The script asks GitHub for the latest release of each repository it vendors from, and compares the crosswalk's SHA-256 with its pin. It sends no token, and follows a redirect only over https to those hosts.[^watch]
 
 `tests/test_watch.py` runs it against stubbed answers.[^test_watch.py]
 
