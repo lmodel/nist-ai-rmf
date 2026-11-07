@@ -16,7 +16,7 @@ sources:
   - resource: src/nist_ai_rmf/schema/README.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T09:59:50Z"
+  at: "2026-11-07T01:06:19Z"
 status: draft
 ---
 
@@ -26,7 +26,7 @@ The umbrella imports both publications' root schemas and declares one class, `Ni
 
 `tests/test_catalogue.py` holds the umbrella to that one class and every element to its publication's IRI.[^test_catalogue.py]
 
-Each publication's root stays a root, so a file holding one publication validates against `AiRmfFramework` or `GaiProfile`. The JSON Schema's top level is `NistAiRmfFamily`.[^schema]
+Each publication's root stays a root, so a file holding one publication validates against `AiRmfFramework` or `GaiProfile`. The JSON Schema's top level is `NistAiRmfFamily`, and it refuses a document that holds neither publication.[^schema]
 
 [^schema]: src/nist_ai_rmf/schema/nist_ai_rmf.yaml, the comments
 [^test_catalogue.py]: tests/test_catalogue.py

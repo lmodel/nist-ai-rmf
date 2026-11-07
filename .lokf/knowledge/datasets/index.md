@@ -1,8 +1,8 @@
 # Datasets
 
 * [The family schema](nist-ai-rmf-linkml-schema.md) - `nist_ai_rmf.yaml`, the LinkML umbrella that imports lmodel/nist-ai-100-1's and lmodel/nist-ai-600-1's modules and adds `NistAiRmfFamily`, the one class that holds both publications.
-* [Vendored modules](vendored-modules.md) - The schema modules of lmodel/nist-ai-100-1 and lmodel/nist-ai-600-1, each copied unchanged from its v0.1.0 tag and held to its hash, so the schema needs no network and cannot move under a release.
-* [The two catalogues](upstream-catalogues.md) - `tests/upstream/` holds each repository's whole catalogue at its v0.1.0: `ai-rmf-1.0.yaml` and `ai-600-1.yaml`. Tests validate both under one schema and check that the Profile names only subcategories the framework holds.
+* [Vendored modules](vendored-modules.md) - The schema modules of lmodel/nist-ai-100-1 at v0.1.0 and lmodel/nist-ai-600-1 at v0.1.1, each copied unchanged from its tag and held to its hash, so the schema needs no network and cannot move under a release.
+* [The two catalogues](upstream-catalogues.md) - `tests/upstream/` holds each repository's whole catalogue at the release its modules come from: `ai-rmf-1.0.yaml` and `ai-600-1.yaml`. Tests validate both under one schema and check that the Profile names only subcategories the framework holds.
 * [The schema's adapt copy](adapt-copy.md) - `.lokf/nist-ai-rmf.yaml`, the copy `just lokf-adapt` writes from the umbrella so that it sits beside LOKF's `lokf.yaml`, with the classes both repositories root on `Concept`. A host imports it in place of their two copies.
 * [Generated artefacts](generated-artefacts.md) - What `just gen-project` and `just gen-doc` generate from the schema: the projections in `project/`, the Python models in `src/nist_ai_rmf/datamodel/`, and the merged schema in `docs/schema/`. None is edited by hand.
 * [Example data](example-data.md) - The examples `tests/test_data.py` checks: both repositories' valid examples and counter-examples, copied unchanged from their tags, and this repository's own for `NistAiRmfFamily`. A counter-example's first line names where it must fail.

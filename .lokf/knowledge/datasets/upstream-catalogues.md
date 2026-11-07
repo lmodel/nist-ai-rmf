@@ -3,7 +3,7 @@ type: Dataset
 id: https://w3id.org/lmodel/nist-ai-rmf/knowledge/datasets/upstream-catalogues
 genre: reference
 title: The two catalogues
-description: "`tests/upstream/` holds each repository's whole catalogue at its v0.1.0: `ai-rmf-1.0.yaml` and `ai-600-1.yaml`. Tests validate both under one schema and check that the Profile names only subcategories the framework holds."
+description: "`tests/upstream/` holds each repository's whole catalogue at the release its modules come from: `ai-rmf-1.0.yaml` and `ai-600-1.yaml`. Tests validate both under one schema and check that the Profile names only subcategories the framework holds."
 resource: tests/upstream
 derivedFrom:
   - https://w3id.org/lmodel/nist-ai-rmf/knowledge/references/lmodel-nist-ai-100-1
@@ -17,7 +17,7 @@ sources:
   - resource: tests/upstream
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T09:59:50Z"
+  at: "2026-11-07T01:06:19Z"
 status: draft
 ---
 
