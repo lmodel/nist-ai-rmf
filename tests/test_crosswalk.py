@@ -147,7 +147,8 @@ def test_the_set_carries_the_metadata_sssom_asks(builder):
     pairs, rows, _subjects, _objects = _valid(builder)
     text = builder.tsv(rows)
     assert "# mapping_set_id: https://w3id.org/lmodel/nist-ai-rmf/mappings/" in text
-    assert "# license: " in text
+    assert "# license: https://w3id.org/sssom/license/unspecified" in text
+    assert f"#   - {builder.PDF_URL}" in text
     assert "#   iso42001: https://w3id.org/lmodel/iso42001/" in text
     header, *body = [line for line in text.splitlines() if not line.startswith("#")]
     assert header.split("\t") == list(builder.COLUMNS)

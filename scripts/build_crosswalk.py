@@ -42,6 +42,10 @@ PDF_SHA256 = "170efdf7be08a988213b54fb8293f3ea67f0627aff6f0541052dfbb0744afed3"
 ALLOWED_HOSTS = {"airc.nist.gov"}
 MAX_BYTES = 20 * 1024 * 1024
 
+# SSSOM requires a licence on every set, and gives this address for a set whose licence is
+# not stated. The PDF states none, so the set names it as its source, not its licence.
+LICENSE = "https://w3id.org/sssom/license/unspecified"
+
 # The column the PDF prints a clause number in, in points from the left.
 NUMBER_COLUMN = (250, 340)
 SUBCATEGORY_COLUMN_ENDS = 80
@@ -53,7 +57,7 @@ NUMBER = re.compile(r"^(\d+(\.+\d+)*|B\.\d+(\.\d+)*)$")
 MISPRINTED_NUMBERS = {"7..2": "7.2"}
 
 # Rows that print a number with a heading the PDF gives it nowhere else, read from the PDF
-# alone. A row keeps the number, and its comment says so. `check` proves each is still there.
+# alone. A row keeps the number, and its comment says so. `check` stops when one is gone.
 HEADING_OF_ANOTHER = {
     ("GOVERN 3.2", "B.3.2"): "the heading it gives 9.3.2 elsewhere",
     ("MAP 1.4", "B.2.2"): "the heading it gives B.10.4 elsewhere",
@@ -68,9 +72,10 @@ HEADER = f"""# curie_map:
 # mapping_set_id: https://w3id.org/lmodel/nist-ai-rmf/mappings/nist-ai-rmf-to-iso42001
 # mapping_set_title: AI RMF 1.0 to ISO/IEC 42001 crosswalk
 # mapping_set_description: Every pair in the crosswalk Microsoft provided and NIST's AI Resource Center lists. It was written against ISO/IEC FDIS 42001, and nothing here compares it with the published text. The comment column names each row whose number and heading disagree within the document.
-# license: {PDF_URL}
+# license: {LICENSE}
 # mapping_provider: https://airc.nist.gov/airmf-resources/crosswalks/
-# other: "mapping_source: {PDF_URL}"
+# mapping_set_source:
+#   - {PDF_URL}
 # mapping_date: 2023-05-23
 # subject_source: https://w3id.org/lmodel/nist-ai-100-1
 # subject_source_version: "1.0"
