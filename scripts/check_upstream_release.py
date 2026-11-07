@@ -5,10 +5,11 @@
 # ///
 """Check what this repository is built from against what its sources serve.
 
-Two things can change with no change in this repository. Each repository it vendors
-modules from can publish a release, and the crosswalk at NIST's AI Resource Center can
-change. The script asks GitHub for the first and compares the second's SHA-256 with its
-pin. The publications themselves are the two vendoring repositories' watch.
+Three things can change with no change in this repository. Each repository it vendors
+modules from can publish a release, lmodel/iso42001 can publish its first, and the
+crosswalk at NIST's AI Resource Center can change. The script asks GitHub for the
+releases and compares the crosswalk's SHA-256 with its pin. The publications themselves
+are the two vendoring repositories' watch.
 
 It prints a Markdown report and exits 1 when something moved or a check could not finish.
 Usage::
@@ -28,6 +29,7 @@ import urllib.parse
 import urllib.request
 from pathlib import Path
 
+ROOT = Path(__file__).resolve().parent.parent
 USER_AGENT = "lmodel-nist-ai-rmf-upstream-check"
 
 # The repository, and the release its modules are vendored from. tests/test_upstream.py
@@ -36,6 +38,11 @@ VENDORED_FROM = {
     "lmodel/nist-ai-100-1": "v0.1.0",
     "lmodel/nist-ai-600-1": "v0.1.0",
 }
+
+# A repository whose first release this one waits for, and where its schema asset goes.
+# Until that copy is there, scripts/build_crosswalk.py leaves the crosswalk's objects
+# unchecked, so the check asks GitHub only while the copy is missing.
+AWAITED = {"lmodel/iso42001": "tests/neighbours/iso42001.yaml"}
 
 # The crosswalk's address and SHA-256, as compared on 2026-11-05. scripts/build_crosswalk.py
 # holds the same pin, and the repository carries no copy.
@@ -74,8 +81,8 @@ def _download(url: str) -> bytes:
 
 def _code(text: object) -> str:
     """Text a server chose, such as a tag name or an error that quotes a redirect target,
-    as a code span, so it cannot mention a person or add a link in the issue."""
-    return "`" + str(text).replace("`", "'") + "`"
+    as a code span on one line, so it cannot mention a person or add a link in the issue."""
+    return "`" + " ".join(str(text).replace("`", "'").split()) + "`"
 
 
 def _latest_release(repository: str) -> str | None:
@@ -98,11 +105,39 @@ def check_vendored() -> tuple[list[str], bool]:
             report.append(
                 f"- {repository}: vendored from `{pinned}`, its latest state."
             )
+        elif latest is None:
+            attention = True
+            report.append(
+                f"- **{repository} has no release now, and the modules here are from "
+                f"`{pinned}`.** Find out why before you move a pin."
+            )
         else:
             attention = True
             report.append(
                 f"- **{repository} released {_code(latest)}, and the modules here are from "
                 f"`{pinned}`.** Copy its modules and asset, move the pins, and run `just test`."
+            )
+    return report, attention
+
+
+def check_awaited() -> tuple[list[str], bool]:
+    """Report a first release whose schema asset is not copied here yet."""
+    report, attention = [], False
+    for repository, copy in sorted(AWAITED.items()):
+        if (ROOT / copy).exists():
+            report.append(f"- {repository}: its copy is at `{copy}`.")
+            continue
+        latest = _latest_release(repository)
+        if latest is None:
+            report.append(
+                f"- {repository}: no release yet, so the crosswalk's objects go unchecked."
+            )
+        else:
+            attention = True
+            report.append(
+                f"- **{repository} released {_code(latest)}.** Copy its schema asset to "
+                f"`{copy}`, pin it in `tests/test_schema_rules.py`, and run "
+                "`just build-crosswalk`."
             )
     return report, attention
 
@@ -124,7 +159,7 @@ def main(argv: list[str] | None = None) -> int:
     )
     args = parser.parse_args(argv)
     lines, attention = [], False
-    for check in (check_vendored, check_crosswalk):
+    for check in (check_vendored, check_awaited, check_crosswalk):
         try:
             found, moved = check()
         # OSError covers a refused or failed fetch, a timeout and URLError;

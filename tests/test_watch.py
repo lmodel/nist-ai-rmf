@@ -21,16 +21,19 @@ def watch():
     return module
 
 
-def _answers(watch, tag="v0.1.0", pdf=b"the crosswalk"):
-    """A stub of the one network call, answering as GitHub and NIST would."""
+def _answers(watch, tag="v0.1.0", pdf=b"the crosswalk", awaited=None):
+    """A stub of the one network call, answering as GitHub and NIST would. `tag` is the
+    vendored repositories' latest release and `awaited` lmodel/iso42001's; None is none."""
     watch.CROSSWALK_SHA256 = hashlib.sha256(b"the crosswalk").hexdigest()
+    watch.AWAITED = {"lmodel/iso42001": "tests/neighbours/absent.yaml"}
 
     def download(url):
         if url == watch.CROSSWALK_URL:
             return pdf
-        if tag is None:
+        latest = awaited if "/lmodel/iso42001/" in url else tag
+        if latest is None:
             raise urllib.error.HTTPError(url, 404, "Not Found", {}, io.BytesIO())
-        return json.dumps({"tag_name": tag}).encode()
+        return json.dumps({"tag_name": latest}).encode()
 
     watch._download = download
 
@@ -47,6 +50,7 @@ def test_nothing_changed(watch, tmp_path):
     code, text = _run(watch, tmp_path)
     assert code == 0, text
     assert "matches its pin" in text
+    assert "lmodel/iso42001: no release yet" in text
 
 
 def test_a_new_release_is_reported(watch, tmp_path):
@@ -56,6 +60,41 @@ def test_a_new_release_is_reported(watch, tmp_path):
     assert code == 1
     assert "lmodel/nist-ai-100-1 released `v0.2.0`" in text
     assert "lmodel/nist-ai-600-1 released `v0.2.0`" in text
+
+
+def test_a_vendored_repository_without_a_release_is_reported(watch, tmp_path):
+    """A repository the modules come from that answers with no release sets attention."""
+    _answers(watch, tag=None)
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "lmodel/nist-ai-100-1 has no release now" in text
+    assert "None" not in text
+
+
+def test_an_awaited_first_release_is_reported(watch, tmp_path):
+    """lmodel/iso42001's first release sets attention and says where its asset goes."""
+    _answers(watch, awaited="v0.1.0")
+    code, text = _run(watch, tmp_path)
+    assert code == 1
+    assert "lmodel/iso42001 released `v0.1.0`" in text
+    assert "tests/neighbours/absent.yaml" in text
+
+
+def test_an_awaited_copy_in_place_asks_nothing(watch, tmp_path):
+    """Once the copy is here, the check reads no address."""
+    _answers(watch)
+    watch.AWAITED = {"lmodel/iso42001": "tests/test_watch.py"}
+    asked = []
+    answer = watch._download
+    watch._download = lambda url: asked.append(url) or answer(url)
+    code, text = _run(watch, tmp_path)
+    assert code == 0, text
+    assert not [url for url in asked if "iso42001" in url]
+
+
+def test_server_text_is_one_code_span_on_one_line(watch):
+    """A blank line or a backtick in a server's answer cannot end the code span."""
+    assert watch._code("v1`\n\n@someone") == "`v1' @someone`"
 
 
 def test_a_changed_crosswalk_is_reported(watch, tmp_path):
@@ -75,7 +114,7 @@ def test_a_failed_download_still_writes_a_report(watch, tmp_path):
     watch._download = fail
     code, text = _run(watch, tmp_path)
     assert code == 1
-    assert text.count("A check could not finish") == 2
+    assert text.count("A check could not finish") == 3
 
 
 def test_a_redirect_to_plain_http_is_refused(watch):
