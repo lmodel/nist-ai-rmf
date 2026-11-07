@@ -2,6 +2,7 @@
 
 ## 2026-11-07
 
+* **Prose**: reworded 2 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: the audit of 2026-11-07: lmodel/nist-ai-600-1 is vendored at v0.1.1 (no schema change), `NistAiRmfFamily` refuses a document with neither publication, and the watch reports lmodel/iso42001's first release.
 
 ## 2026-11-05

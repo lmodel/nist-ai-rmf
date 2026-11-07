@@ -18,6 +18,6 @@ status: draft
 
 # Crosswalk
 
-A row pairs one AI RMF subcategory with one clause or control.[^builder] SSSOM is the format the set takes.[^builder]
+A row pairs one AI RMF subcategory with one clause or control.[^builder] The set is written in SSSOM, the Simple Standard for Sharing Ontological Mappings.[^builder]
 
 [^builder]: scripts/build_crosswalk.py, the docstring

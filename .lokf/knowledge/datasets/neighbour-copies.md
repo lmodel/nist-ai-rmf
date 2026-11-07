@@ -19,7 +19,7 @@ status: draft
 
 # Neighbours' adapt copies
 
-Each file is the schema asset of a lmodel release, pinned in `tests/test_schema_rules.py` by its checksum.[^test_schema_rules.py]
+Each file is the schema asset of an lmodel release, pinned in `tests/test_schema_rules.py` by its checksum.[^test_schema_rules.py]
 
 The test fails on a shared class, enum, type or subset, and on a shared key it does not list. `nist-ai-100-1.yaml` and `nist-ai-600-1.yaml` are the copies this one replaces, so they are held the other way: each of their elements must be in this copy.[^test_schema_rules.py]
 
