@@ -36,7 +36,7 @@ USER_AGENT = "lmodel-nist-ai-rmf-upstream-check"
 # holds the vendored files to their hashes.
 VENDORED_FROM = {
     "lmodel/nist-ai-100-1": "v0.1.0",
-    "lmodel/nist-ai-600-1": "v0.1.0",
+    "lmodel/nist-ai-600-1": "v0.1.1",
 }
 
 # A repository whose first release this one waits for, and where its schema asset goes.

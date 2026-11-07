@@ -10,9 +10,9 @@ lmodel/nist-ai-100-1 and lmodel/nist-ai-600-1
 
 src/nist_ai_rmf/schema/nist_ai_100_1/ and src/nist_ai_rmf/schema/nist_ai_600_1*.yaml
 hold the schema modules of lmodel/nist-ai-100-1
-(https://github.com/lmodel/nist-ai-100-1) and lmodel/nist-ai-600-1
-(https://github.com/lmodel/nist-ai-600-1), each at its v0.1.0, unchanged, under
-the Apache License, Version 2.0. tests/upstream/ holds their catalogues at the
+(https://github.com/lmodel/nist-ai-100-1) at its v0.1.0 and lmodel/nist-ai-600-1
+(https://github.com/lmodel/nist-ai-600-1) at its v0.1.1, unchanged, under the
+Apache License, Version 2.0. tests/upstream/ holds their catalogues at the
 same tags, under the terms each one's NOTICE gives. tests/test_upstream.py holds
 each file to its hash. They model publications of the National Institute of
 Standards and Technology (NIST), https://doi.org/10.6028/NIST.AI.100-1 and

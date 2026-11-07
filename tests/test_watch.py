@@ -21,16 +21,21 @@ def watch():
     return module
 
 
-def _answers(watch, tag="v0.1.0", pdf=b"the crosswalk", awaited=None):
+def _answers(watch, tag=None, pdf=b"the crosswalk", awaited=None, released=True):
     """A stub of the one network call, answering as GitHub and NIST would. `tag` is the
-    vendored repositories' latest release and `awaited` lmodel/iso42001's; None is none."""
+    vendored repositories' latest release, each one's pin by default, and `released=False`
+    gives them none. `awaited` is lmodel/iso42001's latest release, None for none."""
     watch.CROSSWALK_SHA256 = hashlib.sha256(b"the crosswalk").hexdigest()
     watch.AWAITED = {"lmodel/iso42001": "tests/neighbours/absent.yaml"}
 
     def download(url):
         if url == watch.CROSSWALK_URL:
             return pdf
-        latest = awaited if "/lmodel/iso42001/" in url else tag
+        repository = url.split("/repos/")[1].rsplit("/releases/", 1)[0]
+        if repository in watch.AWAITED:
+            latest = awaited
+        else:
+            latest = (tag or watch.VENDORED_FROM[repository]) if released else None
         if latest is None:
             raise urllib.error.HTTPError(url, 404, "Not Found", {}, io.BytesIO())
         return json.dumps({"tag_name": latest}).encode()
@@ -64,7 +69,7 @@ def test_a_new_release_is_reported(watch, tmp_path):
 
 def test_a_vendored_repository_without_a_release_is_reported(watch, tmp_path):
     """A repository the modules come from that answers with no release sets attention."""
-    _answers(watch, tag=None)
+    _answers(watch, released=False)
     code, text = _run(watch, tmp_path)
     assert code == 1
     assert "lmodel/nist-ai-100-1 has no release now" in text

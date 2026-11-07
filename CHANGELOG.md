@@ -8,7 +8,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ### Added
 
-- **The two repositories' modules, vendored at each one's v0.1.0**, in place of an import by address, so the schema needs no network and cannot move under a release. A test holds each file to its hash.
+- **The two repositories' modules, vendored from lmodel/nist-ai-100-1 v0.1.0 and lmodel/nist-ai-600-1 v0.1.1**, in place of an import by address, so the schema needs no network and cannot move under a release. A test holds each file to its hash.
 - **`NistAiRmfFamily`**, which holds both publications and is the JSON Schema's top level. Each publication's root stays a root.
 - **`scripts/build_crosswalk.py`**, which writes the ISO/IEC 42001 crosswalk under `tmp/` as SSSOM. That document carries no licence line and NIST's listing says its crosswalks come from the user community, so the repository carries neither it nor its pairs. The script reads only its pinned address over https.
 - **A weekly watch** that reports a release of either repository and a change to the crosswalk's bytes. It reads only https addresses on its two hosts, and quotes what a server answers as code.

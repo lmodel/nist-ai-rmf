@@ -14,9 +14,10 @@ UPSTREAM = ROOT / "tests" / "upstream"
 WATCH = ROOT / "scripts" / "check_upstream_release.py"
 BUILDER = ROOT / "scripts" / "build_crosswalk.py"
 
-# Each file vendored from lmodel/nist-ai-100-1 v0.1.0 and lmodel/nist-ai-600-1 v0.1.0, as
-# each repository's tag holds it. Vendor from a later release, then move these with the
-# release in the watch's VENDORED_FROM.
+# Each file vendored from lmodel/nist-ai-100-1 v0.1.0 and lmodel/nist-ai-600-1 v0.1.1, as
+# each repository's tag holds it. The second's v0.1.1 changed no schema file and no
+# catalogue. Vendor from a later release, then move these with the release in the watch's
+# VENDORED_FROM.
 VENDORED_PINS = {
     "nist_ai_100_1/nist_ai_100_1.yaml": "5fabf17f35b1f8641d281bd01bae79dac6f13726de3439f122c32a3ec2fcd5ea",
     "nist_ai_100_1/nist_ai_100_1_base.yaml": "6334c56f4481dfa531aa16d2b166410fc5e23103504c3c56dea36e8ac992f86b",
@@ -62,7 +63,7 @@ def test_watch_names_both_repositories_at_their_vendored_release():
     """The watch names each repository this one vendors from, with its tag."""
     assert _load(WATCH).VENDORED_FROM == {
         "lmodel/nist-ai-100-1": "v0.1.0",
-        "lmodel/nist-ai-600-1": "v0.1.0",
+        "lmodel/nist-ai-600-1": "v0.1.1",
     }
 
 
