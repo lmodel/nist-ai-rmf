@@ -1,6 +1,7 @@
 """Checks that the adapt copy can sit beside LOKF and the neighbours' copies."""
 
 import hashlib
+from functools import cache
 from pathlib import Path
 
 import pytest
@@ -104,10 +105,18 @@ MAPPING_KEYS = (
 )
 
 
+@cache
+def _doc(path):
+    """A schema file parsed once, with the C parser where PyYAML has it, which reads the
+    neighbours about eight times faster. Callers read the result and never change it."""
+    loader = getattr(yaml, "CSafeLoader", yaml.SafeLoader)
+    return yaml.load(path.read_text(encoding="utf-8"), Loader=loader)  # noqa: S506
+
+
 def _names(path):
     """Each kind of element a schema file declares, and every slot and
     attribute name with the IRI it expands to."""
-    doc = yaml.safe_load(path.read_text())
+    doc = _doc(path)
     prefixes = doc.get("prefixes") or {}
 
     def expand(curie):
@@ -175,7 +184,7 @@ def test_names_apart_from_the_released_neighbours():
 def test_copy_roots_the_concept_classes():
     """The copy re-roots exactly the listed classes on Concept and imports nothing
     but the LinkML types and LOKF."""
-    doc = yaml.safe_load(COPY.read_text())
+    doc = _doc(COPY)
     rooted = {
         name for name, cls in doc["classes"].items() if cls.get("is_a") == "Concept"
     }
@@ -187,7 +196,7 @@ def test_mappings_use_a_bound_prefix():
     """Every mapping in the copy is a CURIE whose prefix the copy binds. A full
     address that no prefix covers makes every `lokf convert --schema` over the
     copy warn that it has no namespace."""
-    doc = yaml.safe_load(COPY.read_text())
+    doc = _doc(COPY)
     prefixes = doc.get("prefixes") or {}
     mappings = list(_mappings(doc))
     assert mappings
@@ -210,9 +219,9 @@ NEIGHBOUR_OF_PREFIX = {
 def test_mappings_name_a_class_of_the_neighbour(prefix):
     """Every mapping to a neighbour names a class of its copy: its class_uri, or
     `<prefix>:<Name>` for a class that declares none."""
-    doc = yaml.safe_load(COPY.read_text())
+    doc = _doc(COPY)
     file = NEIGHBOUR_OF_PREFIX[prefix]
-    neighbour = yaml.safe_load((NEIGHBOUR_DIR / f"{file}.yaml").read_text())
+    neighbour = _doc(NEIGHBOUR_DIR / f"{file}.yaml")
     iris = {
         (cls or {}).get("class_uri") or f"{neighbour['default_prefix']}:{name}"
         for name, cls in neighbour["classes"].items()
@@ -228,7 +237,7 @@ def test_mappings_name_a_class_of_the_neighbour(prefix):
 
 def test_every_mapping_prefix_is_checked_or_a_public_vocabulary():
     """A mapping names a neighbour the test above reads, or PROV, read at its source."""
-    doc = yaml.safe_load(COPY.read_text())
+    doc = _doc(COPY)
     prefixes = {m.partition(":")[0] for m in _mappings(doc)}
     assert prefixes <= {*NEIGHBOUR_OF_PREFIX, "prov"}
 
@@ -246,8 +255,8 @@ def test_this_copy_holds_each_family_copy(name):
     """Each element of a family copy is here, with the same body, so a host that imports
     this copy loses nothing. A host cannot import the two side by side: they validate
     together, but `lokf convert` stops with `Conflicting URIs` on their shared elements."""
-    mine = yaml.safe_load(COPY.read_text())
-    theirs = yaml.safe_load((NEIGHBOUR_DIR / name).read_text())
+    mine = _doc(COPY)
+    theirs = _doc(NEIGHBOUR_DIR / name)
     for kind in ("classes", "enums", "types", "slots"):
         for element, body in (theirs.get(kind) or {}).items():
             assert element in mine[kind], (kind, element)
@@ -268,8 +277,8 @@ def test_a_top_level_slot_keeps_its_publications_iri(name, prefix):
     schema's prefix in this copy alone: lokf issue 168, closed with no release since lokf
     0.9.0. The committed JSON-LD context does not share it, and tests/test_catalogue.py holds
     that context to each publication."""
-    mine = yaml.safe_load(COPY.read_text())["slots"]
-    theirs = yaml.safe_load((NEIGHBOUR_DIR / name).read_text())["slots"]
+    mine = _doc(COPY)["slots"]
+    theirs = _doc(NEIGHBOUR_DIR / name)["slots"]
     for slot, body in theirs.items():
         written = body.get("slot_uri") or f"{prefix}:{slot}"
         assert (mine[slot].get("slot_uri") or f"{prefix}:{slot}") == written, slot
@@ -277,5 +286,5 @@ def test_a_top_level_slot_keeps_its_publications_iri(name, prefix):
 
 def test_the_family_class_is_no_concept_type():
     """The class that holds both documents is not a type a concept may name."""
-    doc = yaml.safe_load(COPY.read_text())
+    doc = _doc(COPY)
     assert doc["classes"]["NistAiRmfFamily"].get("is_a") != "Concept"

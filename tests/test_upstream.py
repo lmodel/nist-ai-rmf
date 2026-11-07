@@ -2,7 +2,8 @@
 
 import hashlib
 import importlib.util
-from functools import lru_cache
+import subprocess
+from functools import cache
 from pathlib import Path
 
 import yaml
@@ -33,7 +34,7 @@ VENDORED_PINS = {
 }
 
 
-@lru_cache(maxsize=1)
+@cache
 def _load(path):
     spec = importlib.util.spec_from_file_location(path.stem, path)
     module = importlib.util.module_from_spec(spec)
@@ -86,13 +87,16 @@ def test_header_holds_what_the_standard_asks():
 
 
 def test_the_repository_carries_no_crosswalk():
-    """The crosswalk states no licence, so neither its PDF nor its pairs are committed."""
-    skipped = {".git", ".venv", "tmp", "node_modules"}
-    tracked_like = [
-        p
-        for p in ROOT.rglob("*")
-        if p.is_file()
-        and not skipped & set(p.relative_to(ROOT).parts)
-        and p.suffix in {".tsv", ".pdf"}
+    """The crosswalk states no licence, so neither its PDF nor its pairs are committed: no
+    file git tracks, or would add, is a PDF or a TSV. A copy under tmp/, which git ignores,
+    is the builder's to write."""
+    listed = subprocess.run(
+        ["git", "ls-files", "-z", "--cached", "--others", "--exclude-standard"],
+        cwd=ROOT,
+        capture_output=True,
+        check=True,
+    ).stdout.decode()
+    carried = [
+        name for name in listed.split("\0") if Path(name).suffix in {".tsv", ".pdf"}
     ]
-    assert not tracked_like, tracked_like
+    assert not carried, carried

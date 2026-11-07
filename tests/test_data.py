@@ -1,4 +1,4 @@
-"""Data test."""
+"""Checks the example data against the generated models and the validator."""
 
 import glob
 import os
@@ -6,7 +6,6 @@ from pathlib import Path
 
 import pytest
 import yaml
-from linkml.validator import validate
 from linkml_runtime.loaders import yaml_loader
 from linkml_runtime.utils.schemaview import SchemaView
 
@@ -36,21 +35,21 @@ def test_valid_data_files(filepath):
 
 
 # The JSON Schema the validator generates is the one check that applies every
-# constraint (docs/index.md says what the generated models leave out), so each
-# example is held to it: a valid one must pass, and a counter-example must fail.
+# constraint: the generated models leave out the patterns, the rules and the
+# family's "at least one publication". So each example is held to it: a valid
+# one must pass, and a counter-example must fail.
 @pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
-def test_valid_data_files_validate(filepath):
+def test_valid_data_files_validate(filepath, validator):
     """Every valid example passes the validator."""
-    report = validate(
+    report = validator.validate(
         yaml.safe_load(Path(filepath).read_text()),
-        str(SCHEMA),
         Path(filepath).stem.split("-")[0],
     )
     assert not report.results, [r.message for r in report.results]
 
 
 @pytest.mark.parametrize("filepath", INVALID_EXAMPLE_FILES)
-def test_invalid_data_files_fail(filepath):
+def test_invalid_data_files_fail(filepath, validator):
     """Every counter-example fails the validator at the place its first line
     names, as `# Fails at: <JSON pointer>`, so a file that starts failing for
     another reason fails this test."""
@@ -60,9 +59,7 @@ def test_invalid_data_files_fail(filepath):
         f"{filepath}: the first line names where it fails, as # Fails at: /key"
     )
     pointer = first.removeprefix("# Fails at: ").strip()
-    report = validate(
-        yaml.safe_load(text), str(SCHEMA), Path(filepath).stem.split("-")[0]
-    )
+    report = validator.validate(yaml.safe_load(text), Path(filepath).stem.split("-")[0])
     messages = [r.message for r in report.results]
     assert any(m.endswith(f" in {pointer}") for m in messages), messages
 

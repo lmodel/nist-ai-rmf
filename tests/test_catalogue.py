@@ -11,7 +11,6 @@ import jsonschema
 import pytest
 import yaml
 from linkml.generators.jsonschemagen import JsonSchemaGenerator
-from linkml.validator import validate
 from linkml_runtime.loaders import yaml_loader
 from linkml_runtime.utils.schemaview import SchemaView
 
@@ -74,12 +73,10 @@ def test_the_committed_json_schema_is_current():
 
 
 @pytest.mark.parametrize("key", PUBLICATIONS)
-def test_each_catalogue_alone_validates(key):
+def test_each_catalogue_alone_validates(key, validator):
     """A file that holds one publication validates against that publication's root."""
     root, path, _schema = PUBLICATIONS[key]
-    report = validate(
-        yaml.safe_load(path.read_text(encoding="utf-8")), str(SCHEMA), root
-    )
+    report = validator.validate(yaml.safe_load(path.read_text(encoding="utf-8")), root)
     assert not report.results, [r.message for r in report.results][:5]
 
 
