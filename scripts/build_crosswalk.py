@@ -12,7 +12,7 @@ Usage::
     uv run python scripts/build_crosswalk.py [--pdf FILE] [--output FILE] [--iso42001 FILE]
 
 ``--iso42001`` names another copy of lmodel/iso42001's adapt copy to hold the objects to,
-such as a checkout's ``.lokf/iso42001.yaml`` before that repository releases.
+such as a checkout's ``.lokf/schema/iso42001.yaml`` before that repository releases.
 """
 
 from __future__ import annotations
