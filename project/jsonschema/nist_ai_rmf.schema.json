@@ -2384,6 +2384,24 @@
         },
         "NistAiRmfFamily": {
             "additionalProperties": false,
+            "anyOf": [
+                {
+                    "properties": {
+                        "nist_ai_rmf_framework": {}
+                    },
+                    "required": [
+                        "nist_ai_rmf_framework"
+                    ]
+                },
+                {
+                    "properties": {
+                        "nist_ai_rmf_generative_ai_profile": {}
+                    },
+                    "required": [
+                        "nist_ai_rmf_generative_ai_profile"
+                    ]
+                }
+            ],
             "description": "The two publications held in one document, each as its own schema renders it.",
             "properties": {
                 "nist_ai_rmf_framework": {
@@ -2416,6 +2434,24 @@
     "$id": "https://w3id.org/lmodel/nist-ai-rmf",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
     "additionalProperties": false,
+    "anyOf": [
+        {
+            "properties": {
+                "nist_ai_rmf_framework": {}
+            },
+            "required": [
+                "nist_ai_rmf_framework"
+            ]
+        },
+        {
+            "properties": {
+                "nist_ai_rmf_generative_ai_profile": {}
+            },
+            "required": [
+                "nist_ai_rmf_generative_ai_profile"
+            ]
+        }
+    ],
     "description": "The two publications held in one document, each as its own schema renders it.",
     "metamodel_version": "1.12.0",
     "properties": {

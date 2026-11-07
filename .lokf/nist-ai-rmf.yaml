@@ -918,14 +918,26 @@ classes:
     description: The two publications held in one document, each as its own schema renders it.
     comments:
     - Each publication's root stays a root, so a file that holds one publication alone validates against
-      AiRmfFramework or GaiProfile. The JSON Schema's top level is this class.
+      AiRmfFramework or GaiProfile. The JSON Schema's top level is this class, and it refuses a document
+      that holds neither.
+    any_of:
+    - slot_conditions:
+        nist_ai_rmf_framework:
+          required: true
+    - slot_conditions:
+        nist_ai_rmf_generative_ai_profile:
+          required: true
     attributes:
       nist_ai_rmf_framework:
         description: The AI RMF, as lmodel/nist-ai-100-1 renders it.
+        see_also:
+        - https://doi.org/10.6028/NIST.AI.100-1
         range: AiRmfFramework
         inlined: true
       nist_ai_rmf_generative_ai_profile:
         description: The Generative AI Profile, as lmodel/nist-ai-600-1 renders it.
+        see_also:
+        - https://doi.org/10.6028/NIST.AI.600-1
         range: GaiProfile
         inlined: true
 slots:

@@ -2737,14 +2737,21 @@ class NistAiRmfFamily(ConfiguredBaseModel):
     """
     The two publications held in one document, each as its own schema renders it.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'comments': ["Each publication's root stays a root, so a file that holds one "
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'any_of': [{'slot_conditions': {'nist_ai_rmf_framework': {'name': 'nist_ai_rmf_framework',
+                                                                   'required': True}}},
+                    {'slot_conditions': {'nist_ai_rmf_generative_ai_profile': {'name': 'nist_ai_rmf_generative_ai_profile',
+                                                                               'required': True}}}],
+         'comments': ["Each publication's root stays a root, so a file that holds one "
                       'publication alone validates against AiRmfFramework or '
-                      "GaiProfile. The JSON Schema's top level is this class."],
+                      "GaiProfile. The JSON Schema's top level is this class, and it "
+                      'refuses a document that holds neither.'],
          'from_schema': 'https://w3id.org/lmodel/nist-ai-rmf',
          'tree_root': True})
 
-    nist_ai_rmf_framework: Optional[AiRmfFramework] = Field(default=None, description="""The AI RMF, as lmodel/nist-ai-100-1 renders it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NistAiRmfFamily']} })
-    nist_ai_rmf_generative_ai_profile: Optional[GaiProfile] = Field(default=None, description="""The Generative AI Profile, as lmodel/nist-ai-600-1 renders it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NistAiRmfFamily']} })
+    nist_ai_rmf_framework: Optional[AiRmfFramework] = Field(default=None, description="""The AI RMF, as lmodel/nist-ai-100-1 renders it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NistAiRmfFamily'],
+         'see_also': ['https://doi.org/10.6028/NIST.AI.100-1']} })
+    nist_ai_rmf_generative_ai_profile: Optional[GaiProfile] = Field(default=None, description="""The Generative AI Profile, as lmodel/nist-ai-600-1 renders it.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NistAiRmfFamily'],
+         'see_also': ['https://doi.org/10.6028/NIST.AI.600-1']} })
 
 
 # Model rebuild
