@@ -9,6 +9,7 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Changed
 
 - **The bundle's schema files sit in `.lokf/schema/`**: `lokf.yaml` and the `lokf adapt` copy `nist-ai-rmf.yaml`, as KTL v0.62.0 lays them out.
+- **`tests/neighbours/` holds lmodel/iso42001's v0.1.0 asset**, so `just build-crosswalk` checks every crosswalk object against it, and the weekly watch no longer waits for that release.
 
 ## [0.1.0] - 2026-11-07
 

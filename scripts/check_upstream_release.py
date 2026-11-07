@@ -41,8 +41,9 @@ VENDORED_FROM = {
 
 # A repository whose first release this one waits for, and where its schema asset goes.
 # Until that copy is there, scripts/build_crosswalk.py leaves the crosswalk's objects
-# unchecked, so the check asks GitHub only while the copy is missing.
-AWAITED = {"lmodel/iso42001": "tests/neighbours/iso42001.yaml"}
+# unchecked, so the check asks GitHub only while the copy is missing. lmodel/iso42001's
+# v0.1.0 asset is at tests/neighbours/iso42001.yaml, so nothing is awaited.
+AWAITED: dict[str, str] = {}
 
 # The crosswalk's address and SHA-256, as compared on 2026-11-05. scripts/build_crosswalk.py
 # holds the same pin, and the repository carries no copy.

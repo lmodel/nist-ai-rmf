@@ -116,6 +116,7 @@ def test_a_failed_download_still_writes_a_report(watch, tmp_path):
     def fail(url):
         raise urllib.error.URLError("Connection refused")
 
+    watch.AWAITED = {"lmodel/iso42001": "tests/neighbours/absent.yaml"}
     watch._download = fail
     code, text = _run(watch, tmp_path)
     assert code == 1

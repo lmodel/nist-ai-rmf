@@ -64,6 +64,8 @@ NEIGHBOURS = {
     "capec.yaml": "613164c0520384919de7d353ff87debb4e82938cec861158d151b41edd506d46",
     # lmodel/gist v0.7.1, schema-v0.7.1-gist.yaml
     "gist.yaml": "f7283f1c1df4aa6b6e2803e0645c2b1cb2eab37815642a6616d8034feb26d94d",
+    # lmodel/iso42001 v0.1.0, schema-v0.1.0-iso42001.yaml
+    "iso42001.yaml": "1ddebd365a181e2bee5d6c9d837e92924b5788eaa82cd8034fa50e9b7d537088",
 }
 NEIGHBOUR_DIR = ROOT / "tests" / "neighbours"
 ELEMENT_KINDS = ("classes", "enums", "types", "subsets")
