@@ -52,9 +52,9 @@ listing, read on 2026-11-05, says its crosswalks come from the AI RMF user
 community and that inclusion implies no endorsement, so NIST's statement on its
 own works does not reach this one. The document carries no copyright or licence
 line and quotes ISO's headings, so this repository carries neither the document
-nor its pairs. The script writes them under tmp/, which git ignores, for the person who
-runs it. ISO/IEC 42001 is copyright ISO and IEC, and no text of it is reproduced
-here.
+nor its pairs. The script writes them under tmp/, which git ignores, for the
+person who runs it. ISO/IEC 42001 is copyright ISO and IEC, and no text of it is
+reproduced here.
 
 linkml-project-copier
 ---------------------

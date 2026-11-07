@@ -9,10 +9,10 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 ### Added
 
 - **The two repositories' modules, vendored from lmodel/nist-ai-100-1 v0.1.0 and lmodel/nist-ai-600-1 v0.1.1**, in place of an import by address, so the schema needs no network and cannot move under a release. A test holds each file to its hash.
-- **`NistAiRmfFamily`**, which holds both publications and is the JSON Schema's top level. Each publication's root stays a root.
-- **`scripts/build_crosswalk.py`**, which writes the ISO/IEC 42001 crosswalk under `tmp/` as SSSOM. That document carries no licence line and NIST's listing says its crosswalks come from the user community, so the repository carries neither it nor its pairs. The script reads only its pinned address over https.
-- **A weekly watch** that reports a release of either repository and a change to the crosswalk's bytes. It reads only https addresses on its two hosts, and quotes what a server answers as code.
-- **Tests** that validate both catalogues under one schema, hold every element to its publication's IRI, and run both repositories' examples and counter-examples.
+- **`NistAiRmfFamily`**, which holds both publications, is the JSON Schema's top level and refuses a document that holds neither. Each publication's root stays a root.
+- **`scripts/build_crosswalk.py`**, which reads the ISO/IEC 42001 crosswalk only from its pinned https address and writes it under `tmp/` as SSSOM. The document states no licence, so the repository carries neither it nor its pairs.
+- **A weekly watch** that reports a release of either repository, lmodel/iso42001's first release and a change to the crosswalk's bytes. It reads only https addresses on its two hosts and quotes what a server answers as code.
+- **Tests** that validate both catalogues under one schema, hold every element to its publication's IRI, and run both repositories' examples and counter-examples through one validator.
 - **`.lokf/nist-ai-rmf.yaml`, the schema's `lokf adapt` copy.** The knowledge release attaches it as `schema-<tag>-nist-ai-rmf.yaml`.
 - **The repository's Knowledge Trust Ladder (KTL) knowledge bundle and its sidecar automation**, from the KTL v0.61.0 templates with the lokf floor at 0.9.0, and a knowledge website that replaces the mkdocs site.
 - **The governance files**: SECURITY.md, AI_COVENANT.md, NOTICE and the CONTRIBUTING checklist.

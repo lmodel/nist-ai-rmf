@@ -8,17 +8,17 @@ A knowledge bundle that names both the AI RMF's and the Profile's classes needs 
 
 ## What it adds
 
-- **`NistAiRmfFamily`**, one class that holds both publications. It gives the JSON Schema a top level, because each publication's root stays a root.
+- **`NistAiRmfFamily`**, one class that holds both publications. It gives the JSON Schema a top level, because each publication's root stays a root, and it refuses a document that holds neither.
 - **Proof that the two hold together.** `tests/test_catalogue.py` validates both whole catalogues under one schema, holds every element to its publication's IRI, and checks that the Profile names only subcategories the framework holds.
 - **A builder for the ISO/IEC 42001 crosswalk.** `scripts/build_crosswalk.py` reads the crosswalk that Microsoft provided and NIST's AI Resource Center lists, and writes it as SSSOM under `tmp/`.
 
 ## The crosswalk
 
-The document names no relation between its two columns, and NIST's listing says inclusion implies no endorsement, so each row is a `skos:relatedMatch`. It was written against ISO/IEC FDIS 42001 and nothing here compares it with the published text. It cites Annex B's guidance, so a row names the Annex A control of the same number and its comment gives the number as printed.
+The document names no relation between its two columns, so each row is a `skos:relatedMatch`. NIST's listing says inclusion implies no endorsement. The document was written against ISO/IEC FDIS 42001, and nothing here compares it with the published text. It cites Annex B's guidance, so a row names the Annex A control of the same number, and its comment gives the number as printed.
 
 Three rows print a number with a heading the document gives that number nowhere else. Each row keeps the number and says so in its comment, and the constants at the top of the script list them. This project does not settle whether the author meant the number or the heading.
 
-The document carries no copyright or licence line, and NIST's listing says its crosswalks come from the AI RMF user community, so NIST's own reprint statement does not reach it. The repository carries neither the document nor its pairs; the set exists only on the machine that runs `just build-crosswalk`.
+The document carries no copyright or licence line, and NIST's listing says its crosswalks come from the AI RMF user community, so NIST's own reprint statement does not reach it. The repository carries neither the document nor its pairs. The set exists only on the machine that runs `just build-crosswalk`, and its header names SSSOM's address for an unspecified licence and the document as its source.
 
 ## What it leaves out
 

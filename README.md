@@ -14,7 +14,7 @@ NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)
 
 ## What it models
 
-Nothing of its own. The schema holds [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1), the AI Risk Management Framework 1.0, and [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1), its Generative AI Profile, as [lmodel/nist-ai-100-1](https://github.com/lmodel/nist-ai-100-1) and [lmodel/nist-ai-600-1](https://github.com/lmodel/nist-ai-600-1) model them. It adds `NistAiRmfFamily`, which holds both in one document.
+The schema models nothing of its own. It holds [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1), the AI Risk Management Framework 1.0, and [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1), its Generative AI Profile, as [lmodel/nist-ai-100-1](https://github.com/lmodel/nist-ai-100-1) and [lmodel/nist-ai-600-1](https://github.com/lmodel/nist-ai-600-1) model them. It adds `NistAiRmfFamily`, which holds one or both in a document.
 
 Use it when a knowledge bundle needs both. The two repositories' adapt copies validate side by side, but `lokf convert` stops on the elements they share, so this repository's copy is the one way to carry both.
 
@@ -24,7 +24,7 @@ Use it when a knowledge bundle needs both. The two repositories' adapt copies va
 
 ## Mappings
 
-The schema holds the two repositories' mappings unchanged, and `tests/test_schema_rules.py` checks each one against a released copy. This repository's own SSSOM set, whose rows came from a matching tool, is gone.
+The schema holds the two repositories' mappings unchanged, and `tests/test_schema_rules.py` checks each one against a released copy.
 
 ## Repository Structure
 
@@ -44,13 +44,13 @@ Run `just` to list the project's [just](https://github.com/casey/just/) recipes.
 
 `.lokf/` holds this project's [KTL](https://w3id.org/ktl/) knowledge bundle. Its domain schema, `.lokf/nist-ai-rmf.yaml`, is the copy `just lokf-adapt` writes from `src/nist_ai_rmf/schema/nist_ai_rmf.yaml`, and `just lokf-adapt-check` says when it is stale. Edit the source, never the copy. A release carries the copy as `schema-<tag>-nist-ai-rmf.yaml`, on the terms [CONTRIBUTING.md](CONTRIBUTING.md#releasing-maintainers) gives.
 
-The copy roots on `Concept` what the two repositories root. In Obsidian, add these to the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins:
+The copy re-roots on `Concept` the classes the two repositories root. In Obsidian, add these to the *Known LOKF types* setting of the KTL Registrar and KTL Curator plugins:
 
 ```text
 AiRmfFunction, AiRmfCategory, AiRmfSubcategory, AiRmfTrustworthinessCharacteristic, AiRmfDimension, AiRmfLifecycleStage, AiRmfActorTask, AiRmfManagementChallenge, AiRmfMeasurementChallenge, AiRmfSpecificRisk, AiRmfHumanAiIssue, AiRmfAttribute, AiRmfSystem, AiRmfActor, AiRmfRisk, AiRmfResidualRisk, AiRmfImpact, AiRmfHarm, AiRmfRiskTolerance, AiRmfBias, AiRmfProfile, GaiRisk, GaiSubcategory, GaiGovernanceConsideration, GaiPreDeploymentTestingConsideration, GaiContentProvenanceConsideration, GaiIncidentDisclosureConsideration, GaiParticipatoryEngagement, GaiFieldTesting, GaiAiRedTeaming, GaiProfile
 ```
 
-Import this copy in place of the two repositories' copies, never beside them. In this copy a class attribute projects under `nist_ai_rmf:` rather than its publication's prefix, which [lokf issue 168](https://github.com/nicholsn/lokf/issues/168) reports, closed with no release since lokf 0.9.0; a top-level slot and the committed JSON-LD context keep each publication's IRI. `tests/test_schema_rules.py` holds all this.
+Import this copy in place of the two repositories' copies, never beside them. In this copy a class attribute projects under `nist_ai_rmf:` rather than its publication's prefix. [lokf issue 168](https://github.com/nicholsn/lokf/issues/168) reports this, and is closed with no lokf release since 0.9.0. A top-level slot and the committed JSON-LD context keep each publication's IRI. `tests/test_schema_rules.py` checks the copy, and `tests/test_catalogue.py` the context.
 
 ## License
 

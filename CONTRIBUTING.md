@@ -41,7 +41,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 ## Before opening a pull request
 
 - **Edit the umbrella, then regenerate.** Edit `src/nist_ai_rmf/schema/nist_ai_rmf.yaml`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/nist_ai_rmf/datamodel/`, `docs/schema/` and `.lokf/nist-ai-rmf.yaml` are generated.
-- **A vendored file changes at its source.** Release it in its repository, copy it from the tag, and move the pins in `tests/test_upstream.py` and `scripts/check_upstream_release.py`.
+- **A vendored file changes at its source.** Release it in its repository, copy it from the tag, and move the pins in `tests/test_upstream.py`, `tests/test_schema_rules.py` and `scripts/check_upstream_release.py`.
 - **A crosswalk's pair comes from its provider.** No pair is written by hand or committed. The constants at the top of `scripts/build_crosswalk.py` list each correction the PDF needed, and the script holds each to the PDF.
 - **A mapping is read at its source.** `tests/test_schema_rules.py` holds each one to a released neighbour copy. A term with no sure match stays unmapped.
 - **Keep names apart.** A host imports this adapt copy beside the Linked Open Knowledge Format (LOKF) schema and the released copies in `tests/neighbours/`. `tests/test_schema_rules.py` checks this.
