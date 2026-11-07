@@ -21,7 +21,7 @@ sources:
     title: VENDORED_FROM
 generated:
   by: process:ktl-librarian
-  at: "2026-11-07T01:06:19Z"
+  at: "2026-11-07T01:11:59Z"
 status: draft
 ---
 
@@ -29,7 +29,7 @@ status: draft
 
 1. Copy the modules and the catalogue from the release's tag, unchanged. A vendored file changes at its source.[^contributing.md] When the release changes the base or profiles module, vendor it together with a matching release of the other repository.[^schema-readme]
 2. Copy the release's schema asset to `tests/neighbours/`, after checking its `.sha256` and its attestation.[^test_schema_rules.py]
-3. Move `VENDORED_PINS` and the release named in `VENDORED_FROM`.[^watch] Move the copy's checksum in `FAMILY` too.[^test_schema_rules.py]
+3. Move `VENDORED_PINS` and the release named in `VENDORED_FROM`.[^watch] Move that asset's checksum in `FAMILY` too.[^test_schema_rules.py]
 4. Run the steps in the regenerate-and-test playbook.[^contributing.md]
 
 [^contributing.md]: CONTRIBUTING.md, Before opening a pull request

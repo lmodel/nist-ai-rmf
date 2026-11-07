@@ -3,7 +3,7 @@ type: Reference
 id: https://w3id.org/lmodel/nist-ai-rmf/knowledge/references/lmodel-nist-ai-600-1
 genre: reference
 title: lmodel/nist-ai-600-1
-description: The lmodel repository that models the Generative AI Profile as modules and records. This schema vendors all its modules and its catalogue at v0.1.1, whose schema files are its v0.1.0's, and the weekly watch reports a later release.
+description: The lmodel repository that models the Generative AI Profile as modules and records. This schema vendors all its modules and its catalogue at v0.1.1, whose schema files are unchanged from v0.1.0, and the weekly watch reports a later release.
 source:
   - https://github.com/lmodel/nist-ai-600-1
 about:
@@ -17,7 +17,7 @@ sources:
     title: VENDORED_FROM
 generated:
   by: process:ktl-librarian
-  at: "2026-11-07T01:06:19Z"
+  at: "2026-11-07T01:11:59Z"
 status: draft
 ---
 

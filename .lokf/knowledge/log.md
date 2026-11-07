@@ -2,6 +2,7 @@
 
 ## 2026-11-07
 
+* **Changed**: the lmodel/nist-ai-600-1 reference and the re-vendor playbook say plainly which files and which asset they mean.
 * **Prose**: reworded 2 concept bodies in plain English. No fact, link, number or frontmatter changed.
 * **Changed**: the audit of 2026-11-07: lmodel/nist-ai-600-1 is vendored at v0.1.1 (no schema change), `NistAiRmfFamily` refuses a document with neither publication, and the watch reports lmodel/iso42001's first release.
 
