@@ -1,16 +1,21 @@
-"""Pytest configuration.
+"""Fixtures the test modules share."""
 
-Regenerates AGT-derived fixtures once per session so the
-parametrized validation tests always run against fresh artifacts.
-"""
-from __future__ import annotations
+from pathlib import Path
 
 import pytest
+from linkml.validator import Validator
+from linkml.validator.plugins import JsonschemaValidationPlugin
 
-from tests.fixtures import agt_to_rmf
+SCHEMA = (
+    Path(__file__).parent.parent / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
+)
 
 
-@pytest.fixture(scope="session", autouse=True)
-def _generate_agt_fixtures() -> None:
-    """Regenerate ``tests/data/{valid,invalid}/`` from upstream snapshots."""
-    agt_to_rmf.generate_all()
+@pytest.fixture(scope="session")
+def validator():
+    """The validator linkml.validator.validate() builds, closed to undeclared keys, built
+    once. LinkML caches the JSON Schema it generates for each loaded schema, and validate()
+    loads the schema again on every call, so each call generated the JSON Schema again."""
+    return Validator(
+        str(SCHEMA), validation_plugins=[JsonschemaValidationPlugin(closed=True)]
+    )

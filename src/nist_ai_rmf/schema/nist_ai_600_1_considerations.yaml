@@ -1,0 +1,254 @@
+---
+id: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+name: nist_ai_600_1_considerations
+title: The primary considerations of NIST AI 600-1
+description: >-
+  Appendix A of NIST AI 600-1: the four themes that came out of NIST's Generative AI Public Working
+  Group, with the lists each gives.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.600-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-600-1
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
+  spdx_software: https://spdx.org/rdf/3.0.1/terms/Software/
+default_prefix: nist_ai_600_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1/nist_ai_100_1_base
+
+slots:
+  gai_consideration_type:
+    description: Which of the four classes this record is.
+    designates_type: true
+    range: string
+    required: true
+
+  gai_feedback_type:
+    description: Which of the three classes this record is.
+    designates_type: true
+    range: string
+    required: true
+
+classes:
+  GaiPrimaryConsideration:
+    abstract: true
+    class_uri: nist_ai_600_1:PrimaryConsideration
+    description: One of the four primary considerations of Appendix A, which also inform the suggested actions.
+    slots:
+      - gai_consideration_type
+      - title
+      - description
+    slot_usage:
+      title:
+        required: true
+    attributes:
+      gai_consideration_sections:
+        description: The subsections of Appendix A that discuss the consideration, such as A.1.2.
+        pattern: "^A\\.1(\\.[1-8])?$"
+        multivalued: true
+
+  GaiGovernanceConsideration:
+    is_a: GaiPrimaryConsideration
+    class_uri: nist_ai_600_1:GovernanceConsideration
+    description: How an organization's governance can be revisited for GAI, including across the AI value chain.
+    attributes:
+      gai_governance_plans:
+        description: The plans and actions that section A.1.2 lists from other AI governance.
+        range: GaiGovernancePlan
+        multivalued: true
+      gai_third_party_controls:
+        description: The existing controls that section A.1.3 says can apply to third-party GAI.
+        range: GaiThirdPartyControl
+        multivalued: true
+
+  GaiPreDeploymentTestingConsideration:
+    is_a: GaiPrimaryConsideration
+    class_uri: nist_ai_600_1:PreDeploymentTestingConsideration
+    description: How GAI can be tested before deployment while better approaches mature, and where current tests fall short.
+    comments:
+      - Section A.1.7 calls the feedback approaches of section A.1.5 part of this consideration.
+    attributes:
+      gai_structured_feedback:
+        description: The kinds of structured public feedback section A.1.5 gives as examples.
+        range: GaiStructuredFeedback
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+  GaiContentProvenanceConsideration:
+    is_a: GaiPrimaryConsideration
+    class_uri: nist_ai_600_1:ContentProvenanceConsideration
+    description: How tracking the origin and history of content helps tell authentic content from synthetic content.
+    attributes:
+      gai_provenance_techniques:
+        description: The well-known techniques for provenance data tracking that section A.1.6 names.
+        range: GaiProvenanceTechnique
+        multivalued: true
+
+  GaiIncidentDisclosureConsideration:
+    is_a: GaiPrimaryConsideration
+    class_uri: nist_ai_600_1:IncidentDisclosureConsideration
+    description: How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.
+    attributes:
+      gai_incident_harms:
+        description: The kinds of harm that section A.1.8's definition of an AI incident names.
+        range: GaiIncidentHarm
+        multivalued: true
+
+  GaiStructuredFeedback:
+    abstract: true
+    class_uri: nist_ai_600_1:StructuredFeedback
+    description: A way of using structured public feedback to evaluate whether GAI systems perform as intended.
+    slots:
+      - gai_feedback_type
+      - title
+      - description
+    slot_usage:
+      title:
+        required: true
+
+  GaiParticipatoryEngagement:
+    is_a: GaiStructuredFeedback
+    class_uri: nist_ai_600_1:ParticipatoryEngagement
+    description: Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.
+
+  GaiFieldTesting:
+    is_a: GaiStructuredFeedback
+    class_uri: nist_ai_600_1:FieldTesting
+    description: Structured settings that show how people interact with and use AI-generated information.
+
+  GaiAiRedTeaming:
+    is_a: GaiStructuredFeedback
+    class_uri: nist_ai_600_1:AiRedTeaming
+    description: A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.
+    attributes:
+      gai_red_teaming_types:
+        description: The kinds of AI red-teaming that may suit the use case.
+        range: GaiRedTeamingType
+        multivalued: true
+
+enums:
+  GaiGovernancePlan:
+    description: The plans and actions that section A.1.2 says apply to GAI from other AI governance.
+    permissible_values:
+      accessibility_and_reasonable_accommodations:
+        title: Accessibility and reasonable accommodations
+      ai_actor_credentials_and_qualifications:
+        title: AI actor credentials and qualifications
+      alignment_to_organizational_values:
+        title: Alignment to organizational values
+      auditing_and_assessment:
+        title: Auditing and assessment
+      change_management_controls:
+        title: Change-management controls
+      commercial_use:
+        title: Commercial use
+      data_provenance:
+        title: Data provenance
+      data_protection:
+        title: Data protection
+      data_retention:
+        title: Data retention
+      consistency_in_use_of_defining_key_terms:
+        title: Consistency in use of defining key terms
+      decommissioning:
+        title: Decommissioning
+      discouraging_anonymous_use:
+        title: Discouraging anonymous use
+      education:
+        title: Education
+      impact_assessments:
+        title: Impact assessments
+      incident_response:
+        title: Incident response
+      monitoring:
+        title: Monitoring
+      opt_outs:
+        title: Opt-outs
+      risk_based_controls:
+        title: Risk-based controls
+      risk_mapping_and_measurement:
+        title: Risk mapping and measurement
+      science_backed_tevv_practices:
+        title: Science-backed TEVV practices
+      secure_software_development_practices:
+        title: Secure software development practices
+      stakeholder_engagement:
+        title: Stakeholder engagement
+      synthetic_content_detection_and_labeling_tools_and_techniques:
+        title: Synthetic content detection and labeling tools and techniques
+      whistleblower_protections:
+        title: Whistleblower protections
+      workforce_diversity_and_interdisciplinary_teams:
+        title: Workforce diversity and interdisciplinary teams
+
+  GaiThirdPartyControl:
+    description: The existing controls that section A.1.3 says can apply to third-party GAI.
+    permissible_values:
+      acquisition_and_procurement_due_diligence:
+        title: Acquisition and procurement due diligence
+        description: Checking a provider before acquiring its GAI technology or data.
+      software_bills_of_materials:
+        title: Requests for software bills of materials
+        description: Asking a provider what its software is made of.
+        related_mappings:
+          - spdx_software:Sbom
+      service_level_agreements:
+        title: Application of service level agreements
+        description: Holding a provider to agreed levels of service.
+      ssae_reports:
+        title: Statement on standards for attestation engagement reports
+        description: Asking for a provider's attestation reports.
+
+  GaiRedTeamingType:
+    description: The types of AI red-teaming in section A.1.5.
+    permissible_values:
+      general_public:
+        title: General Public
+        description: By general users who are not necessarily AI or technical experts.
+      expert:
+        title: Expert
+        description: By specialists in the domain or the context of use.
+      combination:
+        title: Combination
+        description: By both experts and general public participants.
+      human_ai:
+        title: Human / AI
+        description: By GAI together with human teams, specialist or not.
+
+  GaiProvenanceTechnique:
+    description: The techniques for provenance data tracking in section A.1.6.
+    permissible_values:
+      digital_watermarking:
+        title: Digital watermarking
+        description: Placing visible or hidden marks on content.
+      metadata_recording:
+        title: Metadata recording
+        description: Recording facts about the content, such as its creator, date and sources.
+      digital_fingerprinting:
+        title: Digital fingerprinting
+        description: Identifying content from its own characteristics.
+      human_authentication:
+        title: Human authentication
+        description: Having people confirm where content came from.
+
+  GaiIncidentHarm:
+    description: The kinds of harm that section A.1.8's definition of an AI incident names.
+    permissible_values:
+      injury_or_harm_to_health:
+        title: Injury or harm to health
+        description: To a person or group, including psychological harm and harm to mental health.
+      critical_infrastructure_disruption:
+        title: Disruption of critical infrastructure
+        description: To its management and operation.
+      rights_violations:
+        title: Violations of rights or legal obligations
+        description: Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights.
+      harm_to_property_communities_or_environment:
+        title: Harm to property, communities, or the environment
+        description: To things and groups beyond the individual.

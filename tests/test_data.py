@@ -1,127 +1,77 @@
-"""Unit tests for the merged ``nist_ai_rmf`` umbrella schema.
+"""Checks the example data against the generated models and the validator."""
 
-This repository ships *only* the umbrella schema. The
-``nist_ai_100_1`` (AI RMF 1.0) and ``nist_ai_600_1`` (GAI Profile)
-sub-schemas are pulled in as remote imports from their own
-repositories - they are tested in those repositories and are
-deliberately not re-tested here.
-
-The tests below therefore exercise behaviour that only makes
-sense once both sub-schemas are merged:
-
-* the umbrella YAML loads,
-* both imports resolve, and
-* classes/enums from each sub-schema are reachable through the
-  single ``nist_ai_rmf`` namespace.
-"""
-from __future__ import annotations
-
+import glob
+import os
 from pathlib import Path
 
 import pytest
+import yaml
+from linkml_runtime.loaders import yaml_loader
+from linkml_runtime.utils.schemaview import SchemaView
 
-REPO_ROOT = Path(__file__).resolve().parent.parent
-SCHEMA_UMBRELLA = REPO_ROOT / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
+import nist_ai_rmf.datamodel.nist_ai_rmf
 
+DATA_DIR_VALID = Path(__file__).parent / "data" / "valid"
+DATA_DIR_INVALID = Path(__file__).parent / "data" / "invalid"
 
-def _load_schema_view():
-    """``SchemaView`` for the umbrella, *without* walking imports."""
-    from linkml_runtime.utils.schemaview import SchemaView
+VALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_VALID, "*.yaml"))
+INVALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_INVALID, "*.yaml"))
 
-    assert SCHEMA_UMBRELLA.exists(), f"Merged schema missing at {SCHEMA_UMBRELLA}"
-    return SchemaView(str(SCHEMA_UMBRELLA))
-
-
-def _load_merged_view():
-    """``SchemaView`` with imports resolved.
-
-    Skips if the remote `nist_ai_100_1` / `nist_ai_600_1` schemas
-    are not reachable (e.g. offline, or the upstream w3id redirects
-    are not yet wired up). The umbrella import design is the
-    feature under test - missing network access is not a regression.
-    """
-    sv = _load_schema_view()
-    try:
-        # Force traversal of imports - this is what triggers network IO.
-        sv.all_classes()
-    except (FileNotFoundError, OSError) as exc:  # urllib raises URLError(OSError)
-        pytest.skip(f"Remote imports could not be resolved: {exc}")
-    return sv
+SCHEMA = (
+    Path(__file__).parent.parent / "src" / "nist_ai_rmf" / "schema" / "nist_ai_rmf.yaml"
+)
 
 
-@pytest.fixture(scope="module")
-def umbrella_view():
-    return _load_schema_view()
+@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
+def test_valid_data_files(filepath):
+    """Test loading of all valid data files."""
+    target_class_name = Path(filepath).stem.split("-")[0]
+    tgt_class = getattr(
+        nist_ai_rmf.datamodel.nist_ai_rmf,
+        target_class_name,
+    )
+    obj = yaml_loader.load(filepath, target_class=tgt_class)
+    assert obj
 
 
-@pytest.fixture(scope="module")
-def merged_view():
-    return _load_merged_view()
+# The JSON Schema the validator generates is the one check that applies every
+# constraint: the Python dataclasses leave out the patterns, and neither
+# generated model checks the rules or the family's "at least one publication".
+# So each example is held to it: a valid one must pass, and a counter-example
+# must fail.
+@pytest.mark.parametrize("filepath", VALID_EXAMPLE_FILES)
+def test_valid_data_files_validate(filepath, validator):
+    """Every valid example passes the validator."""
+    report = validator.validate(
+        yaml.safe_load(Path(filepath).read_text()),
+        Path(filepath).stem.split("-")[0],
+    )
+    assert not report.results, [r.message for r in report.results]
 
 
-def test_umbrella_schema_loads(umbrella_view) -> None:
-    """The umbrella schema parses and reports the expected identity."""
-    schema = umbrella_view.schema
-    assert schema.name == "nist-ai-rmf"
-    assert schema.default_prefix == "nist_ai_rmf"
+@pytest.mark.parametrize("filepath", INVALID_EXAMPLE_FILES)
+def test_invalid_data_files_fail(filepath, validator):
+    """Every counter-example fails the validator at the place its first line
+    names, as `# Fails at: <JSON pointer>`, so a file that starts failing for
+    another reason fails this test."""
+    text = Path(filepath).read_text()
+    first = text.splitlines()[0]
+    assert first.startswith("# Fails at: "), (
+        f"{filepath}: the first line names where it fails, as # Fails at: /key"
+    )
+    pointer = first.removeprefix("# Fails at: ").strip()
+    report = validator.validate(yaml.safe_load(text), Path(filepath).stem.split("-")[0])
+    messages = [r.message for r in report.results]
+    assert any(m.endswith(f" in {pointer}") for m in messages), messages
 
 
-def test_umbrella_imports_both_sub_schemas(umbrella_view) -> None:
-    """Both NIST sub-schemas are listed as imports."""
-    imports = umbrella_view.schema.imports
-    assert any("nist_ai_100_1" in i for i in imports), imports
-    assert any("nist_ai_600_1" in i for i in imports), imports
-
-
-def test_umbrella_exposes_both_tree_roots(merged_view) -> None:
-    """``AiRmfFramework`` (from 100-1) and ``GaiProfile`` (from 600-1)
-    are both reachable via the merged schema view."""
-    all_classes = merged_view.all_classes()
-    assert "AiRmfFramework" in all_classes, sorted(all_classes)
-    assert "GaiProfile" in all_classes, sorted(all_classes)
-
-
-def test_umbrella_exposes_enums_from_both_sub_schemas(merged_view) -> None:
-    """A representative enum from each sub-schema is reachable."""
-    all_enums = merged_view.all_enums()
-    # From nist_ai_100_1
-    assert "FunctionEnum" in all_enums, sorted(all_enums)
-    # From nist_ai_600_1
-    assert "GaiRiskCategoryEnum" in all_enums, sorted(all_enums)
-
-
-# Additional tests for broader coverage
-def test_umbrella_exposes_slots_from_both_sub_schemas(merged_view) -> None:
-    """Representative slots from each sub-schema are accessible."""
-    all_slots = merged_view.all_slots()
-    # From nist_ai_100_1 (actual slot: 'functions')
-    assert "functions" in all_slots, sorted(all_slots)
-    # From nist_ai_600_1 (actual slot: 'gai_risks')
-    assert "gai_risks" in all_slots, sorted(all_slots)
-
-
-def test_umbrella_enum_values_accessible(merged_view) -> None:
-    """Representative enum values are accessible from both sub-schemas."""
-    function_enum = merged_view.get_enum("FunctionEnum")
-    gai_risk_enum = merged_view.get_enum("GaiRiskCategoryEnum")
-    assert function_enum is not None
-    assert gai_risk_enum is not None
-    assert "GOVERN" in function_enum.permissible_values
-    assert "CONFABULATION" in gai_risk_enum.permissible_values
-
-
-def test_umbrella_class_inheritance_and_mixins(merged_view) -> None:
-    """Check inheritance and mixin structure for a representative class."""
-    framework_class = merged_view.get_class("AiRmfFramework")
-    assert framework_class is not None
-    # Check is_a or mixins are present
-    assert framework_class.is_a or framework_class.mixins
-
-
-def test_umbrella_schema_annotations(umbrella_view) -> None:
-    """Check that schema-level annotations and metadata are present."""
-    schema = umbrella_view.schema
-    # Check for required metadata fields
-    assert hasattr(schema, "license")
-    assert hasattr(schema, "description")
-    assert hasattr(schema, "version")
+def test_every_concept_class_has_an_example():
+    """Each class a knowledge-bundle concept may name as its type, and each
+    class those hold, has a valid example."""
+    classes = {
+        name
+        for name, cls in SchemaView(str(SCHEMA)).all_classes().items()
+        if not cls.abstract
+    }
+    examples = {Path(f).stem.split("-")[0] for f in VALID_EXAMPLE_FILES}
+    assert classes <= examples, sorted(classes - examples)

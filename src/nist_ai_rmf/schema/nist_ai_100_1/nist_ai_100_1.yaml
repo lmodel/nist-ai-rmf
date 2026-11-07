@@ -1,0 +1,114 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1
+name: nist_ai_100_1
+title: NIST AI Risk Management Framework (AI RMF 1.0)
+description: >-
+  A LinkML model of the Artificial Intelligence Risk Management Framework (AI RMF 1.0), which
+  NIST publishes as NIST AI 100-1: the Core's functions, categories and subcategories with
+  their Playbook material, the framing of risk and harm, the trustworthiness characteristics,
+  the lifecycle and AI actors, profiles and the lists of the appendices.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-100-1
+  - https://www.nist.gov/itl/ai-risk-management-framework
+  - https://airc.nist.gov/airmf-resources/playbook/
+  - https://github.com/usnistgov/oscal-content/tree/v1.6.0/nist.gov/AI100-1/ver1
+annotations:
+  cprt_framework_version: AI_100_1_0_0
+  publication_date: "2023-01"
+  oscal_content_tag: v1.6.0
+  oscal_content_commit: f0de6d8d8c059d374f15e0ae07508d82e370fc1d
+comments:
+  - >-
+    The version is the AI RMF edition, and source is the publication's digital object
+    identifier. NIST numbers the framework 1.0 and its catalog of it 1.0.0. The release tags
+    are the schema's own versions, and scripts/check_upstream_release.py reports when NIST
+    changes the publication, the catalog or the Playbook.
+  - >-
+    The publication is a work of the United States Government. NOTICE says what it and the
+    catalog allow. The schema's descriptions are this project's own words; NIST's text of the
+    Core and the Playbook is in src/nist_ai_100_1/data/, built from upstream/.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  oscal: https://w3id.org/lmodel/oscal/
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1_base
+  - ./nist_ai_100_1_foundations
+  - ./nist_ai_100_1_rmf_core
+  - ./nist_ai_100_1_profiles
+
+classes:
+  AiRmfFramework:
+    tree_root: true
+    class_uri: nist_ai_100_1:Framework
+    description: One edition of the AI RMF as a whole, with the Core and the lists the publication gives.
+    broad_mappings:
+      - oscal:Catalog
+    attributes:
+      ai_rmf_version:
+        description: The edition in NIST's two-number form, such as 1.0.
+        required: true
+        pattern: "^[0-9]+\\.[0-9]+$"
+      ai_rmf_functions:
+        description: The four functions, in the publication's order.
+        range: AiRmfFunction
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_characteristics:
+        description: The trustworthiness characteristics of section 3.
+        range: AiRmfTrustworthinessCharacteristic
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_dimensions:
+        description: The key dimensions of Figure 2.
+        range: AiRmfDimension
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_lifecycle_stages:
+        description: The lifecycle stages of Figure 3.
+        range: AiRmfLifecycleStage
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_actor_task_list:
+        description: The AI actor tasks and additional AI actors of Appendix A.
+        range: AiRmfActorTask
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_management_challenges:
+        description: The challenges for AI risk management of section 1.2.
+        range: AiRmfManagementChallenge
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_specific_risks:
+        description: The AI-specific risks of Appendix B.
+        range: AiRmfSpecificRisk
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_human_ai_issues:
+        description: The human-AI interaction issues of Appendix C.
+        range: AiRmfHumanAiIssue
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_attributes:
+        description: The attributes of the AI RMF in Appendix D.
+        range: AiRmfAttribute
+        multivalued: true
+        inlined: true
+        inlined_as_list: true

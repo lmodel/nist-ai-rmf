@@ -1,0 +1,5 @@
+ai_rmf_id: https://example.org/tolerances/customer-facing
+description: No unreviewed answer on a regulated topic reaches a customer.
+ai_rmf_risk_tolerance_holder: https://example.org/actors/operations
+ai_rmf_risk_tolerance_influences:
+  - sector regulation

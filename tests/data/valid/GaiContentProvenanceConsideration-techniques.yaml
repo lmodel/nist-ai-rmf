@@ -1,0 +1,4 @@
+gai_consideration_type: GaiContentProvenanceConsideration
+title: Content Provenance
+gai_provenance_techniques:
+  - digital_watermarking

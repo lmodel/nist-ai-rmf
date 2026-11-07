@@ -1,0 +1,4 @@
+# Fails at: /ai_rmf_system_lifecycle_stages/0
+ai_rmf_id: https://example.org/systems/assistant
+ai_rmf_system_lifecycle_stages:
+  - retire

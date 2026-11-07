@@ -1,0 +1,4 @@
+# Fails at: /ai_rmf_risk_characteristics/0
+ai_rmf_id: https://example.org/risks/wrong-answers
+ai_rmf_risk_characteristics:
+  - robust

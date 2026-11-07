@@ -1,0 +1,4 @@
+ai_rmf_id: https://example.org/biases/training-data
+description: The training sample leaves out one language group.
+ai_rmf_bias_categories:
+  - computational_and_statistical

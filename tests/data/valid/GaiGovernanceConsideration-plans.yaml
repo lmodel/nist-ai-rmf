@@ -1,0 +1,8 @@
+gai_consideration_type: GaiGovernanceConsideration
+title: Governance
+gai_consideration_sections:
+  - A.1.2
+gai_governance_plans:
+  - opt_outs
+gai_third_party_controls:
+  - software_bills_of_materials

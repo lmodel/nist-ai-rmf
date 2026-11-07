@@ -1,0 +1,5 @@
+# Fails at: /
+gai_consideration_type: GaiGovernanceConsideration
+title: Governance
+gai_provenance_techniques:
+  - digital_watermarking

@@ -1,0 +1,5 @@
+# Fails at: /ai_rmf_impact_affected_parties/0
+ai_rmf_id: https://example.org/impacts/refunds
+ai_rmf_impact_direction: negative
+ai_rmf_impact_affected_parties:
+  - shareholders

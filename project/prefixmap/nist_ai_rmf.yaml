@@ -1,112 +1,129 @@
 {
-   "dcterms": "http://purl.org/dc/terms/",
-   "foaf": "http://xmlns.com/foaf/0.1/",
-   "gist_linkml": "https://w3id.org/lmodel/gist/",
    "iso27001": "https://w3id.org/lmodel/iso27001/",
-   "iso29100": "https://w3id.org/lmodel/iso29100/",
    "linkml": "https://w3id.org/linkml/",
    "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
    "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
    "nist_ai_rmf": "https://w3id.org/lmodel/nist-ai-rmf/",
-   "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
-   "nist_sp_800_53": "https://w3id.org/lmodel/nist-sp-800-53/",
-   "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
-   "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
+   "nist_csf_v2": "https://w3id.org/lmodel/nist-csf-v2/",
+   "oscal": "https://w3id.org/lmodel/oscal/",
    "prov": "http://www.w3.org/ns/prov#",
-   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
    "schema": "http://schema.org/",
    "stix": "https://w3id.org/lmodel/stix/",
-   "AiActor": {
+   "AiRmfActor": {
       "@id": "nist_ai_100_1:AiActor"
    },
-   "AiActorTask": {
-      "@id": "nist_ai_100_1:AiActorTask"
+   "AiRmfActorTask": {
+      "@id": "nist_ai_100_1:ActorTask"
    },
-   "AiLifecycleStage": {
-      "@id": "nist_ai_100_1:AiLifecycleStage"
+   "AiRmfAttribute": {
+      "@id": "nist_ai_100_1:Attribute"
    },
-   "AiRedTeaming": {
-      "@id": "nist_ai_600_1:AiRedTeaming"
-   },
-   "AiRmfDocument": {
-      "@id": "nist_ai_100_1:AiRmfDocument"
-   },
-   "AiRmfFramework": {
-      "@id": "nist_ai_100_1:AiRmfFramework"
-   },
-   "AiRmfProfile": {
-      "@id": "nist_ai_100_1:AiRmfProfile"
-   },
-   "AiSpecificRisk": {
-      "@id": "nist_ai_100_1:AiSpecificRisk"
-   },
-   "AiSystem": {
-      "@id": "nist_ai_100_1:AiSystem"
-   },
-   "AiSystemDimension": {
-      "@id": "nist_ai_100_1:AiSystemDimension"
-   },
-   "Bias": {
+   "AiRmfBias": {
       "@id": "nist_ai_100_1:Bias"
    },
-   "Category": {
+   "AiRmfCategory": {
       "@id": "nist_ai_100_1:Category"
    },
-   "Function": {
+   "AiRmfDimension": {
+      "@id": "nist_ai_100_1:Dimension"
+   },
+   "AiRmfDocumentationItem": {
+      "@id": "nist_ai_100_1:DocumentationItem"
+   },
+   "AiRmfFramework": {
+      "@id": "nist_ai_100_1:Framework"
+   },
+   "AiRmfFunction": {
       "@id": "nist_ai_100_1:Function"
    },
-   "GaiProfile": {
-      "@id": "nist_ai_600_1:GaiProfile"
-   },
-   "GaiRisk": {
-      "@id": "nist_ai_600_1:GaiRisk"
-   },
-   "Harm": {
+   "AiRmfHarm": {
       "@id": "nist_ai_100_1:Harm"
    },
-   "HumanAiInteractionIssue": {
-      "@id": "nist_ai_100_1:HumanAiInteractionIssue"
+   "AiRmfHumanAiIssue": {
+      "@id": "nist_ai_100_1:HumanAiIssue"
    },
-   "Impact": {
+   "AiRmfImpact": {
       "@id": "nist_ai_100_1:Impact"
    },
-   "NamedThing": {
-      "@id": "schema:Thing"
+   "AiRmfLifecycleStage": {
+      "@id": "nist_ai_100_1:LifecycleStage"
    },
-   "PlaybookCollection": {
-      "@id": "nist_ai_100_1:PlaybookCollection"
+   "AiRmfManagementChallenge": {
+      "@id": "nist_ai_100_1:ManagementChallenge"
    },
-   "PlaybookEntry": {
-      "@id": "nist_ai_100_1:PlaybookEntry"
+   "AiRmfMeasurementChallenge": {
+      "@id": "nist_ai_100_1:MeasurementChallenge"
    },
-   "PrimaryGaiConsideration": {
-      "@id": "nist_ai_600_1:PrimaryGaiConsideration"
+   "AiRmfProfile": {
+      "@id": "nist_ai_100_1:Profile"
    },
-   "ResidualRisk": {
+   "AiRmfRecord": {
+      "@id": "nist_ai_100_1:Record"
+   },
+   "AiRmfResidualRisk": {
       "@id": "nist_ai_100_1:ResidualRisk"
    },
-   "Risk": {
+   "AiRmfResource": {
+      "@id": "nist_ai_100_1:Resource"
+   },
+   "AiRmfRisk": {
       "@id": "nist_ai_100_1:Risk"
    },
-   "RiskMeasurementChallenge": {
-      "@id": "nist_ai_100_1:RiskMeasurementChallenge"
-   },
-   "RiskTolerance": {
+   "AiRmfRiskTolerance": {
       "@id": "nist_ai_100_1:RiskTolerance"
    },
-   "RmfAttribute": {
-      "@id": "nist_ai_100_1:RmfAttribute"
+   "AiRmfSpecificRisk": {
+      "@id": "nist_ai_100_1:SpecificRisk"
    },
-   "StructuredPublicFeedback": {
-      "@id": "nist_ai_600_1:StructuredPublicFeedback"
-   },
-   "Subcategory": {
+   "AiRmfSubcategory": {
       "@id": "nist_ai_100_1:Subcategory"
    },
-   "SuggestedAction": {
-      "@id": "nist_ai_600_1:SuggestedAction"
+   "AiRmfSuggestedAction": {
+      "@id": "nist_ai_100_1:SuggestedAction"
    },
-   "TrustworthinessCharacteristic": {
+   "AiRmfSystem": {
+      "@id": "nist_ai_100_1:AiSystem"
+   },
+   "AiRmfTrustworthinessCharacteristic": {
       "@id": "nist_ai_100_1:TrustworthinessCharacteristic"
+   },
+   "GaiAiRedTeaming": {
+      "@id": "nist_ai_600_1:AiRedTeaming"
+   },
+   "GaiContentProvenanceConsideration": {
+      "@id": "nist_ai_600_1:ContentProvenanceConsideration"
+   },
+   "GaiFieldTesting": {
+      "@id": "nist_ai_600_1:FieldTesting"
+   },
+   "GaiGovernanceConsideration": {
+      "@id": "nist_ai_600_1:GovernanceConsideration"
+   },
+   "GaiIncidentDisclosureConsideration": {
+      "@id": "nist_ai_600_1:IncidentDisclosureConsideration"
+   },
+   "GaiParticipatoryEngagement": {
+      "@id": "nist_ai_600_1:ParticipatoryEngagement"
+   },
+   "GaiPreDeploymentTestingConsideration": {
+      "@id": "nist_ai_600_1:PreDeploymentTestingConsideration"
+   },
+   "GaiPrimaryConsideration": {
+      "@id": "nist_ai_600_1:PrimaryConsideration"
+   },
+   "GaiProfile": {
+      "@id": "nist_ai_600_1:Profile"
+   },
+   "GaiRisk": {
+      "@id": "nist_ai_600_1:Risk"
+   },
+   "GaiStructuredFeedback": {
+      "@id": "nist_ai_600_1:StructuredFeedback"
+   },
+   "GaiSubcategory": {
+      "@id": "nist_ai_600_1:Subcategory"
+   },
+   "GaiSuggestedAction": {
+      "@id": "nist_ai_600_1:SuggestedAction"
    }
 }

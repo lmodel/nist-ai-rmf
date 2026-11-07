@@ -1,671 +1,613 @@
-# metamodel_version: 1.11.0
+# metamodel_version: 1.12.0
 # version: 1.0.0
-enum AiActorTaskEnum
+enum AiRmfActorTaskName
   {
-    AI_DESIGN
-    AI_DEVELOPMENT
-    AI_DEPLOYMENT
-    OPERATION_AND_MONITORING
-    TEVV
-    HUMAN_FACTORS
-    DOMAIN_EXPERT
-    AI_IMPACT_ASSESSMENT
-    PROCUREMENT
-    GOVERNANCE_AND_OVERSIGHT
-    THIRD_PARTY_ENTITIES
-    END_USERS
-    AFFECTED_INDIVIDUALS_OR_COMMUNITIES
-    OTHER_AI_ACTORS
-    GENERAL_PUBLIC
+    ai_design
+    ai_development
+    ai_deployment
+    operation_and_monitoring
+    tevv
+    human_factors
+    domain_expert
+    ai_impact_assessment
+    procurement
+    governance_and_oversight
+    third_party_entities
+    end_users
+    affected_individuals_and_communities
+    other_ai_actors
+    general_public
   }
 
-enum AiLifecycleStageEnum
+enum AiRmfAffectedParty
   {
-    PLAN_AND_DESIGN
-    COLLECT_AND_PROCESS_DATA
-    BUILD_AND_USE_MODEL
-    VERIFY_AND_VALIDATE
-    DEPLOY_AND_USE
-    OPERATE_AND_MONITOR
+    individuals
+    groups
+    communities
+    organizations
+    society
+    environment
+    planet
   }
 
-enum AiSystemDimensionEnum
+enum AiRmfAudience
   {
-    APPLICATION_CONTEXT
-    DATA_AND_INPUT
-    AI_MODEL
-    TASK_AND_OUTPUT
-    PEOPLE_AND_PLANET
+    primary
+    informing
   }
 
-enum AudienceEnum
+enum AiRmfBiasCategory
   {
-    PRIMARY
-    INFORMING
+    systemic
+    computational_and_statistical
+    human_cognitive
   }
 
-enum BiasCategoryEnum
+enum AiRmfCharacteristicName
   {
-    SYSTEMIC
-    COMPUTATIONAL_AND_STATISTICAL
-    HUMAN_COGNITIVE
+    valid_and_reliable
+    safe
+    secure_and_resilient
+    accountable_and_transparent
+    explainable_and_interpretable
+    privacy_enhanced
+    fair_with_harmful_bias_managed
   }
 
-enum CategoryEnum
+enum AiRmfDimensionName
   {
-    GOVERN__HYPHEN_MINUS__1
-    GOVERN__HYPHEN_MINUS__2
-    GOVERN__HYPHEN_MINUS__3
-    GOVERN__HYPHEN_MINUS__4
-    GOVERN__HYPHEN_MINUS__5
-    GOVERN__HYPHEN_MINUS__6
-    MAP__HYPHEN_MINUS__1
-    MAP__HYPHEN_MINUS__2
-    MAP__HYPHEN_MINUS__3
-    MAP__HYPHEN_MINUS__4
-    MAP__HYPHEN_MINUS__5
-    MEASURE__HYPHEN_MINUS__1
-    MEASURE__HYPHEN_MINUS__2
-    MEASURE__HYPHEN_MINUS__3
-    MEASURE__HYPHEN_MINUS__4
-    MANAGE__HYPHEN_MINUS__1
-    MANAGE__HYPHEN_MINUS__2
-    MANAGE__HYPHEN_MINUS__3
-    MANAGE__HYPHEN_MINUS__4
+    application_context
+    data_and_input
+    ai_model
+    task_and_output
+    people_and_planet
   }
 
-enum FunctionEnum
+enum AiRmfHarmCategory
   {
-    GOVERN
-    MAP
-    MEASURE
-    MANAGE
+    people
+    organization
+    ecosystem
   }
 
-enum GaiActionFunctionPrefixEnum
+enum AiRmfHarmExample
   {
-    GV
-    MP
-    MS
-    MG
+    individual
+    group_or_community
+    societal
+    business_operations
+    security_breach_or_monetary_loss
+    reputation
+    interdependent_elements
+    financial_or_supply_systems
+    natural_resources_and_environment
   }
 
-enum GaiActorTaskEnum
+enum AiRmfImpactDirection
   {
-    GOVERNANCE_AND_OVERSIGHT
-    AI_DESIGN
-    AI_DEVELOPMENT
-    AI_DEPLOYMENT
-    AI_IMPACT_ASSESSMENT
-    OPERATION_AND_MONITORING
-    TEVV
-    DOMAIN_EXPERTS
-    END_USERS
-    HUMAN_FACTORS
-    AFFECTED_INDIVIDUALS_AND_COMMUNITIES
-    PROCUREMENT
-    THIRD_PARTY_ENTITIES
+    positive
+    negative
+    both
   }
 
-enum GaiLifecycleStageEnum
+enum AiRmfLifecycleStageName
   {
-    DESIGN
-    DEVELOPMENT
-    DEPLOYMENT
-    OPERATION
-    DECOMMISSIONING
+    plan_and_design
+    collect_and_process_data
+    build_and_use_model
+    verify_and_validate
+    deploy_and_use
+    operate_and_monitor
+    use_or_impacted_by
   }
 
-enum GaiRiskCategorizationEnum
+enum AiRmfManagementChallengeName
   {
-    TECHNICAL_OR_MODEL_RISKS
-    MISUSE_BY_HUMANS
-    ECOSYSTEM_OR_SOCIETAL_RISKS
+    risk_measurement
+    risk_tolerance
+    risk_prioritization
+    organizational_integration_and_management_of_risk
   }
 
-enum GaiRiskCategoryEnum
+enum AiRmfMeasurementChallengeName
   {
-    CBRN_INFORMATION_OR_CAPABILITIES
-    CONFABULATION
-    DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
-    DATA_PRIVACY
-    ENVIRONMENTAL_IMPACTS
-    HARMFUL_BIAS_OR_HOMOGENIZATION
-    HUMAN_AI_CONFIGURATION
-    INFORMATION_INTEGRITY
-    INFORMATION_SECURITY
-    INTELLECTUAL_PROPERTY
-    OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT
-    VALUE_CHAIN_AND_COMPONENT_INTEGRATION
+    third_party_software_hardware_and_data
+    tracking_emergent_risks
+    availability_of_reliable_metrics
+    risk_at_different_lifecycle_stages
+    risk_in_real_world_settings
+    inscrutability
+    human_baseline
   }
 
-enum GaiRiskScopeEnum
+enum AiRmfProfileKind
   {
-    MODEL_OR_SYSTEM
-    APPLICATION_OR_IMPLEMENTATION
-    ECOSYSTEM
+    use_case
+    current
+    target
+    cross_sectoral
   }
 
-enum GaiRiskSourceEnum
+enum AiRmfRiskResponse
   {
-    DESIGN
-    TRAINING
-    OPERATION
-    MODEL_INPUTS
-    MODEL_OUTPUTS
-    HUMAN_BEHAVIOR
-    HUMAN_AI_INTERACTION
+    mitigating
+    transferring
+    avoiding
+    accepting
   }
 
-enum GaiRiskTimeScaleEnum
+enum GaiGovernancePlan
   {
-    IMMEDIATE
-    PROLONGED
+    accessibility_and_reasonable_accommodations
+    ai_actor_credentials_and_qualifications
+    alignment_to_organizational_values
+    auditing_and_assessment
+    change_management_controls
+    commercial_use
+    data_provenance
+    data_protection
+    data_retention
+    consistency_in_use_of_defining_key_terms
+    decommissioning
+    discouraging_anonymous_use
+    education
+    impact_assessments
+    incident_response
+    monitoring
+    opt_outs
+    risk_based_controls
+    risk_mapping_and_measurement
+    science_backed_tevv_practices
+    secure_software_development_practices
+    stakeholder_engagement
+    synthetic_content_detection_and_labeling_tools_and_techniques
+    whistleblower_protections
+    workforce_diversity_and_interdisciplinary_teams
   }
 
-enum GovernancePracticeEnum
+enum GaiIncidentHarm
   {
-    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS
-    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS
-    ALIGNMENT_TO_ORGANIZATIONAL_VALUES
-    AUDITING_AND_ASSESSMENT
-    CHANGE_MANAGEMENT_CONTROLS
-    COMMERCIAL_USE
-    DATA_PROVENANCE
-    DATA_PROTECTION
-    DATA_RETENTION
-    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS
-    DECOMMISSIONING
-    DISCOURAGING_ANONYMOUS_USE
-    EDUCATION
-    IMPACT_ASSESSMENTS
-    INCIDENT_RESPONSE
-    MONITORING
-    OPT_OUTS
-    RISK_BASED_CONTROLS
-    RISK_MAPPING_AND_MEASUREMENT
-    SCIENCE_BACKED_TEVV_PRACTICES
-    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES
-    STAKEHOLDER_ENGAGEMENT
-    SYNTHETIC_CONTENT_DETECTION_AND_LABELING
-    WHISTLEBLOWER_PROTECTIONS
-    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS
+    injury_or_harm_to_health
+    critical_infrastructure_disruption
+    rights_violations
+    harm_to_property_communities_or_environment
   }
 
-enum HarmCategoryEnum
+enum GaiLifecycleStage
   {
-    HARM_TO_PEOPLE
-    HARM_TO_AN_ORGANIZATION
-    HARM_TO_AN_ECOSYSTEM
+    design
+    development
+    deployment
+    operation
+    decommissioning
   }
 
-enum HarmToPeopleSubcategoryEnum
+enum GaiProvenanceTechnique
   {
-    INDIVIDUAL
-    GROUP_OR_COMMUNITY
-    SOCIETAL
+    digital_watermarking
+    metadata_recording
+    digital_fingerprinting
+    human_authentication
   }
 
-enum ImpactSignEnum
+enum GaiRedTeamingType
   {
-    POSITIVE
-    NEGATIVE
-    MIXED
+    general_public
+    expert
+    combination
+    human_ai
   }
 
-enum PrimaryConsiderationEnum
+enum GaiRiskGrouping
   {
-    GOVERNANCE
-    PRE_DEPLOYMENT_TESTING
-    CONTENT_PROVENANCE
-    INCIDENT_DISCLOSURE
+    technical_or_model
+    misuse_by_humans
+    ecosystem_or_societal
   }
 
-enum ProfileTypeEnum
+enum GaiRiskName
   {
-    USE_CASE
-    TEMPORAL_CURRENT
-    TEMPORAL_TARGET
-    CROSS_SECTORAL
+    cbrn_information_or_capabilities
+    confabulation
+    dangerous_violent_or_hateful_content
+    data_privacy
+    environmental_impacts
+    harmful_bias_or_homogenization
+    human_ai_configuration
+    information_integrity
+    information_security
+    intellectual_property
+    obscene_degrading_or_abusive_content
+    value_chain_and_component_integration
   }
 
-enum ProvenanceTechniqueEnum
+enum GaiRiskScope
   {
-    DIGITAL_WATERMARKING
-    METADATA_RECORDING
-    DIGITAL_FINGERPRINTING
-    HUMAN_AUTHENTICATION
+    model_or_system
+    application_or_implementation
+    ecosystem
   }
 
-enum RedTeamingTypeEnum
+enum GaiRiskSource
   {
-    GENERAL_PUBLIC
-    EXPERT
-    COMBINATION
-    HUMAN_AND_AI
+    design
+    training
+    operation
+    inputs
+    outputs
+    human_behavior
+    human_ai_interaction
   }
 
-enum RiskMeasurementChallengeEnum
+enum GaiRiskTimeScale
   {
-    THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA
-    TRACKING_EMERGENT_RISKS
-    AVAILABILITY_OF_RELIABLE_METRICS
-    RISK_AT_DIFFERENT_LIFECYCLE_STAGES
-    RISK_IN_REAL_WORLD_SETTINGS
-    INSCRUTABILITY
-    HUMAN_BASELINE
+    abrupt
+    extended
   }
 
-enum RiskResponseEnum
+enum GaiThirdPartyControl
   {
-    MITIGATING
-    TRANSFERRING
-    AVOIDING
-    ACCEPTING
+    acquisition_and_procurement_due_diligence
+    software_bills_of_materials
+    service_level_agreements
+    ssae_reports
   }
 
-enum StructuredFeedbackMethodEnum
+type AiRmfActor
   {
-    PARTICIPATORY_ENGAGEMENT_METHODS
-    FIELD_TESTING
-    AI_RED_TEAMING
-  }
-
-enum TrustworthinessCharacteristicEnum
-  {
-    VALID_AND_RELIABLE
-    SAFE
-    SECURE_AND_RESILIENT
-    ACCOUNTABLE_AND_TRANSPARENT
-    EXPLAINABLE_AND_INTERPRETABLE
-    PRIVACY_ENHANCED
-    FAIR_WITH_HARMFUL_BIAS_MANAGED
-  }
-
-type AiActor
-  {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    actorTask: [AiActorTaskEnum]
-    lifecycleStage: [AiLifecycleStageEnum]
-    isTevv: Boolean
-    audience: AudienceEnum
+    aiRmfActorTasks: [AiRmfActorTaskName]
+    aiRmfActorAudience: AiRmfAudience
+    aiRmfActorLifecycleStages: [AiRmfLifecycleStageName]
   }
 
-type AiActorTask
+type AiRmfActorTask
   {
-    id: String!
-    name: String
-    title: String
     description: String
-    seeAlso: [String]
-    taskKind: AiActorTaskEnum!
-    typicalActors: [String]
-    lifecycleStage: [AiLifecycleStageEnum]
-    aiDimension: [AiSystemDimensionEnum]
+    aiRmfActorTaskName: AiRmfActorTaskName!
+    aiRmfActorTaskIsAdditionalActor: Boolean
+    aiRmfActorTaskRepresentativeActors: [String]
   }
 
-type AiLifecycleStage
+type AiRmfAttribute
   {
-    id: String!
-    name: String
-    title: String
+    title: String!
     description: String
-    seeAlso: [String]
-    stageKind: AiLifecycleStageEnum!
-    includesTevv: Boolean
+    aiRmfAttributeNumber: Int!
   }
 
-type AiRedTeaming
+type AiRmfBias
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    redTeamType: RedTeamingTypeEnum
-    feedbackMethodKind: StructuredFeedbackMethodEnum!
+    aiRmfBiasCategories: [AiRmfBiasCategory]!
   }
 
-type AiRmfDocument
+type AiRmfCategory
   {
-    id: String!
-    name: String
-    title: String
+    aiRmfCategoryId: AiRmfCategoryIdentifier!
+    description: String!
+    aiRmfCategorySubcategories: [AiRmfSubcategory]
+  }
+
+type AiRmfDimension
+  {
     description: String
-    seeAlso: [String]
-    version: String
-    publisher: String
-    doi: String
-    publishedDate: String
-    source: String
+    aiRmfDimensionName: AiRmfDimensionName!
+    aiRmfDimensionAudience: AiRmfAudience!
+  }
+
+type AiRmfDocumentationItem
+  {
+    aiRmfDocumentationId: AiRmfDocumentationIdentifier!
+    description: String!
   }
 
 type AiRmfFramework
   {
-    id: String!
-    name: String
+    aiRmfVersion: String!
+    aiRmfFunctions: [AiRmfFunction]!
+    aiRmfCharacteristics: [AiRmfTrustworthinessCharacteristic]
+    aiRmfDimensions: [AiRmfDimension]
+    aiRmfLifecycleStages: [AiRmfLifecycleStage]
+    aiRmfActorTaskList: [AiRmfActorTask]
+    aiRmfManagementChallenges: [AiRmfManagementChallenge]
+    aiRmfSpecificRisks: [AiRmfSpecificRisk]
+    aiRmfHumanAiIssues: [AiRmfHumanAiIssue]
+    aiRmfAttributes: [AiRmfAttribute]
+  }
+
+type AiRmfFunction
+  {
+    aiRmfFunctionId: AiRmfFunctionIdentifier!
+    description: String
+    aiRmfFunctionCategories: [AiRmfCategory]
+  }
+
+type AiRmfHarm
+  {
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    document: AiRmfDocument
-    functions: [Function]
-    trustworthinessCharacteristics: [TrustworthinessCharacteristic]
-    lifecycleStages: [AiLifecycleStage]
-    dimensions: [AiSystemDimension]
-    actorTasks: [AiActorTask]
-    profiles: [AiRmfProfile]
-    attributes: [RmfAttribute]
-    riskMeasurementChallenges: [RiskMeasurementChallenge]
-    aiSpecificRisks: [AiSpecificRisk]
-    humanAiInteractionIssues: [HumanAiInteractionIssue]
+    aiRmfLikelihood: String
+    aiRmfMagnitude: String
+    aiRmfImpactDirection: AiRmfImpactDirection!
+    aiRmfImpactAffectedParties: [AiRmfAffectedParty]
+    aiRmfHarmCategory: AiRmfHarmCategory!
+    aiRmfHarmExample: AiRmfHarmExample
+  }
+
+type AiRmfHumanAiIssue
+  {
+    title: String!
+    description: String
+    aiRmfHumanAiIssueNumber: Int!
+  }
+
+type AiRmfImpact
+  {
+    aiRmfId: String!
+    title: String
+    description: String
+    aiRmfLikelihood: String
+    aiRmfMagnitude: String
+    aiRmfImpactDirection: AiRmfImpactDirection!
+    aiRmfImpactAffectedParties: [AiRmfAffectedParty]
+  }
+
+type AiRmfLifecycleStage
+  {
+    description: String
+    aiRmfLifecycleStageName: AiRmfLifecycleStageName!
+    aiRmfLifecycleStageDimension: AiRmfDimensionName!
+    aiRmfLifecycleStageTevv: String
+    aiRmfLifecycleStageRepresentativeActors: [String]
+  }
+
+type AiRmfManagementChallenge
+  {
+    description: String
+    aiRmfManagementChallengeName: AiRmfManagementChallengeName!
+    aiRmfManagementChallengeMeasurementChallenges: [AiRmfMeasurementChallenge]
+  }
+
+type AiRmfMeasurementChallenge
+  {
+    description: String
+    aiRmfMeasurementChallengeName: AiRmfMeasurementChallengeName!
   }
 
 type AiRmfProfile
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    profileType: ProfileTypeEnum!
-    currentState: String
-    targetState: String
-    sector: String
-    addresses: [Subcategory]
+    aiRmfProfileKinds: [AiRmfProfileKind]!
+    aiRmfProfileSetting: String
+    aiRmfProfileSubcategories: [AiRmfSubcategoryIdentifier]
   }
 
-type AiSpecificRisk
+interface AiRmfRecord
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
   }
 
-type AiSystem
+type AiRmfResidualRisk
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    lifecycleStage: [AiLifecycleStageEnum]
-    aiDimension: [AiSystemDimensionEnum]
+    aiRmfLikelihood: String
+    aiRmfMagnitude: String
+    aiRmfRiskSystem: AiRmfSystem
+    aiRmfRiskImpacts: [AiRmfImpact]
+    aiRmfRiskCharacteristics: [AiRmfCharacteristicName]
+    aiRmfRiskLifecycleStages: [AiRmfLifecycleStageName]
+    aiRmfRiskResponses: [AiRmfRiskResponse]
+    aiRmfRiskPriority: String
+    aiRmfRiskTolerance: AiRmfRiskTolerance
   }
 
-type AiSystemDimension
+type AiRmfResource
   {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    dimensionKind: AiSystemDimensionEnum!
+    title: String!
+    aiRmfResourceUuid: String!
+    aiRmfResourceAddress: String
   }
 
-type Bias
+type AiRmfRisk
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    biasCategory: [BiasCategoryEnum]
+    aiRmfLikelihood: String
+    aiRmfMagnitude: String
+    aiRmfRiskSystem: AiRmfSystem
+    aiRmfRiskImpacts: [AiRmfImpact]
+    aiRmfRiskCharacteristics: [AiRmfCharacteristicName]
+    aiRmfRiskLifecycleStages: [AiRmfLifecycleStageName]
+    aiRmfRiskResponses: [AiRmfRiskResponse]
+    aiRmfRiskPriority: String
+    aiRmfRiskTolerance: AiRmfRiskTolerance
   }
 
-type Category
+type AiRmfRiskTolerance
   {
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    categoryId: CategoryCode
-    outcome: String
-    subcategories: [Subcategory]
-    id: String!
+    aiRmfRiskToleranceHolder: AiRmfActor
+    aiRmfRiskToleranceInfluences: [String]
   }
 
-type Function
+type AiRmfSpecificRisk
   {
-    id: String!
-    name: String
+    title: String!
+    description: String
+    aiRmfSpecificRiskPosition: Int!
+  }
+
+type AiRmfSubcategory
+  {
+    aiRmfSubcategoryId: AiRmfSubcategoryIdentifier!
+    description: String!
+    aiRmfSubcategoryAbout: [String]
+    aiRmfSubcategorySuggestedActions: [AiRmfSuggestedAction]
+    aiRmfSubcategoryDocumentation: [AiRmfDocumentationItem]
+    aiRmfSubcategoryTransparencyResources: [AiRmfResource]
+    aiRmfSubcategoryReferences: [AiRmfResource]
+    aiRmfSubcategoryAiActors: [AiRmfActorTaskName]
+    aiRmfSubcategoryTopics: [String]
+  }
+
+type AiRmfSuggestedAction
+  {
+    aiRmfSuggestedActionId: AiRmfSuggestedActionIdentifier!
+    description: String!
+  }
+
+type AiRmfSystem
+  {
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    functionCode: FunctionCode!
-    categories: [Category]
+    aiRmfSystemIntendedPurposes: [String]
+    aiRmfSystemDeploymentSettings: [String]
+    aiRmfSystemLifecycleStages: [AiRmfLifecycleStageName]
+    aiRmfSystemActors: [AiRmfActor]
+  }
+
+type AiRmfTrustworthinessCharacteristic
+  {
+    description: String
+    aiRmfCharacteristicName: AiRmfCharacteristicName!
+    aiRmfCharacteristicSection: String!
+    aiRmfCharacteristicIsBase: Boolean
+    aiRmfCharacteristicRelatesToAll: Boolean
+  }
+
+type GaiAiRedTeaming
+  {
+    gaiFeedbackType: String!
+    title: String!
+    description: String
+    gaiRedTeamingTypes: [GaiRedTeamingType]
+  }
+
+type GaiContentProvenanceConsideration
+  {
+    gaiConsiderationType: String!
+    title: String!
+    description: String
+    gaiConsiderationSections: [String]
+    gaiProvenanceTechniques: [GaiProvenanceTechnique]
+  }
+
+type GaiFieldTesting
+  {
+    gaiFeedbackType: String!
+    title: String!
+    description: String
+  }
+
+type GaiGovernanceConsideration
+  {
+    gaiConsiderationType: String!
+    title: String!
+    description: String
+    gaiConsiderationSections: [String]
+    gaiGovernancePlans: [GaiGovernancePlan]
+    gaiThirdPartyControls: [GaiThirdPartyControl]
+  }
+
+type GaiIncidentDisclosureConsideration
+  {
+    gaiConsiderationType: String!
+    title: String!
+    description: String
+    gaiConsiderationSections: [String]
+    gaiIncidentHarms: [GaiIncidentHarm]
+  }
+
+type GaiParticipatoryEngagement
+  {
+    gaiFeedbackType: String!
+    title: String!
+    description: String
+  }
+
+type GaiPreDeploymentTestingConsideration
+  {
+    gaiConsiderationType: String!
+    title: String!
+    description: String
+    gaiConsiderationSections: [String]
+    gaiStructuredFeedback: [GaiStructuredFeedback]
+  }
+
+interface GaiPrimaryConsideration
+  {
+    gaiConsiderationType: String!
+    title: String!
+    description: String
+    gaiConsiderationSections: [String]
   }
 
 type GaiProfile
   {
-    id: String!
-    name: String
+    aiRmfId: String!
     title: String
     description: String
-    seeAlso: [String]
-    gaiRiskCatalog: [GaiRisk]
-    suggestedActions: [SuggestedAction]
-    primaryConsiderations: [PrimaryGaiConsideration]
-    structuredFeedbackMethods: [StructuredPublicFeedback]
+    aiRmfProfileKinds: [AiRmfProfileKind]!
+    aiRmfProfileSetting: String
+    aiRmfProfileSubcategories: [AiRmfSubcategoryIdentifier]
+    gaiRisks: [GaiRisk]!
+    gaiSubcategories: [GaiSubcategory]!
+    gaiPrimaryConsiderations: [GaiPrimaryConsideration]
   }
 
 type GaiRisk
   {
-    id: String!
-    name: String
-    title: String
     description: String
-    seeAlso: [String]
-    gaiRiskKind: GaiRiskCategoryEnum
-    riskCategorization: GaiRiskCategorizationEnum
-    riskScope: [GaiRiskScopeEnum]
-    riskSources: [GaiRiskSourceEnum]
-    timeScale: [GaiRiskTimeScaleEnum]
-    trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
-    addressedByActions: [SuggestedAction]
-    lifecycleStage: [GaiLifecycleStageEnum]
+    gaiRiskName: GaiRiskName!
+    gaiRiskSection: String!
+    gaiRiskCharacteristics: [AiRmfCharacteristicName]
+    gaiRiskGroupings: [GaiRiskGrouping]
+    gaiRiskLifecycleStages: [GaiLifecycleStage]
+    gaiRiskScopes: [GaiRiskScope]
+    gaiRiskSources: [GaiRiskSource]
+    gaiRiskTimeScales: [GaiRiskTimeScale]
   }
 
-type Harm
+interface GaiStructuredFeedback
   {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    harmCategory: HarmCategoryEnum
-    harmToPeopleSubcategory: HarmToPeopleSubcategoryEnum
-    magnitude: String
-    affects: [NamedThing]
-  }
-
-type HumanAiInteractionIssue
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-  }
-
-type Impact
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    impactSign: ImpactSignEnum
-    magnitude: String
-    likelihood: Float
-    affects: [NamedThing]
-  }
-
-interface NamedThing
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-  }
-
-type PlaybookCollection
-  {
-    entries: [PlaybookEntry]
-  }
-
-type PlaybookEntry
-  {
-    type: String
-    title: String
-    category: String
-    description: String
-    sectionAbout: String
-    sectionActions: String
-    sectionDoc: String
-    sectionRef: String
-    aiActors: [String]
-    topic: [String]
-  }
-
-type PrimaryGaiConsideration
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    considerationKind: PrimaryConsiderationEnum!
-    governancePractices: [GovernancePracticeEnum]
-    thirdPartyConsiderations: String
-    limitationsOfCurrentApproaches: String
-    provenanceTechniques: [ProvenanceTechniqueEnum]
-    aiIncidentDefinition: String
-  }
-
-type ResidualRisk
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    likelihood: Float
-    magnitude: String
-    impactSign: ImpactSignEnum
-    riskResponse: RiskResponseEnum
-    lifecycleStage: [AiLifecycleStageEnum]
-    trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
-    relatedImpacts: [Impact]
-    affectsSystem: AiSystem
-    isResidual: Boolean
-  }
-
-type Risk
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    likelihood: Float
-    magnitude: String
-    impactSign: ImpactSignEnum
-    isResidual: Boolean
-    riskResponse: RiskResponseEnum
-    lifecycleStage: [AiLifecycleStageEnum]
-    trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
-    relatedImpacts: [Impact]
-    affectsSystem: AiSystem
-  }
-
-type RiskMeasurementChallenge
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    challengeKind: RiskMeasurementChallengeEnum!
-  }
-
-type RiskTolerance
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    toleranceStatement: String
-    legalBasis: String
-  }
-
-type RmfAttribute
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-  }
-
-type StructuredPublicFeedback
-  {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    feedbackMethodKind: StructuredFeedbackMethodEnum!
-  }
-
-type Subcategory
-  {
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    subcategoryId: SubcategoryCode
-    outcome: String
-    trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
-    lifecycleStage: [AiLifecycleStageEnum]
-    aboutText: String
-    suggestedActionsText: String
-    documentationQuestions: String
-    referencesText: String
-    topics: [String]
-    aiActorCategories: [String]
-    id: String!
-  }
-
-type SuggestedAction
-  {
-    name: String
-    title: String
-    seeAlso: [String]
-    actionId: GaiActionId!
-    functionPrefix: GaiActionFunctionPrefixEnum
-    appliesToSubcategory: SubcategoryCode
-    gaiRisks: [GaiRiskCategoryEnum]
-    actorTask: [GaiActorTaskEnum]
-    id: String!
+    gaiFeedbackType: String!
+    title: String!
     description: String
   }
 
-type TrustworthinessCharacteristic
+type GaiSubcategory
   {
-    id: String!
-    name: String
-    title: String
-    description: String
-    seeAlso: [String]
-    characteristicKind: TrustworthinessCharacteristicEnum!
-    isBaseCondition: Boolean
-    isCrossCutting: Boolean
+    aiRmfSubcategoryId: AiRmfSubcategoryIdentifier!
+    description: String!
+    gaiSubcategoryActions: [GaiSuggestedAction]!
+    gaiSubcategoryActorTasks: [AiRmfActorTaskName]
+  }
+
+type GaiSuggestedAction
+  {
+    gaiActionId: GaiActionIdentifier!
+    description: String!
+    gaiActionRisks: [GaiRiskName]
+  }
+
+type NistAiRmfFamily
+  {
+    nistAiRmfFramework: AiRmfFramework
+    nistAiRmfGenerativeAiProfile: GaiProfile
   }

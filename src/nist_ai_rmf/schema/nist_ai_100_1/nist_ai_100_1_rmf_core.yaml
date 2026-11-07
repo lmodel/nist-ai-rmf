@@ -1,0 +1,215 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_rmf_core
+name: nist_ai_100_1_rmf_core
+title: The AI RMF Core and its Playbook material
+description: >-
+  The Core of section 5: four functions, their categories and their subcategories, with the
+  suggested actions, discussion, documentation prompts and resources that the NIST AI RMF
+  Playbook gives each subcategory.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-100-1
+  - https://airc.nist.gov/airmf-resources/playbook/
+comments:
+  - >-
+    The publication states each category and subcategory. NIST's OSCAL catalog restates them
+    with some differences and adds each function's one-sentence overview and the Playbook's
+    material. The Playbook's own file adds the AI actor and topic tags, which the catalog
+    leaves out. tests/test_upstream.py lists each difference.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_csf_v2: https://w3id.org/lmodel/nist-csf-v2/
+  oscal: https://w3id.org/lmodel/oscal/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1_base
+
+types:
+  ai_rmf_suggested_action_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: >-
+      The identifier NIST's catalog gives a Playbook suggested action, such as SA-GOVERN_1.1-1.
+      Each further number, as in SA-GOVERN_1.4-1.2, marks a sub-item.
+    pattern: "^SA-(GOVERN|MAP|MEASURE|MANAGE)_[1-6]\\.[1-9][0-9]?-[1-9][0-9]?(\\.[1-9][0-9]?)*$"
+
+  ai_rmf_documentation_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: The identifier NIST's catalog gives a Playbook documentation prompt, such as D-GOVERN_1.1-1.
+    pattern: "^D-(GOVERN|MAP|MEASURE|MANAGE)_[1-6]\\.[1-9][0-9]?-[1-9][0-9]?$"
+
+slots:
+  ai_rmf_function_id:
+    description: The function's name, such as GOVERN.
+    range: ai_rmf_function_identifier
+    required: true
+
+  ai_rmf_category_id:
+    description: The category's identifier, such as GOVERN 1.
+    range: ai_rmf_category_identifier
+    required: true
+
+  ai_rmf_suggested_action_id:
+    description: The suggested action's identifier, such as SA-GOVERN_1.1-1.
+    range: ai_rmf_suggested_action_identifier
+    required: true
+
+  ai_rmf_documentation_id:
+    description: The documentation prompt's identifier, such as D-GOVERN_1.1-1.
+    range: ai_rmf_documentation_identifier
+    required: true
+
+classes:
+  AiRmfFunction:
+    class_uri: nist_ai_100_1:Function
+    description: >-
+      One of the four functions that organize AI risk management at the highest level. GOVERN
+      cuts across the other three.
+    broad_mappings:
+      - oscal:Group
+    related_mappings:
+      - nist_csf_v2:Function
+    slots:
+      - ai_rmf_function_id
+      - description
+    slot_usage:
+      description:
+        description: The one-sentence overview in NIST's catalog. The publication gives each function a section of its own instead.
+    attributes:
+      ai_rmf_function_categories:
+        description: The categories of the function. A knowledge bundle relates a category to its function with isPartOf instead.
+        range: AiRmfCategory
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+  AiRmfCategory:
+    class_uri: nist_ai_100_1:Category
+    description: A group of related outcomes within a function, such as GOVERN 1, which Tables 1 to 4 state.
+    broad_mappings:
+      - oscal:Control
+    related_mappings:
+      - nist_csf_v2:Category
+    slots:
+      - ai_rmf_category_id
+      - description
+    slot_usage:
+      description:
+        description: The category's statement in the publication.
+        required: true
+        pattern: "^\\s*\\S"
+    attributes:
+      ai_rmf_category_subcategories:
+        description: The subcategories of the category. A knowledge bundle relates a subcategory to its category with isPartOf instead.
+        range: AiRmfSubcategory
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+
+  AiRmfSubcategory:
+    class_uri: nist_ai_100_1:Subcategory
+    description: A specific outcome within a category, such as GOVERN 1.1, which Tables 1 to 4 state, and its Playbook material.
+    comments:
+      - Everything but the identifier and the statement comes from the Playbook, a companion NIST updates apart from the publication.
+    broad_mappings:
+      - oscal:Control
+    related_mappings:
+      - nist_csf_v2:Subcategory
+    slots:
+      - ai_rmf_subcategory_id
+      - description
+    slot_usage:
+      description:
+        description: The subcategory's statement in the publication.
+        required: true
+        pattern: "^\\s*\\S"
+    attributes:
+      ai_rmf_subcategory_about:
+        description: The Playbook's discussion of the outcome.
+        multivalued: true
+      ai_rmf_subcategory_suggested_actions:
+        description: The steps the Playbook suggests towards the outcome. They are voluntary and are not a checklist.
+        range: AiRmfSuggestedAction
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_subcategory_documentation:
+        description: What the Playbook suggests an organization document, mostly as questions.
+        range: AiRmfDocumentationItem
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_subcategory_transparency_resources:
+        description: The sources the Playbook names as AI transparency resources.
+        range: AiRmfResource
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_subcategory_references:
+        description: The Playbook's references for the outcome.
+        range: AiRmfResource
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+      ai_rmf_subcategory_ai_actors:
+        description: The AI actors the Playbook tags the outcome with.
+        range: AiRmfActorTaskName
+        multivalued: true
+      ai_rmf_subcategory_topics:
+        description: The topics the Playbook tags the outcome with. NIST keeps no closed list of them.
+        multivalued: true
+
+  AiRmfSuggestedAction:
+    class_uri: nist_ai_100_1:SuggestedAction
+    description: One step the Playbook suggests towards a subcategory's outcome.
+    broad_mappings:
+      - oscal:Part
+    slots:
+      - ai_rmf_suggested_action_id
+      - description
+    slot_usage:
+      description:
+        required: true
+        pattern: "^\\s*\\S"
+
+  AiRmfDocumentationItem:
+    class_uri: nist_ai_100_1:DocumentationItem
+    description: One thing the Playbook suggests an organization document for a subcategory.
+    broad_mappings:
+      - oscal:Part
+    slots:
+      - ai_rmf_documentation_id
+      - description
+    slot_usage:
+      description:
+        required: true
+        pattern: "^\\s*\\S"
+
+  AiRmfResource:
+    class_uri: nist_ai_100_1:Resource
+    description: A source the Playbook points to, by the title and address NIST's catalog gives it.
+    broad_mappings:
+      - oscal:Resource
+    slots:
+      - title
+    slot_usage:
+      title:
+        required: true
+    attributes:
+      ai_rmf_resource_uuid:
+        description: The UUID of the resource in the back matter of NIST's catalog.
+        required: true
+        pattern: "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+      ai_rmf_resource_address:
+        description: The address NIST's catalog gives the source. The catalog gives none for a few.
+        range: uri

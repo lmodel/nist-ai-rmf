@@ -1,43 +1,67 @@
 ---
 id: https://w3id.org/lmodel/nist-ai-rmf
-name: nist-ai-rmf
-title: NIST AI Risk Management Framework
-description: |-
-  Merged LinkML schema for the NIST AI Risk Management Framework family.
-
-  Imports:
-    * `nist_ai_100_1` - AI RMF 1.0 (NIST AI 100-1) foundational
-      concepts, Core Functions / Categories / Subcategories,
-      Profiles, design attributes, and the AI RMF Playbook
-      companion data shape.
-    * `nist_ai_600_1` - GAI Profile (NIST AI 600-1): 12 GAI
-      risks, Suggested Actions, Primary GAI Considerations, and
-      Structured Public Feedback methods.
-
-  Most consumers should import this umbrella to get the entire
-  framework via a single namespace (`nist_ai_rmf:`). Two tree-root
-  classes are exposed by the imports - `AiRmfFramework` from the
-  core module and `GaiProfile` from the GAI module - so callers
-  must pass `--target-class` when validating.
-license: Apache-2.0
+name: nist_ai_rmf
+title: NIST AI Risk Management Framework family
+description: >-
+  One LinkML schema for two NIST publications: the AI Risk Management Framework 1.0 (NIST AI
+  100-1) and its Generative AI Profile (NIST AI 600-1).
 version: 1.0.0
+source: https://www.nist.gov/itl/ai-risk-management-framework
+license: Apache-2.0
 see_also:
+  - https://lmodel.github.io/nist-ai-rmf
   - https://w3id.org/lmodel/nist-ai-100-1
-  - https://doi.org/10.6028/NIST.AI.100-1
   - https://w3id.org/lmodel/nist-ai-600-1
-  - https://doi.org/10.6028/NIST.AI.600-1
-  - https://www.nist.gov/itl/ai-risk-management-framework
-
+comments:
+  - >-
+    The version is the 1.0.0 both publications carry, and source is NIST's page for the framework.
+    The release tags are the schema's own versions.
+  - >-
+    Every module of lmodel/nist-ai-100-1 and lmodel/nist-ai-600-1 is vendored in this folder as
+    released, so the schema needs no network, and tests/test_upstream.py holds them to their
+    hashes. Each element keeps the IRI of its publication, and this schema adds only the class
+    below.
+  - >-
+    The AI RMF to ISO/IEC 42001 crosswalk pairs records, not schema elements, so it is no mapping
+    of this schema. scripts/build_crosswalk.py writes it as SSSOM under tmp/, and the repository
+    carries neither it nor its PDF, which states no licence.
 prefixes:
-  nist_ai_rmf: https://w3id.org/lmodel/nist-ai-rmf/
-  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
-  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
   linkml: https://w3id.org/linkml/
-
+  nist_ai_rmf: https://w3id.org/lmodel/nist-ai-rmf/
 default_prefix: nist_ai_rmf
 default_range: string
 
 imports:
   - linkml:types
-  - nist_ai_100_1:schema/nist_ai_100_1
-  - nist_ai_600_1:schema/nist_ai_600_1
+  - ./nist_ai_100_1/nist_ai_100_1
+  - ./nist_ai_600_1
+
+classes:
+  NistAiRmfFamily:
+    tree_root: true
+    description: The two publications held in one document, each as its own schema renders it.
+    comments:
+      - >-
+        Each publication's root stays a root, so a file that holds one publication alone validates
+        against AiRmfFramework or GaiProfile. The JSON Schema's top level is this class, and it
+        refuses a document that holds neither.
+    any_of:
+      - slot_conditions:
+          nist_ai_rmf_framework:
+            required: true
+      - slot_conditions:
+          nist_ai_rmf_generative_ai_profile:
+            required: true
+    attributes:
+      nist_ai_rmf_framework:
+        description: The AI RMF, as lmodel/nist-ai-100-1 renders it.
+        see_also:
+          - https://doi.org/10.6028/NIST.AI.100-1
+        range: AiRmfFramework
+        inlined: true
+      nist_ai_rmf_generative_ai_profile:
+        description: The Generative AI Profile, as lmodel/nist-ai-600-1 renders it.
+        see_also:
+          - https://doi.org/10.6028/NIST.AI.600-1
+        range: GaiProfile
+        inlined: true

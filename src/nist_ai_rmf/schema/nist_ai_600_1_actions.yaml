@@ -1,0 +1,94 @@
+---
+id: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+name: nist_ai_600_1_actions
+title: The suggested actions of NIST AI 600-1
+description: >-
+  The tables of section 3 of NIST AI 600-1: each begins with an AI RMF subcategory, lists suggested
+  actions with the risks each addresses, and ends with the pertinent AI actor tasks.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.600-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-600-1
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
+  oscal: https://w3id.org/lmodel/oscal/
+  stix: https://w3id.org/lmodel/stix/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: nist_ai_600_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1/nist_ai_100_1_base
+  - ./nist_ai_600_1_risks
+
+types:
+  gai_action_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: >-
+      An Action ID: the function's two letters, its subcategory's numbers and a three-digit number,
+      such as GV-1.1-001 for the first action of GOVERN 1.1.
+    pattern: "^(GV-[1-6]|MP-[1-5]|MS-[1-4]|MG-[1-4])\\.[1-9][0-9]?-[0-9]{3}$"
+
+slots:
+  gai_action_id:
+    description: The action's identifier, such as GV-1.1-001.
+    range: gai_action_identifier
+    required: true
+
+classes:
+  GaiSubcategory:
+    class_uri: nist_ai_600_1:Subcategory
+    description: An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
+    related_mappings:
+      - nist_ai_100_1:Subcategory
+    slots:
+      - ai_rmf_subcategory_id
+      - description
+    slot_usage:
+      description:
+        description: The subcategory's statement as the table restates it.
+        required: true
+        pattern: "^\\s*\\S"
+    attributes:
+      gai_subcategory_actions:
+        description: The suggested actions the table lists.
+        range: GaiSuggestedAction
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+        inlined: true
+        inlined_as_list: true
+      gai_subcategory_actor_tasks:
+        description: >-
+          The AI actor tasks the table names. They belong to the table and not to one action: the
+          publication says not every task applies to every action.
+        range: AiRmfActorTaskName
+        multivalued: true
+
+  GaiSuggestedAction:
+    class_uri: nist_ai_600_1:SuggestedAction
+    description: A step an organization or AI actor can take to manage GAI risks, which one row of a table states.
+    broad_mappings:
+      - oscal:Part
+    related_mappings:
+      - nist_ai_100_1:SuggestedAction
+      - stix:StixCourseOfAction
+    slots:
+      - gai_action_id
+      - description
+    slot_usage:
+      description:
+        description: The action's text in the table.
+        required: true
+        pattern: "^\\s*\\S"
+    attributes:
+      gai_action_risks:
+        description: The GAI risks the row tags the action with.
+        range: GaiRiskName
+        multivalued: true

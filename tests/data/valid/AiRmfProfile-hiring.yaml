@@ -1,0 +1,5 @@
+ai_rmf_id: https://example.org/profiles/hiring
+ai_rmf_profile_kinds:
+  - use_case
+ai_rmf_profile_subcategories:
+  - GOVERN 1.1

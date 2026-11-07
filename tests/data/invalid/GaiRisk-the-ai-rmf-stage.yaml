@@ -1,0 +1,5 @@
+# Fails at: /gai_risk_lifecycle_stages/0
+gai_risk_name: confabulation
+gai_risk_section: '2.2'
+gai_risk_lifecycle_stages:
+  - operate_and_monitor

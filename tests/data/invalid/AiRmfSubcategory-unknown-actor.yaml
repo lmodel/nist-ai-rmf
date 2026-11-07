@@ -1,0 +1,5 @@
+# Fails at: /ai_rmf_subcategory_ai_actors/0
+ai_rmf_subcategory_id: GOVERN 4.3
+description: Organizational practices are in place to enable AI testing.
+ai_rmf_subcategory_ai_actors:
+  - Fairness and Bias

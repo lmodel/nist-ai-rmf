@@ -1,0 +1,206 @@
+---
+id: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+name: nist_ai_600_1_risks
+title: The risks of NIST AI 600-1
+description: >-
+  The 12 risks that section 2 of NIST AI 600-1 defines as unique to or made worse by Generative
+  AI (GAI), and the dimensions along which they vary.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.600-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-600-1
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
+default_prefix: nist_ai_600_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1/nist_ai_100_1_base
+
+classes:
+  GaiRisk:
+    class_uri: nist_ai_600_1:Risk
+    description: A risk that section 2 defines as unique to or made worse by the development and use of GAI.
+    comments:
+      - >-
+        The publication gives a risk its section, its definition, its trustworthiness
+        characteristics and, in a footnote, its groupings. It assigns no lifecycle stage, scope,
+        source or time scale to a risk, since those depend on the model, system or use case. An
+        adopter fills them in.
+    related_mappings:
+      - nist_ai_100_1:Risk
+    slots:
+      - description
+    slot_usage:
+      description:
+        description: The risk's definition in section 2.
+    attributes:
+      gai_risk_name:
+        description: Which of the 12 risks this is.
+        range: GaiRiskName
+        required: true
+      gai_risk_section:
+        description: The subsection of section 2 that discusses the risk, such as 2.1.
+        pattern: "^2\\.([1-9]|1[0-2])$"
+        required: true
+      gai_risk_characteristics:
+        description: The AI RMF's trustworthiness characteristics that the subsection names for the risk.
+        range: AiRmfCharacteristicName
+        multivalued: true
+      gai_risk_groupings:
+        description: The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three.
+        range: GaiRiskGrouping
+        multivalued: true
+      gai_risk_lifecycle_stages:
+        description: The lifecycle stages where the risk can arise for the adopter's model, system or use case.
+        range: GaiLifecycleStage
+        multivalued: true
+      gai_risk_scopes:
+        description: The levels where the risk exists for the adopter's model, system or use case.
+        range: GaiRiskScope
+        multivalued: true
+      gai_risk_sources:
+        description: Where the risk comes from for the adopter's model, system or use case.
+        range: GaiRiskSource
+        multivalued: true
+      gai_risk_time_scales:
+        description: How the risk materializes over time for the adopter's model, system or use case.
+        range: GaiRiskTimeScale
+        multivalued: true
+
+enums:
+  GaiRiskName:
+    description: The 12 risks of section 2.
+    comments:
+      - >-
+        The tables of section 3 tag actions with these risks, in slightly different spellings
+        from the definitions in section 2. Each alias is a spelling the tables use.
+    permissible_values:
+      cbrn_information_or_capabilities:
+        title: CBRN Information or Capabilities
+        aliases:
+          - CBRN Information and Capability
+        description: Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons.
+      confabulation:
+        title: Confabulation
+        description: Confident but wrong output that can mislead users.
+      dangerous_violent_or_hateful_content:
+        title: Dangerous, Violent, or Hateful Content
+        description: Easier production of content that incites or threatens, recommends harm, or disparages.
+      data_privacy:
+        title: Data Privacy
+        description: Leaks, misuse or de-anonymization of personal or sensitive data.
+      environmental_impacts:
+        title: Environmental Impacts
+        aliases:
+          - Environmental
+        description: Effects on ecosystems from the heavy computing that training and operating models need.
+      harmful_bias_or_homogenization:
+        title: Harmful Bias or Homogenization
+        aliases:
+          - Harmful Bias and Homogenization
+        description: Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness.
+      human_ai_configuration:
+        title: Human-AI Configuration
+        aliases:
+          - Human AI Configuration
+        description: Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it.
+      information_integrity:
+        title: Information Integrity
+        description: Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns.
+      information_security:
+        title: Information Security
+        description: Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights.
+      intellectual_property:
+        title: Intellectual Property
+        description: Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism.
+      obscene_degrading_or_abusive_content:
+        title: Obscene, Degrading, and/or Abusive Content
+        description: Easier production of harmful imagery, including synthetic abuse material and intimate images without consent.
+      value_chain_and_component_integration:
+        title: Value Chain and Component Integration
+        description: Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream.
+
+  GaiRiskGrouping:
+    description: The three groups into which footnote 5 says an organization could sort the risks, as one possible way.
+    permissible_values:
+      technical_or_model:
+        title: Technical / Model risks
+        description: Risks from malfunction.
+      misuse_by_humans:
+        title: Misuse by humans
+        description: Risks from malicious use.
+      ecosystem_or_societal:
+        title: Ecosystem / societal risks
+        description: Systemic risks.
+
+  GaiLifecycleStage:
+    description: The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.
+    permissible_values:
+      design:
+        title: Design
+        description: Setting out the system before it is built.
+      development:
+        title: Development
+        description: Building and training it.
+      deployment:
+        title: Deployment
+        description: Putting it into use.
+      operation:
+        title: Operation
+        description: Running it.
+      decommissioning:
+        title: Decommissioning
+        description: Retiring it.
+
+  GaiRiskScope:
+    description: The levels where section 2 says a risk may exist.
+    permissible_values:
+      model_or_system:
+        title: Model or system
+        description: The level of one model or system.
+      application_or_implementation:
+        title: Application or implementation
+        description: The level of one specific use case.
+      ecosystem:
+        title: Ecosystem
+        description: Beyond one system or organization, such as algorithmic monocultures or effects on labor markets.
+
+  GaiRiskSource:
+    description: Where section 2 says a risk may come from.
+    permissible_values:
+      design:
+        title: Design
+        description: The design of the model itself.
+      training:
+        title: Training
+        description: The training of the model.
+      operation:
+        title: Operation
+        description: The operation of the model.
+      inputs:
+        title: Inputs
+        description: What goes into the model or system.
+      outputs:
+        title: Outputs
+        description: What the system produces.
+      human_behavior:
+        title: Human behavior
+        description: Abuse, misuse or unsafe repurposing by people, whether adversarial or not.
+      human_ai_interaction:
+        title: Human-AI interaction
+        description: How a person and a system act on each other.
+
+  GaiRiskTimeScale:
+    description: How section 2 says a risk may materialize over time.
+    permissible_values:
+      abrupt:
+        title: Abruptly
+        description: All at once, such as immediate emotional harm from a harmful deepfake image.
+      extended:
+        title: Across extended periods
+        description: Slowly, such as the long-term effect of disinformation on trust in institutions.

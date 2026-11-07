@@ -1,0 +1,7 @@
+ai_rmf_id: https://example.org/actors/operations
+title: Operations team
+ai_rmf_actor_tasks:
+  - operation_and_monitoring
+ai_rmf_actor_audience: primary
+ai_rmf_actor_lifecycle_stages:
+  - operate_and_monitor

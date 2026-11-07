@@ -1,0 +1,6 @@
+# Fails at: /gai_structured_feedback/0
+gai_consideration_type: GaiPreDeploymentTestingConsideration
+title: Pre-Deployment Testing
+gai_structured_feedback:
+  - gai_feedback_type: GaiSurvey
+    title: Survey

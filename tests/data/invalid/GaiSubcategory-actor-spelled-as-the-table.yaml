@@ -1,0 +1,8 @@
+# Fails at: /gai_subcategory_actor_tasks/0
+ai_rmf_subcategory_id: GOVERN 1.1
+description: A statement.
+gai_subcategory_actions:
+  - gai_action_id: GV-1.1-001
+    description: An action.
+gai_subcategory_actor_tasks:
+  - Governance and Oversight

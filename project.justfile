@@ -4,29 +4,30 @@
 # name in this file is not possible until a known issue in just is fixed,
 # https://github.com/casey/just/issues/2540
 
-# ============================================================================
-# nist-ai-rmf is an *umbrella* schema.
-#
-# The only file shipped under ``src/nist_ai_rmf/schema/`` is
-# ``nist_ai_rmf.yaml``. It imports the ``nist_ai_100_1`` (AI RMF 1.0)
-# and ``nist_ai_600_1`` (GAI Profile) schemas remotely from their
-# own ``lmodel`` repositories - they are NOT bundled here. Anything
-# specific to those sub-schemas (per-element examples, SSSOM mapping
-# tables, Playbook validation, dedicated Pydantic generation, ...)
-# lives in the upstream repository and is tested there.
-#
-# Consequently this project.justfile is intentionally minimal: the
-# root justfile already covers generation, linting, and testing of
-# the single umbrella schema. The stub recipes below exist only so
-# the post-dependency hooks declared in the root justfile resolve
-# cleanly.
-# ============================================================================
+# ============ The crosswalk ============
 
-# Root justfile declares ``gen-project: && gen-extra-schemas`` - we have
-# no extra schemas to generate, so this is a no-op for nist-ai-rmf.
+# Write the AI RMF to ISO/IEC 42001 crosswalk under tmp/mappings/ from its provider's PDF
 [group('model development')]
-gen-extra-schemas:
+build-crosswalk:
+  uv run python scripts/build_crosswalk.py
 
-# Root justfile declares ``_test-examples: ... && _test-examples-extra`` -
-# nist-ai-rmf has no extra example sets to run.
-_test-examples-extra:
+# ============ Knowledge bundle: the adapted domain schema ============
+
+# `.lokf/nist-ai-rmf.yaml` is the copy `lokf adapt` writes from the schema so that it
+# can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the moves). The roots are
+# the classes a knowledge concept may use as its `type`: those lmodel/nist-ai-100-1 and
+# lmodel/nist-ai-600-1 each root. The recipes run the `lokf` the sidecar's floor pins
+# (0.9.0 or later); LOKF_CMD runs another, such as a checkout:
+# LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root AiRmfFunction --root AiRmfCategory --root AiRmfSubcategory --root AiRmfTrustworthinessCharacteristic --root AiRmfDimension --root AiRmfLifecycleStage --root AiRmfActorTask --root AiRmfManagementChallenge --root AiRmfMeasurementChallenge --root AiRmfSpecificRisk --root AiRmfHumanAiIssue --root AiRmfAttribute --root AiRmfRecord --root GaiRisk --root GaiSubcategory --root GaiPrimaryConsideration --root GaiStructuredFeedback"
+
+# Rewrite .lokf/nist-ai-rmf.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/nist-ai-rmf.yaml
+
+# Fail when .lokf/nist-ai-rmf.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/nist-ai-rmf.yaml --check

@@ -1,518 +1,82 @@
 {
     "$defs": {
-        "AiActor": {
+        "AiRmfActor": {
             "additionalProperties": false,
-            "description": "An organization or individual that plays an active role in the AI\nsystem lifecycle. AI actors include those who deploy or operate\nAI as well as those who inform via formal or quasi-formal norms\nand guidance (OECD 2019).",
+            "description": "An organization or individual with an active role in an AI system's lifecycle.",
             "properties": {
-                "actor_task": {
-                    "description": "AI actor task category.",
-                    "items": {
-                        "$ref": "#/$defs/AiActorTaskEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "audience": {
-                    "$ref": "#/$defs/AudienceEnum",
-                    "description": "Whether the actor is part of the *primary* AI RMF audience or the\n*informing* People-and-Planet audience."
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "is_tevv": {
-                    "description": "Whether the actor or task is a Test, Evaluation, Verification, and\nValidation (TEVV) actor / task.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "AiActor",
-            "type": "object"
-        },
-        "AiActorTask": {
-            "additionalProperties": false,
-            "description": "A category of task performed by AI actors (Appendix A). Each\ntask is associated with one or more lifecycle stages and a\ntypical set of actor roles.",
-            "properties": {
-                "ai_dimension": {
-                    "description": "The AI system dimension the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiSystemDimensionEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "task_kind": {
-                    "$ref": "#/$defs/AiActorTaskEnum",
-                    "description": "Which AI actor task category an `AiActorTask` instance represents."
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "typical_actors": {
-                    "description": "Representative actor roles that perform an AI actor task.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "task_kind",
-                "id"
-            ],
-            "title": "AiActorTask",
-            "type": "object"
-        },
-        "AiActorTaskEnum": {
-            "description": "Categories of AI actor tasks as described in Appendix A and\nillustrated in Figure 3.",
-            "enum": [
-                "AI_DESIGN",
-                "AI_DEVELOPMENT",
-                "AI_DEPLOYMENT",
-                "OPERATION_AND_MONITORING",
-                "TEVV",
-                "HUMAN_FACTORS",
-                "DOMAIN_EXPERT",
-                "AI_IMPACT_ASSESSMENT",
-                "PROCUREMENT",
-                "GOVERNANCE_AND_OVERSIGHT",
-                "THIRD_PARTY_ENTITIES",
-                "END_USERS",
-                "AFFECTED_INDIVIDUALS_OR_COMMUNITIES",
-                "OTHER_AI_ACTORS",
-                "GENERAL_PUBLIC"
-            ],
-            "title": "AiActorTaskEnum",
-            "type": "string"
-        },
-        "AiLifecycleStage": {
-            "additionalProperties": false,
-            "description": "A stage of the AI lifecycle (Figure 2): Plan and Design,\nCollect and Process Data, Build and Use Model, Verify and\nValidate, Deploy and Use, or Operate and Monitor.",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "includes_tevv": {
-                    "description": "Whether the lifecycle stage incorporates TEVV activities.",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "stage_kind": {
-                    "$ref": "#/$defs/AiLifecycleStageEnum",
-                    "description": "Which AI lifecycle stage an `AiLifecycleStage` instance represents."
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "stage_kind",
-                "id"
-            ],
-            "title": "AiLifecycleStage",
-            "type": "object"
-        },
-        "AiLifecycleStageEnum": {
-            "description": "AI lifecycle stages as defined in Figure 2 (modified from\nOECD 2022). Each stage corresponds to one of the AI system\ndimensions (see AiSystemDimensionEnum).",
-            "enum": [
-                "PLAN_AND_DESIGN",
-                "COLLECT_AND_PROCESS_DATA",
-                "BUILD_AND_USE_MODEL",
-                "VERIFY_AND_VALIDATE",
-                "DEPLOY_AND_USE",
-                "OPERATE_AND_MONITOR"
-            ],
-            "title": "AiLifecycleStageEnum",
-            "type": "string"
-        },
-        "AiRedTeaming": {
-            "additionalProperties": false,
-            "description": "A structured testing exercise used to probe an AI system to\nfind flaws and vulnerabilities such as inaccurate, harmful, or\ndiscriminatory outputs, often in a controlled environment and\nin collaboration with system developers (A.1.5).",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "feedback_method_kind": {
-                    "$ref": "#/$defs/StructuredFeedbackMethodEnum",
-                    "description": "Which structured feedback method this element represents."
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "red_team_type": {
-                    "$ref": "#/$defs/RedTeamingTypeEnum",
-                    "description": "The type of AI red-teaming exercise."
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "feedback_method_kind",
-                "id"
-            ],
-            "title": "AiRedTeaming",
-            "type": "object"
-        },
-        "AiRmfDocument": {
-            "additionalProperties": false,
-            "description": "Publication metadata for an instance of the AI RMF (e.g., NIST\nAI 100-1, January 2023). The Framework is intended to be a\nliving document, employing a two-number versioning system (major.minor).",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "doi": {
-                    "description": "Digital Object Identifier for the document.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "published_date": {
-                    "description": "Date the document was published.",
-                    "format": "date",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "publisher": {
-                    "description": "The publisher of the document (e.g., NIST).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "source": {
-                    "description": "Reference to the source of the element (typically the document\nor section it originated from).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "version": {
-                    "description": "Version identifier of the document.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "AiRmfDocument",
-            "type": "object"
-        },
-        "AiRmfFramework": {
-            "additionalProperties": false,
-            "description": "Root container that bundles the AI RMF Core (Functions) with\nfoundational concepts (trustworthiness characteristics,\nlifecycle, actors, risks, harms), profiles, and Framework\nattributes. Designed for serialising the Framework or a tailored\ninstance of it as a single JSON / YAML document.",
-            "properties": {
-                "actor_tasks": {
-                    "description": "AI actor task categories (Appendix A).",
-                    "items": {
-                        "$ref": "#/$defs/AiActorTask"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "ai_specific_risks": {
-                    "description": "AI-specific risks compared to traditional software (Appendix B).",
-                    "items": {
-                        "$ref": "#/$defs/AiSpecificRisk"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "attributes": {
-                    "description": "Design attributes of the AI RMF (Appendix D).",
-                    "items": {
-                        "$ref": "#/$defs/RmfAttribute"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "dimensions": {
-                    "description": "The AI system dimensions (Figure 2).",
-                    "items": {
-                        "$ref": "#/$defs/AiSystemDimension"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "document": {
+                "ai_rmf_actor_audience": {
                     "anyOf": [
                         {
-                            "$ref": "#/$defs/AiRmfDocument"
+                            "$ref": "#/$defs/AiRmfAudience"
                         },
                         {
                             "type": "null"
                         }
                     ],
-                    "description": "Publication metadata of the framework instance."
+                    "description": "The AI RMF audience the actor belongs to."
                 },
-                "functions": {
-                    "description": "The four AI RMF Core functions and their content.",
+                "ai_rmf_actor_lifecycle_stages": {
+                    "description": "The lifecycle stages the actor works in.",
                     "items": {
-                        "$ref": "#/$defs/Function"
+                        "$ref": "#/$defs/AiRmfLifecycleStageName"
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "human_ai_interaction_issues": {
-                    "description": "Human-AI interaction considerations (Appendix C).",
+                "ai_rmf_actor_tasks": {
+                    "description": "The tasks the actor carries out, or the additional AI actor it is.",
                     "items": {
-                        "$ref": "#/$defs/HumanAiInteractionIssue"
+                        "$ref": "#/$defs/AiRmfActorTaskName"
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
                     "type": "string"
                 },
-                "lifecycle_stages": {
-                    "description": "The AI lifecycle stages (Figure 2).",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStage"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
+                "description": {
+                    "description": "What the element says or is.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "profiles": {
-                    "description": "AI RMF profiles defined alongside this Framework instance.",
-                    "items": {
-                        "$ref": "#/$defs/AiRmfProfile"
-                    },
+                "title": {
+                    "description": "The element's name.",
                     "type": [
-                        "array",
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfActor",
+            "type": "object"
+        },
+        "AiRmfActorTask": {
+            "additionalProperties": false,
+            "description": "A task or additional AI actor of Appendix A.",
+            "properties": {
+                "ai_rmf_actor_task_is_additional_actor": {
+                    "description": "Whether Appendix A lists it under Additional AI Actors rather than as a task.",
+                    "type": [
+                        "boolean",
                         "null"
                     ]
                 },
-                "risk_measurement_challenges": {
-                    "description": "Identified challenges in measuring AI risk.",
-                    "items": {
-                        "$ref": "#/$defs/RiskMeasurementChallenge"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                "ai_rmf_actor_task_name": {
+                    "$ref": "#/$defs/AiRmfActorTaskName",
+                    "description": "Which task or additional AI actor this is."
                 },
-                "see_also": {
-                    "description": "Related references.",
+                "ai_rmf_actor_task_representative_actors": {
+                    "description": "The AI actors that Appendix A says carry out the task.",
                     "items": {
                         "type": "string"
                     },
@@ -521,99 +85,374 @@
                         "null"
                     ]
                 },
-                "title": {
-                    "description": "A human-readable title.",
+                "description": {
+                    "description": "What the element says or is.",
                     "type": [
                         "string",
-                        "null"
-                    ]
-                },
-                "trustworthiness_characteristics": {
-                    "description": "The seven characteristics of trustworthy AI.",
-                    "items": {
-                        "$ref": "#/$defs/TrustworthinessCharacteristic"
-                    },
-                    "type": [
-                        "array",
                         "null"
                     ]
                 }
             },
             "required": [
-                "id"
+                "ai_rmf_actor_task_name"
+            ],
+            "title": "AiRmfActorTask",
+            "type": "object"
+        },
+        "AiRmfActorTaskName": {
+            "description": "The ten AI actor tasks and five additional AI actors of Appendix A.",
+            "enum": [
+                "ai_design",
+                "ai_development",
+                "ai_deployment",
+                "operation_and_monitoring",
+                "tevv",
+                "human_factors",
+                "domain_expert",
+                "ai_impact_assessment",
+                "procurement",
+                "governance_and_oversight",
+                "third_party_entities",
+                "end_users",
+                "affected_individuals_and_communities",
+                "other_ai_actors",
+                "general_public"
+            ],
+            "title": "AiRmfActorTaskName",
+            "type": "string"
+        },
+        "AiRmfAffectedParty": {
+            "description": "Who section 1.1 says can experience negative impact or harm.",
+            "enum": [
+                "individuals",
+                "groups",
+                "communities",
+                "organizations",
+                "society",
+                "environment",
+                "planet"
+            ],
+            "title": "AiRmfAffectedParty",
+            "type": "string"
+        },
+        "AiRmfAttribute": {
+            "additionalProperties": false,
+            "description": "A key attribute of the AI RMF in Appendix D, which guided its development.",
+            "properties": {
+                "ai_rmf_attribute_number": {
+                    "description": "The attribute's number in Appendix D.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "title",
+                "ai_rmf_attribute_number"
+            ],
+            "title": "AiRmfAttribute",
+            "type": "object"
+        },
+        "AiRmfAudience": {
+            "description": "The two AI RMF audiences of section 2.",
+            "enum": [
+                "primary",
+                "informing"
+            ],
+            "title": "AiRmfAudience",
+            "type": "string"
+        },
+        "AiRmfBias": {
+            "additionalProperties": false,
+            "description": "A bias to consider and manage, sorted into NIST's three major categories.",
+            "properties": {
+                "ai_rmf_bias_categories": {
+                    "description": "The categories it falls under.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfBiasCategory"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_bias_categories",
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfBias",
+            "type": "object"
+        },
+        "AiRmfBiasCategory": {
+            "description": "The three major categories of AI bias in section 3.7, each of which can occur without prejudice or discriminatory intent.",
+            "enum": [
+                "systemic",
+                "computational_and_statistical",
+                "human_cognitive"
+            ],
+            "title": "AiRmfBiasCategory",
+            "type": "string"
+        },
+        "AiRmfCategory": {
+            "additionalProperties": false,
+            "description": "A group of related outcomes within a function, such as GOVERN 1, which Tables 1 to 4 state.",
+            "properties": {
+                "ai_rmf_category_id": {
+                    "description": "The category's identifier, such as GOVERN 1.",
+                    "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])$",
+                    "type": "string"
+                },
+                "ai_rmf_category_subcategories": {
+                    "description": "The subcategories of the category. A knowledge bundle relates a subcategory to its category with isPartOf instead.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfSubcategory"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "The category's statement in the publication.",
+                    "pattern": "^\\s*\\S",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ai_rmf_category_id",
+                "description"
+            ],
+            "title": "AiRmfCategory",
+            "type": "object"
+        },
+        "AiRmfCharacteristicName": {
+            "description": "The seven characteristics of trustworthy AI systems in section 3 of the publication.",
+            "enum": [
+                "valid_and_reliable",
+                "safe",
+                "secure_and_resilient",
+                "accountable_and_transparent",
+                "explainable_and_interpretable",
+                "privacy_enhanced",
+                "fair_with_harmful_bias_managed"
+            ],
+            "title": "AiRmfCharacteristicName",
+            "type": "string"
+        },
+        "AiRmfDimension": {
+            "additionalProperties": false,
+            "description": "One of the five key socio-technical dimensions of an AI system in Figure 2.",
+            "properties": {
+                "ai_rmf_dimension_audience": {
+                    "$ref": "#/$defs/AiRmfAudience",
+                    "description": "The AI RMF audience formed by the AI actors in this dimension."
+                },
+                "ai_rmf_dimension_name": {
+                    "$ref": "#/$defs/AiRmfDimensionName",
+                    "description": "Which dimension this is."
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_dimension_name",
+                "ai_rmf_dimension_audience"
+            ],
+            "title": "AiRmfDimension",
+            "type": "object"
+        },
+        "AiRmfDimensionName": {
+            "description": "The key dimensions of an AI system in Figure 2.",
+            "enum": [
+                "application_context",
+                "data_and_input",
+                "ai_model",
+                "task_and_output",
+                "people_and_planet"
+            ],
+            "title": "AiRmfDimensionName",
+            "type": "string"
+        },
+        "AiRmfDocumentationItem": {
+            "additionalProperties": false,
+            "description": "One thing the Playbook suggests an organization document for a subcategory.",
+            "properties": {
+                "ai_rmf_documentation_id": {
+                    "description": "The documentation prompt's identifier, such as D-GOVERN_1.1-1.",
+                    "pattern": "^D-(GOVERN|MAP|MEASURE|MANAGE)_[1-6]\\.[1-9][0-9]?-[1-9][0-9]?$",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "pattern": "^\\s*\\S",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ai_rmf_documentation_id",
+                "description"
+            ],
+            "title": "AiRmfDocumentationItem",
+            "type": "object"
+        },
+        "AiRmfFramework": {
+            "additionalProperties": false,
+            "description": "One edition of the AI RMF as a whole, with the Core and the lists the publication gives.",
+            "properties": {
+                "ai_rmf_actor_task_list": {
+                    "description": "The AI actor tasks and additional AI actors of Appendix A.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfActorTask"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_attributes": {
+                    "description": "The attributes of the AI RMF in Appendix D.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfAttribute"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_characteristics": {
+                    "description": "The trustworthiness characteristics of section 3.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfTrustworthinessCharacteristic"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_dimensions": {
+                    "description": "The key dimensions of Figure 2.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfDimension"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_functions": {
+                    "description": "The four functions, in the publication's order.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfFunction"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "ai_rmf_human_ai_issues": {
+                    "description": "The human-AI interaction issues of Appendix C.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfHumanAiIssue"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_lifecycle_stages": {
+                    "description": "The lifecycle stages of Figure 3.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfLifecycleStage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_management_challenges": {
+                    "description": "The challenges for AI risk management of section 1.2.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfManagementChallenge"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_specific_risks": {
+                    "description": "The AI-specific risks of Appendix B.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfSpecificRisk"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_version": {
+                    "description": "The edition in NIST's two-number form, such as 1.0.",
+                    "pattern": "^[0-9]+\\.[0-9]+$",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ai_rmf_version",
+                "ai_rmf_functions"
             ],
             "title": "AiRmfFramework",
             "type": "object"
         },
-        "AiRmfProfile": {
+        "AiRmfFunction": {
             "additionalProperties": false,
-            "description": "An implementation of the AI RMF Functions, Categories, and\nSubcategories for a specific setting or application based on the\nrequirements, risk tolerance, and resources of the user (\u00a76).\nProfiles may be use-case-specific, temporal (current or target),\nor cross-sectoral.",
+            "description": "One of the four functions that organize AI risk management at the highest level. GOVERN cuts across the other three.",
             "properties": {
-                "addresses": {
-                    "description": "Subcategories that a profile implements or addresses.",
+                "ai_rmf_function_categories": {
+                    "description": "The categories of the function. A knowledge bundle relates a category to its function with isPartOf instead.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AiRmfCategory"
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "current_state": {
-                    "description": "For temporal current profiles - how AI is currently being managed\nand related risks in terms of current outcomes.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_function_id": {
+                    "description": "The function's name, such as GOVERN.",
+                    "pattern": "^(GOVERN|MAP|MEASURE|MANAGE)$",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "profile_type": {
-                    "$ref": "#/$defs/ProfileTypeEnum",
-                    "description": "The kind of AI RMF Profile."
-                },
-                "sector": {
-                    "description": "The sector, industry, technology, or end-use application a\nprofile addresses (e.g., \"hiring\", \"fair housing\").",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "target_state": {
-                    "description": "For temporal target profiles - the outcomes needed to achieve the\ndesired AI risk management goals.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
+                "description": {
+                    "description": "The one-sentence overview in NIST's catalog. The publication gives each function a section of its own instead.",
                     "type": [
                         "string",
                         "null"
@@ -621,36 +460,843 @@
                 }
             },
             "required": [
-                "profile_type",
-                "id"
+                "ai_rmf_function_id"
+            ],
+            "title": "AiRmfFunction",
+            "type": "object"
+        },
+        "AiRmfHarm": {
+            "additionalProperties": false,
+            "allOf": [
+                {
+                    "if": {
+                        "properties": {
+                            "ai_rmf_harm_category": {}
+                        },
+                        "required": [
+                            "ai_rmf_harm_category"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "ai_rmf_impact_direction": {
+                                "const": "negative"
+                            }
+                        },
+                        "required": [
+                            "ai_rmf_impact_direction"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "ai_rmf_harm_category": {
+                                "const": "people"
+                            },
+                            "ai_rmf_harm_example": {}
+                        },
+                        "required": [
+                            "ai_rmf_harm_category",
+                            "ai_rmf_harm_example"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "ai_rmf_harm_example": {
+                                "anyOf": [
+                                    {
+                                        "const": "individual"
+                                    },
+                                    {
+                                        "const": "group_or_community"
+                                    },
+                                    {
+                                        "const": "societal"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "ai_rmf_harm_example"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "ai_rmf_harm_category": {
+                                "const": "organization"
+                            },
+                            "ai_rmf_harm_example": {}
+                        },
+                        "required": [
+                            "ai_rmf_harm_category",
+                            "ai_rmf_harm_example"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "ai_rmf_harm_example": {
+                                "anyOf": [
+                                    {
+                                        "const": "business_operations"
+                                    },
+                                    {
+                                        "const": "security_breach_or_monetary_loss"
+                                    },
+                                    {
+                                        "const": "reputation"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "ai_rmf_harm_example"
+                        ]
+                    }
+                },
+                {
+                    "if": {
+                        "properties": {
+                            "ai_rmf_harm_category": {
+                                "const": "ecosystem"
+                            },
+                            "ai_rmf_harm_example": {}
+                        },
+                        "required": [
+                            "ai_rmf_harm_category",
+                            "ai_rmf_harm_example"
+                        ]
+                    },
+                    "then": {
+                        "properties": {
+                            "ai_rmf_harm_example": {
+                                "anyOf": [
+                                    {
+                                        "const": "interdependent_elements"
+                                    },
+                                    {
+                                        "const": "financial_or_supply_systems"
+                                    },
+                                    {
+                                        "const": "natural_resources_and_environment"
+                                    }
+                                ]
+                            }
+                        },
+                        "required": [
+                            "ai_rmf_harm_example"
+                        ]
+                    }
+                }
+            ],
+            "description": "A negative impact, sorted as in Figure 1 by whether it falls on people, an organization or an ecosystem.",
+            "properties": {
+                "ai_rmf_harm_category": {
+                    "$ref": "#/$defs/AiRmfHarmCategory",
+                    "description": "The heading of Figure 1 the harm falls under."
+                },
+                "ai_rmf_harm_example": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AiRmfHarmExample"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The example of Figure 1 the harm matches, which must sit under the harm's category."
+                },
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_impact_affected_parties": {
+                    "description": "Who or what experiences the consequence.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfAffectedParty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_impact_direction": {
+                    "$ref": "#/$defs/AiRmfImpactDirection",
+                    "description": "Whether the consequence is positive, negative or both."
+                },
+                "ai_rmf_likelihood": {
+                    "description": "How likely the event or impact is, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_magnitude": {
+                    "description": "How large the consequences are, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_harm_category",
+                "ai_rmf_impact_direction",
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfHarm",
+            "type": "object"
+        },
+        "AiRmfHarmCategory": {
+            "description": "The three headings of Figure 1.",
+            "enum": [
+                "people",
+                "organization",
+                "ecosystem"
+            ],
+            "title": "AiRmfHarmCategory",
+            "type": "string"
+        },
+        "AiRmfHarmExample": {
+            "description": "The examples of potential harm in Figure 1, which NIST offers as examples and not as a closed list.",
+            "enum": [
+                "individual",
+                "group_or_community",
+                "societal",
+                "business_operations",
+                "security_breach_or_monetary_loss",
+                "reputation",
+                "interdependent_elements",
+                "financial_or_supply_systems",
+                "natural_resources_and_environment"
+            ],
+            "title": "AiRmfHarmExample",
+            "type": "string"
+        },
+        "AiRmfHumanAiIssue": {
+            "additionalProperties": false,
+            "description": "An issue of human-AI interaction that Appendix C says merits further consideration and research.",
+            "properties": {
+                "ai_rmf_human_ai_issue_number": {
+                    "description": "The issue's number in Appendix C.",
+                    "minimum": 1,
+                    "type": "integer"
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "title",
+                "ai_rmf_human_ai_issue_number"
+            ],
+            "title": "AiRmfHumanAiIssue",
+            "type": "object"
+        },
+        "AiRmfImpact": {
+            "additionalProperties": false,
+            "description": "A consequence of an AI system, which may be an opportunity, a threat or both.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_impact_affected_parties": {
+                    "description": "Who or what experiences the consequence.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfAffectedParty"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_impact_direction": {
+                    "$ref": "#/$defs/AiRmfImpactDirection",
+                    "description": "Whether the consequence is positive, negative or both."
+                },
+                "ai_rmf_likelihood": {
+                    "description": "How likely the event or impact is, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_magnitude": {
+                    "description": "How large the consequences are, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_impact_direction",
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfImpact",
+            "type": "object"
+        },
+        "AiRmfImpactDirection": {
+            "description": "Whether an impact is positive, negative or both, as section 1.1 puts it.",
+            "enum": [
+                "positive",
+                "negative",
+                "both"
+            ],
+            "title": "AiRmfImpactDirection",
+            "type": "string"
+        },
+        "AiRmfLifecycleStage": {
+            "additionalProperties": false,
+            "description": "A stage of the AI lifecycle as a column of Figure 3 shows it, under its dimension.",
+            "properties": {
+                "ai_rmf_lifecycle_stage_dimension": {
+                    "$ref": "#/$defs/AiRmfDimensionName",
+                    "description": "The dimension Figure 3 places the stage under."
+                },
+                "ai_rmf_lifecycle_stage_name": {
+                    "$ref": "#/$defs/AiRmfLifecycleStageName",
+                    "description": "Which stage this is."
+                },
+                "ai_rmf_lifecycle_stage_representative_actors": {
+                    "description": "The representative AI actors Figure 3 lists for the stage.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_lifecycle_stage_tevv": {
+                    "description": "The testing, evaluation, verification and validation (TEVV) Figure 3 gives the stage.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_lifecycle_stage_name",
+                "ai_rmf_lifecycle_stage_dimension"
+            ],
+            "title": "AiRmfLifecycleStage",
+            "type": "object"
+        },
+        "AiRmfLifecycleStageName": {
+            "description": "The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.",
+            "enum": [
+                "plan_and_design",
+                "collect_and_process_data",
+                "build_and_use_model",
+                "verify_and_validate",
+                "deploy_and_use",
+                "operate_and_monitor",
+                "use_or_impacted_by"
+            ],
+            "title": "AiRmfLifecycleStageName",
+            "type": "string"
+        },
+        "AiRmfManagementChallenge": {
+            "additionalProperties": false,
+            "description": "One of the four challenges for AI risk management in section 1.2.",
+            "properties": {
+                "ai_rmf_management_challenge_measurement_challenges": {
+                    "description": "The risk measurement challenges of section 1.2.1, under the challenge of risk measurement.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfMeasurementChallenge"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_management_challenge_name": {
+                    "$ref": "#/$defs/AiRmfManagementChallengeName",
+                    "description": "Which challenge this is."
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_management_challenge_name"
+            ],
+            "title": "AiRmfManagementChallenge",
+            "type": "object"
+        },
+        "AiRmfManagementChallengeName": {
+            "description": "The challenges for AI risk management in section 1.2.",
+            "enum": [
+                "risk_measurement",
+                "risk_tolerance",
+                "risk_prioritization",
+                "organizational_integration_and_management_of_risk"
+            ],
+            "title": "AiRmfManagementChallengeName",
+            "type": "string"
+        },
+        "AiRmfMeasurementChallenge": {
+            "additionalProperties": false,
+            "description": "One of the challenges of measuring AI risk in section 1.2.1.",
+            "properties": {
+                "ai_rmf_measurement_challenge_name": {
+                    "$ref": "#/$defs/AiRmfMeasurementChallengeName",
+                    "description": "Which challenge this is."
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_measurement_challenge_name"
+            ],
+            "title": "AiRmfMeasurementChallenge",
+            "type": "object"
+        },
+        "AiRmfMeasurementChallengeName": {
+            "description": "The challenges of measuring AI risk in section 1.2.1.",
+            "enum": [
+                "third_party_software_hardware_and_data",
+                "tracking_emergent_risks",
+                "availability_of_reliable_metrics",
+                "risk_at_different_lifecycle_stages",
+                "risk_in_real_world_settings",
+                "inscrutability",
+                "human_baseline"
+            ],
+            "title": "AiRmfMeasurementChallengeName",
+            "type": "string"
+        },
+        "AiRmfProfile": {
+            "additionalProperties": false,
+            "description": "An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_profile_kinds": {
+                    "description": "Which of the publication's kinds of profile this is. A current profile for one use case is both.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfProfileKind"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "ai_rmf_profile_setting": {
+                    "description": "The sector, industry, technology, organization or end use the profile covers, such as hiring.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_profile_subcategories": {
+                    "description": "The subcategories the profile selects. An adopter may select from them rather than apply all.",
+                    "items": {
+                        "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_profile_kinds",
+                "ai_rmf_id"
             ],
             "title": "AiRmfProfile",
             "type": "object"
         },
-        "AiSpecificRisk": {
+        "AiRmfProfileKind": {
+            "description": "The kinds of AI RMF profile that section 6 names.",
+            "enum": [
+                "use_case",
+                "current",
+                "target",
+                "cross_sectoral"
+            ],
+            "title": "AiRmfProfileKind",
+            "type": "string"
+        },
+        "AiRmfRecord": {
             "additionalProperties": false,
-            "description": "A risk that is new or increased for AI-based technology compared\nto traditional software (Appendix B) - e.g., data quality, model\ndrift, opacity, scale and complexity, pre-trained model\nuncertainty, emergent properties, privacy aggregation, or\nenvironmental cost.",
+            "description": "The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.",
             "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
+                "description": {
+                    "description": "What the element says or is.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "see_also": {
-                    "description": "Related references.",
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfRecord",
+            "type": "object"
+        },
+        "AiRmfResidualRisk": {
+            "additionalProperties": false,
+            "description": "The risk that remains after risk treatment.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_likelihood": {
+                    "description": "How likely the event or impact is, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_magnitude": {
+                    "description": "How large the consequences are, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_characteristics": {
+                    "description": "The trustworthiness characteristics the risk bears on.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfCharacteristicName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_impacts": {
+                    "description": "The impacts that contribute to the risk.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/AiRmfImpact"
+                            },
+                            {
+                                "$ref": "#/$defs/AiRmfHarm"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_lifecycle_stages": {
+                    "description": "The lifecycle stages where the risk is measured or arises.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfLifecycleStageName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_priority": {
+                    "description": "The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_responses": {
+                    "description": "The responses chosen for the risk.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfRiskResponse"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_system": {
+                    "description": "The AI system the risk concerns.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_tolerance": {
+                    "description": "The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfResidualRisk",
+            "type": "object"
+        },
+        "AiRmfResource": {
+            "additionalProperties": false,
+            "description": "A source the Playbook points to, by the title and address NIST's catalog gives it.",
+            "properties": {
+                "ai_rmf_resource_address": {
+                    "description": "The address NIST's catalog gives the source. The catalog gives none for a few.",
+                    "format": "uri",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_resource_uuid": {
+                    "description": "The UUID of the resource in the back matter of NIST's catalog.",
+                    "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$",
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "title",
+                "ai_rmf_resource_uuid"
+            ],
+            "title": "AiRmfResource",
+            "type": "object"
+        },
+        "AiRmfRisk": {
+            "additionalProperties": false,
+            "description": "How likely an event is, combined with how severe its consequences are.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_likelihood": {
+                    "description": "How likely the event or impact is, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_magnitude": {
+                    "description": "How large the consequences are, on whatever scale the adopter uses.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_characteristics": {
+                    "description": "The trustworthiness characteristics the risk bears on.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfCharacteristicName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_impacts": {
+                    "description": "The impacts that contribute to the risk.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/AiRmfImpact"
+                            },
+                            {
+                                "$ref": "#/$defs/AiRmfHarm"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_lifecycle_stages": {
+                    "description": "The lifecycle stages where the risk is measured or arises.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfLifecycleStageName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_priority": {
+                    "description": "The priority the adopter gives the risk's treatment, on whatever scale it uses, as MANAGE 1.2 asks.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_responses": {
+                    "description": "The responses chosen for the risk.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfRiskResponse"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_system": {
+                    "description": "The AI system the risk concerns.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_tolerance": {
+                    "description": "The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an adopter to document.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_id"
+            ],
+            "title": "AiRmfRisk",
+            "type": "object"
+        },
+        "AiRmfRiskResponse": {
+            "description": "The risk response options MANAGE 1.3 names.",
+            "enum": [
+                "mitigating",
+                "transferring",
+                "avoiding",
+                "accepting"
+            ],
+            "title": "AiRmfRiskResponse",
+            "type": "string"
+        },
+        "AiRmfRiskTolerance": {
+            "additionalProperties": false,
+            "description": "An organization's or AI actor's readiness to bear risk to achieve its objectives. The AI RMF prescribes none.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
+                },
+                "ai_rmf_risk_tolerance_holder": {
+                    "description": "The organization or AI actor whose tolerance this is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "ai_rmf_risk_tolerance_influences": {
+                    "description": "What influences it, such as a law, a regulation, a policy or a norm.",
                     "items": {
                         "type": "string"
                     },
@@ -659,8 +1305,15 @@
                         "null"
                     ]
                 },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "A human-readable title.",
+                    "description": "The element's name.",
                     "type": [
                         "string",
                         "null"
@@ -668,55 +1321,45 @@
                 }
             },
             "required": [
-                "id"
+                "ai_rmf_id"
             ],
-            "title": "AiSpecificRisk",
+            "title": "AiRmfRiskTolerance",
             "type": "object"
         },
-        "AiSystem": {
+        "AiRmfSpecificRisk": {
             "additionalProperties": false,
-            "description": "An engineered or machine-based system that can, for a given set\nof objectives, generate outputs such as predictions,\nrecommendations, or decisions influencing real or virtual\nenvironments. AI systems are designed to operate with varying\nlevels of autonomy (Adapted from OECD Recommendation on AI:2019;\nISO/IEC 22989:2022).",
+            "description": "A risk that Appendix B says is new or increased for AI compared with traditional software.",
             "properties": {
-                "ai_dimension": {
-                    "description": "The AI system dimension the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiSystemDimensionEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                "ai_rmf_specific_risk_position": {
+                    "description": "The item's position in Appendix B's list, which is not numbered.",
+                    "minimum": 1,
+                    "type": "integer"
                 },
                 "description": {
-                    "description": "A human-readable description.",
+                    "description": "What the element says or is.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "title": {
+                    "description": "This project's short name for the item. Appendix B gives its items no names.",
                     "type": "string"
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
+                }
+            },
+            "required": [
+                "title",
+                "ai_rmf_specific_risk_position"
+            ],
+            "title": "AiRmfSpecificRisk",
+            "type": "object"
+        },
+        "AiRmfSubcategory": {
+            "additionalProperties": false,
+            "description": "A specific outcome within a category, such as GOVERN 1.1, which Tables 1 to 4 state, and its Playbook material.",
+            "properties": {
+                "ai_rmf_subcategory_about": {
+                    "description": "The Playbook's discussion of the outcome.",
                     "items": {
                         "type": "string"
                     },
@@ -725,48 +1368,53 @@
                         "null"
                     ]
                 },
-                "title": {
-                    "description": "A human-readable title.",
+                "ai_rmf_subcategory_ai_actors": {
+                    "description": "The AI actors the Playbook tags the outcome with.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfActorTaskName"
+                    },
                     "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "AiSystem",
-            "type": "object"
-        },
-        "AiSystemDimension": {
-            "additionalProperties": false,
-            "description": "A socio-technical dimension of an AI system (Figure 2):\nApplication Context, Data and Input, AI Model, Task and Output,\nor People and Planet.",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
-                "dimension_kind": {
-                    "$ref": "#/$defs/AiSystemDimensionEnum",
-                    "description": "Which AI system dimension an `AiSystemDimension` instance represents."
+                "ai_rmf_subcategory_documentation": {
+                    "description": "What the Playbook suggests an organization document, mostly as questions.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfDocumentationItem"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_subcategory_id": {
+                    "description": "The subcategory's identifier, such as GOVERN 1.1.",
+                    "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
+                "ai_rmf_subcategory_references": {
+                    "description": "The Playbook's references for the outcome.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfResource"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
-                "see_also": {
-                    "description": "Related references.",
+                "ai_rmf_subcategory_suggested_actions": {
+                    "description": "The steps the Playbook suggests towards the outcome. They are voluntary and are not a checklist.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfSuggestedAction"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "ai_rmf_subcategory_topics": {
+                    "description": "The topics the Playbook tags the outcome with. NIST keeps no closed list of them.",
                     "items": {
                         "type": "string"
                     },
@@ -775,50 +1423,10 @@
                         "null"
                     ]
                 },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "dimension_kind",
-                "id"
-            ],
-            "title": "AiSystemDimension",
-            "type": "object"
-        },
-        "AiSystemDimensionEnum": {
-            "description": "Key socio-technical dimensions of an AI system (Figure 2).\nPeople and Planet sits at the centre representing human and\nsocietal well-being.",
-            "enum": [
-                "APPLICATION_CONTEXT",
-                "DATA_AND_INPUT",
-                "AI_MODEL",
-                "TASK_AND_OUTPUT",
-                "PEOPLE_AND_PLANET"
-            ],
-            "title": "AiSystemDimensionEnum",
-            "type": "string"
-        },
-        "AudienceEnum": {
-            "description": "Audience categorisation for the AI RMF (Part 1 \u00a72).",
-            "enum": [
-                "PRIMARY",
-                "INFORMING"
-            ],
-            "title": "AudienceEnum",
-            "type": "string"
-        },
-        "Bias": {
-            "additionalProperties": false,
-            "description": "A form of AI bias - a deviation that may be perpetuated or\namplified by AI systems. NIST identifies three major categories:\nsystemic, computational/statistical, and human-cognitive\n(Part 1 \u00a73.7; NIST SP 1270).",
-            "properties": {
-                "bias_category": {
-                    "description": "Category or categories of bias addressed.",
+                "ai_rmf_subcategory_transparency_resources": {
+                    "description": "The sources the Playbook names as AI transparency resources.",
                     "items": {
-                        "$ref": "#/$defs/BiasCategoryEnum"
+                        "$ref": "#/$defs/AiRmfResource"
                     },
                     "type": [
                         "array",
@@ -826,25 +1434,50 @@
                     ]
                 },
                 "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                    "description": "The subcategory's statement in the publication.",
+                    "pattern": "^\\s*\\S",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ai_rmf_subcategory_id",
+                "description"
+            ],
+            "title": "AiRmfSubcategory",
+            "type": "object"
+        },
+        "AiRmfSuggestedAction": {
+            "additionalProperties": false,
+            "description": "One step the Playbook suggests towards a subcategory's outcome.",
+            "properties": {
+                "ai_rmf_suggested_action_id": {
+                    "description": "The suggested action's identifier, such as SA-GOVERN_1.1-1.",
+                    "pattern": "^SA-(GOVERN|MAP|MEASURE|MANAGE)_[1-6]\\.[1-9][0-9]?-[1-9][0-9]?(\\.[1-9][0-9]?)*$",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "description": {
+                    "description": "What the element says or is.",
+                    "pattern": "^\\s*\\S",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "ai_rmf_suggested_action_id",
+                "description"
+            ],
+            "title": "AiRmfSuggestedAction",
+            "type": "object"
+        },
+        "AiRmfSystem": {
+            "additionalProperties": false,
+            "description": "A machine-based system that produces outputs such as predictions or decisions for given objectives, with varying autonomy.",
+            "properties": {
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
+                    "type": "string"
                 },
-                "see_also": {
-                    "description": "Related references.",
+                "ai_rmf_system_actors": {
+                    "description": "The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit its requirements.",
                     "items": {
                         "type": "string"
                     },
@@ -853,69 +1486,8 @@
                         "null"
                     ]
                 },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Bias",
-            "type": "object"
-        },
-        "BiasCategoryEnum": {
-            "description": "The three major categories of AI bias identified by NIST\n(Part 1 \u00a73.7; see NIST SP 1270).",
-            "enum": [
-                "SYSTEMIC",
-                "COMPUTATIONAL_AND_STATISTICAL",
-                "HUMAN_COGNITIVE"
-            ],
-            "title": "BiasCategoryEnum",
-            "type": "string"
-        },
-        "Category": {
-            "additionalProperties": false,
-            "description": "A category within an AI RMF Core function (e.g., \"GOVERN 1:\nPolicies, processes, procedures, and practices ... are in place,\ntransparent, and implemented effectively\"). Categories group\nrelated subcategories.",
-            "properties": {
-                "category_id": {
-                    "description": "Identifier of a Category (e.g., \"GOVERN 1\").",
-                    "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Identifier for the category, typically using the\n\"FUNCTION N\" form (e.g., \"GOVERN 1\").",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "outcome": {
-                    "description": "The outcome statement of a Category or Subcategory - the desired\nresult of carrying out its actions.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
+                "ai_rmf_system_deployment_settings": {
+                    "description": "The settings the system is or will be deployed in, which MAP 1.1 asks an adopter to document.",
                     "items": {
                         "type": "string"
                     },
@@ -924,95 +1496,8 @@
                         "null"
                     ]
                 },
-                "subcategories": {
-                    "description": "Subcategories that belong to a Category.",
-                    "items": {
-                        "$ref": "#/$defs/Subcategory"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Category",
-            "type": "object"
-        },
-        "CategoryEnum": {
-            "description": "The AI RMF Core categories (Part 2, \u00a75) - the second-level groupings\nwithin each Function, keyed by the compact \"FUNCTION-N\" code. Cross-\nframework alignments (EU AI Act, SOC 2, OWASP LLM/ASI, Microsoft AGT\nATF) are attached as SSSOM mappings and are sourced from\nsrc/nist_ai_100_1/mappings/nist_ai_rmf.sssom.tsv.",
-            "enum": [
-                "GOVERN-1",
-                "GOVERN-2",
-                "GOVERN-3",
-                "GOVERN-4",
-                "GOVERN-5",
-                "GOVERN-6",
-                "MAP-1",
-                "MAP-2",
-                "MAP-3",
-                "MAP-4",
-                "MAP-5",
-                "MEASURE-1",
-                "MEASURE-2",
-                "MEASURE-3",
-                "MEASURE-4",
-                "MANAGE-1",
-                "MANAGE-2",
-                "MANAGE-3",
-                "MANAGE-4"
-            ],
-            "title": "CategoryEnum",
-            "type": "string"
-        },
-        "Function": {
-            "additionalProperties": false,
-            "description": "A top-level AI RMF Core function. Each function organizes AI risk\nmanagement activities at the highest level. GOVERN applies across\nall stages; MAP, MEASURE, and MANAGE apply to AI-system-specific\ncontexts and lifecycle stages.",
-            "properties": {
-                "categories": {
-                    "description": "Categories that belong to a Function.",
-                    "items": {
-                        "$ref": "#/$defs/Category"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "function_code": {
-                    "description": "The function code (GOVERN, MAP, MEASURE, or MANAGE).",
-                    "pattern": "^(GOVERN|MAP|MEASURE|MANAGE)$",
-                    "type": "string"
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
+                "ai_rmf_system_intended_purposes": {
+                    "description": "What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an adopter to document.",
                     "items": {
                         "type": "string"
                     },
@@ -1021,8 +1506,25 @@
                         "null"
                     ]
                 },
+                "ai_rmf_system_lifecycle_stages": {
+                    "description": "The lifecycle stages the record covers.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfLifecycleStageName"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "A human-readable title.",
+                    "description": "The element's name.",
                     "type": [
                         "string",
                         "null"
@@ -1030,111 +1532,500 @@
                 }
             },
             "required": [
-                "function_code",
-                "id"
+                "ai_rmf_id"
             ],
-            "title": "Function",
+            "title": "AiRmfSystem",
             "type": "object"
         },
-        "FunctionEnum": {
-            "description": "The four high-level AI RMF Core functions. GOVERN is a\ncross-cutting function applied throughout; MAP, MEASURE, and MANAGE\noperate on specific AI systems and lifecycle stages.",
-            "enum": [
-                "GOVERN",
-                "MAP",
-                "MEASURE",
-                "MANAGE"
+        "AiRmfTrustworthinessCharacteristic": {
+            "additionalProperties": false,
+            "description": "A characteristic of trustworthy AI systems, each with a subsection of section 3.",
+            "properties": {
+                "ai_rmf_characteristic_is_base": {
+                    "description": "Whether Figure 4 shows it as the necessary condition under the others.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "ai_rmf_characteristic_name": {
+                    "$ref": "#/$defs/AiRmfCharacteristicName",
+                    "description": "Which characteristic this is."
+                },
+                "ai_rmf_characteristic_relates_to_all": {
+                    "description": "Whether Figure 4 shows it relating to all the others.",
+                    "type": [
+                        "boolean",
+                        "null"
+                    ]
+                },
+                "ai_rmf_characteristic_section": {
+                    "description": "The subsection of the publication that describes it, such as 3.1.",
+                    "pattern": "^3\\.[1-7]$",
+                    "type": "string"
+                },
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                }
+            },
+            "required": [
+                "ai_rmf_characteristic_name",
+                "ai_rmf_characteristic_section"
             ],
-            "title": "FunctionEnum",
+            "title": "AiRmfTrustworthinessCharacteristic",
+            "type": "object"
+        },
+        "GaiAiRedTeaming": {
+            "additionalProperties": false,
+            "description": "A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_feedback_type": {
+                    "description": "Which of the three classes this record is.",
+                    "enum": [
+                        "GaiAiRedTeaming"
+                    ],
+                    "type": "string"
+                },
+                "gai_red_teaming_types": {
+                    "description": "The kinds of AI red-teaming that may suit the use case.",
+                    "items": {
+                        "$ref": "#/$defs/GaiRedTeamingType"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_feedback_type",
+                "title"
+            ],
+            "title": "GaiAiRedTeaming",
+            "type": "object"
+        },
+        "GaiContentProvenanceConsideration": {
+            "additionalProperties": false,
+            "description": "How tracking the origin and history of content helps tell authentic content from synthetic content.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_consideration_sections": {
+                    "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+                    "items": {
+                        "pattern": "^A\\.1(\\.[1-8])?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_consideration_type": {
+                    "description": "Which of the four classes this record is.",
+                    "enum": [
+                        "GaiContentProvenanceConsideration"
+                    ],
+                    "type": "string"
+                },
+                "gai_provenance_techniques": {
+                    "description": "The well-known techniques for provenance data tracking that section A.1.6 names.",
+                    "items": {
+                        "$ref": "#/$defs/GaiProvenanceTechnique"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_consideration_type",
+                "title"
+            ],
+            "title": "GaiContentProvenanceConsideration",
+            "type": "object"
+        },
+        "GaiFieldTesting": {
+            "additionalProperties": false,
+            "description": "Structured settings that show how people interact with and use AI-generated information.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_feedback_type": {
+                    "description": "Which of the three classes this record is.",
+                    "enum": [
+                        "GaiFieldTesting"
+                    ],
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_feedback_type",
+                "title"
+            ],
+            "title": "GaiFieldTesting",
+            "type": "object"
+        },
+        "GaiGovernanceConsideration": {
+            "additionalProperties": false,
+            "description": "How an organization's governance can be revisited for GAI, including across the AI value chain.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_consideration_sections": {
+                    "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+                    "items": {
+                        "pattern": "^A\\.1(\\.[1-8])?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_consideration_type": {
+                    "description": "Which of the four classes this record is.",
+                    "enum": [
+                        "GaiGovernanceConsideration"
+                    ],
+                    "type": "string"
+                },
+                "gai_governance_plans": {
+                    "description": "The plans and actions that section A.1.2 lists from other AI governance.",
+                    "items": {
+                        "$ref": "#/$defs/GaiGovernancePlan"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_third_party_controls": {
+                    "description": "The existing controls that section A.1.3 says can apply to third-party GAI.",
+                    "items": {
+                        "$ref": "#/$defs/GaiThirdPartyControl"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_consideration_type",
+                "title"
+            ],
+            "title": "GaiGovernanceConsideration",
+            "type": "object"
+        },
+        "GaiGovernancePlan": {
+            "description": "The plans and actions that section A.1.2 says apply to GAI from other AI governance.",
+            "enum": [
+                "accessibility_and_reasonable_accommodations",
+                "ai_actor_credentials_and_qualifications",
+                "alignment_to_organizational_values",
+                "auditing_and_assessment",
+                "change_management_controls",
+                "commercial_use",
+                "data_provenance",
+                "data_protection",
+                "data_retention",
+                "consistency_in_use_of_defining_key_terms",
+                "decommissioning",
+                "discouraging_anonymous_use",
+                "education",
+                "impact_assessments",
+                "incident_response",
+                "monitoring",
+                "opt_outs",
+                "risk_based_controls",
+                "risk_mapping_and_measurement",
+                "science_backed_tevv_practices",
+                "secure_software_development_practices",
+                "stakeholder_engagement",
+                "synthetic_content_detection_and_labeling_tools_and_techniques",
+                "whistleblower_protections",
+                "workforce_diversity_and_interdisciplinary_teams"
+            ],
+            "title": "GaiGovernancePlan",
             "type": "string"
         },
-        "GaiActionFunctionPrefixEnum": {
-            "description": "Two-letter function prefix used in GAI Action IDs.",
-            "enum": [
-                "GV",
-                "MP",
-                "MS",
-                "MG"
+        "GaiIncidentDisclosureConsideration": {
+            "additionalProperties": false,
+            "description": "How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_consideration_sections": {
+                    "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+                    "items": {
+                        "pattern": "^A\\.1(\\.[1-8])?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_consideration_type": {
+                    "description": "Which of the four classes this record is.",
+                    "enum": [
+                        "GaiIncidentDisclosureConsideration"
+                    ],
+                    "type": "string"
+                },
+                "gai_incident_harms": {
+                    "description": "The kinds of harm that section A.1.8's definition of an AI incident names.",
+                    "items": {
+                        "$ref": "#/$defs/GaiIncidentHarm"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_consideration_type",
+                "title"
             ],
-            "title": "GaiActionFunctionPrefixEnum",
+            "title": "GaiIncidentDisclosureConsideration",
+            "type": "object"
+        },
+        "GaiIncidentHarm": {
+            "description": "The kinds of harm that section A.1.8's definition of an AI incident names.",
+            "enum": [
+                "injury_or_harm_to_health",
+                "critical_infrastructure_disruption",
+                "rights_violations",
+                "harm_to_property_communities_or_environment"
+            ],
+            "title": "GaiIncidentHarm",
             "type": "string"
         },
-        "GaiActorTaskEnum": {
-            "description": "AI Actor Tasks referenced by the Suggested Actions tables in\nNIST AI 600-1 Section 3 (and defined in NIST AI 100-1\nAppendix A).",
+        "GaiLifecycleStage": {
+            "description": "The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.",
             "enum": [
-                "GOVERNANCE_AND_OVERSIGHT",
-                "AI_DESIGN",
-                "AI_DEVELOPMENT",
-                "AI_DEPLOYMENT",
-                "AI_IMPACT_ASSESSMENT",
-                "OPERATION_AND_MONITORING",
-                "TEVV",
-                "DOMAIN_EXPERTS",
-                "END_USERS",
-                "HUMAN_FACTORS",
-                "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
-                "PROCUREMENT",
-                "THIRD_PARTY_ENTITIES"
+                "design",
+                "development",
+                "deployment",
+                "operation",
+                "decommissioning"
             ],
-            "title": "GaiActorTaskEnum",
+            "title": "GaiLifecycleStage",
             "type": "string"
         },
-        "GaiLifecycleStageEnum": {
-            "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\" Distinct from the six-stage\n`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).",
-            "enum": [
-                "DESIGN",
-                "DEVELOPMENT",
-                "DEPLOYMENT",
-                "OPERATION",
-                "DECOMMISSIONING"
+        "GaiParticipatoryEngagement": {
+            "additionalProperties": false,
+            "description": "Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_feedback_type": {
+                    "description": "Which of the three classes this record is.",
+                    "enum": [
+                        "GaiParticipatoryEngagement"
+                    ],
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_feedback_type",
+                "title"
             ],
-            "title": "GaiLifecycleStageEnum",
-            "type": "string"
+            "title": "GaiParticipatoryEngagement",
+            "type": "object"
+        },
+        "GaiPreDeploymentTestingConsideration": {
+            "additionalProperties": false,
+            "description": "How GAI can be tested before deployment while better approaches mature, and where current tests fall short.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_consideration_sections": {
+                    "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+                    "items": {
+                        "pattern": "^A\\.1(\\.[1-8])?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_consideration_type": {
+                    "description": "Which of the four classes this record is.",
+                    "enum": [
+                        "GaiPreDeploymentTestingConsideration"
+                    ],
+                    "type": "string"
+                },
+                "gai_structured_feedback": {
+                    "description": "The kinds of structured public feedback section A.1.5 gives as examples.",
+                    "items": {
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/GaiParticipatoryEngagement"
+                            },
+                            {
+                                "$ref": "#/$defs/GaiFieldTesting"
+                            },
+                            {
+                                "$ref": "#/$defs/GaiAiRedTeaming"
+                            }
+                        ]
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_consideration_type",
+                "title"
+            ],
+            "title": "GaiPreDeploymentTestingConsideration",
+            "type": "object"
+        },
+        "GaiPrimaryConsideration": {
+            "additionalProperties": false,
+            "description": "One of the four primary considerations of Appendix A, which also inform the suggested actions.",
+            "properties": {
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_consideration_sections": {
+                    "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+                    "items": {
+                        "pattern": "^A\\.1(\\.[1-8])?$",
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_consideration_type": {
+                    "description": "Which of the four classes this record is.",
+                    "enum": [
+                        "GaiPrimaryConsideration"
+                    ],
+                    "type": "string"
+                },
+                "title": {
+                    "description": "The element's name.",
+                    "type": "string"
+                }
+            },
+            "required": [
+                "gai_consideration_type",
+                "title"
+            ],
+            "title": "GaiPrimaryConsideration",
+            "type": "object"
         },
         "GaiProfile": {
             "additionalProperties": false,
-            "description": "Root container that bundles the NIST AI 600-1 Generative AI\nProfile: GAI risks (Section 2), suggested actions (Section 3),\nand primary considerations (Appendix A). The GAI Profile is a\n*cross-sectoral* AI RMF profile (Section 1).",
+            "description": "The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.",
             "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "gai_risk_catalog": {
-                    "description": "The catalog of GAI risks (Section 2).",
-                    "items": {
-                        "$ref": "#/$defs/GaiRisk"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_id": {
+                    "description": "The identifier an adopter gives a record of its own.",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
+                "ai_rmf_profile_kinds": {
+                    "description": "Which of the publication's kinds of profile this is. A current profile for one use case is both.",
+                    "items": {
+                        "$ref": "#/$defs/AiRmfProfileKind"
+                    },
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "ai_rmf_profile_setting": {
+                    "description": "The sector, industry, technology, organization or end use the profile covers, such as hiring.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "primary_considerations": {
-                    "description": "The primary GAI considerations from Appendix A (Governance,\nPre-Deployment Testing, Content Provenance, Incident\nDisclosure). Discriminated by `consideration_kind`.",
+                "ai_rmf_profile_subcategories": {
+                    "description": "The subcategories the profile selects. An adopter may select from them rather than apply all.",
                     "items": {
-                        "$ref": "#/$defs/PrimaryGaiConsideration"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
+                        "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$",
                         "type": "string"
                     },
                     "type": [
@@ -1142,28 +2033,54 @@
                         "null"
                     ]
                 },
-                "structured_feedback_methods": {
-                    "description": "Structured public feedback methods relevant to the profile\n(Appendix A.1.5).",
+                "description": {
+                    "description": "What the element says or is.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_primary_considerations": {
+                    "description": "The four primary considerations of Appendix A.",
                     "items": {
-                        "$ref": "#/$defs/StructuredPublicFeedback"
+                        "anyOf": [
+                            {
+                                "$ref": "#/$defs/GaiGovernanceConsideration"
+                            },
+                            {
+                                "$ref": "#/$defs/GaiPreDeploymentTestingConsideration"
+                            },
+                            {
+                                "$ref": "#/$defs/GaiContentProvenanceConsideration"
+                            },
+                            {
+                                "$ref": "#/$defs/GaiIncidentDisclosureConsideration"
+                            }
+                        ]
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "suggested_actions": {
-                    "description": "Suggested actions to manage GAI risks (Section 3).",
+                "gai_risks": {
+                    "description": "The 12 risks of section 2.",
                     "items": {
-                        "$ref": "#/$defs/SuggestedAction"
+                        "$ref": "#/$defs/GaiRisk"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "minItems": 1,
+                    "type": "array"
+                },
+                "gai_subcategories": {
+                    "description": "The tables of section 3, in the publication's order.",
+                    "items": {
+                        "$ref": "#/$defs/GaiSubcategory"
+                    },
+                    "minItems": 1,
+                    "type": "array"
                 },
                 "title": {
-                    "description": "A human-readable title.",
+                    "description": "The element's name.",
                     "type": [
                         "string",
                         "null"
@@ -1171,112 +2088,110 @@
                 }
             },
             "required": [
-                "id"
+                "gai_risks",
+                "gai_subcategories",
+                "ai_rmf_profile_kinds",
+                "ai_rmf_id"
             ],
             "title": "GaiProfile",
             "type": "object"
         },
+        "GaiProvenanceTechnique": {
+            "description": "The techniques for provenance data tracking in section A.1.6.",
+            "enum": [
+                "digital_watermarking",
+                "metadata_recording",
+                "digital_fingerprinting",
+                "human_authentication"
+            ],
+            "title": "GaiProvenanceTechnique",
+            "type": "string"
+        },
+        "GaiRedTeamingType": {
+            "description": "The types of AI red-teaming in section A.1.5.",
+            "enum": [
+                "general_public",
+                "expert",
+                "combination",
+                "human_ai"
+            ],
+            "title": "GaiRedTeamingType",
+            "type": "string"
+        },
         "GaiRisk": {
             "additionalProperties": false,
-            "description": "A risk that is novel to or exacerbated by Generative AI.\nEach instance corresponds to one of the 12 risk categories\nenumerated in NIST AI 600-1 Section 2.",
+            "description": "A risk that section 2 defines as unique to or made worse by the development and use of GAI.",
             "properties": {
-                "addressed_by_actions": {
-                    "description": "Suggested actions that address a GAI risk (back-reference\nderived from `SuggestedAction.gai_risks`).",
+                "description": {
+                    "description": "The risk's definition in section 2.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "gai_risk_characteristics": {
+                    "description": "The AI RMF's trustworthiness characteristics that the subsection names for the risk.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/AiRmfCharacteristicName"
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "description": {
-                    "description": "A human-readable description.",
+                "gai_risk_groupings": {
+                    "description": "The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three.",
+                    "items": {
+                        "$ref": "#/$defs/GaiRiskGrouping"
+                    },
                     "type": [
-                        "string",
+                        "array",
                         "null"
                     ]
                 },
-                "gai_risk_kind": {
-                    "$ref": "#/$defs/GaiRiskCategoryEnum",
-                    "description": "The GAI risk category this element represents."
+                "gai_risk_lifecycle_stages": {
+                    "description": "The lifecycle stages where the risk can arise for the adopter's model, system or use case.",
+                    "items": {
+                        "$ref": "#/$defs/GaiLifecycleStage"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
                 },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "gai_risk_name": {
+                    "$ref": "#/$defs/GaiRiskName",
+                    "description": "Which of the 12 risks this is."
+                },
+                "gai_risk_scopes": {
+                    "description": "The levels where the risk exists for the adopter's model, system or use case.",
+                    "items": {
+                        "$ref": "#/$defs/GaiRiskScope"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "gai_risk_section": {
+                    "description": "The subsection of section 2 that discusses the risk, such as 2.1.",
+                    "pattern": "^2\\.([1-9]|1[0-2])$",
                     "type": "string"
                 },
-                "lifecycle_stage": {
-                    "description": "AI lifecycle stage(s) at which the GAI risk may arise\n(NIST AI 600-1 Section 2). Uses the GAI five-stage\nlifecycle (`GaiLifecycleStageEnum`).",
+                "gai_risk_sources": {
+                    "description": "Where the risk comes from for the adopter's model, system or use case.",
                     "items": {
-                        "$ref": "#/$defs/GaiLifecycleStageEnum"
+                        "$ref": "#/$defs/GaiRiskSource"
                     },
                     "type": [
                         "array",
                         "null"
                     ]
                 },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "risk_categorization": {
-                    "$ref": "#/$defs/GaiRiskCategorizationEnum",
-                    "description": "Higher-level categorisation - technical/model, misuse, or\necosystem/societal."
-                },
-                "risk_scope": {
-                    "description": "Scope levels at which the risk may manifest.",
+                "gai_risk_time_scales": {
+                    "description": "How the risk materializes over time for the adopter's model, system or use case.",
                     "items": {
-                        "$ref": "#/$defs/GaiRiskScopeEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "risk_sources": {
-                    "description": "Sources from which the risk may emerge.",
-                    "items": {
-                        "$ref": "#/$defs/GaiRiskSourceEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "time_scale": {
-                    "description": "Time scales over which the risk may materialise.",
-                    "items": {
-                        "$ref": "#/$defs/GaiRiskTimeScaleEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "trustworthiness_characteristic": {
-                    "description": "Trustworthiness characteristic(s) the element pertains to.",
-                    "items": {
-                        "$ref": "#/$defs/TrustworthinessCharacteristicEnum"
+                        "$ref": "#/$defs/GaiRiskTimeScale"
                     },
                     "type": [
                         "array",
@@ -1285,713 +2200,130 @@
                 }
             },
             "required": [
-                "id"
+                "gai_risk_name",
+                "gai_risk_section"
             ],
             "title": "GaiRisk",
             "type": "object"
         },
-        "GaiRiskCategorizationEnum": {
-            "description": "Higher-level grouping of GAI risks, derived from the UK's\nInternational Scientific Report on the Safety of Advanced AI\n(NIST AI 600-1 Section 2, footnote 5).",
+        "GaiRiskGrouping": {
+            "description": "The three groups into which footnote 5 says an organization could sort the risks, as one possible way.",
             "enum": [
-                "TECHNICAL_OR_MODEL_RISKS",
-                "MISUSE_BY_HUMANS",
-                "ECOSYSTEM_OR_SOCIETAL_RISKS"
+                "technical_or_model",
+                "misuse_by_humans",
+                "ecosystem_or_societal"
             ],
-            "title": "GaiRiskCategorizationEnum",
+            "title": "GaiRiskGrouping",
             "type": "string"
         },
-        "GaiRiskCategoryEnum": {
-            "description": "The 12 risks unique to or exacerbated by Generative AI as\nenumerated in NIST AI 600-1 Section 2.",
+        "GaiRiskName": {
+            "description": "The 12 risks of section 2.",
             "enum": [
-                "CBRN_INFORMATION_OR_CAPABILITIES",
-                "CONFABULATION",
-                "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT",
-                "DATA_PRIVACY",
-                "ENVIRONMENTAL_IMPACTS",
-                "HARMFUL_BIAS_OR_HOMOGENIZATION",
-                "HUMAN_AI_CONFIGURATION",
-                "INFORMATION_INTEGRITY",
-                "INFORMATION_SECURITY",
-                "INTELLECTUAL_PROPERTY",
-                "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT",
-                "VALUE_CHAIN_AND_COMPONENT_INTEGRATION"
+                "cbrn_information_or_capabilities",
+                "confabulation",
+                "dangerous_violent_or_hateful_content",
+                "data_privacy",
+                "environmental_impacts",
+                "harmful_bias_or_homogenization",
+                "human_ai_configuration",
+                "information_integrity",
+                "information_security",
+                "intellectual_property",
+                "obscene_degrading_or_abusive_content",
+                "value_chain_and_component_integration"
             ],
-            "title": "GaiRiskCategoryEnum",
+            "title": "GaiRiskName",
             "type": "string"
         },
-        "GaiRiskScopeEnum": {
-            "description": "The scope at which a GAI risk may manifest (Section 2).",
+        "GaiRiskScope": {
+            "description": "The levels where section 2 says a risk may exist.",
             "enum": [
-                "MODEL_OR_SYSTEM",
-                "APPLICATION_OR_IMPLEMENTATION",
-                "ECOSYSTEM"
+                "model_or_system",
+                "application_or_implementation",
+                "ecosystem"
             ],
-            "title": "GaiRiskScopeEnum",
+            "title": "GaiRiskScope",
             "type": "string"
         },
-        "GaiRiskSourceEnum": {
-            "description": "The source(s) from which a GAI risk may emerge (Section 2).",
+        "GaiRiskSource": {
+            "description": "Where section 2 says a risk may come from.",
             "enum": [
-                "DESIGN",
-                "TRAINING",
-                "OPERATION",
-                "MODEL_INPUTS",
-                "MODEL_OUTPUTS",
-                "HUMAN_BEHAVIOR",
-                "HUMAN_AI_INTERACTION"
+                "design",
+                "training",
+                "operation",
+                "inputs",
+                "outputs",
+                "human_behavior",
+                "human_ai_interaction"
             ],
-            "title": "GaiRiskSourceEnum",
+            "title": "GaiRiskSource",
             "type": "string"
         },
-        "GaiRiskTimeScaleEnum": {
-            "description": "The time scale over which a GAI risk may materialise\n(Section 2).",
+        "GaiRiskTimeScale": {
+            "description": "How section 2 says a risk may materialize over time.",
             "enum": [
-                "IMMEDIATE",
-                "PROLONGED"
+                "abrupt",
+                "extended"
             ],
-            "title": "GaiRiskTimeScaleEnum",
+            "title": "GaiRiskTimeScale",
             "type": "string"
         },
-        "GovernancePracticeEnum": {
-            "description": "Governance plans and actions for GAI systems enumerated in\nNIST AI 600-1 Appendix A.1.2 (\"Organizational Governance\").",
-            "enum": [
-                "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS",
-                "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS",
-                "ALIGNMENT_TO_ORGANIZATIONAL_VALUES",
-                "AUDITING_AND_ASSESSMENT",
-                "CHANGE_MANAGEMENT_CONTROLS",
-                "COMMERCIAL_USE",
-                "DATA_PROVENANCE",
-                "DATA_PROTECTION",
-                "DATA_RETENTION",
-                "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS",
-                "DECOMMISSIONING",
-                "DISCOURAGING_ANONYMOUS_USE",
-                "EDUCATION",
-                "IMPACT_ASSESSMENTS",
-                "INCIDENT_RESPONSE",
-                "MONITORING",
-                "OPT_OUTS",
-                "RISK_BASED_CONTROLS",
-                "RISK_MAPPING_AND_MEASUREMENT",
-                "SCIENCE_BACKED_TEVV_PRACTICES",
-                "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES",
-                "STAKEHOLDER_ENGAGEMENT",
-                "SYNTHETIC_CONTENT_DETECTION_AND_LABELING",
-                "WHISTLEBLOWER_PROTECTIONS",
-                "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS"
-            ],
-            "title": "GovernancePracticeEnum",
-            "type": "string"
-        },
-        "Harm": {
+        "GaiStructuredFeedback": {
             "additionalProperties": false,
-            "description": "A negative impact that may be experienced by individuals,\ngroups, communities, organizations, society, the environment, or\nthe planet (Figure 1).",
+            "description": "A way of using structured public feedback to evaluate whether GAI systems perform as intended.",
             "properties": {
-                "affects": {
-                    "description": "Entities (people, organizations, ecosystems) the risk or harm\nmay affect.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "description": {
-                    "description": "A human-readable description.",
+                    "description": "What the element says or is.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
-                "harm_category": {
-                    "$ref": "#/$defs/HarmCategoryEnum",
-                    "description": "The high-level harm category (people / organization / ecosystem)."
-                },
-                "harm_to_people_subcategory": {
-                    "$ref": "#/$defs/HarmToPeopleSubcategoryEnum",
-                    "description": "The sub-category when harm is to people (individual / group / societal)."
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "gai_feedback_type": {
+                    "description": "Which of the three classes this record is.",
+                    "enum": [
+                        "GaiStructuredFeedback"
+                    ],
                     "type": "string"
                 },
-                "magnitude": {
-                    "description": "Magnitude or degree of consequences if the event occurs (free\ntext or qualitative scale).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                    "description": "The element's name.",
+                    "type": "string"
                 }
             },
             "required": [
-                "id"
+                "gai_feedback_type",
+                "title"
             ],
-            "title": "Harm",
+            "title": "GaiStructuredFeedback",
             "type": "object"
         },
-        "HarmCategoryEnum": {
-            "description": "High-level categories of harm related to AI systems (Figure 1).",
-            "enum": [
-                "HARM_TO_PEOPLE",
-                "HARM_TO_AN_ORGANIZATION",
-                "HARM_TO_AN_ECOSYSTEM"
-            ],
-            "title": "HarmCategoryEnum",
-            "type": "string"
-        },
-        "HarmToPeopleSubcategoryEnum": {
-            "description": "Sub-categories of harm to people, per Figure 1.",
-            "enum": [
-                "INDIVIDUAL",
-                "GROUP_OR_COMMUNITY",
-                "SOCIETAL"
-            ],
-            "title": "HarmToPeopleSubcategoryEnum",
-            "type": "string"
-        },
-        "HumanAiInteractionIssue": {
+        "GaiSubcategory": {
             "additionalProperties": false,
-            "description": "An issue that merits further consideration in human-AI\ninteraction (Appendix C) - e.g., clear human roles and\nresponsibilities, systemic and human-cognitive biases in design,\nvariability of human-AI interaction outcomes, complexity of\npresenting AI system information to humans.",
+            "description": "An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.",
             "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                "ai_rmf_subcategory_id": {
+                    "description": "The subcategory's identifier, such as GOVERN 1.1.",
+                    "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$",
                     "type": "string"
                 },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "HumanAiInteractionIssue",
-            "type": "object"
-        },
-        "Impact": {
-            "additionalProperties": false,
-            "description": "A positive, negative, or both consequence of an AI system. Impacts\ncan manifest as opportunities (positive) or threats (negative).",
-            "properties": {
-                "affects": {
-                    "description": "Entities (people, organizations, ecosystems) the risk or harm\nmay affect.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
                 "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                    "description": "The subcategory's statement as the table restates it.",
+                    "pattern": "^\\s*\\S",
                     "type": "string"
                 },
-                "impact_sign": {
-                    "$ref": "#/$defs/ImpactSignEnum",
-                    "description": "Whether the impact is positive, negative, or both."
-                },
-                "likelihood": {
-                    "description": "Estimated probability of the event occurring (0.0 to 1.0). The\nAI RMF leaves quantification approaches to the implementer.",
-                    "maximum": 1.0,
-                    "minimum": 0.0,
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "magnitude": {
-                    "description": "Magnitude or degree of consequences if the event occurs (free\ntext or qualitative scale).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
+                "gai_subcategory_actions": {
+                    "description": "The suggested actions the table lists.",
                     "items": {
-                        "type": "string"
+                        "$ref": "#/$defs/GaiSuggestedAction"
                     },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
+                    "minItems": 1,
+                    "type": "array"
                 },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Impact",
-            "type": "object"
-        },
-        "ImpactSignEnum": {
-            "description": "Whether an impact of an AI system is positive, negative, or both\n(Part 1 \u00a71.1).",
-            "enum": [
-                "POSITIVE",
-                "NEGATIVE",
-                "MIXED"
-            ],
-            "title": "ImpactSignEnum",
-            "type": "string"
-        },
-        "NamedThing": {
-            "additionalProperties": false,
-            "description": "A generic grouping for any identifiable AI RMF element.",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
+                "gai_subcategory_actor_tasks": {
+                    "description": "The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action.",
                     "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "NamedThing",
-            "type": "object"
-        },
-        "PlaybookCollection": {
-            "additionalProperties": false,
-            "description": "A container for a set of PlaybookEntry instances - the\nserialisation root for an AI RMF Playbook companion document.\nValidate with ``linkml-validate --target-class PlaybookCollection``;\nthe canonical tree-root for the schema is ``AiRmfFramework``.",
-            "properties": {
-                "entries": {
-                    "description": "The Playbook entries in a `PlaybookCollection`.",
-                    "items": {
-                        "$ref": "#/$defs/PlaybookEntry"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                }
-            },
-            "title": "PlaybookCollection",
-            "type": "object"
-        },
-        "PlaybookEntry": {
-            "additionalProperties": false,
-            "description": "A single AI RMF Playbook entry - an enrichment of a Core\nsubcategory with prose discussion, suggested actions,\ndocumentation questions, references, and topic tags.\n\nAttribute names use the same identifiers found in the published\nNIST AI RMF Playbook JSON (e.g., `section_about`,\n`section_actions`) so that the data can be loaded directly.",
-            "properties": {
-                "ai_actors": {
-                    "description": "AI actor categories the entry applies to. Free-text to\npreserve the casing of the source data (e.g., \"Governance\nand Oversight\").",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "category": {
-                    "description": "Category code in the form \"FUNCTION-N\" (e.g., \"GOVERN-1\")\nas used in the Playbook.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "Outcome statement of the subcategory.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "section_about": {
-                    "description": "Free-text discussion (\"About\" section).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "section_actions": {
-                    "description": "Bulleted suggested actions (\"Actions\" section).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "section_doc": {
-                    "description": "Documentation questions and transparency resources\n(\"Documentation\" section).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "section_ref": {
-                    "description": "References and citations (\"References\" section).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "Subcategory identifier (e.g., \"GOVERN 1.1\"). Mirrors the\nAI RMF Subcategory `subcategory_id`.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "topic": {
-                    "description": "Topic tags (e.g., \"Legal and Regulatory\", \"Validity and\nReliability\").",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "type": {
-                    "description": "Function label as serialised in the published Playbook JSON\n(Title case - \"Govern\", \"Map\", \"Measure\", \"Manage\"). For\nthe controlled enum see `function_kind`.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "title": "PlaybookEntry",
-            "type": "object"
-        },
-        "PrimaryConsiderationEnum": {
-            "description": "The four overarching themes derived from the GAI PWG\nconsultation process (Appendix A).",
-            "enum": [
-                "GOVERNANCE",
-                "PRE_DEPLOYMENT_TESTING",
-                "CONTENT_PROVENANCE",
-                "INCIDENT_DISCLOSURE"
-            ],
-            "title": "PrimaryConsiderationEnum",
-            "type": "string"
-        },
-        "PrimaryGaiConsideration": {
-            "additionalProperties": false,
-            "description": "An overarching consideration derived from the NIST GAI PWG\nconsultation process (Appendix A). The `consideration_kind`\nattribute discriminates between the four primary\nconsiderations: Governance, Pre-Deployment Testing, Content\nProvenance, and Incident Disclosure.\n\nAll consideration-specific attributes are optional and apply\nto the appropriate `consideration_kind`:\n  * GOVERNANCE: governance_practices, third_party_considerations\n  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches\n  * CONTENT_PROVENANCE: provenance_techniques\n  * INCIDENT_DISCLOSURE: ai_incident_definition",
-            "properties": {
-                "ai_incident_definition": {
-                    "description": "For Incident Disclosure: the definition of AI incident used\nby the organisation (Appendix A.1.8).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "consideration_kind": {
-                    "$ref": "#/$defs/PrimaryConsiderationEnum",
-                    "description": "Which primary consideration this element represents."
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "governance_practices": {
-                    "description": "Governance plans and actions enumerated in NIST AI 600-1\nAppendix A.1.2 (Organizational Governance).",
-                    "items": {
-                        "$ref": "#/$defs/GovernancePracticeEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "limitations_of_current_approaches": {
-                    "description": "For Pre-Deployment Testing: free-text discussion of why\ncurrent TEVV approaches may be inadequate (Appendix A.1.4).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "provenance_techniques": {
-                    "description": "For Content Provenance: provenance data tracking techniques\nsuch as digital watermarking, metadata recording, digital\nfingerprinting, and human authentication (Appendix A.1.6).",
-                    "items": {
-                        "$ref": "#/$defs/ProvenanceTechniqueEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "third_party_considerations": {
-                    "description": "Considerations for third-party GAI integrations, procurement,\nSBOMs, SLAs, and SSAE reports (Appendix A.1.3).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "consideration_kind",
-                "id"
-            ],
-            "title": "PrimaryGaiConsideration",
-            "type": "object"
-        },
-        "ProfileTypeEnum": {
-            "description": "Types of AI RMF Profile (\u00a76).",
-            "enum": [
-                "USE_CASE",
-                "TEMPORAL_CURRENT",
-                "TEMPORAL_TARGET",
-                "CROSS_SECTORAL"
-            ],
-            "title": "ProfileTypeEnum",
-            "type": "string"
-        },
-        "ProvenanceTechniqueEnum": {
-            "description": "Provenance data tracking techniques for GAI content\n(Appendix A.1.6). \"Some well-known techniques for provenance\ndata tracking include digital watermarking, metadata\nrecording, digital fingerprinting, and human authentication,\namong others.\"",
-            "enum": [
-                "DIGITAL_WATERMARKING",
-                "METADATA_RECORDING",
-                "DIGITAL_FINGERPRINTING",
-                "HUMAN_AUTHENTICATION"
-            ],
-            "title": "ProvenanceTechniqueEnum",
-            "type": "string"
-        },
-        "RedTeamingTypeEnum": {
-            "description": "Types of AI red-teaming exercises (Appendix A.1.5).",
-            "enum": [
-                "GENERAL_PUBLIC",
-                "EXPERT",
-                "COMBINATION",
-                "HUMAN_AND_AI"
-            ],
-            "title": "RedTeamingTypeEnum",
-            "type": "string"
-        },
-        "ResidualRisk": {
-            "additionalProperties": false,
-            "description": "Risk remaining after risk treatment (ISO Guide 73). Documenting\nresidual risks helps system providers consider risks of deploying\nthe AI product and informs end users about potential negative\nimpacts.",
-            "properties": {
-                "affects_system": {
-                    "description": "The AI system a risk pertains to.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "impact_sign": {
-                    "$ref": "#/$defs/ImpactSignEnum",
-                    "description": "Whether the impact is positive, negative, or both."
-                },
-                "is_residual": {
-                    "description": "Whether this risk represents risk remaining after risk treatment\n(residual risk per ISO Guide 73).",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "likelihood": {
-                    "description": "Estimated probability of the event occurring (0.0 to 1.0). The\nAI RMF leaves quantification approaches to the implementer.",
-                    "maximum": 1.0,
-                    "minimum": 0.0,
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "magnitude": {
-                    "description": "Magnitude or degree of consequences if the event occurs (free\ntext or qualitative scale).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "related_impacts": {
-                    "description": "The impacts that contribute to a risk.",
-                    "items": {
-                        "$ref": "#/$defs/Impact"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "risk_response": {
-                    "$ref": "#/$defs/RiskResponseEnum",
-                    "description": "The chosen risk treatment option."
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "trustworthiness_characteristic": {
-                    "description": "Trustworthiness characteristic(s) the element pertains to.",
-                    "items": {
-                        "$ref": "#/$defs/TrustworthinessCharacteristicEnum"
+                        "$ref": "#/$defs/AiRmfActorTaskName"
                     },
                     "type": [
                         "array",
@@ -2000,112 +2332,31 @@
                 }
             },
             "required": [
-                "id"
+                "ai_rmf_subcategory_id",
+                "description",
+                "gai_subcategory_actions"
             ],
-            "title": "ResidualRisk",
+            "title": "GaiSubcategory",
             "type": "object"
         },
-        "Risk": {
+        "GaiSuggestedAction": {
             "additionalProperties": false,
-            "description": "The composite measure of an event's probability of occurring and\nthe magnitude or degree of the consequences of that event. When\nconsidering negative impact, risk is a function of (1) the\nnegative impact or magnitude of harm and (2) the likelihood of\noccurrence (Adapted from ISO 31000:2018; OMB Circular A-130:2016).",
+            "description": "A step an organization or AI actor can take to manage GAI risks, which one row of a table states.",
             "properties": {
-                "affects_system": {
-                    "description": "The AI system a risk pertains to.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
                 "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
+                    "description": "The action's text in the table.",
+                    "pattern": "^\\s*\\S",
                     "type": "string"
                 },
-                "impact_sign": {
-                    "$ref": "#/$defs/ImpactSignEnum",
-                    "description": "Whether the impact is positive, negative, or both."
+                "gai_action_id": {
+                    "description": "The action's identifier, such as GV-1.1-001.",
+                    "pattern": "^(GV-[1-6]|MP-[1-5]|MS-[1-4]|MG-[1-4])\\.[1-9][0-9]?-[0-9]{3}$",
+                    "type": "string"
                 },
-                "is_residual": {
-                    "description": "Whether this risk represents risk remaining after risk treatment\n(residual risk per ISO Guide 73).",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
+                "gai_action_risks": {
+                    "description": "The GAI risks the row tags the action with.",
                     "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "likelihood": {
-                    "description": "Estimated probability of the event occurring (0.0 to 1.0). The\nAI RMF leaves quantification approaches to the implementer.",
-                    "maximum": 1.0,
-                    "minimum": 0.0,
-                    "type": [
-                        "number",
-                        "null"
-                    ]
-                },
-                "magnitude": {
-                    "description": "Magnitude or degree of consequences if the event occurs (free\ntext or qualitative scale).",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "related_impacts": {
-                    "description": "The impacts that contribute to a risk.",
-                    "items": {
-                        "$ref": "#/$defs/Impact"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "risk_response": {
-                    "$ref": "#/$defs/RiskResponseEnum",
-                    "description": "The chosen risk treatment option."
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "trustworthiness_characteristic": {
-                    "description": "Trustworthiness characteristic(s) the element pertains to.",
-                    "items": {
-                        "$ref": "#/$defs/TrustworthinessCharacteristicEnum"
+                        "$ref": "#/$defs/GaiRiskName"
                     },
                     "type": [
                         "array",
@@ -2114,704 +2365,120 @@
                 }
             },
             "required": [
-                "id"
+                "gai_action_id",
+                "description"
             ],
-            "title": "Risk",
+            "title": "GaiSuggestedAction",
             "type": "object"
         },
-        "RiskMeasurementChallenge": {
-            "additionalProperties": false,
-            "description": "A challenge that complicates measurement of AI risks\n(Part 1 \u00a71.2.1).",
-            "properties": {
-                "challenge_kind": {
-                    "$ref": "#/$defs/RiskMeasurementChallengeEnum",
-                    "description": "Which risk-measurement challenge a `RiskMeasurementChallenge` represents."
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "challenge_kind",
-                "id"
-            ],
-            "title": "RiskMeasurementChallenge",
-            "type": "object"
-        },
-        "RiskMeasurementChallengeEnum": {
-            "description": "Challenges that complicate AI risk measurement (Part 1 \u00a71.2.1).",
+        "GaiThirdPartyControl": {
+            "description": "The existing controls that section A.1.3 says can apply to third-party GAI.",
             "enum": [
-                "THIRD_PARTY_SOFTWARE_HARDWARE_AND_DATA",
-                "TRACKING_EMERGENT_RISKS",
-                "AVAILABILITY_OF_RELIABLE_METRICS",
-                "RISK_AT_DIFFERENT_LIFECYCLE_STAGES",
-                "RISK_IN_REAL_WORLD_SETTINGS",
-                "INSCRUTABILITY",
-                "HUMAN_BASELINE"
+                "acquisition_and_procurement_due_diligence",
+                "software_bills_of_materials",
+                "service_level_agreements",
+                "ssae_reports"
             ],
-            "title": "RiskMeasurementChallengeEnum",
+            "title": "GaiThirdPartyControl",
             "type": "string"
         },
-        "RiskResponseEnum": {
-            "description": "Treatment options for AI risks (MANAGE 1.3).",
-            "enum": [
-                "MITIGATING",
-                "TRANSFERRING",
-                "AVOIDING",
-                "ACCEPTING"
-            ],
-            "title": "RiskResponseEnum",
-            "type": "string"
-        },
-        "RiskTolerance": {
+        "NistAiRmfFamily": {
             "additionalProperties": false,
-            "description": "The organization's or AI actor's readiness to bear risk in order\nto achieve its objectives (Adapted from ISO Guide 73). Risk\ntolerance is highly contextual and application- and use-case\nspecific.",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "legal_basis": {
-                    "description": "Legal or regulatory requirements influencing a risk tolerance.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
+            "anyOf": [
+                {
+                    "properties": {
+                        "nist_ai_rmf_framework": {}
                     },
-                    "type": [
-                        "array",
-                        "null"
+                    "required": [
+                        "nist_ai_rmf_framework"
                     ]
                 },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "tolerance_statement": {
-                    "description": "Free-text statement of a risk tolerance level or threshold.",
-                    "type": [
-                        "string",
-                        "null"
+                {
+                    "properties": {
+                        "nist_ai_rmf_generative_ai_profile": {}
+                    },
+                    "required": [
+                        "nist_ai_rmf_generative_ai_profile"
                     ]
                 }
-            },
-            "required": [
-                "id"
             ],
-            "title": "RiskTolerance",
-            "type": "object"
-        },
-        "RmfAttribute": {
-            "additionalProperties": false,
-            "description": "A design attribute of the AI RMF (Appendix D) - one of the\nqualities the Framework strives to embody (e.g., risk-based,\nconsensus-driven, plain language, common language, easily usable,\nuniversally applicable, outcome-focused, leveraging existing\nstandards, law- and regulation-agnostic, living document).",
+            "description": "The two publications held in one document, each as its own schema renders it.",
             "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "nist_ai_rmf_framework": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/AiRmfFramework"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The AI RMF, as lmodel/nist-ai-100-1 renders it."
                 },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
+                "nist_ai_rmf_generative_ai_profile": {
+                    "anyOf": [
+                        {
+                            "$ref": "#/$defs/GaiProfile"
+                        },
+                        {
+                            "type": "null"
+                        }
+                    ],
+                    "description": "The Generative AI Profile, as lmodel/nist-ai-600-1 renders it."
                 }
             },
-            "required": [
-                "id"
-            ],
-            "title": "RmfAttribute",
+            "title": "NistAiRmfFamily",
             "type": "object"
-        },
-        "StructuredFeedbackMethodEnum": {
-            "description": "Categories of structured public feedback for GAI risk\nmanagement (Appendix A.1.5).",
-            "enum": [
-                "PARTICIPATORY_ENGAGEMENT_METHODS",
-                "FIELD_TESTING",
-                "AI_RED_TEAMING"
-            ],
-            "title": "StructuredFeedbackMethodEnum",
-            "type": "string"
-        },
-        "StructuredPublicFeedback": {
-            "additionalProperties": false,
-            "description": "Methods used to evaluate whether GAI systems are performing as\nintended and to calibrate and verify traditional measurement\nmethods (A.1.5).",
-            "properties": {
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "feedback_method_kind": {
-                    "$ref": "#/$defs/StructuredFeedbackMethodEnum",
-                    "description": "Which structured feedback method this element represents."
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "feedback_method_kind",
-                "id"
-            ],
-            "title": "StructuredPublicFeedback",
-            "type": "object"
-        },
-        "Subcategory": {
-            "additionalProperties": false,
-            "description": "A subcategory within an AI RMF Core category (e.g., \"GOVERN 1.1:\nLegal and regulatory requirements involving AI are understood,\nmanaged, and documented\"). Subcategories express specific\noutcomes.",
-            "properties": {
-                "about_text": {
-                    "description": "Free-text discussion of the subcategory or related concept.\nCorresponds to the AI RMF Playbook \"About\" section.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "ai_actor_categories": {
-                    "description": "Free-text list of AI Actor categories the entry applies to,\npreserving the original case used in the AI RMF Playbook\n(e.g., \"Governance and Oversight\", \"TEVV\"). For controlled\nenum values see `actor_task` (range AiActorTaskEnum).",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "documentation_questions": {
-                    "description": "Free-text documentation questions and transparency resources.\nCorresponds to the AI RMF Playbook \"Documentation\" section.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Identifier for the subcategory in the \"FUNCTION N.M\" form\n(e.g., \"GOVERN 1.1\").",
-                    "type": "string"
-                },
-                "lifecycle_stage": {
-                    "description": "The AI lifecycle stage(s) the element applies to.",
-                    "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "outcome": {
-                    "description": "The outcome statement of a Category or Subcategory - the desired\nresult of carrying out its actions.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "references_text": {
-                    "description": "Free-text list of references, citations, and supporting\nresources. Corresponds to the AI RMF Playbook \"References\"\nsection.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "subcategory_id": {
-                    "description": "Identifier of a Subcategory (e.g., \"GOVERN 1.1\").",
-                    "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "suggested_actions_text": {
-                    "description": "Free-text bulleted list of suggested actions an organization can\ntake. Corresponds to the AI RMF Playbook \"Actions\" section.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "topics": {
-                    "description": "Free-text topic tags applied to a playbook entry (e.g.,\n\"Governance\", \"Trustworthy Characteristics\", \"Validity and\nReliability\").",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "trustworthiness_characteristic": {
-                    "description": "Trustworthiness characteristic(s) the element pertains to.",
-                    "items": {
-                        "$ref": "#/$defs/TrustworthinessCharacteristicEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "id"
-            ],
-            "title": "Subcategory",
-            "type": "object"
-        },
-        "SuggestedAction": {
-            "additionalProperties": false,
-            "description": "A suggested action an organisation can take to manage GAI\nrisks. Each action is identified by an Action ID, linked to an\nAI RMF subcategory, and may be relevant to one or more GAI\nrisks and AI actor tasks (NIST AI 600-1 Section 3).",
-            "properties": {
-                "action_id": {
-                    "description": "Identifier of a Suggested Action.",
-                    "pattern": "^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$",
-                    "type": "string"
-                },
-                "actor_task": {
-                    "description": "Pertinent AI Actor Task(s) for the suggested action - i.e.,\nthe \"AI Actor Tasks\" row at the bottom of each Section 3\ntable.",
-                    "items": {
-                        "$ref": "#/$defs/GaiActorTaskEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "applies_to_subcategory": {
-                    "description": "Identifier of the AI RMF subcategory the action applies to.",
-                    "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "description": {
-                    "description": "The suggested-action text itself.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "function_prefix": {
-                    "$ref": "#/$defs/GaiActionFunctionPrefixEnum",
-                    "description": "Two-letter function prefix of the action's subcategory."
-                },
-                "gai_risks": {
-                    "description": "GAI risk categories addressed by a suggested action or\nconsidered by a primary consideration.",
-                    "items": {
-                        "$ref": "#/$defs/GaiRiskCategoryEnum"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "Identifier for the action - typically the same as the\n`action_id` (e.g., \"GV-1.1-001\").",
-                    "type": "string"
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "action_id",
-                "id"
-            ],
-            "title": "SuggestedAction",
-            "type": "object"
-        },
-        "TrustworthinessCharacteristic": {
-            "additionalProperties": false,
-            "description": "A characteristic of a trustworthy AI system (Figure 4 / Part 1\n\u00a73). The seven characteristics are inter-related; addressing them\nindividually does not guarantee trustworthiness, and tradeoffs\nare usually involved.",
-            "properties": {
-                "characteristic_kind": {
-                    "$ref": "#/$defs/TrustworthinessCharacteristicEnum",
-                    "description": "Which trustworthiness characteristic a `TrustworthinessCharacteristic` represents."
-                },
-                "description": {
-                    "description": "A human-readable description.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "id": {
-                    "description": "A unique identifier for an element.",
-                    "type": "string"
-                },
-                "is_base_condition": {
-                    "description": "True when this characteristic is a necessary condition for\ntrustworthiness (per Figure 4 - Valid and Reliable is the base\nof all others).",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "is_cross_cutting": {
-                    "description": "True when this characteristic relates to all others\n(Accountable and Transparent; shown vertically in Figure 4).",
-                    "type": [
-                        "boolean",
-                        "null"
-                    ]
-                },
-                "name": {
-                    "description": "A short human-readable name.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                },
-                "see_also": {
-                    "description": "Related references.",
-                    "items": {
-                        "type": "string"
-                    },
-                    "type": [
-                        "array",
-                        "null"
-                    ]
-                },
-                "title": {
-                    "description": "A human-readable title.",
-                    "type": [
-                        "string",
-                        "null"
-                    ]
-                }
-            },
-            "required": [
-                "characteristic_kind",
-                "id"
-            ],
-            "title": "TrustworthinessCharacteristic",
-            "type": "object"
-        },
-        "TrustworthinessCharacteristicEnum": {
-            "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
-            "enum": [
-                "VALID_AND_RELIABLE",
-                "SAFE",
-                "SECURE_AND_RESILIENT",
-                "ACCOUNTABLE_AND_TRANSPARENT",
-                "EXPLAINABLE_AND_INTERPRETABLE",
-                "PRIVACY_ENHANCED",
-                "FAIR_WITH_HARMFUL_BIAS_MANAGED"
-            ],
-            "title": "TrustworthinessCharacteristicEnum",
-            "type": "string"
         }
     },
     "$id": "https://w3id.org/lmodel/nist-ai-rmf",
     "$schema": "https://json-schema.org/draft/2019-09/schema",
-    "additionalProperties": true,
-    "description": "Root container that bundles the AI RMF Core (Functions) with\nfoundational concepts (trustworthiness characteristics,\nlifecycle, actors, risks, harms), profiles, and Framework\nattributes. Designed for serialising the Framework or a tailored\ninstance of it as a single JSON / YAML document.",
-    "metamodel_version": "1.11.0",
+    "additionalProperties": false,
+    "anyOf": [
+        {
+            "properties": {
+                "nist_ai_rmf_framework": {}
+            },
+            "required": [
+                "nist_ai_rmf_framework"
+            ]
+        },
+        {
+            "properties": {
+                "nist_ai_rmf_generative_ai_profile": {}
+            },
+            "required": [
+                "nist_ai_rmf_generative_ai_profile"
+            ]
+        }
+    ],
+    "description": "The two publications held in one document, each as its own schema renders it.",
+    "metamodel_version": "1.12.0",
     "properties": {
-        "actor_tasks": {
-            "description": "AI actor task categories (Appendix A).",
-            "items": {
-                "$ref": "#/$defs/AiActorTask"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "ai_specific_risks": {
-            "description": "AI-specific risks compared to traditional software (Appendix B).",
-            "items": {
-                "$ref": "#/$defs/AiSpecificRisk"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "attributes": {
-            "description": "Design attributes of the AI RMF (Appendix D).",
-            "items": {
-                "$ref": "#/$defs/RmfAttribute"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "description": {
-            "description": "A human-readable description.",
-            "type": [
-                "string",
-                "null"
-            ]
-        },
-        "dimensions": {
-            "description": "The AI system dimensions (Figure 2).",
-            "items": {
-                "$ref": "#/$defs/AiSystemDimension"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "document": {
+        "nist_ai_rmf_framework": {
             "anyOf": [
                 {
-                    "$ref": "#/$defs/AiRmfDocument"
+                    "$ref": "#/$defs/AiRmfFramework"
                 },
                 {
                     "type": "null"
                 }
             ],
-            "description": "Publication metadata of the framework instance."
+            "description": "The AI RMF, as lmodel/nist-ai-100-1 renders it."
         },
-        "functions": {
-            "description": "The four AI RMF Core functions and their content.",
-            "items": {
-                "$ref": "#/$defs/Function"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "human_ai_interaction_issues": {
-            "description": "Human-AI interaction considerations (Appendix C).",
-            "items": {
-                "$ref": "#/$defs/HumanAiInteractionIssue"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "id": {
-            "description": "A unique identifier for an element.",
-            "type": "string"
-        },
-        "lifecycle_stages": {
-            "description": "The AI lifecycle stages (Figure 2).",
-            "items": {
-                "$ref": "#/$defs/AiLifecycleStage"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "name": {
-            "description": "A short human-readable name.",
-            "type": [
-                "string",
-                "null"
-            ]
-        },
-        "profiles": {
-            "description": "AI RMF profiles defined alongside this Framework instance.",
-            "items": {
-                "$ref": "#/$defs/AiRmfProfile"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "risk_measurement_challenges": {
-            "description": "Identified challenges in measuring AI risk.",
-            "items": {
-                "$ref": "#/$defs/RiskMeasurementChallenge"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "see_also": {
-            "description": "Related references.",
-            "items": {
-                "type": "string"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
-        },
-        "title": {
-            "description": "A human-readable title.",
-            "type": [
-                "string",
-                "null"
-            ]
-        },
-        "trustworthiness_characteristics": {
-            "description": "The seven characteristics of trustworthy AI.",
-            "items": {
-                "$ref": "#/$defs/TrustworthinessCharacteristic"
-            },
-            "type": [
-                "array",
-                "null"
-            ]
+        "nist_ai_rmf_generative_ai_profile": {
+            "anyOf": [
+                {
+                    "$ref": "#/$defs/GaiProfile"
+                },
+                {
+                    "type": "null"
+                }
+            ],
+            "description": "The Generative AI Profile, as lmodel/nist-ai-600-1 renders it."
         }
     },
-    "required": [
-        "id"
-    ],
-    "title": "nist-ai-rmf",
+    "title": "nist_ai_rmf",
     "type": "object",
     "version": "1.0.0"
 }

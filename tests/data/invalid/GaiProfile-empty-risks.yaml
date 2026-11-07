@@ -1,0 +1,11 @@
+# Fails at: /gai_risks
+ai_rmf_id: https://doi.org/10.6028/NIST.AI.600-1
+ai_rmf_profile_kinds:
+  - cross_sectoral
+gai_risks: []
+gai_subcategories:
+  - ai_rmf_subcategory_id: GOVERN 1.1
+    description: A statement.
+    gai_subcategory_actions:
+      - gai_action_id: GV-1.1-001
+        description: An action.

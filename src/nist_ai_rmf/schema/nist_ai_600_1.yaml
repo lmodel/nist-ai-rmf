@@ -1,0 +1,77 @@
+---
+id: https://w3id.org/lmodel/nist-ai-600-1
+name: nist_ai_600_1
+title: NIST AI RMF Generative AI Profile (NIST AI 600-1)
+description: >-
+  A LinkML model of NIST AI 600-1, the Generative Artificial Intelligence Profile of the AI Risk
+  Management Framework: its 12 risks, the suggested actions its tables list under AI RMF
+  subcategories, and its four primary considerations.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.600-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-600-1
+  - https://airc.nist.gov/Home
+  - https://doi.org/10.6028/NIST.AI.100-1
+annotations:
+  publication_date: "2024-07"
+  publication_approved: "2024-07-25"
+comments:
+  - >-
+    The publication has no version number of its own, so the version is the 1.0.0 of the AI RMF it
+    profiles, and source is the publication's digital object identifier. The release tags are the
+    schema's own versions, and scripts/check_upstream_release.py reports when NIST changes the file.
+  - >-
+    It imports the base and profiles modules of lmodel/nist-ai-100-1, vendored under
+    nist_ai_100_1/, so it needs no network. tests/test_schema_rules.py holds them to their hashes.
+  - >-
+    The publication is a work of the United States Government. NOTICE says what it allows. The
+    schema's descriptions are this project's own words; NIST's text is in src/nist_ai_600_1/data/.
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
+default_prefix: nist_ai_600_1
+default_range: string
+
+imports:
+  - linkml:types
+  - ./nist_ai_100_1/nist_ai_100_1_base
+  - ./nist_ai_100_1/nist_ai_100_1_profiles
+  - ./nist_ai_600_1_risks
+  - ./nist_ai_600_1_actions
+  - ./nist_ai_600_1_considerations
+
+classes:
+  GaiProfile:
+    is_a: AiRmfProfile
+    tree_root: true
+    class_uri: nist_ai_600_1:Profile
+    description: >-
+      The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion
+      resource to it.
+    comments:
+      - It holds actions for only some subcategories, and the publication says more may be added later.
+    attributes:
+      gai_risks:
+        description: The 12 risks of section 2.
+        range: GaiRisk
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+        inlined: true
+        inlined_as_list: true
+      gai_subcategories:
+        description: The tables of section 3, in the publication's order.
+        range: GaiSubcategory
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+        inlined: true
+        inlined_as_list: true
+      gai_primary_considerations:
+        description: The four primary considerations of Appendix A.
+        range: GaiPrimaryConsideration
+        multivalued: true
+        inlined: true
+        inlined_as_list: true

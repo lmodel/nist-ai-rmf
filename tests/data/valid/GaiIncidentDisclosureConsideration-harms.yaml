@@ -1,0 +1,4 @@
+gai_consideration_type: GaiIncidentDisclosureConsideration
+title: Incident Disclosure
+gai_incident_harms:
+  - rights_violations

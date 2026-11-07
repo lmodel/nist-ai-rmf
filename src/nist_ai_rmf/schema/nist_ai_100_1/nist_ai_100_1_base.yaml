@@ -1,0 +1,188 @@
+---
+id: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+name: nist_ai_100_1_base
+title: AI RMF 1.0 shared identifiers, names and record base
+description: >-
+  The AI RMF's identifier forms, its names for trustworthiness characteristics and AI actor
+  tasks, and the base of the classes that record an adopter's own facts. A profile of the
+  AI RMF can import this slice without the rest of the framework.
+version: 1.0.0
+source: https://doi.org/10.6028/NIST.AI.100-1
+license: Apache-2.0
+see_also:
+  - https://lmodel.github.io/nist-ai-100-1
+  - https://www.nist.gov/itl/ai-risk-management-framework
+prefixes:
+  linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
+  schema: http://schema.org/
+  xsd: http://www.w3.org/2001/XMLSchema#
+default_prefix: nist_ai_100_1
+default_range: string
+
+imports:
+  - linkml:types
+
+types:
+  ai_rmf_function_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: The name of one of the four Core functions, written in capitals, such as GOVERN.
+    pattern: "^(GOVERN|MAP|MEASURE|MANAGE)$"
+
+  ai_rmf_category_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: A category's identifier, its function's name and a number, such as GOVERN 1.
+    pattern: "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])$"
+
+  ai_rmf_subcategory_identifier:
+    typeof: string
+    base: str
+    uri: xsd:string
+    description: A subcategory's identifier, its category's identifier, a dot and a number, such as GOVERN 1.1.
+    pattern: "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$"
+
+slots:
+  ai_rmf_id:
+    description: The identifier an adopter gives a record of its own.
+    identifier: true
+    range: uriorcurie
+    required: true
+
+  ai_rmf_subcategory_id:
+    description: The subcategory's identifier, such as GOVERN 1.1.
+    range: ai_rmf_subcategory_identifier
+    required: true
+
+  title:
+    description: The element's name.
+    slot_uri: schema:name
+    comments:
+      - >-
+        It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a
+        knowledge bundle reads one title key.
+
+  description:
+    description: What the element says or is.
+    slot_uri: schema:description
+    comments:
+      - >-
+        It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and
+        a knowledge bundle reads one description key.
+
+classes:
+  AiRmfRecord:
+    abstract: true
+    class_uri: nist_ai_100_1:Record
+    description: >-
+      The base of the classes that record an adopter's own facts, such as one of its AI
+      systems or risks, as distinct from what the publication itself lists.
+    slots:
+      - ai_rmf_id
+      - title
+      - description
+
+enums:
+  AiRmfCharacteristicName:
+    description: The seven characteristics of trustworthy AI systems in section 3 of the publication.
+    permissible_values:
+      valid_and_reliable:
+        title: Valid and Reliable
+        description: >-
+          Shown by evidence to meet the needs of its intended use, and works without failure over
+          time. Figure 4 makes it a necessary condition for the others.
+      safe:
+        title: Safe
+        description: Keeps people, property and the environment out of danger under defined conditions.
+      secure_and_resilient:
+        title: Secure and Resilient
+        description: >-
+          Withstands adverse events and recovers from them, and keeps confidentiality, integrity
+          and availability through protections against attack.
+      accountable_and_transparent:
+        title: Accountable and Transparent
+        description: >-
+          Answerable for outcomes, which rests on people being able to get information about the
+          system and its outputs. Figure 4 shows it relating to all the others.
+      explainable_and_interpretable:
+        title: Explainable and Interpretable
+        description: >-
+          Its working can be represented (how a decision was made) and its output understood in
+          context (why, and what it means for the user).
+      privacy_enhanced:
+        title: Privacy-Enhanced
+        description: >-
+          Guided by the norms and practices that protect human autonomy, identity and dignity,
+          such as anonymity, confidentiality and control.
+      fair_with_harmful_bias_managed:
+        title: Fair – with Harmful Bias Managed
+        description: >-
+          Addresses equality and equity, including harmful bias and discrimination, knowing that
+          views of fairness differ across cultures and applications.
+
+  AiRmfActorTaskName:
+    description: >-
+      The ten AI actor tasks and five additional AI actors of Appendix A.
+    comments:
+      - >-
+        One list holds both kinds because NIST tags them together: the Playbook under its AI
+        Actors key, and AI 600-1 under AI Actor Tasks. Each alias is the spelling those tags use
+        where it differs from the title in Appendix A.
+    permissible_values:
+      ai_design:
+        title: AI Design
+        description: Setting what the system is for, planning and designing it, and gathering and preparing its data.
+      ai_development:
+        title: AI Development
+        description: Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models.
+      ai_deployment:
+        title: AI Deployment
+        description: Deciding how the system is used and putting it into production, including pilots and compliance checks.
+      operation_and_monitoring:
+        title: Operation and Monitoring
+        description: Running the system and regularly assessing its output and impacts.
+      tevv:
+        title: Test, Evaluation, Verification, and Validation (TEVV)
+        aliases:
+          - TEVV
+        description: Examining the system or its components and finding and fixing problems, throughout the lifecycle.
+      human_factors:
+        title: Human Factors
+        description: Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design.
+      domain_expert:
+        title: Domain Expert
+        aliases:
+          - Domain Experts
+        description: Giving knowledge of the sector or setting where the system is used.
+      ai_impact_assessment:
+        title: AI Impact Assessment
+        description: Assessing accountability, harmful bias, impacts, product safety, liability and security.
+      procurement:
+        title: Procurement
+        description: Acquiring AI from another party, under financial, legal or policy authority.
+      governance_and_oversight:
+        title: Governance and Oversight
+        description: Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed.
+      third_party_entities:
+        title: Third-party entities
+        description: Outside organizations that supply or evaluate the data, models, systems or services an organization acquires.
+      end_users:
+        title: End users
+        aliases:
+          - End-Users
+          - End Users
+        description: The people or groups who use the system, whether new to technology or expert in AI.
+      affected_individuals_and_communities:
+        title: Affected individuals/communities
+        aliases:
+          - Affected Individuals and Communities
+        description: Those directly or indirectly affected by the system or its output, whether or not they interact with it.
+      other_ai_actors:
+        title: Other AI actors
+        description: Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.
+      general_public:
+        title: General public
+        description: Those most likely to experience the impacts directly, who may motivate what other AI actors do.
