@@ -103,7 +103,7 @@ exclusions:
     reason: The sidecar's lock file.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-06T21:26:44Z"
+  at: "2026-11-15T03:05:39Z"
 status: draft
 ---
 
@@ -118,4 +118,4 @@ status: draft
 | `docs/about.md` | The explanations | Reading it |
 | `.github/workflows/` | One concept per workflow | Reading each header comment |
 | `SECURITY.md`, `AI_COVENANT.md`, `NOTICE`, `CONTRIBUTING.md` | The policies and playbooks | Reading each |
-| `website/` | The documentation site | `npm run build` |
+| `website/` | The documentation site | `scripts/build.sh` in `website/` |
