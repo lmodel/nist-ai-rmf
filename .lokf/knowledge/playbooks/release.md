@@ -15,12 +15,12 @@ sources:
     resource: SECURITY.md
     title: What this repository releases
   - resource: .releaserc.json
-  - resource: .github/release
+  - resource: .release
   - resource: .github/scripts
   - resource: CHANGELOG.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T09:59:50Z"
+  at: "2026-11-15T20:58:57Z"
 status: draft
 ---
 
