@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-11-15
+
+* **Changed**: The concepts that cite the knowledge website describe the Hugo site that replaced the Astro one, set by `website/site.toml`.
+
 ## 2026-11-07
 
 * **Changed**: the neighbour copies cite the crosswalk builder.
