@@ -1,0 +1,748 @@
+# This repository's own values for the knowledge website. hugo.toml beside
+# this file holds everything that is the same on every site. The ktl-website
+# skill wrote this file once and never replaces it.
+
+# The site's address: the owner's GitHub Pages domain and the repository's
+# name under it. A user site (the <owner>.github.io repository) or a custom
+# domain has no name after the domain: "https://docs.example.org/".
+baseURL = "https://lmodel.github.io/nist-ai-rmf/"
+
+# The site's title, in the header and on every social card.
+title = "nist-ai-rmf"
+
+[params]
+# One sentence, for search engines and link previews.
+description = "NIST AI RMF family: NIST AI 100-1 and NIST AI 600-1 as one schema (LinkML)"
+# The repository. Links to files that are not pages go here.
+repo = "https://github.com/lmodel/nist-ai-rmf"
+
+# Everything below is optional. The site finds the README, the docs, the
+# figures, the changelog, a LinkML schema and a workspace by itself.
+
+# The default branch, when it is not main, and the tag a release carries,
+# when it is not v<version>.
+# branch = "master"
+# releaseTag = "{version}"
+
+# A logo of the repository's own, as files under .assets/. Left out, the
+# site shows the Knowledge Trust Ladder logo.
+# logo = ".assets/logo.svg"
+# logoDark = ".assets/logo-dark.svg"
+
+# The data: a folder of SQLite databases and their Datasette metadata, from
+# the repository's root, served under browse/ with a page that opens each in
+# Datasette Lite, and the command that writes the folder when it holds no
+# database. The databases go on the public site, so none is served until
+# this is set.
+# browse = "my-project/browse"
+# browseBuild = "just build-browse"
+
+# More folders under docs/ that are not pages.
+# docsExclude = ["templates-linkml", "elements", "drafts"]
+
+# The docs pages in groups of your choosing, each page by its path under
+# docs/ without .md. Left out, the pages at the top of docs/ are one group
+# and each folder is a group of its own. With groups, the build stops when
+# one names a missing page or a page is in no group.
+# [[params.docsGroups]]
+# label = "Start here"
+# pages = ["install", "usage"]
+
+# Old addresses, each sent on to the page built from a repository file. One
+# ending in /* stands for every page of the schema. Hugo lowercases a
+# table's keys, so an address with capitals takes the list form below.
+# [params.redirects]
+# "about" = "docs/about.md"
+# "elements/*" = "schema/*"
+#
+# [[params.redirects]]
+# from = "elements/OldName"
+# to = "website/generated/schema/classes/NewName.md"
+
+[[params.redirects]]
+from = "about"
+to = "docs/about.md"
+
+[[params.redirects]]
+from = "elements/AiActor"
+to = "website/generated/schema/classes/AiRmfActor.md"
+
+[[params.redirects]]
+from = "elements/AiActorTask"
+to = "website/generated/schema/classes/AiRmfActorTask.md"
+
+[[params.redirects]]
+from = "elements/AiActorTaskEnum"
+to = "website/generated/schema/enums/AiRmfActorTaskName.md"
+
+[[params.redirects]]
+from = "elements/AiLifecycleStage"
+to = "website/generated/schema/classes/AiRmfLifecycleStage.md"
+
+[[params.redirects]]
+from = "elements/AiLifecycleStageEnum"
+to = "website/generated/schema/enums/AiRmfLifecycleStageName.md"
+
+[[params.redirects]]
+from = "elements/AiRedTeaming"
+to = "website/generated/schema/classes/GaiAiRedTeaming.md"
+
+[[params.redirects]]
+from = "elements/AiRiskDistinctions"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/AiRmfDocument"
+to = "website/generated/schema/classes/AiRmfFramework.md"
+
+[[params.redirects]]
+from = "elements/AiSpecificRisk"
+to = "website/generated/schema/classes/AiRmfSpecificRisk.md"
+
+[[params.redirects]]
+from = "elements/AiSystem"
+to = "website/generated/schema/classes/AiRmfSystem.md"
+
+[[params.redirects]]
+from = "elements/AiSystemDimension"
+to = "website/generated/schema/classes/AiRmfDimension.md"
+
+[[params.redirects]]
+from = "elements/AiSystemDimensionEnum"
+to = "website/generated/schema/enums/AiRmfDimensionName.md"
+
+[[params.redirects]]
+from = "elements/AudienceEnum"
+to = "website/generated/schema/enums/AiRmfAudience.md"
+
+[[params.redirects]]
+from = "elements/Base"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/Bias"
+to = "website/generated/schema/classes/AiRmfBias.md"
+
+[[params.redirects]]
+from = "elements/BiasCategoryEnum"
+to = "website/generated/schema/enums/AiRmfBiasCategory.md"
+
+[[params.redirects]]
+from = "elements/Category"
+to = "website/generated/schema/classes/AiRmfCategory.md"
+
+[[params.redirects]]
+from = "elements/CategoryCode"
+to = "website/generated/schema/types/AiRmfCategoryIdentifier.md"
+
+[[params.redirects]]
+from = "elements/CategoryEnum"
+to = "website/generated/schema/types/AiRmfCategoryIdentifier.md"
+
+[[params.redirects]]
+from = "elements/FrameworkAttributes"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/FrameworkCore"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/Function"
+to = "website/generated/schema/classes/AiRmfFunction.md"
+
+[[params.redirects]]
+from = "elements/FunctionCode"
+to = "website/generated/schema/types/AiRmfFunctionIdentifier.md"
+
+[[params.redirects]]
+from = "elements/FunctionEnum"
+to = "website/generated/schema/types/AiRmfFunctionIdentifier.md"
+
+[[params.redirects]]
+from = "elements/GaiActionFunctionPrefixEnum"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiActionId"
+to = "website/generated/schema/types/GaiActionIdentifier.md"
+
+[[params.redirects]]
+from = "elements/GaiActions"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiActorTaskEnum"
+to = "website/generated/schema/enums/AiRmfActorTaskName.md"
+
+[[params.redirects]]
+from = "elements/GaiBase"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiConsiderations"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiCore"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiFeedback"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/GaiLifecycleStageEnum"
+to = "website/generated/schema/enums/GaiLifecycleStage.md"
+
+[[params.redirects]]
+from = "elements/GaiRiskCategorizationEnum"
+to = "website/generated/schema/enums/GaiRiskGrouping.md"
+
+[[params.redirects]]
+from = "elements/GaiRiskCategoryEnum"
+to = "website/generated/schema/enums/GaiRiskName.md"
+
+[[params.redirects]]
+from = "elements/GaiRiskScopeEnum"
+to = "website/generated/schema/enums/GaiRiskScope.md"
+
+[[params.redirects]]
+from = "elements/GaiRiskSourceEnum"
+to = "website/generated/schema/enums/GaiRiskSource.md"
+
+[[params.redirects]]
+from = "elements/GaiRiskTimeScaleEnum"
+to = "website/generated/schema/enums/GaiRiskTimeScale.md"
+
+[[params.redirects]]
+from = "elements/GovernancePracticeEnum"
+to = "website/generated/schema/enums/GaiGovernancePlan.md"
+
+[[params.redirects]]
+from = "elements/Harm"
+to = "website/generated/schema/classes/AiRmfHarm.md"
+
+[[params.redirects]]
+from = "elements/HarmCategoryEnum"
+to = "website/generated/schema/enums/AiRmfHarmCategory.md"
+
+[[params.redirects]]
+from = "elements/HarmToPeopleSubcategoryEnum"
+to = "website/generated/schema/enums/AiRmfHarmExample.md"
+
+[[params.redirects]]
+from = "elements/HumanAiInteraction"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/HumanAiInteractionIssue"
+to = "website/generated/schema/classes/AiRmfHumanAiIssue.md"
+
+[[params.redirects]]
+from = "elements/Impact"
+to = "website/generated/schema/classes/AiRmfImpact.md"
+
+[[params.redirects]]
+from = "elements/ImpactSignEnum"
+to = "website/generated/schema/enums/AiRmfImpactDirection.md"
+
+[[params.redirects]]
+from = "elements/Lifecycle"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/NamedThing"
+to = "website/generated/schema/classes/AiRmfRecord.md"
+
+[[params.redirects]]
+from = "elements/Playbook"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/PlaybookCollection"
+to = "website/generated/schema/classes/AiRmfFramework.md"
+
+[[params.redirects]]
+from = "elements/PlaybookEntry"
+to = "website/generated/schema/classes/AiRmfSubcategory.md"
+
+[[params.redirects]]
+from = "elements/PrimaryConsiderationEnum"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/PrimaryGaiConsideration"
+to = "website/generated/schema/classes/GaiGovernanceConsideration.md"
+
+[[params.redirects]]
+from = "elements/ProfileConstructs"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/ProfileTypeEnum"
+to = "website/generated/schema/enums/AiRmfProfileKind.md"
+
+[[params.redirects]]
+from = "elements/ProvenanceTechniqueEnum"
+to = "website/generated/schema/enums/GaiProvenanceTechnique.md"
+
+[[params.redirects]]
+from = "elements/RedTeamingTypeEnum"
+to = "website/generated/schema/enums/GaiRedTeamingType.md"
+
+[[params.redirects]]
+from = "elements/ResidualRisk"
+to = "website/generated/schema/classes/AiRmfResidualRisk.md"
+
+[[params.redirects]]
+from = "elements/Risk"
+to = "website/generated/schema/classes/AiRmfRisk.md"
+
+[[params.redirects]]
+from = "elements/RiskAndHarm"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/RiskMeasurementChallenge"
+to = "website/generated/schema/classes/AiRmfMeasurementChallenge.md"
+
+[[params.redirects]]
+from = "elements/RiskMeasurementChallengeEnum"
+to = "website/generated/schema/enums/AiRmfMeasurementChallengeName.md"
+
+[[params.redirects]]
+from = "elements/RiskResponseEnum"
+to = "website/generated/schema/enums/AiRmfRiskResponse.md"
+
+[[params.redirects]]
+from = "elements/RiskTolerance"
+to = "website/generated/schema/classes/AiRmfRiskTolerance.md"
+
+[[params.redirects]]
+from = "elements/RmfAttribute"
+to = "website/generated/schema/classes/AiRmfAttribute.md"
+
+[[params.redirects]]
+from = "elements/StructuredFeedbackMethodEnum"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/StructuredPublicFeedback"
+to = "website/generated/schema/classes/GaiStructuredFeedback.md"
+
+[[params.redirects]]
+from = "elements/Subcategory"
+to = "website/generated/schema/classes/AiRmfSubcategory.md"
+
+[[params.redirects]]
+from = "elements/SubcategoryCode"
+to = "website/generated/schema/types/AiRmfSubcategoryIdentifier.md"
+
+[[params.redirects]]
+from = "elements/SuggestedAction"
+to = "website/generated/schema/classes/GaiSuggestedAction.md"
+
+[[params.redirects]]
+from = "elements/Trustworthiness"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/TrustworthinessCharacteristic"
+to = "website/generated/schema/classes/AiRmfTrustworthinessCharacteristic.md"
+
+[[params.redirects]]
+from = "elements/TrustworthinessCharacteristicEnum"
+to = "website/generated/schema/enums/AiRmfCharacteristicName.md"
+
+[[params.redirects]]
+from = "elements/about_text"
+to = "website/generated/schema/slots/ai_rmf_subcategory_about.md"
+
+[[params.redirects]]
+from = "elements/action_id"
+to = "website/generated/schema/slots/gai_action_id.md"
+
+[[params.redirects]]
+from = "elements/actor_task"
+to = "website/generated/schema/slots/gai_subcategory_actor_tasks.md"
+
+[[params.redirects]]
+from = "elements/actor_tasks"
+to = "website/generated/schema/slots/ai_rmf_actor_task_list.md"
+
+[[params.redirects]]
+from = "elements/addressed_by_actions"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/addresses"
+to = "website/generated/schema/slots/ai_rmf_profile_subcategories.md"
+
+[[params.redirects]]
+from = "elements/affects"
+to = "website/generated/schema/slots/ai_rmf_impact_affected_parties.md"
+
+[[params.redirects]]
+from = "elements/affects_system"
+to = "website/generated/schema/slots/ai_rmf_risk_system.md"
+
+[[params.redirects]]
+from = "elements/ai_actor_categories"
+to = "website/generated/schema/slots/ai_rmf_subcategory_ai_actors.md"
+
+[[params.redirects]]
+from = "elements/ai_actors"
+to = "website/generated/schema/slots/ai_rmf_subcategory_ai_actors.md"
+
+[[params.redirects]]
+from = "elements/ai_dimension"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/ai_incident_definition"
+to = "website/generated/schema/slots/gai_incident_harms.md"
+
+[[params.redirects]]
+from = "elements/ai_specific_risks"
+to = "website/generated/schema/slots/ai_rmf_specific_risks.md"
+
+[[params.redirects]]
+from = "elements/applies_to_subcategory"
+to = "website/generated/schema/slots/ai_rmf_subcategory_id.md"
+
+[[params.redirects]]
+from = "elements/attributes"
+to = "website/generated/schema/slots/ai_rmf_attributes.md"
+
+[[params.redirects]]
+from = "elements/audience"
+to = "website/generated/schema/slots/ai_rmf_actor_audience.md"
+
+[[params.redirects]]
+from = "elements/bias_category"
+to = "website/generated/schema/slots/ai_rmf_bias_categories.md"
+
+[[params.redirects]]
+from = "elements/categories"
+to = "website/generated/schema/slots/ai_rmf_function_categories.md"
+
+[[params.redirects]]
+from = "elements/category"
+to = "website/generated/schema/slots/ai_rmf_category_id.md"
+
+[[params.redirects]]
+from = "elements/category_code"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/category_id"
+to = "website/generated/schema/slots/ai_rmf_category_id.md"
+
+[[params.redirects]]
+from = "elements/challenge_kind"
+to = "website/generated/schema/slots/ai_rmf_measurement_challenge_name.md"
+
+[[params.redirects]]
+from = "elements/characteristic_kind"
+to = "website/generated/schema/slots/ai_rmf_characteristic_name.md"
+
+[[params.redirects]]
+from = "elements/consideration_kind"
+to = "website/generated/schema/slots/gai_consideration_type.md"
+
+[[params.redirects]]
+from = "elements/current_state"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/dimension_kind"
+to = "website/generated/schema/slots/ai_rmf_dimension_name.md"
+
+[[params.redirects]]
+from = "elements/dimensions"
+to = "website/generated/schema/slots/ai_rmf_dimensions.md"
+
+[[params.redirects]]
+from = "elements/document"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/documentation_questions"
+to = "website/generated/schema/slots/ai_rmf_subcategory_documentation.md"
+
+[[params.redirects]]
+from = "elements/doi"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/entries"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/feedback_method_kind"
+to = "website/generated/schema/slots/gai_feedback_type.md"
+
+[[params.redirects]]
+from = "elements/function_code"
+to = "website/generated/schema/slots/ai_rmf_function_id.md"
+
+[[params.redirects]]
+from = "elements/function_kind"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/function_prefix"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/functions"
+to = "website/generated/schema/slots/ai_rmf_functions.md"
+
+[[params.redirects]]
+from = "elements/gai_risk_catalog"
+to = "website/generated/schema/slots/gai_risks.md"
+
+[[params.redirects]]
+from = "elements/gai_risk_kind"
+to = "website/generated/schema/slots/gai_risk_name.md"
+
+[[params.redirects]]
+from = "elements/governance_practices"
+to = "website/generated/schema/slots/gai_governance_plans.md"
+
+[[params.redirects]]
+from = "elements/harm_category"
+to = "website/generated/schema/slots/ai_rmf_harm_category.md"
+
+[[params.redirects]]
+from = "elements/harm_to_people_subcategory"
+to = "website/generated/schema/slots/ai_rmf_harm_example.md"
+
+[[params.redirects]]
+from = "elements/human_ai_interaction_issues"
+to = "website/generated/schema/slots/ai_rmf_human_ai_issues.md"
+
+[[params.redirects]]
+from = "elements/id"
+to = "website/generated/schema/slots/ai_rmf_id.md"
+
+[[params.redirects]]
+from = "elements/impact_sign"
+to = "website/generated/schema/slots/ai_rmf_impact_direction.md"
+
+[[params.redirects]]
+from = "elements/includes_tevv"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/is_base_condition"
+to = "website/generated/schema/slots/ai_rmf_characteristic_is_base.md"
+
+[[params.redirects]]
+from = "elements/is_cross_cutting"
+to = "website/generated/schema/slots/ai_rmf_characteristic_relates_to_all.md"
+
+[[params.redirects]]
+from = "elements/is_residual"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/is_tevv"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/legal_basis"
+to = "website/generated/schema/slots/ai_rmf_risk_tolerance_influences.md"
+
+[[params.redirects]]
+from = "elements/lifecycle_stage"
+to = "website/generated/schema/slots/gai_risk_lifecycle_stages.md"
+
+[[params.redirects]]
+from = "elements/lifecycle_stages"
+to = "website/generated/schema/slots/ai_rmf_lifecycle_stages.md"
+
+[[params.redirects]]
+from = "elements/likelihood"
+to = "website/generated/schema/slots/ai_rmf_likelihood.md"
+
+[[params.redirects]]
+from = "elements/limitations_of_current_approaches"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/magnitude"
+to = "website/generated/schema/slots/ai_rmf_magnitude.md"
+
+[[params.redirects]]
+from = "elements/name"
+to = "website/generated/schema/slots/title.md"
+
+[[params.redirects]]
+from = "elements/nist-ai-rmf"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/outcome"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/primary_considerations"
+to = "website/generated/schema/slots/gai_primary_considerations.md"
+
+[[params.redirects]]
+from = "elements/profile_type"
+to = "website/generated/schema/slots/ai_rmf_profile_kinds.md"
+
+[[params.redirects]]
+from = "elements/profiles"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/provenance_techniques"
+to = "website/generated/schema/slots/gai_provenance_techniques.md"
+
+[[params.redirects]]
+from = "elements/published_date"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/publisher"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/red_team_type"
+to = "website/generated/schema/slots/gai_red_teaming_types.md"
+
+[[params.redirects]]
+from = "elements/references_text"
+to = "website/generated/schema/slots/ai_rmf_subcategory_references.md"
+
+[[params.redirects]]
+from = "elements/related_impacts"
+to = "website/generated/schema/slots/ai_rmf_risk_impacts.md"
+
+[[params.redirects]]
+from = "elements/risk_categorization"
+to = "website/generated/schema/slots/gai_risk_groupings.md"
+
+[[params.redirects]]
+from = "elements/risk_measurement_challenges"
+to = "website/generated/schema/slots/ai_rmf_management_challenges.md"
+
+[[params.redirects]]
+from = "elements/risk_response"
+to = "website/generated/schema/slots/ai_rmf_risk_responses.md"
+
+[[params.redirects]]
+from = "elements/risk_scope"
+to = "website/generated/schema/slots/gai_risk_scopes.md"
+
+[[params.redirects]]
+from = "elements/risk_sources"
+to = "website/generated/schema/slots/gai_risk_sources.md"
+
+[[params.redirects]]
+from = "elements/section_about"
+to = "website/generated/schema/slots/ai_rmf_subcategory_about.md"
+
+[[params.redirects]]
+from = "elements/section_actions"
+to = "website/generated/schema/slots/ai_rmf_subcategory_suggested_actions.md"
+
+[[params.redirects]]
+from = "elements/section_doc"
+to = "website/generated/schema/slots/ai_rmf_subcategory_documentation.md"
+
+[[params.redirects]]
+from = "elements/section_ref"
+to = "website/generated/schema/slots/ai_rmf_subcategory_references.md"
+
+[[params.redirects]]
+from = "elements/sector"
+to = "website/generated/schema/slots/ai_rmf_profile_setting.md"
+
+[[params.redirects]]
+from = "elements/see_also"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/source"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/stage_kind"
+to = "website/generated/schema/slots/ai_rmf_lifecycle_stage_name.md"
+
+[[params.redirects]]
+from = "elements/structured_feedback_methods"
+to = "website/generated/schema/slots/gai_structured_feedback.md"
+
+[[params.redirects]]
+from = "elements/subcategories"
+to = "website/generated/schema/slots/ai_rmf_category_subcategories.md"
+
+[[params.redirects]]
+from = "elements/subcategory_id"
+to = "website/generated/schema/slots/ai_rmf_subcategory_id.md"
+
+[[params.redirects]]
+from = "elements/suggested_actions"
+to = "website/generated/schema/slots/gai_subcategories.md"
+
+[[params.redirects]]
+from = "elements/suggested_actions_text"
+to = "website/generated/schema/slots/ai_rmf_subcategory_suggested_actions.md"
+
+[[params.redirects]]
+from = "elements/target_state"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/task_kind"
+to = "website/generated/schema/slots/ai_rmf_actor_task_name.md"
+
+[[params.redirects]]
+from = "elements/third_party_considerations"
+to = "website/generated/schema/slots/gai_third_party_controls.md"
+
+[[params.redirects]]
+from = "elements/time_scale"
+to = "website/generated/schema/slots/gai_risk_time_scales.md"
+
+[[params.redirects]]
+from = "elements/tolerance_statement"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "elements/topic"
+to = "website/generated/schema/slots/ai_rmf_subcategory_topics.md"
+
+[[params.redirects]]
+from = "elements/topics"
+to = "website/generated/schema/slots/ai_rmf_subcategory_topics.md"
+
+[[params.redirects]]
+from = "elements/trustworthiness_characteristic"
+to = "website/generated/schema/slots/ai_rmf_risk_characteristics.md"
+
+[[params.redirects]]
+from = "elements/trustworthiness_characteristics"
+to = "website/generated/schema/slots/ai_rmf_characteristics.md"
+
+[[params.redirects]]
+from = "elements/type"
+to = "website/generated/schema/slots/ai_rmf_function_id.md"
+
+[[params.redirects]]
+from = "elements/typical_actors"
+to = "website/generated/schema/slots/ai_rmf_actor_task_representative_actors.md"
+
+[[params.redirects]]
+from = "elements/version"
+to = "website/generated/schema/_index.md"
+
+[[params.redirects]]
+from = "schema/*"
+to = "schema/*"

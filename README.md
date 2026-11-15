@@ -34,7 +34,7 @@ The schema holds the two repositories' mappings unchanged, and `tests/test_schem
 * [src/nist_ai_rmf/schema/](src/nist_ai_rmf/schema): the umbrella `nist_ai_rmf.yaml` (edit this) and the vendored modules (do not edit them)
 * [src/nist_ai_rmf/datamodel/](src/nist_ai_rmf/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data), the two catalogues in [upstream/](tests/upstream) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
