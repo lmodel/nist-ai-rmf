@@ -19,7 +19,7 @@ sources:
   - resource: docs/index.md
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T02:43:30Z"
+  at: "2026-11-15T03:05:39Z"
 status: draft
 ---
 
@@ -27,7 +27,7 @@ status: draft
 
 `website/` holds a Hugo site with a page per concept, a health page, a graph, the schema's pages and the docs.[^website-readme.md]
 
-`REDIRECTS` keeps the retired mkdocs site's addresses: each old element page goes to its successor where it has one, and otherwise to the schema's index.[^site.toml]
+The `params.redirects` entries in `site.toml` keep the retired mkdocs site's addresses: each old element page goes to its successor where it has one, and otherwise to the schema's index.[^site.toml]
 
 [^website-readme.md]: website/README.md
 [^site.toml]: website/site.toml, the site's address, title and redirects
